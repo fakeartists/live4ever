@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npm-run-all -p watch-layout start-js",
     "build": "npm run release",
+    "deploy": "env-cmd -f .env.ghpages npm run build && gh-pages -d build",
     "\n ######################  NPM Secondary Pipeline  ######################": "",
     "release": "cross-env NODE_ENV=production npm-run-all generate-doc build-layout build-js build-php copy-build",
     "start-js": "react-app-rewired start",
