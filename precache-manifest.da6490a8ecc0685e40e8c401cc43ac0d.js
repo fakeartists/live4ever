@@ -76,12 +76,12 @@ self.__precacheManifest = [
     "url": "./static/media/stalinist-one-v28-latin-regular.e3eb3fb4.woff"
   },
   {
-    "revision": "dd7c075079864a35c22032093adada39",
-    "url": "./static/media/squada-one-v9-latin-regular.dd7c0750.ttf"
-  },
-  {
     "revision": "8e76419cbc7696ff18a3ee1a6a1e5857",
     "url": "./static/media/aldrich-v11-latin-regular.8e76419c.woff"
+  },
+  {
+    "revision": "dd7c075079864a35c22032093adada39",
+    "url": "./static/media/squada-one-v9-latin-regular.dd7c0750.ttf"
   },
   {
     "revision": "eecaf6b5127bc50a91f7",
