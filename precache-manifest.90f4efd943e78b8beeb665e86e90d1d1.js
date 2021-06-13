@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "./static/js/7.eecaf6b5.chunk.js"
   },
   {
-    "revision": "4aede5570ce1730dde00",
+    "revision": "bdf81fdf31913167c2b7",
     "url": "./static/css/main.9ba4e633.chunk.css"
   },
   {
@@ -56,8 +56,8 @@ self.__precacheManifest = [
     "url": "./static/media/stalinist-one-v28-latin-regular.181efdeb.ttf"
   },
   {
-    "revision": "4aede5570ce1730dde00",
-    "url": "./static/js/main.4aede557.chunk.js"
+    "revision": "bdf81fdf31913167c2b7",
+    "url": "./static/js/main.bdf81fdf.chunk.js"
   },
   {
     "revision": "f96d82a511332500e3747d0072839ff5",
@@ -76,12 +76,12 @@ self.__precacheManifest = [
     "url": "./static/media/stalinist-one-v28-latin-regular.e3eb3fb4.woff"
   },
   {
-    "revision": "8e76419cbc7696ff18a3ee1a6a1e5857",
-    "url": "./static/media/aldrich-v11-latin-regular.8e76419c.woff"
-  },
-  {
     "revision": "dd7c075079864a35c22032093adada39",
     "url": "./static/media/squada-one-v9-latin-regular.dd7c0750.ttf"
+  },
+  {
+    "revision": "8e76419cbc7696ff18a3ee1a6a1e5857",
+    "url": "./static/media/aldrich-v11-latin-regular.8e76419c.woff"
   },
   {
     "revision": "eecaf6b5127bc50a91f7",
@@ -108,7 +108,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "d8f2f89b67e983930f7463a430cfe3b3",
+    "revision": "ae1d76f26e77b983754dc35ed4d5d7df",
     "url": "./index.html"
   }
 ];
