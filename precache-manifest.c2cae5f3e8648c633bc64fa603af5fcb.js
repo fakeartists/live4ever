@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "./static/js/7.eecaf6b5.chunk.js"
   },
   {
-    "revision": "50419387b2fa2f8b4e00",
+    "revision": "076a777bc4658c95c5ce",
     "url": "./static/css/main.9ba4e633.chunk.css"
   },
   {
@@ -56,8 +56,8 @@ self.__precacheManifest = [
     "url": "./static/media/stalinist-one-v28-latin-regular.181efdeb.ttf"
   },
   {
-    "revision": "50419387b2fa2f8b4e00",
-    "url": "./static/js/main.50419387.chunk.js"
+    "revision": "076a777bc4658c95c5ce",
+    "url": "./static/js/main.076a777b.chunk.js"
   },
   {
     "revision": "f96d82a511332500e3747d0072839ff5",
@@ -108,7 +108,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "7a02d5f90867366e7ca04851cc58ce1c",
+    "revision": "9da4c56e9c6df6240b4e3076b5ad8a60",
     "url": "./index.html"
   }
 ];
