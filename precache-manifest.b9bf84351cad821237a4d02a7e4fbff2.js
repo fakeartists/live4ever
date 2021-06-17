@@ -44,16 +44,16 @@ self.__precacheManifest = [
     "url": "./static/js/5.928d6ca7.chunk.js"
   },
   {
-    "revision": "add0c4244a015960586eeb51f091fd71",
-    "url": "./static/media/Orbitron-Regular.add0c424.ttf"
+    "revision": "f8509cdf18344c7a0dc503bb29a623ef",
+    "url": "./static/media/aldrich-v11-latin-regular.f8509cdf.ttf"
   },
   {
     "revision": "21b571f240869fdc074b",
     "url": "./static/js/6.21b571f2.chunk.js"
   },
   {
-    "revision": "f8509cdf18344c7a0dc503bb29a623ef",
-    "url": "./static/media/aldrich-v11-latin-regular.f8509cdf.ttf"
+    "revision": "add0c4244a015960586eeb51f091fd71",
+    "url": "./static/media/Orbitron-Regular.add0c424.ttf"
   },
   {
     "revision": "1709f5786999810790fa",
@@ -116,7 +116,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "81388743d7a668480db3dc3708571bce",
+    "revision": "0e7e3738276ca116ca9801be0ba40a64",
     "url": "./index.html"
   }
 ];
