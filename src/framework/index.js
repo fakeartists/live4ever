@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { device, browser } from '@jam3/detect';
+import { BrowserRouter } from 'react-router-dom';
 import store, { history } from '../redux';
 import App from '../components/App/App';
 
@@ -23,5 +24,9 @@ export default function() {
     );
   };
 
-  render(<App />);
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
 }

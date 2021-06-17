@@ -52,12 +52,8 @@ class MainTopNav extends React.PureComponent {
           <div className="nav-mid-logo-cnt">
             <PyramidIcon className="nav-mid-logo" />
             <div className="nav-mid-logo-text">
-              <h1>
-                TXT “RICH” NOW!
-                <br />
-                1-800-PYRAMID
-              </h1>
-              <p>$2/text</p>
+              <h1>1-800-PYRAMID</h1>
+              {/* <p>$2/text</p> */}
             </div>
           </div>
           {this.props.showHamburger ? (

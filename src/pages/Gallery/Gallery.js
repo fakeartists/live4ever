@@ -49,25 +49,32 @@ class Gallery extends React.PureComponent {
   };
 
   render() {
+    let header;
+    if (this.props.isHome) {
+      header = (
+        <header className="Gallery-header">
+          <h1>{galeryData.title}</h1>
+        </header>
+      );
+    }
+
     return (
       <div className={classnames('Gallery', this.props.className)} ref={el => (this.container = el)}>
         <section className="Gallery-container">
-          <header className="Gallery-header">
-            <h1>{galeryData.title}</h1>
-          </header>
+          {header}
           <section className="Gallery-content">
             <ul className="gallery-list">
               {galeryData.itens.map((item, index) => {
                 return (
                   <li key={index} className="gallery-item">
-                    <BaseLink link={'./' + item._id}>
+                    <BaseLink link={'./asset/' + item._id}>
                       <img src={item.image} alt="alt" />
                       <h2 className="gallery-item-title">{item.title}</h2>
                       <div className="gallery-item-info">
                         <p className="gallery-item-info-title">Highest Bid</p>
-                        <p className="gallery-item-info-bid">{item.highestbid + ' Δ'}</p>
+                        {this.props.isHome && <p className="gallery-item-info-bid">{item.highestbid + ' Δ'}</p>}
                         <button className={'gallery-item-info-button' + (item.status === 'sold' ? '' : ' active')}>
-                          {item.status === 'sold' ? 'SOLD' : 'BID'}
+                          {item.status === 'sold' ? 'SOLD' : 'Praise & Interact'}
                         </button>
                       </div>
                     </BaseLink>
@@ -87,6 +94,7 @@ Gallery.propTypes = checkProps({
   transitionState: PropTypes.string.isRequired,
   previousRoute: PropTypes.string,
   loaded: PropTypes.bool,
+  isHome: PropTypes.bool,
   setGalleryLoaded: PropTypes.func
 });
 

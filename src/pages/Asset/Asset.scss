@@ -1,0 +1,37 @@
+@import 'src/style/shared.scss';
+
+.Asset {
+  position: relative;
+  float: left;
+  width: 100%;
+  background-color: transparent;
+  z-index: 50;
+  color: $green;
+  padding: px-to-rem(20) $navbar-padding-mobile;
+
+  @media (min-width: $layout-large) {
+    padding: px-to-rem(20) $navbar-padding-desktop;
+  }
+
+  &-container {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin: px-to-rem(0) 0 0 0;
+    border: 1px $green solid;
+    padding: px-to-rem(20);
+    background-color: $blacktint;
+
+    &.leaderboard {
+      margin-top: px-to-rem(20);
+
+      h1 {
+        @include title;
+      }
+    }
+
+    @media (min-width: $layout-large) {
+      padding: px-to-rem(30);
+    }
+  }
+}

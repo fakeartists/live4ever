@@ -50,10 +50,10 @@ $main-top-nav-link-font-size: 2rem !default;
 
     h1 {
       margin: px-to-rem(5) 0;
-      @include font-h1;
+      @include font-light();
       color: $pink;
-      font-size: px-to-rem(20);
-      line-height: px-to-rem(20);
+      font-size: px-to-rem(16);
+      line-height: px-to-rem(16);
       text-align: center;
     }
 
@@ -77,11 +77,11 @@ $main-top-nav-link-font-size: 2rem !default;
     }
 
     .nav-logo-text {
-      margin: px-to-rem(0) px-to-rem(7);
+      margin: px-to-rem(0) px-to-rem(10);
       position: absolute;
       color: $green;
-      font-size: px-to-rem(11);
-      line-height: px-to-rem(11);
+      font-size: px-to-rem(10);
+      line-height: px-to-rem(10);
     }
 
     .nav-list {

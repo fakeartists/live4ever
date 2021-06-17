@@ -13,7 +13,7 @@
 ///   }
 @mixin font-light() {
   font-family: 'Aldrich', #{$generic-fonts};
-  font-weight: 300;
+  font-weight: 100;
 }
 
 /// Set Regular Font as font family. This mixin's name is generic to abstract the font family name in case it changes
@@ -45,7 +45,8 @@
 ///     @include font-bold();
 ///   }
 @mixin font-title() {
-  font-family: 'StalinistOne', #{$generic-fonts};
+  font-family: 'Orbitron', #{$generic-fonts};
+  letter-spacing: 3px;
   font-weight: 100;
 }
 
@@ -56,7 +57,19 @@
 ///     @include font-bold();
 ///   }
 @mixin font-h1() {
-  font-family: 'SquadaOne', #{$generic-fonts};
+  font-family: 'Orbitron', #{$generic-fonts};
+  letter-spacing: 3px;
+  font-weight: 100;
+}
+
+/// Set Bold Font as font family. This mixin's name is generic to abstract the font family name in case it changes
+/// @group Fonts
+/// @example scss Input
+///   .landing-section {
+///     @include font-bold();
+///   }
+@mixin font-special() {
+  font-family: 'DigitalNumbers', #{$generic-fonts};
   font-weight: 100;
 }
 
@@ -213,6 +226,7 @@
 @mixin title {
   margin: px-to-rem(0) 0 px-to-rem(30) 0;
   @include font-title;
+  text-transform: uppercase;
   color: $pink;
   font-size: px-to-rem(24);
   line-height: px-to-rem(20);
@@ -233,11 +247,12 @@
 
   &:hover {
     cursor: pointer;
-    background-color: $greentint-dark;
-    color: $green;
+    // background-color: $greentint-dark;
+    background-color: $green;
+    color: $black;
 
     a {
-      color: $green;
+      color: $black;
     }
   }
 
@@ -248,10 +263,10 @@
 
 @mixin main-button-cta {
   background-color: $green;
-  padding: px-to-rem(13) px-to-rem(35);
+  padding: px-to-rem(13) px-to-rem(20);
   border: 1px $green solid;
   box-sizing: border-box;
-  color: $black;
+  color: $pink;
 
   a {
     color: $green;
@@ -281,10 +296,17 @@
   box-sizing: border-box;
   color: $green;
 
+  &.active {
+    text-transform: none;
+    background-color: $green;
+    color: $black;
+  }
+
   &.active:hover {
     cursor: pointer;
-    background-color: $greentint-dark;
-    color: $green;
+    border: 1px $pink solid;
+    background-color: $pink;
+    color: $black;
   }
 
   &.active {

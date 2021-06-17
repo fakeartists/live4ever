@@ -12,7 +12,7 @@ export default {
       chain_info: 'fb_0asdsfsaA',
       contract_address: '782736392920208742920377',
       token_id: 'FAK_PYRΔMID',
-      status: 'sold'
+      status: ''
     },
     {
       _id: 'io_0fasda0d0asda0sasdas0doa0sdoifjsdjhfklahu',
@@ -38,7 +38,7 @@ export default {
       chain_info: 'fb_0asdsfsaA',
       contract_address: '782736392920208742920377',
       token_id: 'FAK_PYRΔMID',
-      status: 'sold'
+      status: ''
     },
     {
       _id: 'io_0fasda0d0asda0sasdas0doa0sdoifjsdjhfklahu',
