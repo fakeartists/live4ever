@@ -32,7 +32,7 @@ You really don't want to do it.
 
 ## Contributing
 
-If you reallu want to contribute, just send us some money or buy one of our products at [FakeArtists Website](https://fakeartists.net/)
+If you really want to contribute, just send us some money or buy one of our products at [FakeArtists Website](https://fakeartists.net/)
 
 ## Authors
 
