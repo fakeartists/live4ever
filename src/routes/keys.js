@@ -4,5 +4,6 @@ export default {
   Home: settings.sitePath,
   Gallery: settings.sitePath + 'gallery',
   About: settings.sitePath + 'about',
-  Asset: settings.sitePath + 'asset'
+  Asset: settings.sitePath + 'asset',
+  Mine: settings.sitePath + 'mine'
 };
