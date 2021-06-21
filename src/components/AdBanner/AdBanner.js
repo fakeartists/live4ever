@@ -13,6 +13,14 @@ class ADBanner extends React.PureComponent {
     bodyCopy: ''
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showComponent: true
+    };
+  }
+
   async componentDidMount() {
     //const { path, history } = this.props;
 
@@ -31,22 +39,22 @@ class ADBanner extends React.PureComponent {
 
     var backgroundImage = './assets/images/popups/' + filenamePrefix + '_' + paddedIndex + '.gif';
 
-    console.log(backgroundImage);
+    //console.log(backgroundImage);   // DEBUG
 
     // Body copy
     var bodyCopyOptions = [
-      'Get [adj] quick !',
-      '[verb] forever now !',
-      'Meet your [adj] double and [verb] forever!',
+      'Get [adj] quick!',
+      '[verb] forever now!',
+      'Meet your [adj] double<br/>and [verb] forever!',
       'Every [noun] knows this trick! ',
-      '[verb] now and become a [noun] now!',
-      'Become a [adj] [noun] and [verb] quick!',
-      'Only 2 left! [verb] Fast!',
-      '[verb] like a [adj] [noun]!',
-      'Wanna be a [adj] [noun]? [verb] now!',
-      'Are you ready to [verb]?',
-      'You Too! Become a [adj] [noun].',
-      'Time to [verb] and become a [noun]!'
+      '[verb] now and<br/>become a [noun] now!',
+      'Become a [adj] [noun]<br/>and [verb] quick!',
+      'Only 2 left!<br/>[verb] Fast!',
+      '[verb] like a<br/>[adj] [noun]!',
+      'Wanna be a [adj] [noun]?<br/>[verb] now!',
+      'Are you ready<br/>to [verb]?',
+      'You Too!<br/>Become a [adj] [noun].',
+      'Time to [verb] and<br/>become a [noun]!'
     ];
 
     var verbOptions = [
@@ -117,13 +125,18 @@ class ADBanner extends React.PureComponent {
       .replace('[adj]', adjective)
       .replace('[noun]', noun);
 
-    // DEBUG
-    console.log(bodyCopy);
+    // Split into array and insert <br /> in between
+    // Assume only one br max. Key is always 0
+    const intersperse = (arr, sep) => arr.reduce((a, v, i) => [...a, v, sep], []).slice(0, -1);
+    bodyCopy = intersperse(bodyCopy.split('<br/>'), <br key={0} />);
+
+    //console.log(bodyCopy);   // DEBUG
 
     this.setState({
       backgroundImage: backgroundImage,
       bodyCopy: bodyCopy
     });
+
     // -------------------------------------------------------------------------------------------------------
   }
 
@@ -131,15 +144,34 @@ class ADBanner extends React.PureComponent {
     //const { width, height, path } = this.props;
   }
 
+  handleClick = () => {
+    if (this.props.onClosed) {
+      this.setState({
+        clicked: true,
+        showComponent: false
+      });
+
+      this.props.onClosed();
+    }
+  };
+
   render() {
+    const bannerStyle = {
+      display: this.state.showComponent ? 'block' : 'none',
+      position: this.props.position ? this.props.position : '',
+      top: this.props.top,
+      left: this.props.left
+    };
+
     return (
       <section
         className={classnames(`Adbanner`)}
+        style={bannerStyle}
         ref={node => {
           this.node = node;
         }}
       >
-        <div>
+        <div className="Adbanner-wrapper">
           <header className="Adbanner-header">
             <ul>
               <li className="Adbanner-header-close">X</li>
@@ -149,6 +181,7 @@ class ADBanner extends React.PureComponent {
           </header>
           <div className="Adbanner-content">
             <span>{this.state.bodyCopy}</span>
+            <button onClick={this.handleClick}>CLICK</button>
             <img src={this.state.backgroundImage} alt="banner" />
           </div>
         </div>
@@ -160,7 +193,11 @@ class ADBanner extends React.PureComponent {
 ADBanner.propTypes = checkProps({
   width: PropTypes.number,
   height: PropTypes.number,
-  path: PropTypes.string
+  position: PropTypes.string,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  path: PropTypes.string,
+  onClosed: PropTypes.func
 });
 
 ADBanner.defaultProps = {
