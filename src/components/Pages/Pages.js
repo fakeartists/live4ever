@@ -14,6 +14,7 @@ const Home = lazy(() => import('../../pages/Home/Home'));
 const Gallery = lazy(() => import('../../pages/Gallery/Gallery'));
 const About = lazy(() => import('../../pages/About/About'));
 const Asset = lazy(() => import('../../pages/Asset/Asset'));
+const Mine = lazy(() => import('../../pages/Mine/Mine'));
 const NotFound = lazy(() => import('../../pages/NotFound/NotFound')).default;
 
 const Pages = ({ location, ...props }) => {
@@ -27,6 +28,7 @@ const Pages = ({ location, ...props }) => {
                 <Route exact path={routeKeys.Home} render={() => <Home transitionState={state} />} />
                 <Route exact path={routeKeys.Gallery} render={() => <Gallery transitionState={state} />} />
                 <Route exact path={routeKeys.About} render={() => <About transitionState={state} />} />
+                <Route exact path={routeKeys.Mine} render={() => <Mine transitionState={state} />} />
                 <Route
                   exact
                   path={`${routeKeys.Asset}/:assetId`}

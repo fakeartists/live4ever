@@ -1,0 +1,60 @@
+@import 'src/style/shared.scss';
+
+.Mine {
+  position: relative;
+  float: left;
+  text-align: center;
+  z-index: 50;
+  padding: px-to-rem(20) $navbar-padding-mobile;
+
+  @media (min-width: $layout-large) {
+    padding: px-to-rem(20) $navbar-padding-desktop;
+  }
+
+  h1 {
+    margin: px-to-rem(0) 0 px-to-rem(30) 0;
+    @include font-title;
+    color: $pink;
+    font-size: px-to-rem(24);
+    line-height: px-to-rem(30);
+    text-align: left;
+  }
+
+  .score-wrapper {
+    margin: 0 0 1% 0;
+    padding: 1%;
+    border: 1px solid $pink;
+    color: $pink;
+
+    .digits {
+      @include font-special();
+      font-size: px-to-rem(24);
+      padding: 0 px-to-rem(20);
+    }
+
+    .delta {
+      @include font-special();
+      font-size: px-to-rem(24);
+    }
+
+    .time-left-wrapper {
+      position: absolute;
+      margin-bottom: px-to-rem(10);
+      color: $green;
+    }
+
+    .your-bid-wrapper {
+    }
+
+    .rank-wrapper {
+      position: absolute;
+      right: 6%;
+    }
+  }
+
+  .Adbanner-wrapper {
+    display: inline-block;
+    border: 1px solid $green;
+    width: 640px;
+  }
+}
