@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
+import Draggable from 'react-draggable';
 import { selectWindowWidth, selectWindowHeight, selectPath } from '../App/App-selectors';
 
 import './AdBanner.scss';
@@ -155,6 +156,10 @@ class ADBanner extends React.PureComponent {
     }
   };
 
+  handleContentClick = () => {
+    this.node.style.zIndex = '999';
+  };
+
   render() {
     const bannerStyle = {
       display: this.state.showComponent ? 'block' : 'none',
@@ -164,28 +169,38 @@ class ADBanner extends React.PureComponent {
     };
 
     return (
-      <section
-        className={classnames(`Adbanner`)}
-        style={bannerStyle}
-        ref={node => {
-          this.node = node;
-        }}
+      <Draggable
+        axis="both"
+        defaultPosition={{ x: 0, y: 0 }}
+        scale={1}
+        onStart={this.handleStart}
+        onDrag={this.handleDrag}
+        onStop={this.handleStop}
       >
-        <div className="Adbanner-wrapper">
-          <header className="Adbanner-header">
-            <ul>
-              <li className="Adbanner-header-close">X</li>
-              <li className="Adbanner-header-windows" />
-              <li className="Adbanner-header-minimize">_</li>
-            </ul>
-          </header>
-          <div className="Adbanner-content">
-            <span>{this.state.bodyCopy}</span>
-            <button onClick={this.handleClick}>CLICK</button>
-            <img src={this.state.backgroundImage} alt="banner" />
+        <div
+          className={classnames(`Adbanner`)}
+          style={bannerStyle}
+          ref={node => {
+            this.node = node;
+          }}
+          // onClick={this.handleContentClick}
+        >
+          <div className="Adbanner-wrapper">
+            <header className="Adbanner-header">
+              <ul>
+                <li className="Adbanner-header-close">X</li>
+                <li className="Adbanner-header-windows" />
+                <li className="Adbanner-header-minimize">_</li>
+              </ul>
+            </header>
+            <div className="Adbanner-content">
+              <span>{this.state.bodyCopy}</span>
+              <button onClick={this.handleClick}>CLICK</button>
+              <img src={this.state.backgroundImage} alt="banner" />
+            </div>
           </div>
         </div>
-      </section>
+      </Draggable>
     );
   }
 }

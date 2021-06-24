@@ -1,0 +1,62 @@
+@import 'src/style/shared.scss';
+
+.MineNav {
+  position: fixed;
+  width: calc(100% - 1px);
+  top: $navbar-height-mobile;
+  left: 0;
+  margin-top: px-to-rem(20);
+  padding: px-to-rem(15);
+  border: 1px solid $pink;
+  color: $pink;
+  background: $blacktint-dark;
+  z-index: 999;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 90px;
+    left: 25%;
+    top: -50px;
+    background: radial-gradient(50% 50% at 50% 50%, #05ff0077 0%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 90px;
+    left: 25%;
+    bottom: -50px;
+    background: radial-gradient(50% 50% at 50% 50%, #fa00ff77 0%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  @media (min-width: $layout-large) {
+    top: $navbar-height-desktop;
+    margin-top: px-to-rem(20);
+  }
+
+  .digits {
+    @include font-special();
+    font-size: px-to-rem(24);
+    padding: 0 px-to-rem(20);
+  }
+
+  .delta {
+    @include font-special();
+    font-size: px-to-rem(24);
+  }
+
+  .time-left-wrapper {
+    position: absolute;
+    margin-bottom: px-to-rem(10);
+    color: $green;
+  }
+
+  .rank-wrapper {
+    position: absolute;
+    right: 6%;
+  }
+}

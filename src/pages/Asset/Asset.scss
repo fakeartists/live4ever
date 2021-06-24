@@ -24,14 +24,24 @@
 
     &.leaderboard {
       margin-top: px-to-rem(20);
+      padding: px-to-rem(20) 0 px-to-rem(6) 0;
 
       h1 {
         @include title;
+        padding: 0 px-to-rem(20) 0 px-to-rem(20);
       }
     }
 
     @media (min-width: $layout-large) {
       padding: px-to-rem(30);
+
+      &.leaderboard {
+        padding: px-to-rem(30) 0 px-to-rem(10) 0;
+
+        h1 {
+          padding: 0 px-to-rem(30) 0 px-to-rem(30);
+        }
+      }
     }
   }
 }

@@ -32,7 +32,11 @@ class BoxInfo extends React.PureComponent {
         </p>
       );
 
-      bid = <button className="box-info-button cta">BID NOW</button>;
+      bid = (
+        <button className="box-info-button cta" onClick={this.props.clickFunction}>
+          BID NOW
+        </button>
+      );
 
       assetinfo = (
         <div className="box-info-asset">
@@ -121,14 +125,16 @@ BoxInfo.propTypes = checkProps({
   width: PropTypes.number,
   height: PropTypes.number,
   path: PropTypes.string,
-  isSingle: PropTypes.bool
+  isSingle: PropTypes.bool,
+  clickFunction: PropTypes.func
 });
 
 BoxInfo.defaultProps = {
   width: window.innerWidth,
   height: window.innerHeight,
   path: '',
-  isSingle: false
+  isSingle: false,
+  clickFunction: null
 };
 
 const mapStateToProps = state => ({

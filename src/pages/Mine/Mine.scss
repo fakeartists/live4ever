@@ -20,38 +20,6 @@
     text-align: left;
   }
 
-  .score-wrapper {
-    margin: 0 0 1% 0;
-    padding: 1%;
-    border: 1px solid $pink;
-    color: $pink;
-
-    .digits {
-      @include font-special();
-      font-size: px-to-rem(24);
-      padding: 0 px-to-rem(20);
-    }
-
-    .delta {
-      @include font-special();
-      font-size: px-to-rem(24);
-    }
-
-    .time-left-wrapper {
-      position: absolute;
-      margin-bottom: px-to-rem(10);
-      color: $green;
-    }
-
-    .your-bid-wrapper {
-    }
-
-    .rank-wrapper {
-      position: absolute;
-      right: 6%;
-    }
-  }
-
   .Adbanner-wrapper {
     display: inline-block;
     border: 1px solid $green;

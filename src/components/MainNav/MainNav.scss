@@ -14,7 +14,7 @@ $main-top-nav-link-font-size: 2rem !default;
   height: $navbar-height-mobile;
   padding: 2rem $navbar-padding-mobile;
   box-sizing: border-box;
-  z-index: 999;
+  z-index: 500;
 
   @media (min-width: $layout-large) {
     height: $navbar-height-desktop;

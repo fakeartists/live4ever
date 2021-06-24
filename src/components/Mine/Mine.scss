@@ -1,0 +1,39 @@
+@import 'src/style/shared.scss';
+
+.Mine {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 990;
+  background: $blacktint;
+  padding: px-to-rem(20) $navbar-padding-mobile;
+
+  @media (min-width: $layout-large) {
+    padding: px-to-rem(20) $navbar-padding-desktop;
+  }
+
+  .mine-container {
+    position: absolute;
+    top: $navbar-height-mobile;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+  }
+
+  .Adbanner {
+    width: auto;
+    height: auto;
+    z-index: 900;
+  }
+
+  .Adbanner-wrapper {
+    display: inline-block;
+    border: 1px solid $green;
+    width: 640px;
+    z-index: 999;
+  }
+}

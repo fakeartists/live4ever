@@ -66,7 +66,7 @@ class Mine extends React.PureComponent {
 
     return (
       <section className={classnames('Mine', this.props.className)} ref={el => (this.container = el)}>
-        <MineNav numBannersClosed={this.numBannersClosed} />
+        <MineNav numBannersClosed={0} />
         <div>{items}</div>
       </section>
     );

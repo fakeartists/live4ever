@@ -8,11 +8,18 @@ import Transition from '../PagesTransitionWrapper';
 import { setAssetLoaded } from '../../redux/modules/asset';
 import animate from '../../util/gsap-animate';
 
+import Mine from '../../components/Mine/Mine';
 import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
+
 import './Asset.scss';
 
 class Asset extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.bidOpen = false;
+  }
+
   componentDidMount() {
     animate.set(this.container, { autoAlpha: 0 });
     if (!this.props.loaded) {
@@ -42,12 +49,25 @@ class Asset extends React.PureComponent {
     animate.to(this.container, 0.3, { autoAlpha: 0 });
   };
 
+  onClickBid = () => {
+    if (!this.bidOpen) {
+      this.mine.getWrappedInstance().animateIn();
+      this.container.style.position = 'fixed';
+      this.bidOpen = true;
+    } else {
+      this.mine.getWrappedInstance().animateOut();
+      this.container.style.position = 'relative';
+      this.bidOpen = false;
+    }
+  };
+
   render() {
     // const { params } = this.props.match;
     return (
       <div className={classnames('Asset', this.props.className)} ref={el => (this.container = el)}>
+        <Mine ref={mine => (this.mine = mine)} />
         <section className="Asset-container">
-          <BoxInfo isSingle={true} />
+          <BoxInfo isSingle={true} clickFunction={this.onClickBid} />
         </section>
         <section className="Asset-container leaderboard">
           <h1>Bidding Leaderboard</h1>

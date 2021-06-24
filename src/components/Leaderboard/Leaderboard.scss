@@ -3,4 +3,85 @@
 .Leaderboard-content {
   width: 100%;
   box-sizing: border-box;
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    td,
+    th {
+      padding-left: px-to-rem(30);
+    }
+
+    td:nth-child(4),
+    th:nth-child(4) {
+      width: 50%;
+    }
+
+    td:nth-child(3),
+    th:nth-child(3) {
+      width: 25%;
+    }
+
+    td:nth-child(2),
+    th:nth-child(2) {
+      width: 13%;
+    }
+
+    td:nth-child(1),
+    th:nth-child(1) {
+      width: 12%;
+    }
+
+    thead {
+      text-align: left;
+      @include font-regular();
+      font-size: px-to-rem(12);
+      color: $green;
+
+      tr {
+        th {
+          border-top: 1px solid $green;
+          border-bottom: 1px solid $green;
+          padding-top: px-to-rem(3);
+          padding-bottom: px-to-rem(3);
+        }
+      }
+    }
+
+    tbody {
+      text-align: left;
+      @include font-regular();
+      font-size: px-to-rem(16);
+      color: $white;
+      padding-top: 10px;
+
+      tr {
+        td {
+          border-bottom: 1px solid $greentint-dark;
+          padding-top: px-to-rem(8);
+          padding-bottom: px-to-rem(8);
+
+          img {
+            float: left;
+            position: relative;
+            width: px-to-rem(50);
+          }
+
+          p {
+            float: left;
+            position: relative;
+            padding-left: px-to-rem(14);
+          }
+        }
+      }
+
+      tr:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+  }
 }

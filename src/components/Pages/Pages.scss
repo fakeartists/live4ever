@@ -5,6 +5,7 @@
   text-align: center;
   margin-top: $navbar-height-mobile;
   flex: 1;
+  z-index: 100;
 
   @media (min-width: $layout-large) {
     margin-top: $navbar-height-desktop;
