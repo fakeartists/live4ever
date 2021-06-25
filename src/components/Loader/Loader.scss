@@ -1,0 +1,51 @@
+@import 'src/style/shared.scss';
+
+.Loader {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: $black;
+  z-index: 9994;
+
+  @media (min-width: $layout-large) {
+  }
+
+  .loader-image {
+    position: absolute;
+    background: url('#{$base-image-path}pyramid_loader_small.gif');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 107px;
+    left: 50%;
+    bottom: 50vh;
+    margin: 0 0 -52px -75px;
+    z-index: 9995;
+  }
+
+  .loader-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    overflow: hidden;
+  }
+
+  .loader-bg.black {
+    background-color: $black;
+    z-index: 9999;
+  }
+
+  .loader-bg.green {
+    background-color: $green;
+    z-index: 9997;
+  }
+
+  .loader-bg.pink {
+    background-color: $pink;
+    z-index: 9996;
+  }
+}

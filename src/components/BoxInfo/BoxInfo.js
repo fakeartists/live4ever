@@ -22,6 +22,7 @@ class BoxInfo extends React.PureComponent {
     let description;
     let bid;
     let assetinfo;
+    let reserve;
     if (this.props.isSingle) {
       description = (
         <p className="box-info-desc">
@@ -60,6 +61,13 @@ class BoxInfo extends React.PureComponent {
           </li>
         </div>
       );
+
+      reserve = (
+        <li className={classSingle}>
+          <p className="box-info-status-top-title">Reserve price</p>
+          <p className="box-info-status-top-bid">25.00 Δ</p>
+        </li>
+      );
     } else {
       description = (
         <p className="box-info-desc">
@@ -87,12 +95,12 @@ class BoxInfo extends React.PureComponent {
             <div className="box-info-status">
               <div className="box-info-status-top">
                 <ul>
-                  <li>
+                  <li className={classSingle}>
                     <p className="box-info-status-top-title">Highest Bid</p>
                     <p className="box-info-status-top-bid">200.00 Δ</p>
                     <p className="box-info-status-info">15,000 clicks</p>
                   </li>
-                  <li>
+                  <li className={classSingle}>
                     <p className="box-info-status-top-title">Auction ending in</p>
                     <div className="box-info-status-top-counter">
                       <ul>
@@ -109,6 +117,7 @@ class BoxInfo extends React.PureComponent {
                       </ul>
                     </div>
                   </li>
+                  {reserve}
                 </ul>
               </div>
               <div className="box-info-status-bottom">{bid}</div>

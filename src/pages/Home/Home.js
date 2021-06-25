@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import wait from '@jam3/wait';
+//import wait from '@jam3/wait';
 import checkProps from '@jam3/react-check-extra-props';
 
 import Gallery from '../Gallery/Gallery';
@@ -13,14 +13,13 @@ import './Home.scss';
 
 import Transition from '../PagesTransitionWrapper';
 import { setHomeLoaded } from '../../redux/modules/home';
-import animate from '../../util/gsap-animate';
+import animate, { Expo } from '../../util/gsap-animate';
 
 class Home extends React.PureComponent {
   componentDidMount() {
-    animate.set(this.container, { autoAlpha: 0 });
+    animate.set(this.container, { x: '100%', autoAlpha: 0 });
 
     if (!this.props.loaded) {
-      // await for data to be loaded here e.g. via fetch
       this.props.setHomeLoaded(true);
     }
   }
@@ -30,7 +29,7 @@ class Home extends React.PureComponent {
   };
 
   onEnter = async prevSectionExitDuration => {
-    await wait(prevSectionExitDuration); // you need to remove this if you want to perform simultaneous transition
+    //await wait(prevSectionExitDuration);
     this.animateIn();
   };
 
@@ -39,12 +38,11 @@ class Home extends React.PureComponent {
   };
 
   animateIn = () => {
-    animate.to(this.container, 0.3, { autoAlpha: 1 });
+    animate.to(this.container, 0.8, { x: '0%', autoAlpha: 1, ease: Expo.easeOut });
   };
 
   animateOut = () => {
-    // Note that the total duration should match `exit` duration for the page inside `data/pages-transitions`
-    animate.to(this.container, 0.3, { autoAlpha: 0 });
+    animate.to(this.container, 0.1, { x: '0%', autoAlpha: 0, ease: Expo.easeOut });
   };
 
   render() {

@@ -6,22 +6,51 @@ import noop from 'no-op';
 import wait from '@jam3/wait';
 import checkProps from '@jam3/react-check-extra-props';
 
-import './Preloader.scss';
+import './Loader.scss';
 
-import { ReactComponent as LoaderIcon } from '../../assets/svg/loader.svg';
-
-import animate from '../../util/gsap-animate';
+import animate, { Expo } from '../../util/gsap-animate';
 import { setProgress, setReady } from '../../redux/modules/preloader';
 import preloadAssets from '../../data/preload-assets';
 
-class Preloader extends React.PureComponent {
+class Loader extends React.PureComponent {
   async componentDidMount() {
+    this.animateIn();
+
     await Promise.all([this.setTimer(), this.setLoader()]);
     this.setDone();
   }
 
+  animateIn = () => {
+    animate.to(this.bgpink, 0.5, {
+      height: '100%',
+      ease: Expo.easeInOut
+    });
+    animate.to(this.bggreen, 0.7, {
+      height: '100%',
+      ease: Expo.easeInOut
+    });
+    animate.to(this.bgblack, 1, {
+      height: '100%',
+      ease: Expo.easeInOut
+    });
+  };
+
   animateOut(onComplete) {
-    return animate.to(this.container, 0.3, { autoAlpha: 0, onComplete });
+    this.container.style.backgroundColor = 'transparent';
+    animate.to(this.bgblack, 0.5, {
+      height: '0%',
+      ease: Expo.easeInOut
+    });
+    animate.to(this.bggreen, 0.7, {
+      height: '0%',
+      ease: Expo.easeInOut
+    });
+    animate.to(this.container, 0, { autoAlpha: 0, delay: 1.1 });
+    return animate.to(this.bgpink, 1, {
+      height: '0%',
+      ease: Expo.easeInOut,
+      onComplete
+    });
   }
 
   async setTimer() {
@@ -56,20 +85,25 @@ class Preloader extends React.PureComponent {
   };
 
   setDone = async () => {
-    await this.animateOut();
     this.props.setReady(true);
+    document.body.style.overflow = 'auto';
+    this.animateOut();
   };
 
   render() {
     return (
-      <section id="Preloader" ref={r => (this.container = r)}>
-        <LoaderIcon className="loader-icon" />
+      <section className="Loader" ref={el => (this.container = el)}>
+        <div className="loader-bg black" ref={el => (this.bgblack = el)}>
+          <div className="loader-image" />
+        </div>
+        <div className="loader-bg green" ref={el => (this.bggreen = el)} />
+        <div className="loader-bg pink" ref={el => (this.bgpink = el)} />
       </section>
     );
   }
 }
 
-Preloader.propTypes = checkProps({
+Loader.propTypes = checkProps({
   className: PropTypes.string,
   assets: PropTypes.array.isRequired,
   setProgress: PropTypes.func.isRequired,
@@ -80,7 +114,7 @@ Preloader.propTypes = checkProps({
   transitionState: PropTypes.string
 });
 
-Preloader.defaultProps = {
+Loader.defaultProps = {
   className: '',
   assets: [],
   minDisplayTime: 300, // in milliseconds
@@ -112,4 +146,4 @@ export default connect(
   mapDispatchToProps,
   undefined,
   { withRef: true }
-)(Preloader);
+)(Loader);

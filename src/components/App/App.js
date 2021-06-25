@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
-import { Transition } from 'react-transition-group';
+//import { Transition } from 'react-transition-group';
 import MainNav from '../../components/MainNav/MainNav';
 import Footer from '../../components/Footer/Footer';
 import HamburgerMenu from '../../components/HamburgerMenu/HamburgerMenu';
@@ -13,7 +13,7 @@ import checkProps from '@jam3/react-check-extra-props';
 import 'default-passive-events';
 
 import Pages from '../../components/Pages/Pages';
-import Preloader from '../../components/Preloader/Preloader';
+import Loader from '../../components/Loader/Loader';
 // import WebGL from '../WebGL/WebGL';
 
 import { ReactComponent as LinesBG } from '../../assets/svg/lines-bg.svg';
@@ -97,9 +97,7 @@ class App extends React.PureComponent {
             <LazyRotateScreen {...rotateScreenData} />
           </Suspense>
         )}
-        <Transition in={!this.props.ready} timeout={0}>
-          {state => state !== 'exited' && <Preloader transitionState={state} />}
-        </Transition>
+        <Loader minDisplayTime={1500} />
       </Fragment>
     );
   }

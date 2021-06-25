@@ -14,6 +14,8 @@ const transitionStates = {
 const PagesTransitionWrapper = Class => {
   let container;
   const handleEnterTransition = async (previousRoute, onEnter = noop, onAppear = noop) => {
+    // console.log('in::' + transitionStates);
+
     if (previousRoute) {
       const transitionDuration = getExitTransitionDuration(previousRoute) || 0;
       onEnter(transitionDuration);
@@ -26,15 +28,17 @@ const PagesTransitionWrapper = Class => {
   };
 
   const handleLeaveTransition = (onLeave = noop) => {
+    // console.log('out::' + transitionStates);
     onLeave();
   };
 
   const componentDidMount = Class.prototype.componentDidMount;
   Class.prototype.componentDidMount = function() {
     componentDidMount && componentDidMount.call(this);
-
     container = findDOMNode(this);
     container.style.display = 'none';
+
+    window.scrollTo(0, 0);
 
     if (
       this.props.transitionState === transitionStates.entered ||

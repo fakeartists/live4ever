@@ -5,11 +5,17 @@ import routeKeys from '../routes/keys';
 // so it is required to have that specified here for each page
 
 const transitionsData = {
-  [`${routeKeys.Landing}`]: {
-    exit: 300 // this number should match total duration inside animateOut function of the Landing page
+  [`${routeKeys.Home}`]: {
+    exit: 0
   },
   [`${routeKeys.About}`]: {
-    exit: 300 // this number should match total duration inside animateOut function of the About page
+    exit: 0
+  },
+  [`${routeKeys.Gallery}`]: {
+    exit: 0
+  },
+  [`${routeKeys.Asset}`]: {
+    exit: 0
   }
 };
 

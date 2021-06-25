@@ -4,8 +4,8 @@ import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import animate, { Circ } from '../../util/gsap-animate';
 
-import MineNav from '../../components/MineNav/MineNav';
-import ADBanner from '../../components/AdBanner/AdBanner';
+import MineNav from '../MineNav/MineNav';
+import ADBanner from '../AdBanner/AdBanner';
 
 import { setMineState } from '../../redux/modules/mine';
 
@@ -63,7 +63,7 @@ class Mine extends React.PureComponent {
           id={this.currentKey}
           isStatic={false}
           onClose={this.onAdClosed}
-          delay={index * (0.1 + Math.random() * 0.3)}
+          delay={index * (0.05 + Math.random() * 0.2)}
         />
       );
     }

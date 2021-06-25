@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import wait from '@jam3/wait';
+///import wait from '@jam3/wait';
 import checkProps from '@jam3/react-check-extra-props';
 
 import './About.scss';
 
 import Transition from '../PagesTransitionWrapper';
-import animate from '../../util/gsap-animate';
+import animate, { Expo } from '../../util/gsap-animate';
 
 class About extends React.PureComponent {
   constructor(props) {
@@ -17,7 +17,7 @@ class About extends React.PureComponent {
   }
 
   componentDidMount() {
-    animate.set(this.container, { autoAlpha: 0 });
+    animate.set(this.container, { x: '100%', autoAlpha: 0 });
   }
 
   onAppear = () => {
@@ -25,7 +25,7 @@ class About extends React.PureComponent {
   };
 
   onEnter = async prevSectionExitDuration => {
-    await wait(prevSectionExitDuration); // you need to remove this if you want to perform simultaneous transition
+    //await wait(prevSectionExitDuration);
     this.animateIn();
   };
 
@@ -34,12 +34,11 @@ class About extends React.PureComponent {
   };
 
   animateIn = () => {
-    animate.to(this.container, 0.3, { autoAlpha: 1 });
+    animate.to(this.container, 0.8, { x: '0%', autoAlpha: 1, ease: Expo.easeOut });
   };
 
   animateOut = () => {
-    // Note that the total duration should match `exit` duration for the page inside `data/pages-transitions`
-    animate.to(this.container, 0.3, { autoAlpha: 0 });
+    animate.to(this.container, 0.1, { x: '0%', autoAlpha: 0, ease: Expo.easeOut });
   };
 
   render() {
