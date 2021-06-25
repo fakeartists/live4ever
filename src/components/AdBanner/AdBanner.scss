@@ -7,6 +7,11 @@
   height: 100%;
   z-index: 900;
 
+  .Adbanner-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
   .Adbanner-header {
     position: relative;
     float: left;
@@ -31,7 +36,6 @@
         border-right: 2px solid $gray;
         border-top: 2px solid $green;
         border-left: 2px solid $green;
-        cursor: pointer;
         background: $black;
         color: $green;
         font-size: 18px;
@@ -66,12 +70,16 @@
           line-height: 26px;
         }
 
-        &:hover {
-          background: $greentint-dark;
-          color: $green;
+        &.active {
+          cursor: pointer;
 
-          &:after {
-            border: 2px solid $green;
+          &:hover {
+            background: $greentint-dark;
+            color: $green;
+
+            &:after {
+              border: 2px solid $green;
+            }
           }
         }
       }
@@ -126,28 +134,7 @@
     }
 
     button {
-      cursor: pointer;
-      z-index: 1;
-      position: absolute;
-      display: inline-block;
-      margin: 0 auto;
-      width: 20%;
-      text-align: center;
-      top: 70%;
-      left: 40%;
-      font-size: 120%;
-      background-color: $green;
-      color: $pink;
-      border-top: 4px solid $white;
-      border-right: 4px solid $greentint-dark;
-      border-bottom: 4px solid $greentint-dark;
-      border-left: 4px solid $white;
-      user-select: none;
-
-      &:hover {
-        color: $white;
-        background-color: $pink;
-      }
+      @include ad-button;
     }
 
     .test {

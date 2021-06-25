@@ -313,3 +313,35 @@
     text-decoration: none;
   }
 }
+
+@mixin ad-button {
+  z-index: 1;
+  position: absolute;
+  display: inline-block;
+  margin: 0 auto;
+  width: 20%;
+  text-align: center;
+  top: 70%;
+  left: 40%;
+  font-size: 120%;
+  background-color: $gray;
+  color: $white;
+  border-top: 4px solid $white;
+  border-right: 4px solid $greentint-dark;
+  border-bottom: 4px solid $greentint-dark;
+  border-left: 4px solid $white;
+  user-select: none;
+  opacity: 0.4;
+
+  &.active {
+    cursor: pointer;
+    background-color: $green;
+    color: $pink;
+    opacity: 1;
+  }
+
+  &.active:hover {
+    color: $white;
+    background-color: $pink;
+  }
+}

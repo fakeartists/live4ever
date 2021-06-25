@@ -7,12 +7,20 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  z-index: 990;
+  z-index: 900;
   background: $blacktint;
   padding: px-to-rem(20) $navbar-padding-mobile;
 
   @media (min-width: $layout-large) {
     padding: px-to-rem(20) $navbar-padding-desktop;
+  }
+
+  .mine-close {
+    position: absolute;
+    top: px-to-rem(50);
+    right: px-to-rem(50);
+    @include item-button;
+    cursor: pointer;
   }
 
   .mine-container {
@@ -21,7 +29,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 999;
+    z-index: 900;
   }
 
   .Adbanner {
@@ -34,6 +42,7 @@
     display: inline-block;
     border: 1px solid $green;
     width: 640px;
-    z-index: 999;
+    height: 350px;
+    z-index: 900;
   }
 }

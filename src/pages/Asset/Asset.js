@@ -5,21 +5,17 @@ import classnames from 'classnames';
 import wait from '@jam3/wait';
 import checkProps from '@jam3/react-check-extra-props';
 import Transition from '../PagesTransitionWrapper';
-import { setAssetLoaded } from '../../redux/modules/asset';
 import animate from '../../util/gsap-animate';
 
-import Mine from '../../components/Mine/Mine';
+import { setAssetLoaded } from '../../redux/modules/asset';
+import { setMineState } from '../../redux/modules/mine';
+
 import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
 
 import './Asset.scss';
 
 class Asset extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.bidOpen = false;
-  }
-
   componentDidMount() {
     animate.set(this.container, { autoAlpha: 0 });
     if (!this.props.loaded) {
@@ -41,31 +37,23 @@ class Asset extends React.PureComponent {
   };
 
   animateIn = () => {
-    animate.to(this.container, 0.3, { autoAlpha: 1 });
+    animate.to(this.container, 0.3, {
+      autoAlpha: 1
+    });
   };
 
   animateOut = () => {
-    // Note that the total duration should match `exit` duration for the page inside `data/pages-transitions`
     animate.to(this.container, 0.3, { autoAlpha: 0 });
   };
 
   onClickBid = () => {
-    if (!this.bidOpen) {
-      this.mine.getWrappedInstance().animateIn();
-      this.container.style.position = 'fixed';
-      this.bidOpen = true;
-    } else {
-      this.mine.getWrappedInstance().animateOut();
-      this.container.style.position = 'relative';
-      this.bidOpen = false;
-    }
+    this.props.setMineState(true);
   };
 
   render() {
     // const { params } = this.props.match;
     return (
       <div className={classnames('Asset', this.props.className)} ref={el => (this.container = el)}>
-        <Mine ref={mine => (this.mine = mine)} />
         <section className="Asset-container">
           <BoxInfo isSingle={true} clickFunction={this.onClickBid} />
         </section>
@@ -83,10 +71,13 @@ Asset.propTypes = checkProps({
   transitionState: PropTypes.string.isRequired,
   previousRoute: PropTypes.string,
   loaded: PropTypes.bool,
-  setAssetLoaded: PropTypes.func
+  setAssetLoaded: PropTypes.func,
+  setMineState: PropTypes.func
 });
 
-Asset.defaultProps = {};
+Asset.defaultProps = {
+  loaded: false
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -97,7 +88,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setAssetLoaded: val => dispatch(setAssetLoaded(val))
+    setAssetLoaded: val => dispatch(setAssetLoaded(val)),
+    setMineState: val => dispatch(setMineState(val))
   };
 };
 

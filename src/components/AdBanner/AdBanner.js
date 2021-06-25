@@ -4,30 +4,27 @@ import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import Draggable from 'react-draggable';
-import { selectWindowWidth, selectWindowHeight, selectPath } from '../App/App-selectors';
+import animate, { Circ } from '../../util/gsap-animate';
 
 import './AdBanner.scss';
 
 class ADBanner extends React.PureComponent {
-  state = {
-    backgroundImage: '',
-    bodyCopy: ''
-  };
+  backgroundImage = '';
+  bodyCopy = '';
+  buttonActive = false;
+  posX = 0;
+  posY = 0;
 
   constructor(props) {
     super(props);
 
+    this.buildAd();
     this.state = {
-      showComponent: true
+      isOpen: false
     };
   }
 
-  async componentDidMount() {
-    //const { path, history } = this.props;
-
-    // -------------------------------------------------------------------------------------------------------
-    // TODO: Refactor this
-
+  buildAd = () => {
     // Background image
     // FA_POP_500x300_01.gif
     // FA_POP_800x400_01.gif
@@ -133,106 +130,128 @@ class ADBanner extends React.PureComponent {
 
     //console.log(bodyCopy);   // DEBUG
 
-    this.setState({
-      backgroundImage: backgroundImage,
-      bodyCopy: bodyCopy
-    });
+    this.posX = parseInt(Math.random() * (window.innerWidth - 640));
+    this.posY = parseInt(Math.random() * (window.innerHeight * 0.7 - 480) + 150);
+    this.backgroundImage = backgroundImage;
+    this.bodyCopy = bodyCopy;
+  };
 
-    // -------------------------------------------------------------------------------------------------------
+  async componentDidMount() {
+    animate.set(this.node, { autoAlpha: 0 });
+    animate.to(this.node, 0.1, { autoAlpha: 1, ease: Circ.easeOut, delay: this.props.delay });
+    this.setState({ isOpen: true });
   }
 
   componentDidUpdate(prevProps) {
-    //const { width, height, path } = this.props;
+    // const { isOpen } = this.props;
+    // if (!isOpen) {
+    //   animate.to(this.node, 0.1, { autoAlpha: 0, ease: Circ.easeOut });
+    // }
   }
 
-  handleClick = () => {
-    if (this.props.onClosed) {
-      this.setState({
-        clicked: true,
-        showComponent: false
-      });
-
-      this.props.onClosed();
+  handleButtonClick = () => {
+    if (!this.props.isStatic) {
+      if (this.props.onClose) {
+        this.setState({
+          isOpen: false
+        });
+        this.props.onClose(this.props.id);
+      }
     }
   };
 
   handleContentClick = () => {
-    this.node.style.zIndex = '999';
+    if (this.buttonActive === 'active') {
+      var elms = document.querySelectorAll('.Adbanner');
+      for (let i = 0; i < elms.length; i++) {
+        elms[i].style.zIndex = '900';
+      }
+      this.node.style.zIndex = '999';
+    }
   };
 
   render() {
     const bannerStyle = {
-      display: this.state.showComponent ? 'block' : 'none',
-      position: this.props.position ? this.props.position : '',
-      top: this.props.top,
-      left: this.props.left
+      position: this.props.isStatic ? 'relative' : 'absolute',
+      top: this.props.isStatic ? 0 : this.posY,
+      left: this.props.isStatic ? 0 : this.posX
     };
+    this.buttonActive = this.props.isStatic ? '' : 'active';
 
-    return (
-      <Draggable
-        axis="both"
-        defaultPosition={{ x: 0, y: 0 }}
-        scale={1}
-        onStart={this.handleStart}
-        onDrag={this.handleDrag}
-        onStop={this.handleStop}
+    const banner = (
+      <div
+        className={classnames(`Adbanner`)}
+        style={bannerStyle}
+        ref={node => {
+          this.node = node;
+        }}
+        onClick={this.handleContentClick}
       >
-        <div
-          className={classnames(`Adbanner`)}
-          style={bannerStyle}
-          ref={node => {
-            this.node = node;
-          }}
-          // onClick={this.handleContentClick}
-        >
-          <div className="Adbanner-wrapper">
-            <header className="Adbanner-header">
-              <ul>
-                <li className="Adbanner-header-close">X</li>
-                <li className="Adbanner-header-windows" />
-                <li className="Adbanner-header-minimize">_</li>
-              </ul>
-            </header>
-            <div className="Adbanner-content">
-              <span>{this.state.bodyCopy}</span>
-              <button onClick={this.handleClick}>CLICK</button>
-              <img src={this.state.backgroundImage} alt="banner" />
-            </div>
+        <div className="Adbanner-wrapper">
+          <header className="Adbanner-header">
+            <ul>
+              <li className={'Adbanner-header-close ' + this.buttonActive} onClick={this.handleButtonClick}>
+                X
+              </li>
+              <li className={'Adbanner-header-windows ' + this.buttonActive} />
+              <li className={'Adbanner-header-minimize ' + this.buttonActive}>_</li>
+            </ul>
+          </header>
+          <div className="Adbanner-content">
+            <span>{this.bodyCopy}</span>
+            <button className={this.buttonActive} onClick={this.handleButtonClick}>
+              CLICK
+            </button>
+            {/*<div style="background-image: url(this.state.backgroundImage); height: 200px; width: 400px; border: 1px solid black;"> </div>*/}
+            <img src={this.backgroundImage} alt="banner" draggable="false" />
           </div>
         </div>
-      </Draggable>
+      </div>
     );
+
+    let ad;
+    if (this.props.isStatic) {
+      ad = banner;
+    } else {
+      ad = (
+        <Draggable
+          axis="both"
+          defaultPosition={{ x: 0, y: 0 }}
+          // scale={1}
+          // onStart={this.handleStart}
+          // onDrag={this.handleDrag}
+          // onStop={this.handleStop}
+        >
+          {banner}
+        </Draggable>
+      );
+    }
+
+    return ad;
   }
 }
 
 ADBanner.propTypes = checkProps({
-  width: PropTypes.number,
-  height: PropTypes.number,
-  position: PropTypes.string,
-  top: PropTypes.number,
-  left: PropTypes.number,
-  path: PropTypes.string,
-  onClosed: PropTypes.func
+  id: PropTypes.number,
+  onClose: PropTypes.func,
+  isStatic: PropTypes.bool,
+  delay: PropTypes.number
 });
 
 ADBanner.defaultProps = {
-  width: window.innerWidth,
-  height: window.innerHeight,
-  path: ''
+  id: -1,
+  isStatic: true,
+  delay: 0
 };
 
-const mapStateToProps = state => ({
-  width: selectWindowWidth(state),
-  height: selectWindowHeight(state),
-  path: selectPath(state)
-});
-
-//Dispatch props here
+const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => {
   return {};
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  { withRef: true }
 )(ADBanner);

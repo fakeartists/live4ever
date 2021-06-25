@@ -7,69 +7,124 @@ import animate, { Circ } from '../../util/gsap-animate';
 import MineNav from '../../components/MineNav/MineNav';
 import ADBanner from '../../components/AdBanner/AdBanner';
 
+import { setMineState } from '../../redux/modules/mine';
+
 import './Mine.scss';
 
 class Mine extends React.PureComponent {
-  numBannersClosed = 0;
+  numAdsClosed = 0;
+  currentKey = 0;
+  isOpen = 0;
 
   constructor(props) {
     super(props);
-    this.state = { createBanners: false };
+    this.state = { ads: [] };
   }
 
   componentDidMount() {
+    this.props.setMineState(this.props.isOpen);
     animate.set(this.container, { autoAlpha: 0 });
   }
 
-  animateIn = () => {
-    animate.to(this.container, 0.5, { autoAlpha: 1, ease: Circ.easeOut });
-    this.mineNav.getWrappedInstance().animateIn();
+  componentDidUpdate() {
+    if (this.props.isOpen) {
+      if (!this.isOpen) {
+        this.addAd(10, []);
+        this.animateIn();
+        this.isOpen = true;
+      }
+    } else {
+      if (this.isOpen) {
+        this.isOpen = false;
+      }
+    }
+  }
 
-    this.setState({ createBanners: true });
+  animateIn = () => {
+    animate.to(this.container, 0.5, {
+      autoAlpha: 1,
+      ease: Circ.easeOut
+    });
+    this.mineNav.getWrappedInstance().animateIn();
   };
 
   animateOut = () => {
     animate.to(this.container, 0.3, { autoAlpha: 0, ease: Circ.easeOut });
-    this.mineNav.getWrappedInstance().animateOut();
+    return this.mineNav.getWrappedInstance().animateOut();
   };
 
-  onBannerClosed = () => {
-    this.numBannersClosed++;
-    this.mineNav.getWrappedInstance().updateCount(this.numBannersClosed);
+  addAd = (qtd, base) => {
+    let items = [];
+    for (let index = 0; index < qtd; index++) {
+      this.currentKey++;
+      items.push(
+        <ADBanner
+          key={this.currentKey}
+          id={this.currentKey}
+          isStatic={false}
+          onClose={this.onAdClosed}
+          delay={index * (0.1 + Math.random() * 0.3)}
+        />
+      );
+    }
+
+    this.setState({
+      ads: [...base, ...items]
+    });
+  };
+
+  onAdClosed = id => {
+    this.numAdsClosed++;
+    this.mineNav.getWrappedInstance().updateCount(this.numAdsClosed);
+
+    const ads = this.state.ads.filter(item => item.props.id !== id);
+    this.addAd(3 + parseInt(Math.random() * 4), ads);
+  };
+
+  handleButtonClick = () => {
+    this.animateOut().then(() => {
+      this.props.setMineState(false);
+    });
   };
 
   render() {
-    const items = [];
-    if (this.state.createBanners) {
-      var posX;
-      var posY;
-      for (var index = 0; index < 100; index++) {
-        posX = parseInt(Math.random() * (window.innerWidth - 640));
-        posY = parseInt(Math.random() * (window.innerHeight * 0.7 - 480) + 150);
-        items.push(<ADBanner key={index} position="absolute" left={posX} top={posY} onClosed={this.onBannerClosed} />);
-      }
+    let mine;
+    if (this.props.isOpen) {
+      mine = (
+        <section className="Mine" ref={el => (this.container = el)}>
+          <button className="mine-close active" onClick={this.handleButtonClick}>
+            Get me out of here
+          </button>
+          <MineNav numAdsClosed={0} ref={mineNav => (this.mineNav = mineNav)} />
+          <div className="mine-container">{this.state.ads}</div>
+        </section>
+      );
+    } else {
+      mine = <section className="Mine" ref={el => (this.container = el)} />;
     }
-
-    return (
-      <section className="Mine" ref={el => (this.container = el)}>
-        <MineNav numBannersClosed={0} ref={mineNav => (this.mineNav = mineNav)} />
-        <div className="mine-container">{items}</div>
-      </section>
-    );
+    return mine;
   }
 }
 
 Mine.propTypes = checkProps({
-  showBanners: PropTypes.bool
+  setMineState: PropTypes.func,
+  isOpen: PropTypes.bool
 });
 
-Mine.defaultProps = {};
+Mine.defaultProps = {
+  isOpen: false
+};
 
-const mapStateToProps = state => ({});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isOpen: state.mineState
+  };
+};
 
-//Dispatch props here
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    setMineState: val => dispatch(setMineState(val))
+  };
 };
 
 export default connect(

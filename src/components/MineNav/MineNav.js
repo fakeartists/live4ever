@@ -10,7 +10,7 @@ class MineNav extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      numBannersClosed: 0
+      numAdsClosed: 0
     };
   }
 
@@ -23,11 +23,11 @@ class MineNav extends React.PureComponent {
   };
 
   animateOut = () => {
-    animate.to(this.container, 0.5, { y: -80, autoAlpha: 0, ease: Power3.easeOut });
+    return animate.to(this.container, 0.5, { y: -80, autoAlpha: 0, ease: Power3.easeOut });
   };
 
   updateCount = count => {
-    this.setState({ numBannersClosed: count });
+    this.setState({ numAdsClosed: count });
   };
 
   render() {
@@ -46,7 +46,7 @@ class MineNav extends React.PureComponent {
         </div>
         <div className="your-bid-wrapper">
           <span>Your bid</span>
-          <span className="digits">{this.state.numBannersClosed}</span>
+          <span className="digits">{this.state.numAdsClosed}</span>
           <span className="delta">Δ</span>
         </div>
       </div>
@@ -55,7 +55,7 @@ class MineNav extends React.PureComponent {
 }
 
 MineNav.propTypes = checkProps({
-  numBannersClosed: PropTypes.number
+  numAdsClosed: PropTypes.number
 });
 
 MineNav.defaultProps = {};

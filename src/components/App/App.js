@@ -28,6 +28,8 @@ import footerData from '../../data/footer';
 import rotateScreenData from '../../data/rotate-screen';
 import layout from '../../util/layout';
 
+import Mine from '../../components/Mine/Mine';
+
 const LazyRotateScreen = device.isMobile && lazy(() => import('../../components/RotateScreen/RotateScreen'));
 
 class App extends React.PureComponent {
@@ -87,6 +89,7 @@ class App extends React.PureComponent {
             )}
             <Pages />
             <Footer {...footerData} />
+            <Mine />
           </Fragment>
         )}
         {device.isMobile && (

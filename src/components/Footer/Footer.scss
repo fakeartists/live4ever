@@ -19,7 +19,7 @@ $main-footer-copyright-font-size: 12px !default;
   @include z-index(footer);
   padding: 2rem $navbar-padding-mobile;
   text-align: center;
-  z-index: 999;
+  z-index: 500;
 
   @media (min-width: $layout-medium) {
   }
