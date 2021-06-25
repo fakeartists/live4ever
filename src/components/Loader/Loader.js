@@ -86,7 +86,7 @@ class Loader extends React.PureComponent {
 
   setDone = async () => {
     this.props.setReady(true);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflowY = 'auto';
     this.animateOut();
   };
 

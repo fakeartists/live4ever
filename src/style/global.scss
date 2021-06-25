@@ -20,7 +20,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  overflow: hidden; //to remove dynamically
+  overflow-y: hidden;
   font-size: px-to-rem(16);
   background-color: $black;
 
