@@ -14,17 +14,15 @@ $hamburger-nav-transition: 0.2s !default;
 
 .HamburgerMenu {
   position: fixed;
-  top: 0;
+  top: $navbar-height-mobile;
   right: 0;
   width: 100%;
-  height: 100vh;
+  height: calc(100% - #{$navbar-height-mobile});
   background: $hamburger-nav-bg-color;
   padding: $hamburger-nav-padding;
   transform: translateX(100%);
   transition: $hamburger-nav-transition;
-  top: $navbar-height-mobile;
   @include z-index(sidebar);
-  height: calc(100% - #{$navbar-height-mobile});
   border-left: none;
   background-color: transparent;
 

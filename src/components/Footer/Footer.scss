@@ -13,11 +13,10 @@ $main-footer-copyright-font-size: 12px !default;
   display: inline-block;
   width: 100%;
   height: 180px;
-  padding: $main-footer-nav-padding;
+  padding: 2rem $navbar-padding-mobile;
   background: $main-footer-bg-color;
   box-sizing: border-box;
   @include z-index(footer);
-  padding: 2rem $navbar-padding-mobile;
   text-align: center;
   z-index: 500;
 

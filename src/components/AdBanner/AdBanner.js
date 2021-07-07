@@ -44,7 +44,7 @@ class ADBanner extends React.PureComponent {
       'Get [adj] quick!',
       '[verb] forever now!',
       'Meet your [adj] double<br/>and [verb] forever!',
-      'Every [noun] knows this trick! ',
+      'Every [noun] knows this trick!',
       '[verb] now and<br/>become a [noun] now!',
       'Become a [adj] [noun]<br/>and [verb] quick!',
       'Only 2 left!<br/>[verb] Fast!',
