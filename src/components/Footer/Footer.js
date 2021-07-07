@@ -20,15 +20,24 @@ const Footer = React.memo(
                     <BaseLink link={link.path}>{link.text}</BaseLink>
                   </li>
                 );
+              } else if (link.type === 'image-link') {
+                return (
+                  <li key={index} className="footer-image">
+                    <p className="footer-image-title">powered by</p>
+                    <BaseLink link={link.path}>
+                      <div className="footer-logo" />
+                    </BaseLink>
+                  </li>
+                );
               } else {
-                return <div key={index} className="footer-image" />;
+                return <li key={index} className="nav-item-empt" />;
               }
             })}
           </ul>
         </nav>
       )}
-      {props.children}
-      {props.copyright && <p className="footer-copyright">{props.copyright}</p>}
+      {/* {props.children}
+      {props.copyright && <p className="footer-copyright">{props.copyright}</p>} */}
     </footer>
   ))
 );

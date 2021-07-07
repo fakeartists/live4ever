@@ -12,6 +12,10 @@ export default {
     {
       text: 'About',
       path: routeKeys.About
+    },
+    {
+      text: 'Store',
+      path: 'https://fakeartists.store'
     }
   ]
 };

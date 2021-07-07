@@ -263,7 +263,7 @@
 
 @mixin main-button-cta {
   background-color: $green;
-  padding: px-to-rem(13) px-to-rem(20);
+  padding: px-to-rem(15) px-to-rem(20) px-to-rem(13) px-to-rem(20);
   border: 1px $green solid;
   box-sizing: border-box;
   color: $pink;
@@ -290,7 +290,7 @@
 
 @mixin item-button {
   text-transform: uppercase;
-  padding: px-to-rem(3) px-to-rem(3);
+  padding: px-to-rem(6) px-to-rem(3) px-to-rem(3) px-to-rem(3);
   background-color: transparent;
   border: 1px $green solid;
   box-sizing: border-box;
@@ -324,6 +324,7 @@
   top: 70%;
   left: 40%;
   font-size: 120%;
+  padding-top: 6px;
   background-color: $gray;
   color: $white;
   border-top: 4px solid $white;

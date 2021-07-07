@@ -200,7 +200,15 @@
       width: 100%;
       margin-top: 80px;
 
+      .box-info-status-bid {
+        position: relative;
+        float: left;
+        margin-left: px-to-rem(15);
+      }
+
       .box-info-button {
+        position: relative;
+        float: left;
         @include main-button;
         position: relative;
         float: left;
@@ -244,6 +252,19 @@
           color: $green;
           font-weight: normal;
         }
+      }
+    }
+
+    .box-info-status-bid {
+      .box-info-status-bid-title {
+        font-size: px-to-rem(12);
+        margin-bottom: px-to-rem(5);
+      }
+
+      .box-info-status-bid-bid {
+        @include font-special();
+        font-size: px-to-rem(24);
+        color: $pink;
       }
     }
   }

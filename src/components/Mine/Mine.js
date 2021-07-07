@@ -29,7 +29,7 @@ class Mine extends React.PureComponent {
   componentDidUpdate() {
     if (this.props.isOpen) {
       if (!this.isOpen) {
-        this.addAd(10, []);
+        this.addAd(50, []);
         this.animateIn();
         this.isOpen = true;
       }
@@ -63,7 +63,7 @@ class Mine extends React.PureComponent {
           id={this.currentKey}
           isStatic={false}
           onClose={this.onAdClosed}
-          delay={index * (0.05 + Math.random() * 0.2)}
+          delay={index * (0.01 + Math.random() * 0.1)}
         />
       );
     }
@@ -78,7 +78,8 @@ class Mine extends React.PureComponent {
     this.mineNav.getWrappedInstance().updateCount(this.numAdsClosed);
 
     const ads = this.state.ads.filter(item => item.props.id !== id);
-    this.addAd(3 + parseInt(Math.random() * 4), ads);
+    this.addAd(0, ads);
+    //this.addAd(3 + parseInt(Math.random() * 4), ads);
   };
 
   handleButtonClick = () => {

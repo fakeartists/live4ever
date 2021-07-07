@@ -38,25 +38,54 @@
     margin-top: px-to-rem(20);
   }
 
+  .label {
+    font-size: px-to-rem(12);
+
+    &.user {
+      font-size: px-to-rem(18);
+    }
+  }
+
   .digits {
     @include font-special();
-    font-size: px-to-rem(24);
+    font-size: px-to-rem(16);
     padding: 0 px-to-rem(20);
+
+    &.user {
+      font-size: px-to-rem(24);
+    }
   }
 
   .delta {
     @include font-special();
-    font-size: px-to-rem(24);
+    font-size: px-to-rem(16);
+
+    &.user {
+      font-size: px-to-rem(24);
+    }
   }
 
   .time-left-wrapper {
     position: absolute;
-    margin-bottom: px-to-rem(10);
+    left: 6%;
     color: $green;
+    margin-top: px-to-rem(5);
   }
 
   .rank-wrapper {
     position: absolute;
     right: 6%;
+    margin-top: px-to-rem(5);
+
+    .rank-count {
+      position: relative;
+      float: right;
+    }
+
+    .rank-bid {
+      position: relative;
+      float: right;
+      margin-right: px-to-rem(24);
+    }
   }
 }

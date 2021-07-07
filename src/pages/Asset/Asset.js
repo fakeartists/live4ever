@@ -57,7 +57,7 @@ class Asset extends React.PureComponent {
           <BoxInfo isSingle={true} clickFunction={this.onClickBid} />
         </section>
         <section className="Asset-container leaderboard">
-          <h1>Bidding Leaderboard</h1>
+          <h1>Leaderboard</h1>
           <Leaderboard />
         </section>
       </div>

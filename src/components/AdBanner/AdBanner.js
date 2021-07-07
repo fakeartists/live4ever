@@ -178,6 +178,15 @@ class ADBanner extends React.PureComponent {
     };
     this.buttonActive = this.props.isStatic ? '' : 'active';
 
+    let clickButton;
+    if (!this.props.isStatic) {
+      clickButton = (
+        <button className={this.buttonActive} onClick={this.handleButtonClick}>
+          CLICK
+        </button>
+      );
+    }
+
     const banner = (
       <div
         className={classnames(`Adbanner`)}
@@ -198,10 +207,8 @@ class ADBanner extends React.PureComponent {
             </ul>
           </header>
           <div className="Adbanner-content">
-            <span>{this.bodyCopy}</span>
-            <button className={this.buttonActive} onClick={this.handleButtonClick}>
-              CLICK
-            </button>
+            <span className={this.props.isStatic ? 'center' : ''}>{this.bodyCopy}</span>
+            {clickButton}
             {/*<div style="background-image: url(this.state.backgroundImage); height: 200px; width: 400px; border: 1px solid black;"> </div>*/}
             <img src={this.backgroundImage} alt="banner" draggable="false" />
           </div>

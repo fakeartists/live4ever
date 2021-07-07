@@ -16,6 +16,10 @@ $main-top-nav-link-font-size: 2rem !default;
   box-sizing: border-box;
   z-index: 500;
 
+  &.scroll {
+    background-color: $blacktint;
+  }
+
   @media (min-width: $layout-large) {
     height: $navbar-height-desktop;
     padding: 2rem $navbar-padding-desktop;
@@ -33,10 +37,18 @@ $main-top-nav-link-font-size: 2rem !default;
   }
 
   .nav-mid-logo-cnt {
+    position: absolute;
+    top: $logo-size-top;
+    left: 50%;
     display: inline-block;
-    width: 212px;
-    height: 109px;
-    margin: px-to-rem(0) 0 0 px-to-rem(90);
+    width: $logo-size-width;
+    height: $logo-size-height;
+    margin-left: -$logo-size-half-width;
+
+    svg {
+      width: $logo-size-width;
+      height: $logo-size-height;
+    }
   }
 
   .nav-mid-logo {
@@ -71,6 +83,7 @@ $main-top-nav-link-font-size: 2rem !default;
     justify-content: space-between;
     width: 100%;
     height: 100%;
+    z-index: 501;
 
     .nav-logo {
       width: px-to-rem(200);
@@ -91,6 +104,7 @@ $main-top-nav-link-font-size: 2rem !default;
         margin-left: $main-top-nav-links-margin;
         display: inline-block;
         @include main-button;
+        padding: px-to-rem(13) px-to-rem(15) px-to-rem(11) px-to-rem(15);
 
         a {
           text-decoration: none;

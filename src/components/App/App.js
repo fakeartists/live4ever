@@ -97,7 +97,7 @@ class App extends React.PureComponent {
             <LazyRotateScreen {...rotateScreenData} />
           </Suspense>
         )}
-        <Loader minDisplayTime={1500} />
+        <Loader minDisplayTime={2500} />
       </Fragment>
     );
   }

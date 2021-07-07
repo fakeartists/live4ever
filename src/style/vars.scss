@@ -6,6 +6,11 @@ $base-image-path: '../../assets/images/';
 //
 // Add global variables here, color palette, those variables shared by components all applied to global styling
 
+$logo-size-width: 170px;
+$logo-size-height: 88px;
+$logo-size-half-width: 85px;
+$logo-size-top: 25px;
+
 // ====================================================================
 // Breakpoints
 //
@@ -22,7 +27,7 @@ $layout-xlarge: map-get($layout, xlarge) + px;
 // ====================================================================
 $white: #fff;
 $black: #000;
-$blacktint: rgba(0, 0, 0, 0.8);
+$blacktint: rgba(0, 0, 0, 0.2);
 $green: #42ff00;
 $greentint: rgba(#42ff00, 0.1);
 $greentint-dark: rgba(#42ff00, 0.3);

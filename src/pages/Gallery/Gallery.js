@@ -49,12 +49,15 @@ class Gallery extends React.PureComponent {
 
   render() {
     let header;
+    let title;
     if (this.props.isHome) {
       header = (
         <header className="Gallery-header">
           <h1>{galeryData.title}</h1>
         </header>
       );
+    } else {
+      title = <p className="gallery-item-info-title">The Original Pimp</p>;
     }
 
     return (
@@ -70,10 +73,10 @@ class Gallery extends React.PureComponent {
                       <img src={item.image} alt="alt" />
                       <h2 className="gallery-item-title">{item.title}</h2>
                       <div className="gallery-item-info">
-                        <p className="gallery-item-info-title">Highest Bid</p>
+                        {title}
                         {this.props.isHome && <p className="gallery-item-info-bid">{item.highestbid + ' Δ'}</p>}
                         <button className={'gallery-item-info-button' + (item.status === 'sold' ? '' : ' active')}>
-                          {item.status === 'sold' ? 'SOLD' : 'Praise & Interact'}
+                          {item.status === 'sold' ? 'SOLD' : 'VIEW'}
                         </button>
                       </div>
                     </BaseLink>

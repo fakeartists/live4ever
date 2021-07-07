@@ -67,7 +67,7 @@
         }
 
         &.Adbanner-header-close {
-          line-height: 26px;
+          line-height: 30px;
         }
 
         &.active {
@@ -131,6 +131,10 @@
       text-shadow: 2px 2px $pink;
       cursor: default;
       user-select: none;
+
+      &.center {
+        top: 40%;
+      }
     }
 
     button {

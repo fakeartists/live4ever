@@ -23,6 +23,7 @@ class BoxInfo extends React.PureComponent {
     let bid;
     let assetinfo;
     let reserve;
+    let userbid;
     if (this.props.isSingle) {
       description = (
         <p className="box-info-desc">
@@ -68,6 +69,13 @@ class BoxInfo extends React.PureComponent {
           <p className="box-info-status-top-bid">25.00 Δ</p>
         </li>
       );
+
+      userbid = (
+        <div className="box-info-status-bid">
+          <p className="box-info-status-bid-title">Your Bid</p>
+          <p className="box-info-status-bid-bid">200.00 Δ</p>
+        </div>
+      );
     } else {
       description = (
         <p className="box-info-desc">
@@ -77,7 +85,7 @@ class BoxInfo extends React.PureComponent {
 
       bid = (
         <BaseLink className="box-info-button cta" link={'./asset/eternity'}>
-          BID NOW
+          LEARN MORE
         </BaseLink>
       );
     }
@@ -120,7 +128,10 @@ class BoxInfo extends React.PureComponent {
                   {reserve}
                 </ul>
               </div>
-              <div className="box-info-status-bottom">{bid}</div>
+              <div className="box-info-status-bottom">
+                {bid}
+                {userbid}
+              </div>
             </div>
           </div>
         </div>

@@ -33,13 +33,30 @@ class MainTopNav extends React.PureComponent {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = event => {
+    let scrollTop = document.documentElement.scrollTop;
+    let scrollpct = scrollTop / 60;
+    scrollpct = Math.min(Math.max(scrollpct, 0), 1);
+    let translateY = -12 * scrollpct;
+    this.container.style.backgroundColor = 'rgba(0, 0, 0, ' + 0.8 * scrollpct + ')';
+    this.logo.style.transform = 'scale(' + (0.8 + 0.2 * (1 - scrollpct)) + ') translateY(' + translateY + 'px)';
+  };
+
   handleHamburgerClick = () => {
     this.props.setIsMobileMenuOpen(!this.props.isMobileMenuOpen);
   };
 
   render() {
     return (
-      <header className={classnames('MainNav', this.props.className)}>
+      <header className={classnames('MainNav', this.props.className)} ref={el => (this.container = el)}>
         {this.props.ariaSiteTitle && <h1 className="only-aria-visible">{this.props.ariaSiteTitle}</h1>}
         <nav className="nav" aria-label={this.props.ariaNavLabel}>
           {this.props.ariaNavTitle && <h2 className="only-aria-visible">{this.props.ariaNavTitle}</h2>}
@@ -49,10 +66,10 @@ class MainTopNav extends React.PureComponent {
               <p className="nav-logo-text">A few clicks away from Eternity</p>
             </BaseLink>
           )}
-          <div className="nav-mid-logo-cnt">
+          <div className="nav-mid-logo-cnt" ref={el => (this.logo = el)}>
             <PyramidIcon className="nav-mid-logo" />
             <div className="nav-mid-logo-text">
-              <h1>1-800-PYRAMID</h1>
+              <h1 ref={el => (this.text = el)}>1-800-PYRAMID</h1>
               {/* <p>$2/text</p> */}
             </div>
           </div>

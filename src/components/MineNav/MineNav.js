@@ -34,20 +34,26 @@ class MineNav extends React.PureComponent {
     return (
       <div className="MineNav" ref={el => (this.container = el)}>
         <div className="time-left-wrapper">
-          <span>Time left</span>
+          <span className="label">Time left</span>
           <span className="digits">0</span>
-          <span>Days</span>
+          <span className="label">Days</span>
           <span className="digits">0</span>
-          <span>Hours</span>
+          <span className="label">Hours</span>
         </div>
         <div className="rank-wrapper">
-          <span>Rank</span>
-          <span className="digits">0</span>
+          <div className="rank-count">
+            <span className="label">Rank</span>
+            <span className="digits">0</span>
+          </div>
+          <div className="rank-bid">
+            <span className="label">Top Bid</span>
+            <span className="digits">50.50 Δ</span>
+          </div>
         </div>
         <div className="your-bid-wrapper">
-          <span>Your bid</span>
-          <span className="digits">{this.state.numAdsClosed}</span>
-          <span className="delta">Δ</span>
+          <span className="label user">Your bid</span>
+          <span className="digits user">{this.state.numAdsClosed}</span>
+          <span className="delta user">Δ</span>
         </div>
       </div>
     );

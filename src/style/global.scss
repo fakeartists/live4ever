@@ -37,8 +37,8 @@ body {
 
   .lines-bg {
     position: fixed;
-    height: calc((100vh - 304px) / 2);
-    top: 105px;
+    height: calc((100vh - 225px) / 2);
+    top: 65px;
     z-index: 5;
 
     // path {
@@ -48,8 +48,8 @@ body {
 
   .lines-bg-inv {
     position: absolute;
-    bottom: 200px;
-    height: calc((100vh - 304px) / 2);
+    bottom: 160px;
+    height: calc((100vh - 224px) / 2);
     z-index: 5;
     transform: scale(1, -1);
   }
