@@ -16,10 +16,6 @@ $main-top-nav-link-font-size: 2rem !default;
   box-sizing: border-box;
   z-index: 500;
 
-  &.scroll {
-    background-color: $blacktint;
-  }
-
   @media (min-width: $layout-large) {
     height: $navbar-height-desktop;
     padding: 2rem $navbar-padding-desktop;
@@ -61,7 +57,8 @@ $main-top-nav-link-font-size: 2rem !default;
     width: 100%;
 
     h1 {
-      margin: px-to-rem(5) 0;
+      margin: px-to-rem(5) 0 px-to-rem(5) -20%;
+      width: 140%;
       @include font-light();
       color: $pink;
       font-size: px-to-rem(16);
