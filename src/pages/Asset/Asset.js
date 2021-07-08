@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 //import wait from '@jam3/wait';
+import Cookies from 'universal-cookie';
 import checkProps from '@jam3/react-check-extra-props';
 import Transition from '../PagesTransitionWrapper';
 import animate, { Expo } from '../../util/gsap-animate';
 
 import { setAssetLoaded } from '../../redux/modules/asset';
 import { setMineState } from '../../redux/modules/mine';
+import { setLoginState } from '../../redux/modules/login';
 
 import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
@@ -16,9 +18,13 @@ import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import './Asset.scss';
 
 class Asset extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.cookies = new Cookies();
+  }
+
   componentDidMount() {
     animate.set(this.container, { x: '100%', autoAlpha: 0 });
-
     if (!this.props.loaded) {
       this.props.setAssetLoaded(true);
     }
@@ -46,7 +52,12 @@ class Asset extends React.PureComponent {
   };
 
   onClickBid = () => {
-    this.props.setMineState(true);
+    const cookiedata = this.cookies.get('pyramid');
+    if (cookiedata !== undefined && cookiedata.email !== undefined) {
+      this.props.setMineState(true);
+    } else {
+      this.props.setLoginState(true);
+    }
   };
 
   render() {
@@ -71,7 +82,8 @@ Asset.propTypes = checkProps({
   previousRoute: PropTypes.string,
   loaded: PropTypes.bool,
   setAssetLoaded: PropTypes.func,
-  setMineState: PropTypes.func
+  setMineState: PropTypes.func,
+  setLoginState: PropTypes.func
 });
 
 Asset.defaultProps = {
@@ -88,7 +100,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     setAssetLoaded: val => dispatch(setAssetLoaded(val)),
-    setMineState: val => dispatch(setMineState(val))
+    setMineState: val => dispatch(setMineState(val)),
+    setLoginState: val => dispatch(setLoginState(val))
   };
 };
 

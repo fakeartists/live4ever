@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import noop from 'no-op';
@@ -10,6 +11,8 @@ import './MainNav.scss';
 
 import BaseLink from '../BaseLink/BaseLink';
 import HamburgerButton, { STATES } from '../HamburgerButton/HamburgerButton';
+
+import { setLoginState } from '../../redux/modules/login';
 
 import { ReactComponent as PyramidIcon } from '../../assets/svg/pyramid-icon.svg';
 
@@ -54,6 +57,10 @@ class MainTopNav extends React.PureComponent {
     this.props.setIsMobileMenuOpen(!this.props.isMobileMenuOpen);
   };
 
+  handleLoginClick = () => {
+    this.props.setLoginState(true);
+  };
+
   render() {
     return (
       <header className={classnames('MainNav', this.props.className)} ref={el => (this.container = el)}>
@@ -78,17 +85,27 @@ class MainTopNav extends React.PureComponent {
           ) : (
             this.props.links && (
               <ul className="nav-list">
-                {this.props.links.map((link, index) => (
-                  <BaseLink
-                    key={index}
-                    link={link.path}
-                    className={classnames({
-                      active: cleanPath(this.props.location.pathname) === cleanPath(link.path)
-                    })}
-                  >
-                    <li className="nav-item">{link.text}</li>
-                  </BaseLink>
-                ))}
+                {this.props.links.map((link, index) => {
+                  if (link.path === 'login') {
+                    return (
+                      <li key={index} className="nav-item" onClick={this.handleLoginClick}>
+                        {link.text}
+                      </li>
+                    );
+                  } else {
+                    return (
+                      <BaseLink
+                        key={index}
+                        link={link.path}
+                        className={classnames({
+                          active: cleanPath(this.props.location.pathname) === cleanPath(link.path)
+                        })}
+                      >
+                        <li className="nav-item">{link.text}</li>
+                      </BaseLink>
+                    );
+                  }
+                })}
               </ul>
             )
           )}
@@ -116,7 +133,8 @@ MainTopNav.propTypes = checkProps({
   ),
   showHamburger: PropTypes.bool,
   isMobileMenuOpen: PropTypes.bool,
-  setIsMobileMenuOpen: PropTypes.func
+  setIsMobileMenuOpen: PropTypes.func,
+  setLoginState: PropTypes.func
 });
 
 MainTopNav.defaultProps = {
@@ -127,4 +145,19 @@ MainTopNav.defaultProps = {
   setIsMobileMenuOpen: noop
 };
 
-export default withRouter(MainTopNav);
+const mapDispatchToProps = dispatch => {
+  return {
+    setLoginState: val => dispatch(setLoginState(val))
+  };
+};
+
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps,
+    null,
+    { withRef: true }
+  )(MainTopNav)
+);
+
+//export default withRouter(MainTopNav);

@@ -6,22 +6,37 @@ import { connect } from 'react-redux';
 import Draggable from 'react-draggable';
 import animate, { Circ } from '../../util/gsap-animate';
 
+import WindowsHeader from '../WindowsHeader/WindowsHeader';
+
 import './AdBanner.scss';
 
 class ADBanner extends React.PureComponent {
-  backgroundImage = '';
-  bodyCopy = '';
-  buttonActive = false;
-  posX = 0;
-  posY = 0;
-
   constructor(props) {
     super(props);
+
+    this.backgroundImage = '';
+    this.bodyCopy = '';
+    this.buttonActive = false;
+    this.posX = 0;
+    this.posY = 0;
 
     this.buildAd();
     this.state = {
       isOpen: false
     };
+  }
+
+  async componentDidMount() {
+    animate.set(this.node, { autoAlpha: 0 });
+    animate.to(this.node, 0.1, { autoAlpha: 1, ease: Circ.easeOut, delay: this.props.delay });
+    this.setState({ isOpen: true });
+  }
+
+  componentDidUpdate(prevProps) {
+    // const { isOpen } = this.props;
+    // if (!isOpen) {
+    //   animate.to(this.node, 0.1, { autoAlpha: 0, ease: Circ.easeOut });
+    // }
   }
 
   buildAd = () => {
@@ -136,19 +151,6 @@ class ADBanner extends React.PureComponent {
     this.bodyCopy = bodyCopy;
   };
 
-  async componentDidMount() {
-    animate.set(this.node, { autoAlpha: 0 });
-    animate.to(this.node, 0.1, { autoAlpha: 1, ease: Circ.easeOut, delay: this.props.delay });
-    this.setState({ isOpen: true });
-  }
-
-  componentDidUpdate(prevProps) {
-    // const { isOpen } = this.props;
-    // if (!isOpen) {
-    //   animate.to(this.node, 0.1, { autoAlpha: 0, ease: Circ.easeOut });
-    // }
-  }
-
   handleButtonClick = () => {
     if (!this.props.isStatic) {
       if (this.props.onClose) {
@@ -197,15 +199,7 @@ class ADBanner extends React.PureComponent {
         onClick={this.handleContentClick}
       >
         <div className="Adbanner-wrapper">
-          <header className="Adbanner-header">
-            <ul>
-              <li className={'Adbanner-header-close ' + this.buttonActive} onClick={this.handleButtonClick}>
-                X
-              </li>
-              <li className={'Adbanner-header-windows ' + this.buttonActive} />
-              <li className={'Adbanner-header-minimize ' + this.buttonActive}>_</li>
-            </ul>
-          </header>
+          <WindowsHeader isActive={!this.props.isStatic} onClose={this.handleButtonClick} />
           <div className="Adbanner-content">
             <span className={this.props.isStatic ? 'center' : ''}>{this.bodyCopy}</span>
             {clickButton}

@@ -19,4 +19,7 @@ settings.useShadows = false;
 settings.changeOnMoveMouse = true;
 settings.autoUpdateBlendShapes = true;
 
+//google connect
+settings.clientID = process.env.REACT_APP_CLIENT_ID;
+
 export default settings;

@@ -3,13 +3,14 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
+import { device } from '@jam3/detect';
+import checkProps from '@jam3/react-check-extra-props';
 //import { Transition } from 'react-transition-group';
 import MainNav from '../../components/MainNav/MainNav';
 import Footer from '../../components/Footer/Footer';
 import HamburgerMenu from '../../components/HamburgerMenu/HamburgerMenu';
 import PageOverlay from '../../components/PageOverlay/PageOverlay';
-import { device } from '@jam3/detect';
-import checkProps from '@jam3/react-check-extra-props';
+
 import 'default-passive-events';
 
 import Pages from '../../components/Pages/Pages';
@@ -29,6 +30,7 @@ import rotateScreenData from '../../data/rotate-screen';
 import layout from '../../util/layout';
 
 import Mine from '../../components/Mine/Mine';
+import Login from '../../components/Login/Login';
 
 const LazyRotateScreen = device.isMobile && lazy(() => import('../../components/RotateScreen/RotateScreen'));
 
@@ -90,6 +92,7 @@ class App extends React.PureComponent {
             <Pages />
             <Footer {...footerData} />
             <Mine />
+            <Login />
           </Fragment>
         )}
         {device.isMobile && (

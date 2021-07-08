@@ -6,6 +6,10 @@ export default {
   logoLink: routeKeys.Home,
   links: [
     {
+      text: 'Δ',
+      path: 'login'
+    },
+    {
       text: 'Gallery',
       path: routeKeys.Gallery
     },

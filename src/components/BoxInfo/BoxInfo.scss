@@ -30,18 +30,18 @@
           color: $white;
           width: 10%;
           min-width: 130px;
-          font-size: px-to-rem(8);
-          line-height: px-to-rem(16);
+          font-size: px-to-rem(10);
+          line-height: px-to-rem(20);
           margin: 0;
         }
 
         p {
           position: relative;
           float: left;
-          width: 90%;
+          width: 60%;
           color: $green;
-          font-size: px-to-rem(8);
-          line-height: px-to-rem(16);
+          font-size: px-to-rem(10);
+          line-height: px-to-rem(20);
           margin: 0;
         }
       }

@@ -1,6 +1,6 @@
 {
   "name": "pyramid.blow",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "private": false,
   "scripts": {
     "start": "npm-run-all -p watch-layout start-js",
@@ -77,9 +77,10 @@
     "no-op": "1.0.3",
     "normalize.css": "8.0.1",
     "preloader": "4.0.2",
-    "react": "16.7.0",
-    "react-dom": "16.7.0",
+    "react": "16.8.0",
+    "react-dom": "16.8.0",
     "react-draggable": "^4.4.3",
+    "react-google-login": "^5.2.2",
     "react-redux": "5.0.7",
     "react-router-dom": "4.3.1",
     "react-router-redux": "5.0.0-alpha.9",
@@ -90,6 +91,7 @@
     "three": "^0.128.0",
     "three-fbxloader-offical": "1.0.0",
     "three-orbitcontrols": "^2.1.2",
+    "universal-cookie": "^4.0.4",
     "webgl": "0.0.7"
   },
   "devDependencies": {

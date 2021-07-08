@@ -12,12 +12,12 @@ import { setMineState } from '../../redux/modules/mine';
 import './Mine.scss';
 
 class Mine extends React.PureComponent {
-  numAdsClosed = 0;
-  currentKey = 0;
-  isOpen = 0;
-
   constructor(props) {
     super(props);
+
+    this.numAdsClosed = 0;
+    this.currentKey = 0;
+    this.isOpen = 0;
     this.state = { ads: [] };
   }
 
