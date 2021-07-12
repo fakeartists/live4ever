@@ -6,7 +6,9 @@ import classnames from 'classnames';
 import noop from 'no-op';
 import cleanPath from 'remove-trailing-separator';
 import checkProps from '@jam3/react-check-extra-props';
+import { selectWindowWidth, selectWindowHeight } from '../App/App-selectors';
 
+import variables from '../../style/layout.scss';
 import './MainNav.scss';
 
 import BaseLink from '../BaseLink/BaseLink';
@@ -31,6 +33,10 @@ class MainTopNav extends React.PureComponent {
 
   constructor(props) {
     super(props);
+
+    const { width } = this.props;
+    this.xlarge = width > variables['layout-large'];
+
     this.state = {
       buttonState: getButtonState(props.isMobileMenuOpen)
     };
@@ -38,6 +44,13 @@ class MainTopNav extends React.PureComponent {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { width } = this.props;
+
+    this.xlarge = width > variables['layout-large'];
+    this.handleScroll(null);
   }
 
   componentWillUnmount() {
@@ -48,9 +61,21 @@ class MainTopNav extends React.PureComponent {
     let scrollTop = document.documentElement.scrollTop;
     let scrollpct = scrollTop / 60;
     scrollpct = Math.min(Math.max(scrollpct, 0), 1);
-    let translateY = -12 * scrollpct;
     this.container.style.backgroundColor = 'rgba(0, 0, 0, ' + 0.8 * scrollpct + ')';
-    this.logo.style.transform = 'scale(' + (0.8 + 0.2 * (1 - scrollpct)) + ') translateY(' + translateY + 'px)';
+    let translateY = 0;
+    const { width } = this.props;
+
+    if (this.xlarge) {
+      if (width > 1550) {
+        this.logo.style.transform = 'scale(1) translateY(0px)';
+      } else {
+        translateY = -12 * scrollpct;
+        this.logo.style.transform = 'scale(' + (0.8 + 0.2 * (1 - scrollpct)) + ') translateY(' + translateY + 'px)';
+      }
+    } else {
+      translateY = -12 * scrollpct;
+      this.logo.style.transform = 'scale(' + (0.8 + 0.2 * (1 - scrollpct)) + ') translateY(' + translateY + 'px)';
+    }
   };
 
   handleHamburgerClick = () => {
@@ -76,8 +101,7 @@ class MainTopNav extends React.PureComponent {
           <div className="nav-mid-logo-cnt" ref={el => (this.logo = el)}>
             <PyramidIcon className="nav-mid-logo" />
             <div className="nav-mid-logo-text">
-              <h1 ref={el => (this.text = el)}>1-800-PYRAMID</h1>
-              {/* <p>$2/text</p> */}
+              <h1 ref={el => (this.text = el)}>1-866-LIV4EVR</h1>
             </div>
           </div>
           {this.props.showHamburger ? (
@@ -134,7 +158,9 @@ MainTopNav.propTypes = checkProps({
   showHamburger: PropTypes.bool,
   isMobileMenuOpen: PropTypes.bool,
   setIsMobileMenuOpen: PropTypes.func,
-  setLoginState: PropTypes.func
+  setLoginState: PropTypes.func,
+  width: PropTypes.number,
+  height: PropTypes.number
 });
 
 MainTopNav.defaultProps = {
@@ -142,8 +168,15 @@ MainTopNav.defaultProps = {
   logoLink: '/',
   logoAriaLabel: 'Home',
   ariaNavLabel: 'Main Navigation',
-  setIsMobileMenuOpen: noop
+  setIsMobileMenuOpen: noop,
+  width: window.innerWidth,
+  height: window.innerHeight
 };
+
+const mapStateToProps = state => ({
+  width: selectWindowWidth(state),
+  height: selectWindowHeight(state)
+});
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -153,7 +186,7 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
     null,
     { withRef: true }

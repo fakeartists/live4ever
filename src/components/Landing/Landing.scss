@@ -1,0 +1,48 @@
+@import 'src/style/shared.scss';
+
+.Landing {
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  width: 100%;
+  padding: px-to-rem(20) 0;
+  margin-top: $navbar-height-mobile;
+  height: calc(100vh - #{$navbar-height-mobile} - #{$footer-height-mobile});
+  z-index: 50;
+
+  @media (min-width: $layout-large) {
+    height: calc(100vh - #{$navbar-height-desktop} - #{$footer-height-desktop});
+    padding: px-to-rem(20) 0;
+    margin-top: $navbar-height-desktop;
+  }
+
+  .landing-container {
+    box-sizing: border-box;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+
+    h1 {
+      position: relative;
+      float: left;
+      width: 100%;
+      @include font-regular();
+      color: $green;
+      font-size: px-to-rem(36);
+      line-height: px-to-rem(48);
+
+      b {
+        font-weight: normal;
+        color: $pink;
+      }
+    }
+
+    .landing-button {
+      @include main-button-cta;
+      margin-bottom: px-to-rem(60);
+    }
+  }
+}

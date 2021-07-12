@@ -4,6 +4,9 @@ const settings = {};
 settings.resizeDebounceTime = 10; // in ms
 settings.isDevelopment = process.env.NODE_ENV !== 'production';
 
+//dates
+settings.startDate = process.env.REACT_APP_STARTDATE;
+
 // global paths
 settings.sitePath = process.env.REACT_APP_PUBLIC_URL;
 settings.assetPath = `${settings.sitePath}/assets/`;

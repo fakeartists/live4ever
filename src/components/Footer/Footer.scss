@@ -12,7 +12,7 @@ $main-footer-copyright-font-size: 12px !default;
   position: relative;
   display: inline-block;
   width: 100%;
-  height: 180px;
+  height: $footer-height-mobile;
   padding: 2rem $navbar-padding-mobile;
   background: $main-footer-bg-color;
   box-sizing: border-box;
@@ -21,10 +21,12 @@ $main-footer-copyright-font-size: 12px !default;
   z-index: 500;
 
   @media (min-width: $layout-medium) {
+    height: $footer-height-desktop;
   }
 
   @media (min-width: $layout-large) {
     padding: 2rem $navbar-padding-desktop;
+    height: $footer-height-desktop;
   }
 
   .footer-nav {

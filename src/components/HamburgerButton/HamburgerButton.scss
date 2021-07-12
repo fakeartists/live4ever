@@ -1,7 +1,9 @@
+@import 'src/style/shared.scss';
+
 $hamburger-button-width: 2.5rem !default;
 $hamburger-button-height: 2rem !default;
 $hamburger-button-bar-thickness: 2px !default;
-$hamburger-button-bar-color: #000 !default;
+$hamburger-button-bar-color: $green !default;
 $hamburger-button-transition: 0.2s ease-out !default;
 
 .HamburgerButton {

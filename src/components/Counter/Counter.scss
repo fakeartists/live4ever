@@ -1,0 +1,31 @@
+@import 'src/style/shared.scss';
+
+.Counter {
+  position: relative;
+  float: left;
+  width: 100%;
+  margin: px-to-rem(50) 0 px-to-rem(90) 0;
+
+  ul {
+    position: relative;
+    float: left;
+    color: $green;
+    text-align: center;
+    @include font-special();
+    font-size: px-to-rem(100);
+    line-height: px-to-rem(120);
+    left: 50%;
+    transform: translateX(-50%);
+
+    li {
+      position: relative;
+      float: left;
+
+      &.counter-dot {
+        color: $pink;
+        padding-left: px-to-rem(20);
+        padding-right: px-to-rem(20);
+      }
+    }
+  }
+}

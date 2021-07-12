@@ -13,6 +13,7 @@ import PageOverlay from '../../components/PageOverlay/PageOverlay';
 
 import 'default-passive-events';
 
+import Landing from '../../components/Landing/Landing';
 import Pages from '../../components/Pages/Pages';
 import Loader from '../../components/Loader/Loader';
 // import WebGL from '../WebGL/WebGL';
@@ -24,6 +25,7 @@ import { setIsMobileMenuOpen } from '../../redux/modules/main-nav';
 
 import settings from '../../data/settings';
 import mainNavData from '../../data/main-nav';
+import mainNavDataLanding from '../../data/main-nav-landing';
 import hamburgerNavData from '../../data/hamburger-menu';
 import footerData from '../../data/footer';
 import rotateScreenData from '../../data/rotate-screen';
@@ -63,38 +65,58 @@ class App extends React.PureComponent {
   }, settings.resizeDebounceTime);
 
   render() {
+    let app;
+    let date = Date.now();
+    let start = new Date(settings.startDate).getTime();
+
+    if (date <= start) {
+      app = (
+        <Fragment>
+          <MainNav
+            {...mainNavDataLanding}
+            showHamburger={!this.props.layout.large}
+            isMobileMenuOpen={this.props.isMobileMenuOpen}
+            setIsMobileMenuOpen={this.props.setIsMobileMenuOpen}
+          />
+          <Landing />
+          <Footer {...footerData} />
+        </Fragment>
+      );
+    } else {
+      app = (
+        <Fragment>
+          <MainNav
+            {...mainNavData}
+            showHamburger={!this.props.layout.large}
+            isMobileMenuOpen={this.props.isMobileMenuOpen}
+            setIsMobileMenuOpen={this.props.setIsMobileMenuOpen}
+          />
+          {!this.props.layout.large && (
+            <Fragment>
+              <PageOverlay
+                isShowing={this.props.isMobileMenuOpen}
+                onClick={() => this.props.setIsMobileMenuOpen(false)}
+              />
+              <HamburgerMenu
+                {...hamburgerNavData}
+                isMobileMenuOpen={this.props.isMobileMenuOpen}
+                setIsMobileMenuOpen={this.props.setIsMobileMenuOpen}
+              />
+            </Fragment>
+          )}
+          <Pages />
+          <Footer {...footerData} />
+          <Mine />
+          <Login />
+        </Fragment>
+      );
+    }
     return (
       <Fragment>
         <LinesBG className="lines-bg" />
         <LinesBG className="lines-bg-inv" />
         {/* {this.props.ready && <WebGL history={this.props.history} />} */}
-        {this.props.ready && (
-          <Fragment>
-            <MainNav
-              {...mainNavData}
-              showHamburger={!this.props.layout.large}
-              isMobileMenuOpen={this.props.isMobileMenuOpen}
-              setIsMobileMenuOpen={this.props.setIsMobileMenuOpen}
-            />
-            {!this.props.layout.large && (
-              <Fragment>
-                <PageOverlay
-                  isShowing={this.props.isMobileMenuOpen}
-                  onClick={() => this.props.setIsMobileMenuOpen(false)}
-                />
-                <HamburgerMenu
-                  {...hamburgerNavData}
-                  isMobileMenuOpen={this.props.isMobileMenuOpen}
-                  setIsMobileMenuOpen={this.props.setIsMobileMenuOpen}
-                />
-              </Fragment>
-            )}
-            <Pages />
-            <Footer {...footerData} />
-            <Mine />
-            <Login />
-          </Fragment>
-        )}
+        {this.props.ready && app}
         {device.isMobile && (
           <Suspense fallback={<div className="loading" />}>
             <LazyRotateScreen {...rotateScreenData} />
