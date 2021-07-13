@@ -13,7 +13,7 @@ $main-footer-copyright-font-size: 12px !default;
   display: inline-block;
   width: 100%;
   height: $footer-height-mobile;
-  padding: 2rem $navbar-padding-mobile;
+  padding: 5px $navbar-padding-mobile 2rem;
   background: $main-footer-bg-color;
   box-sizing: border-box;
   @include z-index(footer);
@@ -21,6 +21,7 @@ $main-footer-copyright-font-size: 12px !default;
   z-index: 500;
 
   @media (min-width: $layout-medium) {
+    padding: 2rem $navbar-padding-desktop;
     height: $footer-height-desktop;
   }
 

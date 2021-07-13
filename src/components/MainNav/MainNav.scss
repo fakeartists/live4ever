@@ -10,16 +10,12 @@ $main-top-nav-link-font-size: 2rem !default;
   top: 0;
   left: 0;
   width: 100%;
+  min-width: $min-width;
   background: transparent;
   height: $navbar-height-mobile;
   padding: 2rem $navbar-padding-mobile;
   box-sizing: border-box;
   z-index: 500;
-
-  @media (min-width: $layout-large) {
-    height: $navbar-height-desktop;
-    padding: 2rem $navbar-padding-desktop;
-  }
 
   .only-aria-visible {
     clip-path: inset(100%);
@@ -108,5 +104,43 @@ $main-top-nav-link-font-size: 2rem !default;
         }
       }
     }
+  }
+
+  @media (max-width: $layout-small) {
+    .nav-logo-container {
+      transform-origin: top left;
+      transform: scale(0.5) translateY(30px);
+    }
+
+    .nav-logo-text {
+      display: none;
+    }
+
+    .nav-mid-logo-cnt {
+      top: calc(#{$logo-size-top} / 0.6);
+      width: calc(#{$logo-size-width} * 0.6);
+      height: calc(#{$logo-size-height} * 0.6);
+      margin-left: calc(#{-$logo-size-half-width} * 0.6);
+
+      svg {
+        width: calc(#{$logo-size-width} * 0.6);
+        height: calc(#{$logo-size-height} * 0.6);
+      }
+    }
+
+    .nav {
+      .nav-list {
+        .nav-item {
+          @include main-button;
+          padding: px-to-rem(5) px-to-rem(5) px-to-rem(5) px-to-rem(5);
+          font-size: px-to-rem(12);
+        }
+      }
+    }
+  }
+
+  @media (min-width: $layout-large) {
+    height: $navbar-height-desktop;
+    padding: 2rem $navbar-padding-desktop;
   }
 }

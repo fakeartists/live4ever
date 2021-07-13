@@ -72,12 +72,7 @@ class App extends React.PureComponent {
     if (date <= start) {
       app = (
         <Fragment>
-          <MainNav
-            {...mainNavDataLanding}
-            showHamburger={!this.props.layout.large}
-            isMobileMenuOpen={this.props.isMobileMenuOpen}
-            setIsMobileMenuOpen={this.props.setIsMobileMenuOpen}
-          />
+          <MainNav {...mainNavDataLanding} showHamburger={false} isMobileMenuOpen={false} setIsMobileMenuOpen={null} />
           <Landing />
           <Footer {...footerData} />
         </Fragment>

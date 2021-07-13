@@ -40,18 +40,21 @@ body {
     height: calc((100vh - 225px) / 2);
     top: 65px;
     z-index: 5;
-
-    // path {
-    //   stroke: #fff;
-    // }
+    min-width: $min-width;
   }
 
   .lines-bg-inv {
     position: absolute;
-    bottom: 160px;
+    bottom: calc(#{$footer-height-desktop} - 20px);
     height: calc((100vh - 224px) / 2);
     z-index: 5;
     transform: scale(1, -1);
+    min-width: $min-width;
+
+    @media (max-width: $layout-small) {
+      bottom: calc(#{$footer-height-mobile});
+      height: calc((100vh - 164px) / 2);
+    }
   }
 }
 

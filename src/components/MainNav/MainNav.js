@@ -93,7 +93,7 @@ class MainTopNav extends React.PureComponent {
         <nav className="nav" aria-label={this.props.ariaNavLabel}>
           {this.props.ariaNavTitle && <h2 className="only-aria-visible">{this.props.ariaNavTitle}</h2>}
           {this.props.logoSrc && (
-            <BaseLink link={this.props.logoLink} aria-label={this.props.logoAriaLabel}>
+            <BaseLink className="nav-logo-container" link={this.props.logoLink} aria-label={this.props.logoAriaLabel}>
               <img className="nav-logo" src={this.props.logoSrc} alt={this.props.logoAlt} />
               <p className="nav-logo-text">A few clicks away from Eternity</p>
             </BaseLink>

@@ -4,18 +4,23 @@
   position: relative;
   float: left;
   width: 100%;
-  margin: px-to-rem(50) 0 px-to-rem(90) 0;
+  margin: px-to-rem(10) 0 px-to-rem(40) 0;
 
   ul {
     position: relative;
     float: left;
     color: $green;
     text-align: center;
-    @include font-special();
-    font-size: px-to-rem(100);
-    line-height: px-to-rem(120);
     left: 50%;
     transform: translateX(-50%);
+    @include font-special();
+    font-size: px-to-rem(36);
+    line-height: px-to-rem(42);
+
+    @media (min-width: $min-width) {
+      font-size: 10vw;
+      line-height: 10vw;
+    }
 
     li {
       position: relative;
@@ -23,6 +28,36 @@
 
       &.counter-dot {
         color: $pink;
+        padding-left: px-to-rem(0);
+        padding-right: px-to-rem(0);
+      }
+    }
+  }
+
+  @media (min-width: $layout-medium) {
+    margin: px-to-rem(50) 0 px-to-rem(90) 0;
+
+    ul {
+      font-size: px-to-rem(80);
+      line-height: px-to-rem(90);
+
+      li {
+        &.counter-dot {
+          padding-left: px-to-rem(5);
+          padding-right: px-to-rem(5);
+        }
+      }
+    }
+  }
+
+  @media (min-width: $layout-large) {
+    margin: px-to-rem(50) 0 px-to-rem(90) 0;
+
+    font-size: px-to-rem(100);
+    line-height: px-to-rem(120);
+
+    li {
+      &.counter-dot {
         padding-left: px-to-rem(20);
         padding-right: px-to-rem(20);
       }

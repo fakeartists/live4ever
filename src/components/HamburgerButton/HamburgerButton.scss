@@ -17,6 +17,8 @@ $hamburger-button-transition: 0.2s ease-out !default;
   font-size: inherit;
   text-transform: inherit;
   color: inherit;
+  padding: 10px 10px;
+  border: 1px solid $green;
 
   .bars-container {
     position: relative;
@@ -38,7 +40,7 @@ $hamburger-button-transition: 0.2s ease-out !default;
   &.close {
     .bar {
       &:nth-child(1) {
-        transform: translateX(1px) rotate(45deg);
+        transform: translateX(4px) rotate(45deg);
       }
 
       &:nth-child(2) {
@@ -47,7 +49,7 @@ $hamburger-button-transition: 0.2s ease-out !default;
       }
 
       &:nth-child(3) {
-        transform: rotate(-45deg);
+        transform: translateX(3px) rotate(-45deg);
       }
     }
   }

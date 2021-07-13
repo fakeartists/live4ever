@@ -237,6 +237,7 @@
 @mixin main-button {
   background-color: transparent;
   padding: px-to-rem(13) px-to-rem(35);
+  font-size: px-to-rem(16);
   border: 1px $green solid;
   box-sizing: border-box;
   color: $green;
@@ -266,6 +267,7 @@
   padding: px-to-rem(15) px-to-rem(20) px-to-rem(13) px-to-rem(20);
   border: 1px $green solid;
   box-sizing: border-box;
+  font-size: px-to-rem(16);
   color: $pink;
 
   a {
@@ -295,6 +297,7 @@
   border: 1px $green solid;
   box-sizing: border-box;
   color: $green;
+  font-size: px-to-rem(16);
 
   &.active {
     text-transform: none;
