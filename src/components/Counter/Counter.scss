@@ -4,7 +4,7 @@
   position: relative;
   float: left;
   width: 100%;
-  margin: px-to-rem(10) 0 px-to-rem(40) 0;
+  margin: px-to-rem(10) 0 px-to-rem(60) 0;
 
   ul {
     position: relative;
@@ -31,11 +31,27 @@
         padding-left: px-to-rem(0);
         padding-right: px-to-rem(0);
       }
+
+      p {
+        margin: 0;
+      }
+
+      span {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        @include font-regular();
+
+        bottom: px-to-rem(-25);
+        font-size: px-to-rem(12);
+        line-height: px-to-rem(14);
+      }
     }
   }
 
   @media (min-width: $layout-medium) {
-    margin: px-to-rem(50) 0 px-to-rem(90) 0;
+    margin: px-to-rem(50) 0 px-to-rem(120) 0;
 
     ul {
       font-size: px-to-rem(80);
@@ -46,12 +62,18 @@
           padding-left: px-to-rem(5);
           padding-right: px-to-rem(5);
         }
+
+        span {
+          bottom: px-to-rem(-40);
+          font-size: px-to-rem(20);
+          line-height: px-to-rem(22);
+        }
       }
     }
   }
 
   @media (min-width: $layout-large) {
-    margin: px-to-rem(50) 0 px-to-rem(90) 0;
+    margin: px-to-rem(50) 0 px-to-rem(120) 0;
 
     font-size: px-to-rem(100);
     line-height: px-to-rem(120);
@@ -60,6 +82,12 @@
       &.counter-dot {
         padding-left: px-to-rem(20);
         padding-right: px-to-rem(20);
+      }
+
+      span {
+        bottom: px-to-rem(-40);
+        font-size: px-to-rem(20);
+        line-height: px-to-rem(22);
       }
     }
   }

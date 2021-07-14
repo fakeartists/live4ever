@@ -28,7 +28,7 @@ class Landing extends React.PureComponent {
       <section className={classnames('Landing', this.props.className)} ref={el => (this.container = el)}>
         <div className="landing-container">
           <h1>
-            <span>Digital life is about to change.</span>
+            <span>Life is about to change 4 ever.</span>
             <br />
             <span>
               <b>Be the first to step into the future.</b>

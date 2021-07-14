@@ -27,7 +27,7 @@
       @include font-regular();
       color: $green;
       font-size: px-to-rem(30);
-      line-height: px-to-rem(36);
+      line-height: px-to-rem(30);
       padding: 0 px-to-rem(20);
 
       span {
@@ -54,7 +54,7 @@
 
       h1 {
         font-size: px-to-rem(20);
-        line-height: px-to-rem(24);
+        line-height: px-to-rem(20);
 
         span {
           padding: px-to-rem(5) 0;
@@ -76,7 +76,7 @@
     .landing-container {
       h1 {
         font-size: px-to-rem(36);
-        line-height: px-to-rem(48);
+        line-height: px-to-rem(36);
       }
     }
   }

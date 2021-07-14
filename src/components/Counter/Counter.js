@@ -53,13 +53,25 @@ class Counter extends React.PureComponent {
     return (
       <div className="Counter" ref={el => (this.container = el)}>
         <ul>
-          <li className="counter-time">{days}</li>
+          <li className="counter-time">
+            <p>{days}</p>
+            <span>Days</span>
+          </li>
           <li className="counter-dot">:</li>
-          <li className="counter-time">{hours}</li>
+          <li className="counter-time">
+            <p>{hours}</p>
+            <span>Hours</span>
+          </li>
           <li className="counter-dot">:</li>
-          <li className="counter-time">{minutes}</li>
+          <li className="counter-time">
+            <p>{minutes}</p>
+            <span>Minutes</span>
+          </li>
           <li className="counter-dot">:</li>
-          <li className="counter-time">{seconds}</li>
+          <li className="counter-time">
+            <p>{seconds}</p>
+            <span>Seconds</span>
+          </li>
         </ul>
       </div>
     );
