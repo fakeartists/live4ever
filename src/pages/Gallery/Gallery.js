@@ -15,7 +15,7 @@ import { setGalleryLoaded } from '../../redux/modules/gallery';
 import animate, { Expo } from '../../util/gsap-animate';
 
 //temp
-import galeryData from '../../data/gallery';
+import galeryData from '../../data/assets';
 
 class Gallery extends React.PureComponent {
   componentDidMount() {
@@ -50,10 +50,11 @@ class Gallery extends React.PureComponent {
   render() {
     let header;
     let title;
+
     if (this.props.isHome) {
       header = (
         <header className="Gallery-header">
-          <h1>{galeryData.title}</h1>
+          <h1>Recent Drops</h1>
         </header>
       );
     } else {
@@ -66,23 +67,28 @@ class Gallery extends React.PureComponent {
           {header}
           <section className="Gallery-content">
             <ul className="gallery-list">
-              {galeryData.itens.map((item, index) => {
-                return (
-                  <li key={index} className="gallery-item">
-                    <BaseLink link={'./asset/' + item._id}>
-                      <img src={item.image} alt="alt" />
-                      <h2 className="gallery-item-title">{item.title}</h2>
-                      <div className="gallery-item-info">
-                        {title}
-                        {this.props.isHome && <p className="gallery-item-info-bid">{item.highestbid + ' Δ'}</p>}
-                        <button className={'gallery-item-info-button' + (item.status === 'sold' ? '' : ' active')}>
-                          {item.status === 'sold' ? 'SOLD' : 'VIEW'}
-                        </button>
-                      </div>
-                    </BaseLink>
-                  </li>
-                );
-              })}
+              {galeryData
+                .filter(item => !item.hot_sale)
+                .map((item, index) => {
+                  let closed = item.status === 'closed';
+                  return (
+                    <li key={index} className="gallery-item">
+                      <BaseLink className="gallery-item-content" link={'./asset/' + item._id}>
+                        <div className="image-container">
+                          <img src={item.image} alt="alt" />
+                        </div>
+                        <h2 className="gallery-item-title">{item.title}</h2>
+                        <div className="gallery-item-info">
+                          {title}
+                          {this.props.isHome && <p className="gallery-item-info-bid">{item.highestbid + ' Δ'}</p>}
+                          <button className={'gallery-item-info-button' + (closed ? '' : ' active')}>
+                            {closed ? 'SOLD' : 'VIEW'}
+                          </button>
+                        </div>
+                      </BaseLink>
+                    </li>
+                  );
+                })}
             </ul>
           </section>
         </section>

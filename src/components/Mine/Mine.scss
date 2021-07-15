@@ -8,7 +8,7 @@
   height: 100%;
   text-align: center;
   z-index: 900;
-  background: $blacktint;
+  background: $blacktint-dark;
   padding: px-to-rem(20) $navbar-padding-mobile;
 
   @media (min-width: $layout-large) {
@@ -19,7 +19,7 @@
     position: absolute;
     top: px-to-rem(50);
     right: px-to-rem(50);
-    @include item-button;
+    @include main-button;
     cursor: pointer;
   }
 

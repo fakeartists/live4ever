@@ -94,7 +94,7 @@ class Mine extends React.PureComponent {
       mine = (
         <section className="Mine" ref={el => (this.container = el)}>
           <button className="mine-close active" onClick={this.handleButtonClick}>
-            Get me out of here
+            Save bid & quit
           </button>
           <MineNav numAdsClosed={0} ref={mineNav => (this.mineNav = mineNav)} />
           <div className="mine-container">{this.state.ads}</div>

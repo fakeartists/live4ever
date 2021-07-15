@@ -24,6 +24,7 @@ class BoxInfo extends React.PureComponent {
     let assetinfo;
     let reserve;
     let userbid;
+    
     if (this.props.isSingle) {
       description = (
         <p className="box-info-desc">
