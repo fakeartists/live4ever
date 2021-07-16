@@ -5,16 +5,17 @@ import Cookies from 'universal-cookie';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import animate, { Circ } from '../../util/gsap-animate';
-
 import WindowsHeader from '../WindowsHeader/WindowsHeader';
 import { setLoginState } from '../../redux/modules/login';
 import settings from '../../data/settings';
+import { getCopy } from '../../data/get-site-data';
 
 import './Login.scss';
 
 class Login extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.copy = getCopy(this.props.language, 'login');
     this.cookies = new Cookies();
     this.isOpen = false;
 
@@ -108,31 +109,26 @@ class Login extends React.PureComponent {
     let active = !this.state.active;
     const cookiedata = this.cookies.get('pyramid');
     if (cookiedata !== undefined && cookiedata.email !== undefined) {
-      title = <h1 className="logout">You're Connected</h1>;
+      title = <h1 className="logout">{this.copy.connected_title}</h1>;
       copy = '';
       button = (
         <GoogleLogout
           className="login-bt"
           clientId={settings.clientID}
-          buttonText="Disconnect Wallet"
+          buttonText={this.copy.connected_button}
           theme="dark"
           onLogoutSuccess={this.logoutResponse}
           disabled={active}
         />
       );
     } else {
-      title = <h1>Connect with a Fake Wallet</h1>;
-      copy = (
-        <p>
-          The process is very simple, connect your google account to be able to play and get a chance to be ethernal.
-          All your fake coins will link with you google account, no real wallet is required.
-        </p>
-      );
+      title = <h1>{this.copy.disconected_title}</h1>;
+      copy = <p>{this.copy.disconected_desc}</p>;
       button = (
         <GoogleLogin
           className="login-bt"
           clientId={settings.clientID}
-          buttonText="Connect with Google"
+          buttonText={this.copy.disconected_button}
           onSuccess={this.loginResponse}
           onFailure={this.errorResponse}
           theme="dark"
@@ -160,11 +156,13 @@ class Login extends React.PureComponent {
 }
 
 Login.propTypes = checkProps({
+  language: PropTypes.string,
   setLoginState: PropTypes.func,
   isOpen: PropTypes.bool
 });
 
 Login.defaultProps = {
+  language: 'en',
   isOpen: false
 };
 

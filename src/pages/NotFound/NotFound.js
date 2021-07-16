@@ -21,10 +21,12 @@ const NotFound = props => {
 };
 
 NotFound.propTypes = checkProps({
+  language: PropTypes.string,
   className: PropTypes.string
 });
 
 NotFound.defaultProps = {
+  language: 'en',
   className: ''
 };
 

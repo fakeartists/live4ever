@@ -36,13 +36,12 @@ const Footer = React.memo(
           </ul>
         </nav>
       )}
-      {/* {props.children}
-      {props.copyright && <p className="footer-copyright">{props.copyright}</p>} */}
     </footer>
   ))
 );
 
 Footer.propTypes = checkProps({
+  language: PropTypes.string,
   className: PropTypes.string,
   links: PropTypes.arrayOf(
     PropTypes.shape({
@@ -55,6 +54,7 @@ Footer.propTypes = checkProps({
 });
 
 Footer.defaultProps = {
+  language: 'en',
   ariaNavLabel: 'Footer Navigation',
   copyright: '© Copyright'
 };

@@ -24,13 +24,25 @@ const Pages = ({ location, ...props }) => {
           {state => (
             <Suspense fallback={<div className="loading" />}>
               <Switch location={location}>
-                <Route exact path={routeKeys.Home} render={() => <Home transitionState={state} />} />
-                <Route exact path={routeKeys.Gallery} render={() => <Gallery transitionState={state} />} />
-                <Route exact path={routeKeys.About} render={() => <About transitionState={state} />} />
+                <Route
+                  exact
+                  path={routeKeys.Home}
+                  render={() => <Home transitionState={state} language={props.language} />}
+                />
+                <Route
+                  exact
+                  path={routeKeys.Gallery}
+                  render={() => <Gallery transitionState={state} language={props.language} />}
+                />
+                <Route
+                  exact
+                  path={routeKeys.About}
+                  render={() => <About transitionState={state} language={props.language} />}
+                />
                 <Route
                   exact
                   path={`${routeKeys.Asset}/:assetId`}
-                  render={props => <Asset transitionState={state} {...props} />}
+                  render={props => <Asset transitionState={state} language={props.language} {...props} />}
                 />
                 <Route component={NotFound} />
               </Switch>
@@ -43,9 +55,10 @@ const Pages = ({ location, ...props }) => {
 };
 
 Pages.propTypes = checkProps({
+  language: PropTypes.string,
   className: PropTypes.string
 });
 
-Pages.defaultProps = {};
+Pages.defaultProps = { language: 'en' };
 
 export default withRouter(Pages);

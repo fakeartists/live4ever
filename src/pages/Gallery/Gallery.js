@@ -3,25 +3,38 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import BaseLink from '../../components/BaseLink/BaseLink';
-//import wait from '@jam3/wait';
 import checkProps from '@jam3/react-check-extra-props';
-
-// import getSiteData from '../../data/get-site-data';
-
-import './Gallery.scss';
-
 import Transition from '../PagesTransitionWrapper';
 import { setGalleryLoaded } from '../../redux/modules/gallery';
 import animate, { Expo } from '../../util/gsap-animate';
+import { getData } from '../../data/get-site-data';
+import { getCopy } from '../../data/get-site-data';
 
-//temp
-import galeryData from '../../data/assets';
+import './Gallery.scss';
 
 class Gallery extends React.PureComponent {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+
+    this.state = { assets: [] };
+    this.copy = getCopy(this.props.language, 'gallery');
+  }
+
+  async componentDidMount() {
     animate.set(this.container, { x: '100%', autoAlpha: 0 });
+
     if (!this.props.loaded) {
-      // galeryData = await getSiteData();
+      let assets;
+      if (this.props.assetdata.length === 0) {
+        assets = await getData();
+      } else {
+        assets = this.props.assetdata.length;
+      }
+
+      this.setState({
+        assets: assets
+      });
+
       this.props.setGalleryLoaded(true);
     }
   }
@@ -31,7 +44,6 @@ class Gallery extends React.PureComponent {
   };
 
   onEnter = async prevSectionExitDuration => {
-    //await wait(prevSectionExitDuration);
     this.animateIn();
   };
 
@@ -49,16 +61,13 @@ class Gallery extends React.PureComponent {
 
   render() {
     let header;
-    let title;
 
     if (this.props.isHome) {
       header = (
         <header className="Gallery-header">
-          <h1>Recent Drops</h1>
+          <h1>{this.copy.gallery_title}</h1>
         </header>
       );
-    } else {
-      title = <p className="gallery-item-info-title">The Original Pimp</p>;
     }
 
     return (
@@ -67,8 +76,8 @@ class Gallery extends React.PureComponent {
           {header}
           <section className="Gallery-content">
             <ul className="gallery-list">
-              {galeryData
-                .filter(item => !item.hot_sale)
+              {this.state.assets
+                .filter(item => !item.hot_sale || !this.props.isHome)
                 .map((item, index) => {
                   let closed = item.status === 'closed';
                   return (
@@ -79,10 +88,10 @@ class Gallery extends React.PureComponent {
                         </div>
                         <h2 className="gallery-item-title">{item.title}</h2>
                         <div className="gallery-item-info">
-                          {title}
+                          {!this.props.isHome && <p className="gallery-item-info-title">{item.sub_title}</p>}
                           {this.props.isHome && <p className="gallery-item-info-bid">{item.highestbid + ' Δ'}</p>}
                           <button className={'gallery-item-info-button' + (closed ? '' : ' active')}>
-                            {closed ? 'SOLD' : 'VIEW'}
+                            {closed ? this.copy.button_sold : this.copy.button_view}
                           </button>
                         </div>
                       </BaseLink>
@@ -98,6 +107,8 @@ class Gallery extends React.PureComponent {
 }
 
 Gallery.propTypes = checkProps({
+  language: PropTypes.string,
+  assetdata: PropTypes.array,
   className: PropTypes.string,
   transitionState: PropTypes.string.isRequired,
   previousRoute: PropTypes.string,
@@ -106,7 +117,10 @@ Gallery.propTypes = checkProps({
   setGalleryLoaded: PropTypes.func
 });
 
-Gallery.defaultProps = {};
+Gallery.defaultProps = {
+  language: 'en',
+  assetdata: []
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {

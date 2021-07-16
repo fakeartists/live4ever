@@ -4,18 +4,13 @@ import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import BaseLink from '../BaseLink/BaseLink';
-import { selectWindowWidth, selectWindowHeight, selectPath } from '../App/App-selectors';
+import Counter from '../Counter/Counter';
 
 import './BoxInfo.scss';
 
 class BoxInfo extends React.PureComponent {
-  async componentDidMount() {
-    //const { path, history } = this.props;
-  }
-
-  componentDidUpdate(prevProps) {
-    //const { width, height, path } = this.props;
-  }
+  async componentDidMount() {}
+  componentDidUpdate(prevProps) {}
 
   render() {
     let classSingle = this.props.isSingle ? 'single' : '';
@@ -24,69 +19,66 @@ class BoxInfo extends React.PureComponent {
     let assetinfo;
     let reserve;
     let userbid;
-    
+
     if (this.props.isSingle) {
       description = (
-        <p className="box-info-desc">
-          Have you always wondered of what you could do if you were immortal? PYRΔMID can make your dream come true. Now
-          with a few clicks you can acquire the <b>FIRST HUMAN POWERED</b> NFT that will save a hard copy of yourself on
-          the blockchain, FOREVER. However it’s a <b>TIME LIMITED OFFER</b>, so start bidding now to get the chance to
-          become immortal.
-        </p>
+        <p className="box-info-desc" dangerouslySetInnerHTML={{ __html: this.props.data.full_description }} />
       );
 
-      bid = (
-        <button className="box-info-button cta" onClick={this.props.clickFunction}>
-          BID NOW
-        </button>
-      );
+      if (this.props.data.status === 'open') {
+        bid = (
+          <button className="box-info-button cta" onClick={this.props.clickFunction}>
+            {this.props.copy.button_box_asset}
+          </button>
+        );
+      }
 
       assetinfo = (
         <div className="box-info-asset">
           <li>
             <ul>
-              <h1>Chain Info:</h1>
-              <p>NA</p>
+              <h1>{this.props.copy.title_chain}:</h1>
+              <p>{this.props.data.chain_info}</p>
             </ul>
             <ul>
-              <h1>Contract Address:</h1>
-              <p>FΔKE NUmb3rs</p>
+              <h1>{this.props.copy.title_contract}:</h1>
+              <p>{this.props.data.contract_address}</p>
             </ul>
             <ul>
-              <h1>Token ID:</h1>
-              <p>782736392920208742920377</p>
+              <h1>{this.props.copy.title_token}:</h1>
+              <p>{this.props.data.token_id}</p>
             </ul>
             <ul>
-              <h1>Blockchain:</h1>
-              <p>PYRΔMID</p>
+              <h1>{this.props.copy.title_blockchain}</h1>
+              <p>{this.props.data.blockchain}</p>
             </ul>
           </li>
         </div>
       );
 
-      reserve = (
-        <li className={classSingle}>
-          <p className="box-info-status-top-title">Reserve price</p>
-          <p className="box-info-status-top-bid">25.00 Δ</p>
-        </li>
-      );
+      if (this.props.data.reserve) {
+        reserve = (
+          <div className={'box-info-box ' + classSingle}>
+            <p className="box-info-status-top-title">{this.props.copy.title_reserve}</p>
+            <p className="box-info-status-top-bid">{this.props.data.reserve + ' ' + this.props.copy.piramid_ico}</p>
+          </div>
+        );
+      }
 
-      userbid = (
-        <div className="box-info-status-bid">
-          <p className="box-info-status-bid-title">Your Bid</p>
-          <p className="box-info-status-bid-bid">200.00 Δ</p>
-        </div>
-      );
+      if (this.props.data.status === 'open') {
+        userbid = (
+          <div className="box-info-status-bid">
+            <p className="box-info-status-bid-title">{this.props.copy.title_user_bid}</p>
+            <p className="box-info-status-bid-bid">{0 + ' ' + this.props.copy.piramid_ico}</p>
+          </div>
+        );
+      }
     } else {
-      description = (
-        <p className="box-info-desc">
-          Thus unique NFT will grant you digital immortality by unlocking your digital twin.
-        </p>
-      );
+      description = <p className="box-info-desc">{this.props.data.short_description}</p>;
 
       bid = (
-        <BaseLink className="box-info-button cta" link={'./asset/eternity'}>
-          LEARN MORE
+        <BaseLink className="box-info-button cta" link={'./asset/' + this.props.data._id}>
+          {this.props.copy.button_box_home}
         </BaseLink>
       );
     }
@@ -95,39 +87,34 @@ class BoxInfo extends React.PureComponent {
       <div className={classnames(`box-info`, classSingle)}>
         <div className="box-info-bid">
           <div className="box-info-image">
-            <img src="https://www.indiewire.com/wp-content/uploads/2019/12/avatar-2.jpg" alt="alt" />
+            <img src={this.props.data.image} alt={this.props.data.title} />
           </div>
           <div className="box-info-data">
-            <h2>Immortal #4</h2>
-            <p>Edition 1 of 1</p>
+            <h2 className="box-info-data-title">{this.props.data.title}</h2>
+            <p className="box-info-data-edition">
+              {this.props.copy.title_edition +
+                ' ' +
+                this.props.data.edition +
+                ' ' +
+                this.props.copy.separator_edition +
+                ' ' +
+                this.props.data.sets}
+            </p>
             {description}
             <div className="box-info-status">
               <div className="box-info-status-top">
-                <ul>
-                  <li className={classSingle}>
-                    <p className="box-info-status-top-title">Highest Bid</p>
-                    <p className="box-info-status-top-bid">200.00 Δ</p>
-                    <p className="box-info-status-info">15,000 clicks</p>
-                  </li>
-                  <li className={classSingle}>
-                    <p className="box-info-status-top-title">Auction ending in</p>
-                    <div className="box-info-status-top-counter">
-                      <ul>
-                        <li className="counter-day">3</li>
-                        <li className="counter-hour">16</li>
-                        <li className="counter-min">21</li>
-                      </ul>
-                    </div>
-                    <div className="box-info-status-info">
-                      <ul>
-                        <li className="counter-info-day">Days</li>
-                        <li className="counter-info-hour">Hours</li>
-                        <li className="counter-info-min">Minutes</li>
-                      </ul>
-                    </div>
-                  </li>
-                  {reserve}
-                </ul>
+                <div className={'box-info-box ' + classSingle}>
+                  <p className="box-info-status-top-title">{this.props.copy.title_bid}</p>
+                  <p className="box-info-status-top-bid">
+                    {this.props.data.highestbid + ' ' + this.props.copy.piramid_ico}
+                  </p>
+                  <p className="box-info-status-info">{this.props.data.clicks + ' ' + this.props.copy.sub_title_bid}</p>
+                </div>
+                <div className={'box-info-box ' + classSingle}>
+                  <p className="box-info-status-top-title">{this.props.copy.title_time}</p>
+                  <Counter copy={this.props.copy} isLanding={false} endDate={this.props.data.ends} />
+                </div>
+                {reserve}
               </div>
               <div className="box-info-status-bottom">
                 {bid}
@@ -143,28 +130,21 @@ class BoxInfo extends React.PureComponent {
 }
 
 BoxInfo.propTypes = checkProps({
-  width: PropTypes.number,
-  height: PropTypes.number,
-  path: PropTypes.string,
+  copy: PropTypes.object,
+  data: PropTypes.object,
   isSingle: PropTypes.bool,
   clickFunction: PropTypes.func
 });
 
 BoxInfo.defaultProps = {
-  width: window.innerWidth,
-  height: window.innerHeight,
-  path: '',
+  copy: {},
+  data: {},
   isSingle: false,
   clickFunction: null
 };
 
-const mapStateToProps = state => ({
-  width: selectWindowWidth(state),
-  height: selectWindowHeight(state),
-  path: selectPath(state)
-});
+const mapStateToProps = state => ({});
 
-//Dispatch props here
 const mapDispatchToProps = dispatch => {
   return {};
 };

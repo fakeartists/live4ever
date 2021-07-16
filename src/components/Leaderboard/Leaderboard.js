@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
-import { selectWindowWidth, selectWindowHeight, selectPath } from '../App/App-selectors';
 
 import './Leaderboard.scss';
 
@@ -12,20 +11,14 @@ import './Leaderboard.scss';
 import leaderboardData from '../../data/leaderboard';
 
 class Leaderboard extends React.PureComponent {
-  async componentDidMount() {
-    //const { path, history } = this.props;
-  }
-
-  componentDidUpdate(prevProps) {
-    //const { width, height, path } = this.props;
-  }
+  async componentDidMount() {}
+  componentDidUpdate(prevProps) {}
 
   convertTime = time => {
-    const start = moment(time);
+    const start = moment(new Date(time));
     const now = moment();
     const duration = moment.duration(now.diff(start));
-    //duration.days() + 'd ' +
-    return duration.hours() + 'h ' + duration.minutes() + 'm ' + duration.seconds() + 's';
+    return duration.days() + 'd ' + duration.hours() + 'h ' + duration.minutes() + 'm ' + duration.seconds() + 's';
   };
 
   render() {
@@ -34,18 +27,16 @@ class Leaderboard extends React.PureComponent {
         <table>
           <thead>
             <tr>
-              <th>{leaderboardData.header.event}</th>
-              <th>{leaderboardData.header.value}</th>
-              <th>{leaderboardData.header.from}</th>
-              <th>{leaderboardData.header.time}</th>
+              <th>{this.props.copy.title_leaderboard_bid}</th>
+              <th>{this.props.copy.title_leaderboard_from}</th>
+              <th>{this.props.copy.title_leaderboard_when}</th>
             </tr>
           </thead>
           <tbody>
-            {leaderboardData.itens.map((item, index) => {
+            {leaderboardData.map((item, index) => {
               return (
                 <tr key={index} className="Leaderboard-item">
-                  <td>{item.event}</td>
-                  <td>{item.value}</td>
+                  <td>{item.bid + ' ' + this.props.copy.piramid_ico}</td>
                   <td>
                     <img src={item.image} alt="bid user avatar" />
                     <p>{item.name}</p>
@@ -62,24 +53,14 @@ class Leaderboard extends React.PureComponent {
 }
 
 Leaderboard.propTypes = checkProps({
-  width: PropTypes.number,
-  height: PropTypes.number,
-  path: PropTypes.string
+  copy: PropTypes.object
 });
 
 Leaderboard.defaultProps = {
-  width: window.innerWidth,
-  height: window.innerHeight,
-  path: ''
+  copy: {}
 };
 
-const mapStateToProps = state => ({
-  width: selectWindowWidth(state),
-  height: selectWindowHeight(state),
-  path: selectPath(state)
-});
-
-//Dispatch props here
+const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => {
   return {};
 };

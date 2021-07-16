@@ -85,6 +85,7 @@ class App extends React.PureComponent {
             showHamburger={!this.props.layout.large}
             isMobileMenuOpen={this.props.isMobileMenuOpen}
             setIsMobileMenuOpen={this.props.setIsMobileMenuOpen}
+            language="en"
           />
           {!this.props.layout.large && (
             <Fragment>
@@ -99,10 +100,10 @@ class App extends React.PureComponent {
               />
             </Fragment>
           )}
-          <Pages />
-          <Footer {...footerData} />
-          <Mine />
-          <Login />
+          <Pages language="en" />
+          <Footer {...footerData} language="en" />
+          <Mine language="en" />
+          <Login language="en" />
         </Fragment>
       );
     }

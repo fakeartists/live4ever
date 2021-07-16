@@ -2,30 +2,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-//import wait from '@jam3/wait';
 import Cookies from 'universal-cookie';
 import checkProps from '@jam3/react-check-extra-props';
 import Transition from '../PagesTransitionWrapper';
 import animate, { Expo } from '../../util/gsap-animate';
-
 import { setAssetLoaded } from '../../redux/modules/asset';
 import { setMineState } from '../../redux/modules/mine';
 import { setLoginState } from '../../redux/modules/login';
-
 import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
+import { getCopy } from '../../data/get-site-data';
+import { getData } from '../../data/get-site-data';
 
 import './Asset.scss';
 
 class Asset extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.state = { asset: {} };
+    this.copy = getCopy(this.props.language, 'asset');
+    this.boxcopy = getCopy(this.props.language, 'boxinfo');
+    this.leaderoardcopy = getCopy(this.props.language, 'leaderboard');
     this.cookies = new Cookies();
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const { params } = this.props.match;
     animate.set(this.container, { x: '100%', autoAlpha: 0 });
+
     if (!this.props.loaded) {
+      if (params.assetId !== undefined) {
+        const asset = await getData(params.assetId);
+        this.setState({
+          asset: asset
+        });
+      }
       this.props.setAssetLoaded(true);
     }
   }
@@ -35,7 +46,6 @@ class Asset extends React.PureComponent {
   };
 
   onEnter = async prevSectionExitDuration => {
-    //await wait(prevSectionExitDuration);
     this.animateIn();
   };
 
@@ -61,15 +71,14 @@ class Asset extends React.PureComponent {
   };
 
   render() {
-    // const { params } = this.props.match;
     return (
       <div className={classnames('Asset', this.props.className)} ref={el => (this.container = el)}>
         <section className="Asset-container">
-          <BoxInfo isSingle={true} clickFunction={this.onClickBid} />
+          <BoxInfo isSingle={true} clickFunction={this.onClickBid} copy={this.boxcopy} data={this.state.asset} />
         </section>
         <section className="Asset-container leaderboard">
-          <h1>Leaderboard</h1>
-          <Leaderboard />
+          <h1>{this.copy.title_leaderboard}</h1>
+          <Leaderboard copy={this.leaderoardcopy} />
         </section>
       </div>
     );
@@ -77,6 +86,7 @@ class Asset extends React.PureComponent {
 }
 
 Asset.propTypes = checkProps({
+  language: PropTypes.string,
   className: PropTypes.string,
   transitionState: PropTypes.string.isRequired,
   previousRoute: PropTypes.string,
@@ -87,6 +97,7 @@ Asset.propTypes = checkProps({
 });
 
 Asset.defaultProps = {
+  language: 'en',
   loaded: false
 };
 

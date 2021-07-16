@@ -2,24 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-//import wait from '@jam3/wait';
 import checkProps from '@jam3/react-check-extra-props';
-
 import Gallery from '../Gallery/Gallery';
 import ADBanner from '../../components/AdBanner/AdBanner';
 import BoxInfo from '../../components/BoxInfo/BoxInfo';
-
-import './Home.scss';
-
 import Transition from '../PagesTransitionWrapper';
 import { setHomeLoaded } from '../../redux/modules/home';
 import animate, { Expo } from '../../util/gsap-animate';
+import { getCopy } from '../../data/get-site-data';
+import { getData } from '../../data/get-site-data';
+
+import './Home.scss';
 
 class Home extends React.PureComponent {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = { assets: [] };
+    this.copy = getCopy(this.props.language, 'home');
+    this.boxcopy = getCopy(this.props.language, 'boxinfo');
+  }
+
+  async componentDidMount() {
     animate.set(this.container, { x: '100%', autoAlpha: 0 });
 
     if (!this.props.loaded) {
+      const assets = await getData();
+      this.setState({
+        assets: assets
+      });
       this.props.setHomeLoaded(true);
     }
   }
@@ -29,7 +39,6 @@ class Home extends React.PureComponent {
   };
 
   onEnter = async prevSectionExitDuration => {
-    //await wait(prevSectionExitDuration);
     this.animateIn();
   };
 
@@ -46,13 +55,14 @@ class Home extends React.PureComponent {
   };
 
   render() {
+    const hotsale = this.state.assets.filter(item => item.hot_sale)[0];
     return (
       <section className={classnames('Home', this.props.className)} ref={el => (this.container = el)}>
         <header className="Home-header">
           <div className="home-header-wrapper">
             <div className="home-header-box big">
-              <h1>Hot Sale</h1>
-              <BoxInfo />
+              <h1>{this.copy.title_horsale}</h1>
+              <BoxInfo copy={this.boxcopy} data={hotsale} />
             </div>
             <div className="home-header-box small-top">
               <ADBanner />
@@ -62,13 +72,20 @@ class Home extends React.PureComponent {
             </div>
           </div>
         </header>
-        <Gallery className="Home-galery" transitionState={this.props.transitionState} isHome={true} />
+        <Gallery
+          className="Home-galery"
+          transitionState={this.props.transitionState}
+          isHome={true}
+          assetdata={this.state.assets}
+          language={this.props.language}
+        />
       </section>
     );
   }
 }
 
 Home.propTypes = checkProps({
+  language: PropTypes.string.isRequired,
   className: PropTypes.string,
   transitionState: PropTypes.string.isRequired,
   previousRoute: PropTypes.string,
@@ -76,7 +93,9 @@ Home.propTypes = checkProps({
   setHomeLoaded: PropTypes.func
 });
 
-Home.defaultProps = {};
+Home.defaultProps = {
+  language: 'en'
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {

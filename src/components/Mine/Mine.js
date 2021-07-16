@@ -108,11 +108,13 @@ class Mine extends React.PureComponent {
 }
 
 Mine.propTypes = checkProps({
+  language: PropTypes.string,
   setMineState: PropTypes.func,
   isOpen: PropTypes.bool
 });
 
 Mine.defaultProps = {
+  language: 'en',
   isOpen: false
 };
 

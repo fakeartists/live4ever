@@ -1,52 +1,69 @@
+const piramid_ico = 'Δ';
+
 export default {
-  general: {
-    piramid_ico: 'Δ'
-  },
   header: {
     title: 'A few clicks away from Eternity',
     phone: '1-866-LIV4EVR',
     NavAriaLabel: 'Main Navigation',
     logoAriaLabel: 'Home',
     logoAlt: 'logo',
-    text_connect: 'Δ',
+    text_connect: piramid_ico,
     text_gallery: 'Gallery',
     text_about: 'About',
     text_store: 'Store',
-    text_more: 'Tell me more !',
+    text_more: 'Tell me more !'
+  },
+  login: {
+    connected_title: "You're Connected",
+    connected_button: 'Disconnect Wallet',
+    disconected_title: 'Connect with a Fake Wallet',
+    disconected_desc:
+      'The process is very simple, connect your google account to be able to play and get a chance to be ethernal. All your fake coins will link with you google account, no real wallet is required.',
+    disconected_button: 'Connect with Google'
+  },
+  landing: {
+    title: 'Life is about to change 4 ever.',
+    sub_tite: 'Be the first to step into the future.',
+    button: 'Be the First',
     title_days: 'Days',
     title_hours: 'Hours',
     title_minutes: 'Minutes',
     title_seconds: 'Seconds'
   },
-  landing: {
-    title: 'Life is about to change 4 ever.',
-    sub_tite: 'Be the first to step into the future.',
-    button: 'HELL YEAH !'
-  },
   home: {
-    horsale_title: 'Hot Sale',
-    gallery_title: 'Recent Drops',
+    title_horsale: 'Hot Sale'
+  },
+  boxinfo: {
+    piramid_ico: piramid_ico,
     title_bid: 'Highest Bid',
     sub_title_bid: 'clicks',
+    title_edition: 'Edition',
+    separator_edition: 'of',
     title_time: 'Time left',
+    button_box_home: 'Learn More',
+    button_box_asset: 'Bid Now',
+    title_user_bid: 'Your Bid',
+    title_reserve: 'Reserve price',
+    title_chain: 'Chain Info',
+    title_contract: 'Contract Address',
+    title_token: 'Token ID',
+    title_blockchain: 'Blockchain',
     title_days: 'Days',
     title_hours: 'Hours',
     title_minutes: 'Minutes',
-    button_box: 'Learn More'
+    title_seconds: 'Seconds'
   },
   gallery: {
+    gallery_title: 'Recent Drops',
     button_sold: 'Sold',
     button_view: 'View'
   },
   asset: {
-    title_user_bid: 'Your Bid',
-    title_reserve: 'Reserve price',
-    button_box: 'Bid Now',
-    title_chain: 'Chain Info',
-    title_contract: 'Contract Address',
-    title_token: 'Token ID',
-    title_blocchain: 'Blockchain',
-    title_leaderboard: 'Leaderboard',
+    title_leaderboard: 'Leaderboard'
+  },
+  mine: {},
+  leaderboard: {
+    piramid_ico: piramid_ico,
     title_leaderboard_bid: 'Bid',
     title_leaderboard_from: 'From',
     title_leaderboard_when: 'When'
@@ -55,6 +72,7 @@ export default {
     title:
       'Section 1: The Two Factors of a Commodity: Use-Value and Value (The Substance of Value and the Magnitude of Value)',
     text: [
+      // eslint-disable-next-line
       'The wealth of those societies in which the capitalist mode of production prevails, presents itself as “an\
       immense accumulation of commodities,”1 its unit being a single commodity. Our investigation must therefore\
       begin with the analysis of a commodity. A commodity is, in the first place, an object outside us, a thing that\
@@ -78,6 +96,7 @@ export default {
       at first sight, presents itself as a quantitative relation, as the proportion in which values in use of one\
       sort are exchanged for those of another sort,6 a relation constantly changing with time and place.',
 
+      // eslint-disable-next-line
       'Hence exchange value appears to be something accidental and purely relative, and consequently an intrinsic\
       value, i.e., an exchange value that is inseparably connected with, inherent in commodities, seems a\
       contradiction in terms.7 Let us consider the matter a little more closely. A given commodity, e.g., a quarter\
@@ -104,6 +123,7 @@ export default {
       a total abstraction from use value. Then one use value is just as good as another, provided only it be present\
       in sufficient quantity.',
 
+      // eslint-disable-next-line
       ' Or, as old Barbon says, “one sort of wares are as good as another, if the values be equal. There is no\
       difference or distinction in things of equal value ... An hundred pounds’ worth of lead or iron, is of as\
       great value as one hundred pounds’ worth of silver or gold.”8 As use values, commodities are, above all, of\
@@ -125,6 +145,7 @@ export default {
       are exchanged, their exchange value manifests itself as something totally independent of their use value. But\
       if we abstract from their use value, there remains their Value as defined above.',
 
+      // eslint-disable-next-line
       'Therefore, the common substance that manifests itself in the exchange value of commodities, whenever they are\
       exchanged, is their value. The progress of our investigation will show that exchange value is the only form in\
       which the value of commodities can manifest itself or be expressed. For the present, however, we have to\
@@ -161,6 +182,7 @@ export default {
       bushels of corn, and in unfavourable, only in four. The same labour extracts from rich mines more metal than\
       from poor mines.',
 
+      // eslint-disable-next-line
       'Diamonds are of very rare occurrence on the earth’s surface, and hence their discovery costs, on an average, a\
       great deal of labour time. Consequently much labour is represented in a small compass. Jacob doubts whether\
       gold has ever been paid for at its full value. This applies still more to diamonds. According to Eschwege, the\
@@ -188,6 +210,8 @@ export default {
   },
   footer: {
     title: 'powered by',
-    logoAriaLabel: 'Fake Artists'
+    logoAriaLabel: 'Fake Artists',
+    ariaNavLabel: 'Footer Navigation',
+    copyright: '© Copyright'
   }
 };

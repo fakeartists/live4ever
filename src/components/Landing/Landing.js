@@ -5,8 +5,8 @@ import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import { selectWindowWidth, selectWindowHeight } from '../App/App-selectors';
 import animate, { Expo } from '../../util/gsap-animate';
-
 import Counter from '../Counter/Counter';
+import settings from '../../data/settings';
 
 import './Landing.scss';
 
@@ -34,7 +34,7 @@ class Landing extends React.PureComponent {
               <b>Be the first to step into the future.</b>
             </span>
           </h1>
-          <Counter />
+          <Counter endDate={settings.startDate} isLanding={true} copy={{}} />
           <button className={'landing-button'}>HELL YEAH !</button>
         </div>
       </section>

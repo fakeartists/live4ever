@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 
-import settings from '../../data/settings';
-// import animate, { Power3 } from '../../util/gsap-animate';
-
 import './Counter.scss';
 
 class Counter extends React.PureComponent {
@@ -19,58 +16,87 @@ class Counter extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.timer = setInterval(() => {
-      this.updateCount(this.state.count + 1);
-    }, 1000);
-  }
-
-  updateCount = count => {
-    this.setState({ count: count });
-  };
-
-  componentWillUnmount() {
-    this.timer.clearInterval();
-    this.timer = null;
-  }
-
-  render() {
-    const start = moment(new Date(settings.startDate));
+    const start = moment(new Date(this.props.endDate));
     const now = moment();
     const duration = moment.duration(start.diff(now));
 
     let days = duration.days();
-    days = days < 10 ? '0' + days : days;
+    if (days > 0) {
+      this.timer = setInterval(() => {
+        this.updateCount(this.state.count + 1);
+      }, 1000);
+    }
+  }
+
+  updateCount = count => {
+    if (this.timer != null) {
+      this.setState({ count: count });
+    }
+  };
+
+  componentWillUnmount() {
+    if (this.timer != null) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+
+  render() {
+    const start = moment(new Date(this.props.endDate));
+    const now = moment();
+    const duration = moment.duration(start.diff(now));
+
+    let days = duration.days();
+    if (days < 0) {
+      days = '--';
+    } else {
+      days = days < 10 ? '0' + days : days;
+    }
 
     let hours = duration.hours();
-    hours = hours < 10 ? '0' + hours : hours;
+    if (hours < 0) {
+      hours = '--';
+    } else {
+      hours = hours < 10 ? '0' + hours : hours;
+    }
 
     let minutes = duration.minutes();
-    minutes = minutes < 10 ? '0' + minutes : minutes;
+    if (minutes < 0) {
+      minutes = '--';
+    } else {
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+    }
 
     let seconds = duration.seconds();
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+    if (seconds < 0) {
+      seconds = '--';
+    } else {
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+    }
+
+    const boxClass = this.props.isLanding ? '' : ' box';
 
     return (
-      <div className="Counter" ref={el => (this.container = el)}>
+      <div className={'Counter' + boxClass} ref={el => (this.container = el)}>
         <ul>
           <li className="counter-time">
             <p>{days}</p>
-            <span>Days</span>
+            <span>{this.props.copy.title_days}</span>
           </li>
           <li className="counter-dot">:</li>
           <li className="counter-time">
             <p>{hours}</p>
-            <span>Hours</span>
+            <span>{this.props.copy.title_hours}</span>
           </li>
           <li className="counter-dot">:</li>
           <li className="counter-time">
             <p>{minutes}</p>
-            <span>Minutes</span>
+            <span>{this.props.copy.title_minutes}</span>
           </li>
           <li className="counter-dot">:</li>
           <li className="counter-time">
             <p>{seconds}</p>
-            <span>Seconds</span>
+            <span>{this.props.copy.title_seconds}</span>
           </li>
         </ul>
       </div>
@@ -79,10 +105,16 @@ class Counter extends React.PureComponent {
 }
 
 Counter.propTypes = checkProps({
-  numAdsClosed: PropTypes.number
+  copy: PropTypes.object,
+  isLanding: PropTypes.bool,
+  endDate: PropTypes.string
 });
 
-Counter.defaultProps = {};
+Counter.defaultProps = {
+  copy: {},
+  isLanding: true,
+  endDate: 'July 30, 2021 11:13:00'
+};
 
 const mapStateToProps = state => ({});
 

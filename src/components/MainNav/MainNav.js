@@ -141,6 +141,7 @@ class MainTopNav extends React.PureComponent {
 }
 
 MainTopNav.propTypes = checkProps({
+  language: PropTypes.string,
   className: PropTypes.string,
   logoSrc: PropTypes.string,
   ariaSiteTitle: PropTypes.string,
@@ -164,6 +165,7 @@ MainTopNav.propTypes = checkProps({
 });
 
 MainTopNav.defaultProps = {
+  language: 'en',
   logoAlt: 'logo',
   logoLink: '/',
   logoAriaLabel: 'Home',
