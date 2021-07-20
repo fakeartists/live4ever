@@ -3,11 +3,13 @@
 .box-info {
   width: 100%;
   box-sizing: border-box;
+  height: calc(100% - 6rem);
 
   .box-info-bid {
     display: flex;
     flex-direction: row;
     align-content: stretch;
+    height: 100%;
   }
 
   .box-info-asset {

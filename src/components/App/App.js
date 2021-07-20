@@ -33,10 +33,17 @@ import layout from '../../util/layout';
 
 import Mine from '../../components/Mine/Mine';
 import Login from '../../components/Login/Login';
+import { getCopy } from '../../data/get-site-data';
 
 const LazyRotateScreen = device.isMobile && lazy(() => import('../../components/RotateScreen/RotateScreen'));
 
 class App extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.language = 'en';
+    this.footercopy = getCopy(this.language, 'footer');
+  }
+
   componentDidMount() {
     // Setup performance measure tooling
     if (process.env.NODE_ENV !== 'production') {
@@ -72,9 +79,15 @@ class App extends React.PureComponent {
     if (date <= start) {
       app = (
         <Fragment>
-          <MainNav {...mainNavDataLanding} showHamburger={false} isMobileMenuOpen={false} setIsMobileMenuOpen={null} />
-          <Landing />
-          <Footer {...footerData} />
+          <MainNav
+            {...mainNavDataLanding}
+            showHamburger={false}
+            isMobileMenuOpen={false}
+            setIsMobileMenuOpen={null}
+            language={this.language}
+          />
+          <Landing language={this.language} />
+          <Footer {...footerData} copy={this.footercopy} />
         </Fragment>
       );
     } else {
@@ -85,7 +98,7 @@ class App extends React.PureComponent {
             showHamburger={!this.props.layout.large}
             isMobileMenuOpen={this.props.isMobileMenuOpen}
             setIsMobileMenuOpen={this.props.setIsMobileMenuOpen}
-            language="en"
+            language={this.language}
           />
           {!this.props.layout.large && (
             <Fragment>
@@ -100,10 +113,10 @@ class App extends React.PureComponent {
               />
             </Fragment>
           )}
-          <Pages language="en" />
-          <Footer {...footerData} language="en" />
-          <Mine language="en" />
-          <Login language="en" />
+          <Pages language={this.language} />
+          <Footer {...footerData} copy={this.footercopy} />
+          <Mine language={this.language} />
+          <Login language={this.language} />
         </Fragment>
       );
     }

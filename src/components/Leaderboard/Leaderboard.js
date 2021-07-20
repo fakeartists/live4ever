@@ -18,7 +18,17 @@ class Leaderboard extends React.PureComponent {
     const start = moment(new Date(time));
     const now = moment();
     const duration = moment.duration(now.diff(start));
-    return duration.days() + 'd ' + duration.hours() + 'h ' + duration.minutes() + 'm ' + duration.seconds() + 's';
+    return (
+      duration.days() +
+      'd ' +
+      duration.hours() +
+      'h ' +
+      duration.minutes() +
+      'm ' +
+      duration.seconds() +
+      's ' +
+      this.props.copy.sufix_leaderboard_when
+    );
   };
 
   render() {

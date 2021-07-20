@@ -7,10 +7,16 @@ import { selectWindowWidth, selectWindowHeight } from '../App/App-selectors';
 import animate, { Expo } from '../../util/gsap-animate';
 import Counter from '../Counter/Counter';
 import settings from '../../data/settings';
+import { getCopy } from '../../data/get-site-data';
 
 import './Landing.scss';
 
 class Landing extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.copy = getCopy(this.props.language, 'landing');
+  }
+
   componentDidMount() {
     //animate.set(this.container, { x: '100%', autoAlpha: 0 });
   }
@@ -28,14 +34,14 @@ class Landing extends React.PureComponent {
       <section className={classnames('Landing', this.props.className)} ref={el => (this.container = el)}>
         <div className="landing-container">
           <h1>
-            <span>Life is about to change 4 ever.</span>
+            <span>{this.copy.title}</span>
             <br />
             <span>
-              <b>Be the first to step into the future.</b>
+              <b>{this.copy.sub_title}</b>
             </span>
           </h1>
-          <Counter endDate={settings.startDate} isLanding={true} copy={{}} />
-          <button className={'landing-button'}>HELL YEAH !</button>
+          <Counter endDate={settings.startDate} isLanding={true} copy={this.copy} />
+          <button className={'landing-button'}>{this.copy.button}</button>
         </div>
       </section>
     );
@@ -43,6 +49,7 @@ class Landing extends React.PureComponent {
 }
 
 Landing.propTypes = checkProps({
+  language: PropTypes.string,
   className: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number
@@ -50,7 +57,8 @@ Landing.propTypes = checkProps({
 
 Landing.defaultProps = {
   width: window.innerWidth,
-  height: window.innerHeight
+  height: window.innerHeight,
+  language: 'en'
 };
 
 const mapStateToProps = state => ({

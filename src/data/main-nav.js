@@ -6,19 +6,19 @@ export default {
   logoLink: routeKeys.Home,
   links: [
     {
-      text: 'Δ',
+      text: 'text_login',
       path: 'login'
     },
     {
-      text: 'Gallery',
+      text: 'text_gallery',
       path: routeKeys.Gallery
     },
     {
-      text: 'About',
+      text: 'text_about',
       path: routeKeys.About
     },
     {
-      text: 'Store',
+      text: 'text_store',
       path: 'https://fakeartists.store'
     }
   ]

@@ -5,14 +5,16 @@ import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import Draggable from 'react-draggable';
 import animate, { Circ } from '../../util/gsap-animate';
-
 import WindowsHeader from '../WindowsHeader/WindowsHeader';
+import { getAds } from '../../data/get-site-data';
 
 import './AdBanner.scss';
 
 class ADBanner extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this.adsdata = getAds();
 
     this.backgroundImage = '';
     this.bodyCopy = '';
@@ -40,110 +42,26 @@ class ADBanner extends React.PureComponent {
   }
 
   buildAd = () => {
-    // Background image
-    // FA_POP_500x300_01.gif
-    // FA_POP_800x400_01.gif
+    var index = Math.round(Math.random() * this.adsdata.images.length);
+    let backgroundImage = this.adsdata.images[index];
 
-    var filenamePrefix = Math.floor(Math.random() * 2) === 0 ? 'FA_POP_500x300' : 'FA_POP_800x400';
-    filenamePrefix = 'FA_POP_800x400';
+    let bodyCopyOptions = this.adsdata.body_copy_options;
+    let verbOptions = this.adsdata.verb_options;
+    let adjectiveOptions = this.adsdata.adjective_options;
+    let nounOptions = this.adsdata.noun_options;
 
-    var index = Math.floor(Math.random() * 10) + 1;
-    var paddedIndex = String(index).padStart(2, '0');
+    let bodyCopyTemplate = bodyCopyOptions[Math.floor(Math.random() * bodyCopyOptions.length)];
+    let verb = verbOptions[Math.floor(Math.random() * verbOptions.length)];
+    let adjective = adjectiveOptions[Math.floor(Math.random() * adjectiveOptions.length)];
+    let noun = nounOptions[Math.floor(Math.random() * nounOptions.length)];
 
-    var backgroundImage = './assets/images/popups/' + filenamePrefix + '_' + paddedIndex + '.gif';
-
-    //console.log(backgroundImage);   // DEBUG
-
-    // Body copy
-    var bodyCopyOptions = [
-      'Get [adj] quick!',
-      '[verb] forever now!',
-      'Meet your [adj] double<br/>and [verb] forever!',
-      'Every [noun] knows this trick!',
-      '[verb] now and<br/>become a [noun] now!',
-      'Become a [adj] [noun]<br/>and [verb] quick!',
-      'Only 2 left!<br/>[verb] Fast!',
-      '[verb] like a<br/>[adj] [noun]!',
-      'Wanna be a [adj] [noun]?<br/>[verb] now!',
-      'Are you ready<br/>to [verb]?',
-      'You Too!<br/>Become a [adj] [noun].',
-      'Time to [verb] and<br/>become a [noun]!'
-    ];
-
-    var verbOptions = [
-      'CLICK',
-      'LIVE',
-      'EARN',
-      'SUCCEED',
-      'WIN',
-      'GAIN',
-      'PROFIT',
-      'TRIUMPH',
-      'CONQUER',
-      'ASCEND',
-      'PRAY'
-    ];
-
-    var adjectiveOptions = [
-      'Eternal',
-      'Rich',
-      'Immortal',
-      'Famous',
-      'Alpha',
-      'Sexy',
-      'Groovy',
-      'Invicible',
-      'Legendary',
-      'Divine',
-      'Prestigious',
-      'Lush',
-      'Mega',
-      'Almighty',
-      'Low key',
-      'Blessed',
-      'Prosperous',
-      'Opulent',
-      'Supreme'
-    ];
-
-    var nounOptions = [
-      'God',
-      'Billionaire',
-      'Unicorn',
-      'Visionary',
-      'Deity',
-      'Idol',
-      'Divinity',
-      'Almighty',
-      'Sex Machine',
-      'Super Star',
-      'Winner',
-      'Achiever',
-      'Performer',
-      'Influencer',
-      'Celebrity',
-      'Entrepreneur',
-      'Creator',
-      'O.G.',
-      'Motha F****'
-    ];
-
-    var bodyCopyTemplate = bodyCopyOptions[Math.floor(Math.random() * bodyCopyOptions.length)];
-    var verb = verbOptions[Math.floor(Math.random() * verbOptions.length)];
-    var adjective = adjectiveOptions[Math.floor(Math.random() * adjectiveOptions.length)];
-    var noun = nounOptions[Math.floor(Math.random() * nounOptions.length)];
-
-    var bodyCopy = bodyCopyTemplate
+    let bodyCopy = bodyCopyTemplate
       .replace('[verb]', verb)
       .replace('[adj]', adjective)
       .replace('[noun]', noun);
 
-    // Split into array and insert <br /> in between
-    // Assume only one br max. Key is always 0
     const intersperse = (arr, sep) => arr.reduce((a, v, i) => [...a, v, sep], []).slice(0, -1);
     bodyCopy = intersperse(bodyCopy.split('<br/>'), <br key={0} />);
-
-    //console.log(bodyCopy);   // DEBUG
 
     this.posX = parseInt(Math.random() * (window.innerWidth - 640));
     this.posY = parseInt(Math.random() * (window.innerHeight * 0.7 - 480) + 150);

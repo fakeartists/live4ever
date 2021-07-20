@@ -64,7 +64,7 @@ class Asset extends React.PureComponent {
   onClickBid = () => {
     const cookiedata = this.cookies.get('pyramid');
     if (cookiedata !== undefined && cookiedata.email !== undefined) {
-      this.props.setMineState(true);
+      this.props.setMineState(this.state.asset);
     } else {
       this.props.setLoginState(true);
     }

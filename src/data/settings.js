@@ -13,6 +13,7 @@ settings.assetPath = `${settings.sitePath}/assets/`;
 settings.imagesPath = `${settings.sitePath}/assets/images/`;
 settings.apiUrl = process.env.REACT_APP_API_URL;
 settings.apiDataEndpoint = process.env.REACT_APP_API_DATA_ENDPOINT;
+settings.bidBase = process.env.REACT_APP_BID_BASE;
 
 // Webgl
 settings.datGui = settings.isDevelopment && true;

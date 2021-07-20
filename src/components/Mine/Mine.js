@@ -6,28 +6,29 @@ import animate, { Circ } from '../../util/gsap-animate';
 
 import MineNav from '../MineNav/MineNav';
 import ADBanner from '../AdBanner/AdBanner';
-
 import { setMineState } from '../../redux/modules/mine';
+import { getCopy } from '../../data/get-site-data';
 
 import './Mine.scss';
 
 class Mine extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.copy = getCopy(this.props.language, 'mine');
 
-    this.numAdsClosed = 0;
+    this.bid = 0;
     this.currentKey = 0;
-    this.isOpen = 0;
+    this.isOpen = false;
     this.state = { ads: [] };
   }
 
   componentDidMount() {
-    this.props.setMineState(this.props.isOpen);
+    this.props.setMineState(this.props.data);
     animate.set(this.container, { autoAlpha: 0 });
   }
 
   componentDidUpdate() {
-    if (this.props.isOpen) {
+    if (this.props.data) {
       if (!this.isOpen) {
         this.addAd(50, []);
         this.animateIn();
@@ -74,8 +75,8 @@ class Mine extends React.PureComponent {
   };
 
   onAdClosed = id => {
-    this.numAdsClosed++;
-    this.mineNav.getWrappedInstance().updateCount(this.numAdsClosed);
+    this.bid++;
+    this.mineNav.getWrappedInstance().updateCount(this.bid);
 
     const ads = this.state.ads.filter(item => item.props.id !== id);
     this.addAd(0, ads);
@@ -84,19 +85,19 @@ class Mine extends React.PureComponent {
 
   handleButtonClick = () => {
     this.animateOut().then(() => {
-      this.props.setMineState(false);
+      this.props.setMineState(null);
     });
   };
 
   render() {
     let mine;
-    if (this.props.isOpen) {
+    if (this.props.data) {
       mine = (
         <section className="Mine" ref={el => (this.container = el)}>
           <button className="mine-close active" onClick={this.handleButtonClick}>
-            Save bid & quit
+            {this.copy.exit_button}
           </button>
-          <MineNav numAdsClosed={0} ref={mineNav => (this.mineNav = mineNav)} />
+          <MineNav copy={this.copy} ref={mineNav => (this.mineNav = mineNav)} data={this.props.data} />
           <div className="mine-container">{this.state.ads}</div>
         </section>
       );
@@ -110,17 +111,17 @@ class Mine extends React.PureComponent {
 Mine.propTypes = checkProps({
   language: PropTypes.string,
   setMineState: PropTypes.func,
-  isOpen: PropTypes.bool
+  data: PropTypes.object
 });
 
 Mine.defaultProps = {
   language: 'en',
-  isOpen: false
+  data: null
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isOpen: state.mineState
+    data: state.mineState
   };
 };
 

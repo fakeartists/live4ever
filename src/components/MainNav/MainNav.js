@@ -7,16 +7,14 @@ import noop from 'no-op';
 import cleanPath from 'remove-trailing-separator';
 import checkProps from '@jam3/react-check-extra-props';
 import { selectWindowWidth, selectWindowHeight } from '../App/App-selectors';
-
-import variables from '../../style/layout.scss';
-import './MainNav.scss';
-
+import { setLoginState } from '../../redux/modules/login';
+import { ReactComponent as PyramidIcon } from '../../assets/svg/pyramid-icon.svg';
 import BaseLink from '../BaseLink/BaseLink';
 import HamburgerButton, { STATES } from '../HamburgerButton/HamburgerButton';
+import { getCopy } from '../../data/get-site-data';
+import layout from '../../data/layout';
 
-import { setLoginState } from '../../redux/modules/login';
-
-import { ReactComponent as PyramidIcon } from '../../assets/svg/pyramid-icon.svg';
+import './MainNav.scss';
 
 const getButtonState = isMenuOpen => (isMenuOpen ? STATES.close : STATES.idle);
 
@@ -35,11 +33,13 @@ class MainTopNav extends React.PureComponent {
     super(props);
 
     const { width } = this.props;
-    this.xlarge = width > variables['layout-large'];
+    this.xlarge = width > layout.xlarge;
 
     this.state = {
       buttonState: getButtonState(props.isMobileMenuOpen)
     };
+
+    this.copy = getCopy(this.props.language, 'header');
   }
 
   componentDidMount() {
@@ -49,7 +49,7 @@ class MainTopNav extends React.PureComponent {
   componentDidUpdate(prevProps) {
     const { width } = this.props;
 
-    this.xlarge = width > variables['layout-large'];
+    this.xlarge = width > layout.xlarge;
     this.handleScroll(null);
   }
 
@@ -90,18 +90,18 @@ class MainTopNav extends React.PureComponent {
     return (
       <header className={classnames('MainNav', this.props.className)} ref={el => (this.container = el)}>
         {this.props.ariaSiteTitle && <h1 className="only-aria-visible">{this.props.ariaSiteTitle}</h1>}
-        <nav className="nav" aria-label={this.props.ariaNavLabel}>
+        <nav className="nav" aria-label={this.copy.ariaNavLabel}>
           {this.props.ariaNavTitle && <h2 className="only-aria-visible">{this.props.ariaNavTitle}</h2>}
           {this.props.logoSrc && (
-            <BaseLink className="nav-logo-container" link={this.props.logoLink} aria-label={this.props.logoAriaLabel}>
-              <img className="nav-logo" src={this.props.logoSrc} alt={this.props.logoAlt} />
-              <p className="nav-logo-text">A few clicks away from Eternity</p>
+            <BaseLink className="nav-logo-container" link={this.props.logoLink} aria-label={this.copy.logoAriaLabel}>
+              <img className="nav-logo" src={this.props.logoSrc} alt={this.copy.logoAlt} />
+              <p className="nav-logo-text">{this.copy.title}</p>
             </BaseLink>
           )}
           <div className="nav-mid-logo-cnt" ref={el => (this.logo = el)}>
             <PyramidIcon className="nav-mid-logo" />
             <div className="nav-mid-logo-text">
-              <h1 ref={el => (this.text = el)}>1-866-LIV4EVR</h1>
+              <h1 ref={el => (this.text = el)}>{this.copy.phone}</h1>
             </div>
           </div>
           {this.props.showHamburger ? (
@@ -113,7 +113,7 @@ class MainTopNav extends React.PureComponent {
                   if (link.path === 'login') {
                     return (
                       <li key={index} className="nav-item" onClick={this.handleLoginClick}>
-                        {link.text}
+                        {this.copy[link.text]}
                       </li>
                     );
                   } else {
@@ -125,7 +125,7 @@ class MainTopNav extends React.PureComponent {
                           active: cleanPath(this.props.location.pathname) === cleanPath(link.path)
                         })}
                       >
-                        <li className="nav-item">{link.text}</li>
+                        <li className="nav-item">{this.copy[link.text]}</li>
                       </BaseLink>
                     );
                   }
@@ -146,10 +146,7 @@ MainTopNav.propTypes = checkProps({
   logoSrc: PropTypes.string,
   ariaSiteTitle: PropTypes.string,
   ariaNavTitle: PropTypes.string,
-  ariaNavLabel: PropTypes.string,
   logoLink: PropTypes.string,
-  logoAriaLabel: PropTypes.string,
-  logoAlt: PropTypes.string,
   links: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string,
@@ -166,10 +163,7 @@ MainTopNav.propTypes = checkProps({
 
 MainTopNav.defaultProps = {
   language: 'en',
-  logoAlt: 'logo',
   logoLink: '/',
-  logoAriaLabel: 'Home',
-  ariaNavLabel: 'Main Navigation',
   setIsMobileMenuOpen: noop,
   width: window.innerWidth,
   height: window.innerHeight

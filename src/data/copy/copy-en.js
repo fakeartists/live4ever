@@ -8,6 +8,7 @@ export default {
     logoAriaLabel: 'Home',
     logoAlt: 'logo',
     text_connect: piramid_ico,
+    text_login: piramid_ico,
     text_gallery: 'Gallery',
     text_about: 'About',
     text_store: 'Store',
@@ -23,7 +24,7 @@ export default {
   },
   landing: {
     title: 'Life is about to change 4 ever.',
-    sub_tite: 'Be the first to step into the future.',
+    sub_title: 'Be the first to step into the future.',
     button: 'Be the First',
     title_days: 'Days',
     title_hours: 'Hours',
@@ -61,12 +62,22 @@ export default {
   asset: {
     title_leaderboard: 'Leaderboard'
   },
-  mine: {},
+  mine: {
+    piramid_ico: piramid_ico,
+    exit_button: 'Save bid & quit',
+    title_time_left: 'Time left',
+    title_days: 'Days',
+    title_hours: 'Hours',
+    title_rank: 'Rank',
+    title_top_bid: 'Top Bid',
+    title_your_bid: 'Your bid'
+  },
   leaderboard: {
     piramid_ico: piramid_ico,
     title_leaderboard_bid: 'Bid',
     title_leaderboard_from: 'From',
-    title_leaderboard_when: 'When'
+    title_leaderboard_when: 'When',
+    sufix_leaderboard_when: 'ago'
   },
   about: {
     title:
@@ -212,6 +223,6 @@ export default {
     title: 'powered by',
     logoAriaLabel: 'Fake Artists',
     ariaNavLabel: 'Footer Navigation',
-    copyright: '© Copyright'
+    text_copyright: '© FakeArtits'
   }
 };

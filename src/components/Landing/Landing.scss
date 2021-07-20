@@ -9,6 +9,7 @@
   margin-top: $navbar-height-mobile;
   height: calc(100vh - #{$navbar-height-mobile} - #{$footer-height-mobile});
   z-index: 50;
+  min-height: 500px;
 
   .landing-container {
     box-sizing: border-box;
@@ -42,6 +43,11 @@
         font-weight: normal;
         color: $pink;
       }
+    }
+
+    .Counter {
+      margin-top: 3vh;
+      margin-bottom: 12vh;
     }
 
     .landing-button {

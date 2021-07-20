@@ -4,6 +4,9 @@ import copydata_en from './copy/copy-en';
 //temp
 import assetdata from './assets';
 
+//ads
+import adsdata from './ads';
+
 const copydata = {
   en: copydata_en
 };
@@ -19,6 +22,10 @@ export async function getData(id = undefined) {
     process.exit(1);
   }
   return assetData;
+}
+
+export function getAds() {
+  return adsdata;
 }
 
 export function getCopy(language, session) {

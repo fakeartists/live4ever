@@ -6,7 +6,7 @@ export default {
   logoLink: routeKeys.Home,
   links: [
     {
-      text: 'Tell me more !',
+      text: 'text_more',
       path: 'https://fakeartists.store'
     }
   ]

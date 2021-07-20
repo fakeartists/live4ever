@@ -1,11 +1,11 @@
 import logo from '../assets/images/logo_fake-artists.png';
 
 export default {
-  copyright: '© FakeArtits',
+  copyright: 'text_copyright',
   links: [
     // {
     //   type: 'link',
-    //   text: 'website',
+    //   text: 'text_website', // object key in the copy file
     //   path: 'https://fakeartists.net/'
     // },
     {
