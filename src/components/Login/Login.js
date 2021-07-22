@@ -168,7 +168,7 @@ Login.defaultProps = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isOpen: state.loginState
+    isOpen: state.assetState
   };
 };
 

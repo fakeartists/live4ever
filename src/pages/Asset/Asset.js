@@ -9,6 +9,7 @@ import animate, { Expo } from '../../util/gsap-animate';
 import { setAssetLoaded } from '../../redux/modules/asset';
 import { setMineState } from '../../redux/modules/mine';
 import { setLoginState } from '../../redux/modules/login';
+import { setAssetPreviewState } from '../../redux/modules/asset-preview';
 import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import { getCopy } from '../../data/get-site-data';
@@ -70,11 +71,22 @@ class Asset extends React.PureComponent {
     }
   };
 
+  onOpenPreview = () => {
+    console.log('open');
+    this.props.setAssetPreviewState(true);
+  };
+
   render() {
     return (
       <div className={classnames('Asset', this.props.className)} ref={el => (this.container = el)}>
         <section className="Asset-container">
-          <BoxInfo isSingle={true} clickFunction={this.onClickBid} copy={this.boxcopy} data={this.state.asset} />
+          <BoxInfo
+            isSingle={true}
+            clickFunction={this.onClickBid}
+            previewFunction={this.onOpenPreview}
+            copy={this.boxcopy}
+            data={this.state.asset}
+          />
         </section>
         <section className="Asset-container leaderboard">
           <h1>{this.copy.title_leaderboard}</h1>
@@ -93,7 +105,8 @@ Asset.propTypes = checkProps({
   loaded: PropTypes.bool,
   setAssetLoaded: PropTypes.func,
   setMineState: PropTypes.func,
-  setLoginState: PropTypes.func
+  setLoginState: PropTypes.func,
+  setAssetPreviewState: PropTypes.func
 });
 
 Asset.defaultProps = {
@@ -112,7 +125,8 @@ const mapDispatchToProps = dispatch => {
   return {
     setAssetLoaded: val => dispatch(setAssetLoaded(val)),
     setMineState: val => dispatch(setMineState(val)),
-    setLoginState: val => dispatch(setLoginState(val))
+    setLoginState: val => dispatch(setLoginState(val)),
+    setAssetPreviewState: val => dispatch(setAssetPreviewState(val))
   };
 };
 

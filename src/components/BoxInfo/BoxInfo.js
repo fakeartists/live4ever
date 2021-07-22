@@ -86,7 +86,7 @@ class BoxInfo extends React.PureComponent {
     return (
       <div className={classnames(`box-info`, classSingle)}>
         <div className="box-info-bid">
-          <div className="box-info-image">
+          <div className="box-info-image" onClick={this.props.previewFunction}>
             <img src={this.props.data.image} alt={this.props.data.title} />
           </div>
           <div className="box-info-data">
@@ -133,14 +133,16 @@ BoxInfo.propTypes = checkProps({
   copy: PropTypes.object,
   data: PropTypes.object,
   isSingle: PropTypes.bool,
-  clickFunction: PropTypes.func
+  clickFunction: PropTypes.func,
+  previewFunction: PropTypes.func
 });
 
 BoxInfo.defaultProps = {
   copy: {},
   data: {},
   isSingle: false,
-  clickFunction: null
+  clickFunction: null,
+  previewFunction: null
 };
 
 const mapStateToProps = state => ({});

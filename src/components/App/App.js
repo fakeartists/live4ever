@@ -16,6 +16,7 @@ import 'default-passive-events';
 import Landing from '../../components/Landing/Landing';
 import Pages from '../../components/Pages/Pages';
 import Loader from '../../components/Loader/Loader';
+import AssetPreview from '../AssetPreview/AssetPreview';
 // import WebGL from '../WebGL/WebGL';
 
 import { ReactComponent as LinesBG } from '../../assets/svg/lines-bg.svg';
@@ -75,8 +76,10 @@ class App extends React.PureComponent {
     let app;
     let date = Date.now();
     let start = new Date(settings.startDate).getTime();
+    const query = new URLSearchParams(this.props.location.search);
+    const skip = query.get('skip');
 
-    if (date <= start) {
+    if (date <= start && skip !== 'true') {
       app = (
         <Fragment>
           <MainNav
@@ -115,6 +118,7 @@ class App extends React.PureComponent {
           )}
           <Pages language={this.language} />
           <Footer {...footerData} copy={this.footercopy} />
+          <AssetPreview language={this.language} />
           <Mine language={this.language} />
           <Login language={this.language} />
         </Fragment>

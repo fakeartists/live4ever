@@ -9,7 +9,7 @@
   margin-top: $navbar-height-mobile;
   height: calc(100vh - #{$navbar-height-mobile} - #{$footer-height-mobile});
   z-index: 50;
-  min-height: 500px;
+  min-height: 300px;
 
   .landing-container {
     box-sizing: border-box;
@@ -74,10 +74,15 @@
     }
   }
 
+  @media (min-width: $layout-medium) {
+    min-height: 400px;
+  }
+
   @media (min-width: $layout-large) {
     height: calc(100vh - #{$navbar-height-desktop} - #{$footer-height-desktop});
     padding: px-to-rem(20) 0;
     margin-top: $navbar-height-desktop;
+    min-height: 500px;
 
     .landing-container {
       h1 {

@@ -34,6 +34,7 @@ export default {
   home: {
     title_horsale: 'Hot Sale'
   },
+  assetpreview: {},
   boxinfo: {
     piramid_ico: piramid_ico,
     title_bid: 'Highest Bid',
