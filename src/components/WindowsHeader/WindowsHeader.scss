@@ -20,8 +20,8 @@
       float: right;
       height: 100%;
       width: 30px;
-      border-bottom: 2px solid $gray;
-      border-right: 2px solid $gray;
+      border-bottom: 2px solid $gray-tint;
+      border-right: 2px solid $gray-tint;
       border-top: 2px solid $green;
       border-left: 2px solid $green;
       background: $black;
@@ -35,7 +35,7 @@
         &::before {
           position: absolute;
           content: '';
-          border: 2px solid $gray;
+          border: 2px solid $gray-tint;
           width: 16px;
           height: 12px;
           left: 7px;

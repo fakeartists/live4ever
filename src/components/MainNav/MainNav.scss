@@ -65,7 +65,7 @@ $main-top-nav-link-font-size: 2rem !default;
     p {
       margin: px-to-rem(5) 0;
       @include font-h1;
-      color: $gray;
+      color: $gray-tint;
       font-size: px-to-rem(12);
     }
   }

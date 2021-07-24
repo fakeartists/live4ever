@@ -31,10 +31,15 @@ $black: #000;
 $blacktint: rgba(0, 0, 0, 0.8);
 $green: #42ff00;
 $greentint: rgba(#42ff00, 0.1);
-$greentint-dark: rgba(#42ff00, 0.3);
+$greentint-dark: rgba(#429900, 0.5);
+
 $pink: #fa00ff;
-$gray: rgba(255, 255, 255, 0.3);
+$gray-tint: rgba(255, 255, 255, 0.3);
+$gray: rgba(255, 255, 255, 1);
 $blacktint-dark: rgba(0, 0, 0, 0.9);
+
+$tint-dark: rgba(#000000, 0.2);
+$tint-light: rgba(#ffffff, 0.8);
 
 // ====================================================================
 // General

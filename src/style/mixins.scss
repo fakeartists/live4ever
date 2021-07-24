@@ -73,6 +73,18 @@
   font-weight: 100;
 }
 
+/// Set Bold Font as font family. This mixin's name is generic to abstract the font family name in case it changes
+/// @group Fonts
+/// @example scss Input
+///   .landing-section {
+///     @include font-bold();
+///   }
+@mixin font-banner() {
+  font-family: 'Mitr', #{$generic-fonts};
+  letter-spacing: 3px;
+  font-weight: 100;
+}
+
 /// Improve animation performance for containers
 /// @example scss Input
 ///   .card {
@@ -319,33 +331,30 @@
 
 @mixin ad-button {
   z-index: 1;
-  position: absolute;
-  display: inline-block;
-  margin: 0 auto;
-  width: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  top: 70%;
-  left: 40%;
-  font-size: 120%;
-  padding-top: 6px;
+  text-transform: uppercase;
+  font-size: 24px;
+  padding: px-to-rem(8) px-to-rem(20) px-to-rem(6) px-to-rem(20);
   background-color: $gray;
   color: $white;
-  border-top: 4px solid $white;
-  border-right: 4px solid $greentint-dark;
-  border-bottom: 4px solid $greentint-dark;
-  border-left: 4px solid $white;
+  border-top: 3px solid $tint-light;
+  border-right: 3px solid $tint-dark;
+  border-bottom: 3px solid $tint-dark;
+  border-left: 3px solid $tint-light;
   user-select: none;
   opacity: 0.4;
 
   &.active {
     cursor: pointer;
-    background-color: $green;
-    color: $pink;
+    background-color: $gray;
+    color: $black;
     opacity: 1;
   }
 
   &.active:hover {
     color: $white;
-    background-color: $pink;
+    background-color: $black;
   }
 }

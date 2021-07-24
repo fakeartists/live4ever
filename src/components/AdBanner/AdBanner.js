@@ -42,18 +42,39 @@ class ADBanner extends React.PureComponent {
   }
 
   buildAd = () => {
-    var index = Math.round(Math.random() * this.adsdata.images.length);
+    var index = Math.floor(Math.random() * this.adsdata.images.length);
     let backgroundImage = this.adsdata.images[index];
 
+    let bannerSize = this.adsdata.dimensions;
     let bodyCopyOptions = this.adsdata.body_copy_options;
     let verbOptions = this.adsdata.verb_options;
     let adjectiveOptions = this.adsdata.adjective_options;
     let nounOptions = this.adsdata.noun_options;
+    let buttonOptions = this.adsdata.buttons;
+    let buttonColors = this.adsdata.button_colors;
+    let textColors = this.adsdata.colors;
 
     let bodyCopyTemplate = bodyCopyOptions[Math.floor(Math.random() * bodyCopyOptions.length)];
     let verb = verbOptions[Math.floor(Math.random() * verbOptions.length)];
     let adjective = adjectiveOptions[Math.floor(Math.random() * adjectiveOptions.length)];
     let noun = nounOptions[Math.floor(Math.random() * nounOptions.length)];
+    let buttonCopy = buttonOptions[Math.floor(Math.random() * buttonOptions.length)].copy;
+
+    let btStyleIndex = Math.floor(Math.random() * buttonColors.length);
+    let buttonBGColor = buttonColors[btStyleIndex].background;
+    let buttonTextColor = buttonColors[btStyleIndex].text;
+    let buttonBGColorHover = buttonColors[btStyleIndex].over_background;
+    let buttonTextColorHover = buttonColors[btStyleIndex].over_text;
+
+    let textColorIndex = Math.floor(Math.random() * textColors.length);
+    let textColorNormal = textColors[textColorIndex].normal;
+    // let textColorBold = textColors[textColorIndex].bold;
+
+    let textColorOLNormal = textColors[textColorIndex].outline_normal || 'none';
+    textColorOLNormal = textColorOLNormal === 'none' ? textColorOLNormal : '1px ' + textColorOLNormal;
+
+    // let textColorOLBold = textColors[textColorIndex].outline_bold || 'none';
+    let fontSize = 130 + Math.floor(Math.random() * 50) + '%';
 
     let bodyCopy = bodyCopyTemplate
       .replace('[verb]', verb)
@@ -63,10 +84,28 @@ class ADBanner extends React.PureComponent {
     const intersperse = (arr, sep) => arr.reduce((a, v, i) => [...a, v, sep], []).slice(0, -1);
     bodyCopy = intersperse(bodyCopy.split('<br/>'), <br key={0} />);
 
-    this.posX = parseInt(Math.random() * (window.innerWidth - 640));
-    this.posY = parseInt(Math.random() * (window.innerHeight * 0.7 - 480) + 150);
+    this.width = bannerSize.width.min + Math.random() * (bannerSize.width.max - bannerSize.width.min);
+    this.height = bannerSize.height.min + Math.random() * (bannerSize.height.max - bannerSize.height.min);
+
+    this.posX = parseInt(Math.random() * (window.innerWidth - this.width));
+    this.posY = parseInt(Math.random() * (window.innerHeight * 0.7 - this.height) + 150);
     this.backgroundImage = backgroundImage;
     this.bodyCopy = bodyCopy;
+    this.buttonCopy = buttonCopy;
+    this.buttonStyle = {
+      background: buttonBGColor,
+      color: buttonTextColor,
+      hover: {
+        background: buttonBGColorHover,
+        color: buttonTextColorHover
+      }
+    };
+    this.textStyle = {
+      //'text-shadow': '2px 2px $pink',
+      fontSize: fontSize,
+      WebkitTextStroke: textColorOLNormal,
+      color: textColorNormal
+    };
   };
 
   handleButtonClick = () => {
@@ -90,9 +129,21 @@ class ADBanner extends React.PureComponent {
     }
   };
 
+  handleHoverEnter = () => {
+    this.button.style.background = this.buttonStyle.hover.background;
+    this.button.style.color = this.buttonStyle.hover.color;
+  };
+
+  handleHoverOut = () => {
+    this.button.style.background = this.buttonStyle.background;
+    this.button.style.color = this.buttonStyle.color;
+  };
+
   render() {
     const bannerStyle = {
       position: this.props.isStatic ? 'relative' : 'absolute',
+      width: this.props.isStatic ? '100%' : this.width,
+      height: this.props.isStatic ? '100%' : this.height,
       top: this.props.isStatic ? 0 : this.posY,
       left: this.props.isStatic ? 0 : this.posX
     };
@@ -101,8 +152,17 @@ class ADBanner extends React.PureComponent {
     let clickButton;
     if (!this.props.isStatic) {
       clickButton = (
-        <button className={this.buttonActive} onClick={this.handleButtonClick}>
-          CLICK
+        <button
+          className={this.buttonActive}
+          style={this.buttonStyle}
+          onClick={this.handleButtonClick}
+          onMouseEnter={this.handleHoverEnter}
+          onMouseLeave={this.handleHoverOut}
+          ref={node => {
+            this.button = node;
+          }}
+        >
+          {this.buttonCopy}
         </button>
       );
     }
@@ -119,10 +179,13 @@ class ADBanner extends React.PureComponent {
         <div className="Adbanner-wrapper">
           <WindowsHeader isActive={!this.props.isStatic} onClose={this.handleButtonClick} />
           <div className="Adbanner-content">
-            <span className={this.props.isStatic ? 'center' : ''}>{this.bodyCopy}</span>
-            {clickButton}
-            {/*<div style="background-image: url(this.state.backgroundImage); height: 200px; width: 400px; border: 1px solid black;"> </div>*/}
             <img src={this.backgroundImage} alt="banner" draggable="false" />
+            <div className="Adbanner-data">
+              <span className={this.props.isStatic ? 'center' : ''} style={this.textStyle}>
+                {this.bodyCopy}
+              </span>
+              {clickButton}
+            </div>
           </div>
         </div>
       </div>

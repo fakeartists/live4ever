@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
-import { warn } from '../../util/console';
+// import { warn } from '../../util/console';
 import { selectWindowWidth, selectWindowHeight, selectPath } from '../App/App-selectors';
 
 //import webgl app

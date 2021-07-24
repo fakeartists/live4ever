@@ -60,15 +60,17 @@ class Home extends React.PureComponent {
       <section className={classnames('Home', this.props.className)} ref={el => (this.container = el)}>
         <header className="Home-header">
           <div className="home-header-wrapper">
-            <div className="home-header-box big">
+            <div className="home-header-container home-box left">
               <h1>{this.copy.title_horsale}</h1>
               <BoxInfo copy={this.boxcopy} data={hotsale} />
             </div>
-            <div className="home-header-box small-top">
-              <ADBanner />
-            </div>
-            <div className="home-header-box small-bottom">
-              <ADBanner />
+            <div className="home-header-container  right">
+              <div className="home-box small">
+                <ADBanner />
+              </div>
+              <div className="home-box small">
+                <ADBanner />
+              </div>
             </div>
           </div>
         </header>
