@@ -43,7 +43,7 @@ export default {
     separator_edition: 'of',
     title_time: 'Time left',
     button_box_home: 'Learn More',
-    button_box_asset: 'Bid Now',
+    button_box_asset: 'Bid For Free!',
     title_user_bid: 'Your Bid',
     title_reserve: 'Reserve price',
     title_chain: 'Chain Info',
@@ -56,7 +56,7 @@ export default {
     title_seconds: 'Seconds'
   },
   gallery: {
-    gallery_title: 'Recent Drops',
+    gallery_title: 'Recent Winners',
     button_sold: 'Sold',
     button_view: 'View'
   },
@@ -71,7 +71,13 @@ export default {
     title_hours: 'Hours',
     title_rank: 'Rank',
     title_top_bid: 'Top Bid',
-    title_your_bid: 'Your bid'
+    title_your_bid: 'Your bid',
+    promo_message: 'WIN FASTER: share Pyramid, get 75 FREE tokens.',
+    promo_click: 'Click Here',
+    promo_close: 'Close'
+  },
+  levelup: {
+    title: 'Level UP!'
   },
   leaderboard: {
     piramid_ico: piramid_ico,

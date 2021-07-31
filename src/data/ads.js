@@ -1,6 +1,6 @@
 export default {
   dimensions: {
-    width: { min: 400, max: 640 },
+    width: { min: 450, max: 640 },
     height: { min: 350, max: 480 }
   },
   body_copy_options: [
@@ -25,8 +25,8 @@ export default {
     { normal: '#ff00fa', bold: '#ffffff', outline_normal: '#ffffff', outline_bold: '#ff00fa' },
     { normal: '#000000', bold: '#ff00fa', outline_normal: '#ffffff', outline_bold: '#ffffff' },
     { normal: '#000000', bold: '#00ff00', outline_normal: '#ffffff', outline_bold: '#ffffff' },
-    { normal: '#00ff00', bold: '#00ff00', outline_normal: '', outline_bold: '' },
-    { normal: '#ff00fa', bold: '#ff00fa', outline_normal: '', outline_bold: '' }
+    { normal: '#00ff00', bold: '#00ff00', outline_normal: '#000000', outline_bold: '#000000' },
+    { normal: '#ff00fa', bold: '#ff00fa', outline_normal: '#ffffff', outline_bold: '#ffffff' }
   ],
   verb_options: ['CLICK', 'LIVE', 'EARN', 'SUCCEED', 'WIN', 'GAIN', 'PROFIT', 'TRIUMPH', 'CONQUER', 'ASCEND', 'PRAY'],
   adjective_options: [

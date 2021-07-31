@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import Cookies from 'universal-cookie';
 import checkProps from '@jam3/react-check-extra-props';
 import Transition from '../PagesTransitionWrapper';
 import animate, { Expo } from '../../util/gsap-animate';
@@ -14,6 +13,7 @@ import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import { getCopy } from '../../data/get-site-data';
 import { getData } from '../../data/get-site-data';
+import { checkCookieLogin } from '../../util/cookies';
 
 import './Asset.scss';
 
@@ -24,7 +24,6 @@ class Asset extends React.PureComponent {
     this.copy = getCopy(this.props.language, 'asset');
     this.boxcopy = getCopy(this.props.language, 'boxinfo');
     this.leaderoardcopy = getCopy(this.props.language, 'leaderboard');
-    this.cookies = new Cookies();
   }
 
   async componentDidMount() {
@@ -63,8 +62,7 @@ class Asset extends React.PureComponent {
   };
 
   onClickBid = () => {
-    const cookiedata = this.cookies.get('pyramid');
-    if (cookiedata !== undefined && cookiedata.email !== undefined) {
+    if (checkCookieLogin()) {
       this.props.setMineState(this.state.asset);
     } else {
       this.props.setLoginState(true);

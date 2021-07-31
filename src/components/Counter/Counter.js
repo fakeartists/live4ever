@@ -16,16 +16,9 @@ class Counter extends React.PureComponent {
   }
 
   componentDidMount() {
-    const start = moment(new Date(this.props.endDate));
-    const now = moment();
-    const duration = moment.duration(start.diff(now));
-
-    let days = duration.days();
-    if (days > 0) {
-      this.timer = setInterval(() => {
-        this.updateCount(this.state.count + 1);
-      }, 1000);
-    }
+    this.timer = setInterval(() => {
+      this.updateCount(this.state.count + 1);
+    }, 1000);
   }
 
   updateCount = count => {
@@ -34,11 +27,15 @@ class Counter extends React.PureComponent {
     }
   };
 
-  componentWillUnmount() {
+  clearTimer() {
     if (this.timer != null) {
       clearInterval(this.timer);
       this.timer = null;
     }
+  }
+
+  componentWillUnmount() {
+    this.clearTimer();
   }
 
   render() {
@@ -72,6 +69,10 @@ class Counter extends React.PureComponent {
       seconds = '--';
     } else {
       seconds = seconds < 10 ? '0' + seconds : seconds;
+    }
+
+    if (days === '--' && hours === '--' && minutes === '--' && seconds === '--') {
+      this.clearTimer();
     }
 
     const boxClass = this.props.isLanding ? '' : ' box';

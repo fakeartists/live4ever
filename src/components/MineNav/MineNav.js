@@ -5,6 +5,8 @@ import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import animate, { Power3 } from '../../util/gsap-animate';
 import settings from '../../data/settings';
+import { updateCookie, getCookie } from '../../util/cookies';
+import BaseLink from '../BaseLink/BaseLink';
 
 import './MineNav.scss';
 
@@ -13,7 +15,6 @@ class MineNav extends React.PureComponent {
     super(props);
     this.timer = null;
     this.variation = null;
-    this.bidvariation = 0;
     this.state = {
       bid: 0,
       count: 0
@@ -35,14 +36,23 @@ class MineNav extends React.PureComponent {
     }
 
     this.variation = setInterval(() => {
-      this.bidvariation = Math.random() * 5;
+      updateCookie({ variation: this.getVariation() });
     }, 400000);
   }
+
+  getVariation = () => {
+    return -1.5 + Math.random() * 3;
+  };
 
   componentWillUnmount() {
     if (this.timer != null) {
       clearInterval(this.timer);
       this.timer = null;
+    }
+
+    if (this.variation != null) {
+      this.variation = null;
+      clearInterval(this.variation);
     }
   }
 
@@ -54,9 +64,27 @@ class MineNav extends React.PureComponent {
     return animate.to(this.container, 0.5, { y: -80, autoAlpha: 0, ease: Power3.easeOut });
   };
 
+  animateShareBarIn = () => {
+    animate.to(this.sharebar, 0.5, { y: 0, autoAlpha: 1, ease: Power3.easeOut });
+  };
+
+  animateShareBarOut = () => {
+    animate.to(this.sharebar, 0.5, { y: -70, autoAlpha: 0, ease: Power3.easeInOut });
+  };
+
   updateCount = count => {
-    let bidvar = parseFloat(settings.bidBase) + this.bidvariation;
-    this.setState({ bid: count / bidvar });
+    const cookiedata = getCookie();
+    const variation = cookiedata && cookiedata.variation;
+
+    let bidvar = parseFloat(settings.bidBase) + variation;
+
+    console.log(count, bidvar);
+    this.setState({ bid: this.round(count / bidvar, 2) });
+  };
+
+  round = (value, precision) => {
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
   };
 
   render() {
@@ -83,27 +111,38 @@ class MineNav extends React.PureComponent {
 
     return (
       <div className="MineNav" ref={el => (this.container = el)}>
-        <div className="time-left-wrapper">
-          <span className="label">{this.props.copy.title_time_left}</span>
-          <span className="digits">{days}</span>
-          <span className="label">{this.props.copy.title_days}</span>
-          <span className="digits">{hours}</span>
-          <span className="label">{this.props.copy.title_hours}</span>
-        </div>
-        <div className="rank-wrapper">
-          <div className="rank-count">
-            <span className="label">{this.props.copy.title_rank}</span>
-            <span className="digits">0</span>
+        <div className="mine-info">
+          <div className="time-left-wrapper">
+            <span className="label">{this.props.copy.title_time_left}</span>
+            <span className="digits">{days}</span>
+            <span className="label">{this.props.copy.title_days}</span>
+            <span className="digits">{hours}</span>
+            <span className="label">{this.props.copy.title_hours}</span>
           </div>
-          <div className="rank-bid">
-            <span className="label">{this.props.copy.title_top_bid}</span>
-            <span className="digits">{highestbid + ' ' + this.props.copy.piramid_ico}</span>
+          <div className="rank-wrapper">
+            <div className="rank-count">
+              <span className="label">{this.props.copy.title_rank}</span>
+              <span className="digits">0</span>
+            </div>
+            <div className="rank-bid">
+              <span className="label">{this.props.copy.title_top_bid}</span>
+              <span className="digits">{highestbid + ' ' + this.props.copy.piramid_ico}</span>
+            </div>
+          </div>
+          <div className="your-bid-wrapper">
+            <span className="label user">{this.props.copy.title_your_bid}</span>
+            <span className="digits user">{this.state.bid}</span>
+            <span className="delta user">{this.props.copy.piramid_ico}</span>
           </div>
         </div>
-        <div className="your-bid-wrapper">
-          <span className="label user">{this.props.copy.title_your_bid}</span>
-          <span className="digits user">{this.state.bid}</span>
-          <span className="delta user">{this.props.copy.piramid_ico}</span>
+        <div className="mine-promo" ref={el => (this.sharebar = el)}>
+          <p>{this.props.copy.promo_message}</p>
+          <BaseLink className="mine-promo-link" link="">
+            {this.props.copy.promo_click}
+          </BaseLink>
+          <button className="mine-promo-close" onClick={this.animateShareBarOut}>
+            {this.props.copy.promo_close}
+          </button>
         </div>
       </div>
     );

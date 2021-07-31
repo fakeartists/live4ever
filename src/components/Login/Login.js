@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import Cookies from 'universal-cookie';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import animate, { Circ } from '../../util/gsap-animate';
@@ -9,6 +8,7 @@ import WindowsHeader from '../WindowsHeader/WindowsHeader';
 import { setLoginState } from '../../redux/modules/login';
 import settings from '../../data/settings';
 import { getCopy } from '../../data/get-site-data';
+import { initCookie, updateCookie, checkCookieLogin } from '../../util/cookies';
 
 import './Login.scss';
 
@@ -16,9 +16,9 @@ class Login extends React.PureComponent {
   constructor(props) {
     super(props);
     this.copy = getCopy(this.props.language, 'login');
-    this.cookies = new Cookies();
-    this.isOpen = false;
+    initCookie();
 
+    this.isOpen = false;
     this.state = {
       active: true
     };
@@ -27,7 +27,6 @@ class Login extends React.PureComponent {
   componentDidMount() {
     this.props.setLoginState(this.props.isOpen);
     animate.set(this.container, { autoAlpha: 0 });
-    // console.log(this.cookiedata);
   }
 
   componentDidUpdate() {
@@ -61,18 +60,13 @@ class Login extends React.PureComponent {
   };
 
   logoutResponse = () => {
-    this.cookies.remove('pyramid', { path: '/' });
+    updateCookie({ login: null });
 
     this.setState({ active: true });
     this.handleClose();
   };
 
   loginResponse = response => {
-    let now = new Date();
-    let time = now.getTime();
-    let expireTime = time + 1000 * 36000;
-    now.setTime(expireTime);
-
     const cookiedata = {
       id: response.googleId,
       name: response.profileObj.name,
@@ -81,11 +75,7 @@ class Login extends React.PureComponent {
       token: response.accessToken
     };
 
-    this.cookies.set('pyramid', JSON.stringify(cookiedata), {
-      maxAge: 60 * 60 * 24 * 365,
-      expires: now,
-      path: '/'
-    });
+    updateCookie({ login: cookiedata });
 
     this.setState({ active: true });
     this.handleClose();
@@ -107,8 +97,7 @@ class Login extends React.PureComponent {
     let copy;
     let button;
     let active = !this.state.active;
-    const cookiedata = this.cookies.get('pyramid');
-    if (cookiedata !== undefined && cookiedata.email !== undefined) {
+    if (checkCookieLogin()) {
       title = <h1 className="logout">{this.copy.connected_title}</h1>;
       copy = '';
       button = (
@@ -168,7 +157,7 @@ Login.defaultProps = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isOpen: state.assetState
+    isOpen: state.loginState
   };
 };
 

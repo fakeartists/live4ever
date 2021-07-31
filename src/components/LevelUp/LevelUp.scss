@@ -1,0 +1,60 @@
+@import 'src/style/shared.scss';
+
+.LevelUp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 9990;
+  overflow: hidden;
+
+  .level-fire {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9993;
+
+    .fire {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 0;
+      left: 0;
+      background-image: url('/assets/images/emoji.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .level-message {
+    position: absolute;
+    width: 100vw;
+    height: 40vw;
+    max-width: 400px;
+    max-height: 280px;
+    top: 50%;
+    left: 50%;
+    background: $black;
+    transform: translate(-50%, -50%);
+    border: 1px solid $green;
+    z-index: 9999;
+
+    p {
+      position: absolute;
+      width: 100%;
+      padding: 0 px-to-rem(30);
+      margin: 0;
+      top: 50%;
+      @include font-banner();
+      -webkit-text-stroke: 2px $pink;
+      font-size: px-to-rem(30);
+      color: $white;
+      transform: translateY(-50%);
+    }
+  }
+}
