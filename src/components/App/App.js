@@ -17,6 +17,7 @@ import Landing from '../../components/Landing/Landing';
 import Pages from '../../components/Pages/Pages';
 import Loader from '../../components/Loader/Loader';
 import AssetPreview from '../AssetPreview/AssetPreview';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
 // import WebGL from '../WebGL/WebGL';
 
 import { ReactComponent as LinesBG } from '../../assets/svg/lines-bg.svg';
@@ -121,6 +122,7 @@ class App extends React.PureComponent {
           <AssetPreview language={this.language} />
           <Mine language={this.language} />
           <Login language={this.language} />
+          <VideoPlayer className="intro-video" src="./assets/videos/Intro_Pyramid.mp4" autoPlay={false} />
         </Fragment>
       );
     }

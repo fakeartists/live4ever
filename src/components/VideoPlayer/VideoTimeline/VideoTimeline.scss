@@ -1,7 +1,10 @@
-$video-player-controls-height: 3px !default;
+@import 'src/style/shared.scss';
+
+$video-player-controls-height: 4px !default;
 $video-player-controls-thumb-size: 1rem !default;
-$video-player-controls-bg-color: red !default;
+$video-player-controls-bg-color: $green !default;
 $video-player-controls-track-color: rgba($video-player-controls-bg-color, 0.3) !default;
+$video-player-controls-bg-color-hover: $pink !default;
 
 @mixin track() {
   width: 100%;
@@ -39,7 +42,7 @@ $video-player-controls-track-color: rgba($video-player-controls-bg-color, 0.3) !
     margin: 0;
   }
 
-  input[type=range]::-webkit-slider-thumb {
+  input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     -moz-appearance: none;
   }
@@ -48,11 +51,11 @@ $video-player-controls-track-color: rgba($video-player-controls-bg-color, 0.3) !
     border: 0;
   }
 
-  input[type=range]:focus {
+  input[type='range']:focus {
     border: none;
   }
 
-  input[type=range] {
+  input[type='range'] {
     -webkit-appearance: none;
     position: absolute;
     width: 100%;
@@ -93,7 +96,7 @@ $video-player-controls-track-color: rgba($video-player-controls-bg-color, 0.3) !
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       @include thumb;
-      margin-top: -$video-player-controls-thumb-size/4;
+      margin-top: -$video-player-controls-thumb-size/2.6;
     }
 
     &::-moz-range-thumb {
@@ -102,6 +105,26 @@ $video-player-controls-track-color: rgba($video-player-controls-bg-color, 0.3) !
 
     &::-ms-thumb {
       @include thumb;
+    }
+  }
+
+  &:hover {
+    .VideoTimeline-progress {
+      background-color: $video-player-controls-bg-color-hover;
+    }
+
+    input[type='range'] {
+      &::-webkit-slider-thumb {
+        background: $video-player-controls-bg-color-hover;
+      }
+
+      &::-moz-range-thumb {
+        background: $video-player-controls-bg-color-hover;
+      }
+
+      &::-ms-thumb {
+        background: $video-player-controls-bg-color-hover;
+      }
     }
   }
 }

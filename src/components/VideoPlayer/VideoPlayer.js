@@ -5,6 +5,9 @@ import fullScreen from 'fullscreen-handler';
 import classnames from 'classnames';
 import noop from 'no-op';
 import checkProps from '@jam3/react-check-extra-props';
+import animate, { Circ } from '../../util/gsap-animate';
+
+import { getCookie, updateCookie } from '../../util/cookies';
 
 import './VideoPlayer.scss';
 
@@ -86,6 +89,21 @@ export default class VideoPlayer extends React.PureComponent {
     this.props.hasControls && this.clearHideControlsTimeout();
     this.captions && this.captions.removeEventListener('cuechange', this.onTrackChange);
   }
+
+  open = () => {
+    this.container.style.display = 'block';
+    animate.to(this.container, 0.5, {
+      autoAlpha: 1,
+      ease: Circ.easeOut
+    });
+  };
+
+  close = () => {
+    updateCookie({ firsttime: false });
+    animate.to(this.container, 0.3, { autoAlpha: 0, ease: Circ.easeOut }).then(() => {
+      this.container.style.display = 'none';
+    });
+  };
 
   showControls = () => {
     this.setState({ isShowingControls: true });
@@ -221,6 +239,8 @@ export default class VideoPlayer extends React.PureComponent {
   onEnd = () => {
     this.props.onEnd();
     this.fullScreen.isFullScreen() && this.fullScreen.exit();
+
+    this.close();
   };
 
   onMouseMove = () => {
@@ -240,73 +260,71 @@ export default class VideoPlayer extends React.PureComponent {
   };
 
   render() {
-    return (
-      <div
-        className={classnames('VideoPlayer', this.props.className, {
-          'show-controls': this.state.isShowingControls,
-          'show-captions': this.state.isShowingCaptions
-        })}
-        style={this.props.style}
-        ref={r => (this.container = r)}
-        onMouseMove={this.onMouseMove}
-      >
-        <BackgroundVideo
-          ref={r => (this.video = r)}
-          src={this.props.src}
-          containerWidth={this.state.containerWidth}
-          containerHeight={this.state.containerHeight}
-          autoPlay={false}
-          poster={this.props.poster}
-          muted={this.props.muted}
-          loop={this.props.loop}
-          disableBackgroundCover={this.props.disableBackgroundCover}
-          preload={this.props.preload}
-          playsInline={this.props.playsInline}
-          volume={this.props.volume}
-          startTime={this.state.startTime}
-          onReady={this.onReady}
-          onPlay={this.onPlay}
-          onPause={this.onPause}
-          onTimeUpdate={this.onTimeUpdate}
-          onMute={this.onMute}
-          onUnmute={this.onUnmute}
-          onEnd={this.onEnd}
-          onClick={this.props.togglePlayOnClick ? this.togglePlay : f => f}
-          onKeyPress={this.onKeyPress}
-        />
-
-        {this.props.captions && (
-          <div className="VideoPlayer-captions-container" ref={r => (this.captionsContainer = r)}>
-            {this.state.currentCaptions && <p>{this.state.currentCaptions}</p>}
-          </div>
-        )}
-
-        {this.props.hasControls && (
-          <VideoControls
-            captions={Boolean(this.props.captions)}
-            currentTime={Number(this.state.currentTime)}
-            isPlaying={this.state.isPlaying}
-            isMuted={this.state.isMuted}
-            isFullScreen={this.state.isFullScreen}
-            isShowingCaptions={this.state.isShowingCaptions}
-            duration={this.state.duration}
-            onPlayToggle={this.togglePlay}
-            onMuteToggle={this.toggleMute}
-            onFullscreenToggle={this.toggleFullscreen}
-            onCaptionsToggle={this.toggleCaptions}
-            onTimeUpdate={this.updateTime}
-            playIcon={this.props.playIcon}
-            pauseIcon={this.props.pauseIcon}
-            mutedIcon={this.props.mutedIcon}
-            unmutedIcon={this.props.unmutedIcon}
-            exitFullscreenIcon={this.props.exitFullscreenIcon}
-            enterFullscreenIcon={this.props.enterFullscreenIcon}
-            captionsOnIcon={this.props.captionsOnIcon}
-            captionsOffIcon={this.props.captionsOffIcon}
+    const cookiedata = getCookie();
+    if (cookiedata.firsttime) {
+      return (
+        <div
+          className={classnames('VideoPlayer', this.props.className, {
+            'show-controls': this.state.isShowingControls,
+            'show-captions': this.state.isShowingCaptions
+          })}
+          style={this.props.style}
+          ref={r => (this.container = r)}
+          onMouseMove={this.onMouseMove}
+        >
+          <BackgroundVideo
+            ref={r => (this.video = r)}
+            src={this.props.src}
+            containerWidth={this.state.containerWidth}
+            containerHeight={this.state.containerHeight}
+            autoPlay={this.props.autoPlay}
+            poster={this.props.poster}
+            muted={this.props.muted}
+            loop={this.props.loop}
+            disableBackgroundCover={this.props.disableBackgroundCover}
+            preload={this.props.preload}
+            playsInline={this.props.playsInline}
+            volume={this.props.volume}
+            startTime={this.state.startTime}
+            onReady={this.onReady}
+            onPlay={this.onPlay}
+            onPause={this.onPause}
+            onTimeUpdate={this.onTimeUpdate}
+            onMute={this.onMute}
+            onUnmute={this.onUnmute}
+            onEnd={this.onEnd}
+            onClick={this.props.togglePlayOnClick ? this.togglePlay : f => f}
+            onKeyPress={this.onKeyPress}
+            className="bg-video"
           />
-        )}
-      </div>
-    );
+
+          {this.props.captions && (
+            <div className="VideoPlayer-captions-container" ref={r => (this.captionsContainer = r)}>
+              {this.state.currentCaptions && <p>{this.state.currentCaptions}</p>}
+            </div>
+          )}
+
+          {this.props.hasControls && (
+            <VideoControls
+              captions={Boolean(this.props.captions)}
+              currentTime={Number(this.state.currentTime)}
+              isPlaying={this.state.isPlaying}
+              isMuted={this.state.isMuted}
+              isFullScreen={this.state.isFullScreen}
+              isShowingCaptions={this.state.isShowingCaptions}
+              duration={this.state.duration}
+              onPlayToggle={this.togglePlay}
+              onMuteToggle={this.toggleMute}
+              onFullscreenToggle={this.toggleFullscreen}
+              onCaptionsToggle={this.toggleCaptions}
+              onTimeUpdate={this.updateTime}
+            />
+          )}
+        </div>
+      );
+    } else {
+      return <div className="VideoPlayer" ref={r => (this.container = r)} />;
+    }
   }
 }
 
@@ -334,15 +352,7 @@ VideoPlayer.propTypes = checkProps({
   startTime: PropTypes.number,
   onPlay: PropTypes.func,
   onPause: PropTypes.func,
-  onEnd: PropTypes.func,
-  playIcon: PropTypes.string,
-  pauseIcon: PropTypes.string,
-  mutedIcon: PropTypes.string,
-  unmutedIcon: PropTypes.string,
-  exitFullscreenIcon: PropTypes.string,
-  enterFullscreenIcon: PropTypes.string,
-  captionsOnIcon: PropTypes.string,
-  captionsOffIcon: PropTypes.string
+  onEnd: PropTypes.func
 });
 
 VideoPlayer.defaultProps = {

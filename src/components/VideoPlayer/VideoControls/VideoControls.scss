@@ -1,3 +1,5 @@
+@import 'src/style/shared.scss';
+
 $video-player-controls-buttons-margin: 2rem !default;
 $video-player-controls-buttons-width: 2rem !default;
 $video-player-controls-buttons-height: 2rem !default;
@@ -34,6 +36,20 @@ $video-player-controls-timer-font-size: 1.5rem !default;
     color: inherit;
     outline: none;
 
+    svg {
+      fill: $green;
+      width: 100%;
+      height: 100%;
+
+      path {
+        fill: $green;
+      }
+
+      rect {
+        fill: $green;
+      }
+    }
+
     &:first-of-type {
       margin-right: $video-player-controls-buttons-margin;
     }
@@ -46,6 +62,20 @@ $video-player-controls-timer-font-size: 1.5rem !default;
       width: 100%;
       height: 100%;
     }
+
+    &:hover {
+      svg {
+        fill: $pink;
+
+        path {
+          fill: $pink;
+        }
+
+        rect {
+          fill: $pink;
+        }
+      }
+    }
   }
 
   &-time {
@@ -53,5 +83,6 @@ $video-player-controls-timer-font-size: 1.5rem !default;
     color: $video-player-controls-timer-color;
     font-size: $video-player-controls-timer-font-size;
     margin-left: $video-player-controls-buttons-margin;
+    color: $green;
   }
 }

@@ -6,6 +6,7 @@ const cookiePath = '/';
 
 export function initCookie() {
   const data = {
+    firsttime: true,
     variation: 0,
     bidData: {
       bid: 0,
@@ -15,22 +16,27 @@ export function initCookie() {
     login: null
   };
 
-  const cookiedata = getCookie();
-  for (const key in data) {
-    if (data.hasOwnProperty.call(data, key)) {
-      const element = data[key];
-      if (!cookiedata.hasOwnProperty(key)) {
-        cookiedata[key] = element;
-      }
-    }
-  }
+  let cookiedata = getCookie();
 
-  for (const key in cookiedata) {
-    if (cookiedata.hasOwnProperty.call(cookiedata, key)) {
-      if (!data.hasOwnProperty(key)) {
-        delete cookiedata[key];
+  if (cookiedata !== undefined && cookiedata !== 'undefined') {
+    for (const key in data) {
+      if (data.hasOwnProperty.call(data, key)) {
+        const element = data[key];
+        if (!cookiedata.hasOwnProperty(key)) {
+          cookiedata[key] = element;
+        }
       }
     }
+
+    for (const key in cookiedata) {
+      if (cookiedata.hasOwnProperty.call(cookiedata, key)) {
+        if (!data.hasOwnProperty(key)) {
+          delete cookiedata[key];
+        }
+      }
+    }
+  } else {
+    cookiedata = data;
   }
 
   cookies.set(cookieName, JSON.stringify(cookiedata), getCookieConfig());

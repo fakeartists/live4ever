@@ -4,7 +4,7 @@ import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import animate, { Circ } from '../../util/gsap-animate';
 
-import MineNav from '../MineNav/MineNav';
+import MineNav from './MineNav/MineNav';
 import ADBanner from '../AdBanner/AdBanner';
 import LevelUp from '../LevelUp/LevelUp';
 

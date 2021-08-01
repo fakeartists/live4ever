@@ -1,0 +1,142 @@
+@import 'src/style/shared.scss';
+
+.MineNav {
+  position: fixed;
+  width: calc(100% - 1px);
+  top: $navbar-height-mobile;
+  margin-top: px-to-rem(20);
+  left: 0;
+  z-index: 999;
+
+  .mine-info {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: px-to-rem(15);
+    border: 1px solid $pink;
+    color: $pink;
+    background: $blacktint-dark;
+    overflow: hidden;
+    z-index: 999;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 90px;
+      left: 25%;
+      top: -50px;
+      background: radial-gradient(50% 50% at 50% 50%, #05ff0077 0%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 90px;
+      left: 25%;
+      bottom: -50px;
+      background: radial-gradient(50% 50% at 50% 50%, #fa00ff77 0%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+
+  .mine-promo {
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    bottom: -70px;
+    background-color: $green;
+    color: $pink;
+    z-index: 998;
+    font-size: px-to-rem(14);
+
+    p {
+      position: relative;
+      float: left;
+      margin: px-to-rem(15) px-to-rem(5) px-to-rem(14) px-to-rem(20);
+    }
+
+    .mine-promo-link {
+      position: relative;
+      float: left;
+      margin: px-to-rem(15) 0;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      &:hover {
+        color: $blacktint-dark;
+      }
+    }
+
+    .mine-promo-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: px-to-rem(15) px-to-rem(20);
+      background: none;
+      cursor: pointer;
+      color: $pink;
+      border: none;
+
+      &:hover {
+        color: $blacktint-dark;
+      }
+    }
+  }
+
+  @media (min-width: $layout-large) {
+    top: $navbar-height-desktop;
+    margin-top: px-to-rem(20);
+  }
+
+  .label {
+    font-size: px-to-rem(12);
+
+    &.user {
+      font-size: px-to-rem(18);
+    }
+  }
+
+  .digits {
+    @include font-special();
+    font-size: px-to-rem(16);
+    padding: 0 px-to-rem(20);
+
+    &.user {
+      font-size: px-to-rem(24);
+    }
+  }
+
+  .delta {
+    @include font-special();
+    font-size: px-to-rem(16);
+
+    &.user {
+      font-size: px-to-rem(24);
+    }
+  }
+
+  .time-left-wrapper {
+    position: absolute;
+    left: 6%;
+    color: $green;
+    margin-top: px-to-rem(5);
+  }
+
+  .rank-wrapper {
+    position: absolute;
+    right: 6%;
+    margin-top: px-to-rem(5);
+
+    .rank-count {
+      position: relative;
+      float: right;
+    }
+
+    .rank-bid {
+      position: relative;
+      float: right;
+      margin-right: px-to-rem(24);
+    }
+  }
+}

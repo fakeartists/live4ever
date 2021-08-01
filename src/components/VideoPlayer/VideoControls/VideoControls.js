@@ -4,16 +4,16 @@ import classnames from 'classnames';
 import noop from 'no-op';
 import checkProps from '@jam3/react-check-extra-props';
 
-import './VideoControls.css';
+import './VideoControls.scss';
 
-import PlayIcon from './assets/play.svg';
-import PauseIcon from './assets/pause.svg';
-import MutedIcon from './assets/muted.svg';
-import UnmutedIcon from './assets/unmuted.svg';
-import ExitFullscreenIcon from './assets/exit-fullscreen.svg';
-import EnterFullscreenIcon from './assets/enter-fullscreen.svg';
-import CaptionsOnIcon from './assets/captions-on.svg';
-import CaptionsOffIcon from './assets/captions-off.svg';
+import { ReactComponent as PlayIcon } from './assets/play.svg';
+import { ReactComponent as PauseIcon } from './assets/pause.svg';
+import { ReactComponent as MutedIcon } from './assets/muted.svg';
+import { ReactComponent as UnmutedIcon } from './assets/unmuted.svg';
+import { ReactComponent as CaptionsOnIcon } from './assets/captions-on.svg';
+import { ReactComponent as CaptionsOffIcon } from './assets/captions-off.svg';
+import { ReactComponent as ExitFullscreenIcon } from './assets/exit-fullscreen.svg';
+import { ReactComponent as EnterFullscreenIcon } from './assets/enter-fullscreen.svg';
 
 import VideoTimeline from '../VideoTimeline/VideoTimeline';
 import BaseButton from '../../BaseButton/BaseButton';
@@ -29,6 +29,11 @@ const VideoControls = React.memo(props => {
     return `${minutes}:${seconds}`;
   }
 
+  let playbutton = props.isPlaying ? <PauseIcon /> : <PlayIcon />;
+  let soundbutton = props.isMuted ? <MutedIcon /> : <UnmutedIcon />;
+  let captionButton = props.isShowingCaptions ? <CaptionsOnIcon /> : <CaptionsOffIcon />;
+  let fullscreenButton = props.isFullScreen ? <ExitFullscreenIcon /> : <EnterFullscreenIcon />;
+
   return (
     <nav className={classnames('VideoControls', props.className)} aria-label="Video Controls">
       <BaseButton
@@ -37,10 +42,7 @@ const VideoControls = React.memo(props => {
         title={props.isPlaying ? 'Pause Video' : 'Play Video'}
         onClick={props.onPlayToggle}
       >
-        <img
-          src={props.isPlaying ? props.pauseIcon : props.playIcon}
-          alt={props.isPlaying ? 'Pause Icon' : 'Play Icon'}
-        />
+        {playbutton}
       </BaseButton>
 
       <VideoTimeline
@@ -60,10 +62,7 @@ const VideoControls = React.memo(props => {
           title={props.isShowingCaptions ? 'Hide Captions' : 'Show Captions'}
           onClick={props.onCaptionsToggle}
         >
-          <img
-            src={props.isShowingCaptions ? props.captionsOnIcon : props.captionsOffIcon}
-            alt={props.isShowingCaptions ? 'Captions On Icon' : 'Captions Off Icon'}
-          />
+          {captionButton}
         </BaseButton>
       )}
 
@@ -73,10 +72,7 @@ const VideoControls = React.memo(props => {
         title={props.isMuted ? 'Unmute Video' : 'Mute Video'}
         onClick={props.onMuteToggle}
       >
-        <img
-          src={props.isMuted ? props.mutedIcon : props.unmutedIcon}
-          alt={props.isMuted ? 'Muted Icon' : 'Unmuted Icon'}
-        />
+        {soundbutton}
       </BaseButton>
 
       <BaseButton
@@ -85,10 +81,7 @@ const VideoControls = React.memo(props => {
         title={props.isFullScreen ? 'Exit Fullscreen Mode' : 'Enter Fullscreen Mode'}
         onClick={props.onFullscreenToggle}
       >
-        <img
-          src={props.isFullScreen ? props.exitFullscreenIcon : props.enterFullscreenIcon}
-          alt={props.isFullScreen ? 'Fullscreen Mode Icon' : 'Normal Mode Icon'}
-        />
+        {fullscreenButton}
       </BaseButton>
     </nav>
   );
@@ -107,15 +100,7 @@ VideoControls.propTypes = checkProps({
   onMuteToggle: PropTypes.func,
   onFullscreenToggle: PropTypes.func,
   onCaptionsToggle: PropTypes.func,
-  onTimeUpdate: PropTypes.func,
-  playIcon: PropTypes.string,
-  pauseIcon: PropTypes.string,
-  mutedIcon: PropTypes.string,
-  unmutedIcon: PropTypes.string,
-  exitFullscreenIcon: PropTypes.string,
-  enterFullscreenIcon: PropTypes.string,
-  captionsOnIcon: PropTypes.string,
-  captionsOffIcon: PropTypes.string
+  onTimeUpdate: PropTypes.func
 });
 
 VideoControls.defaultProps = {
@@ -123,15 +108,7 @@ VideoControls.defaultProps = {
   onMuteToggle: noop,
   onFullscreenToggle: noop,
   onCaptionsToggle: noop,
-  onTimeUpdate: noop,
-  playIcon: PlayIcon,
-  pauseIcon: PauseIcon,
-  mutedIcon: MutedIcon,
-  unmutedIcon: UnmutedIcon,
-  exitFullscreenIcon: ExitFullscreenIcon,
-  enterFullscreenIcon: EnterFullscreenIcon,
-  captionsOnIcon: CaptionsOnIcon,
-  captionsOffIcon: CaptionsOffIcon
+  onTimeUpdate: noop
 };
 
 export default VideoControls;
