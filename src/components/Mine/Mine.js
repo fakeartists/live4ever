@@ -88,9 +88,7 @@ class Mine extends React.PureComponent {
     this.bid++;
 
     this.mineNav.getWrappedInstance().updateCount(this.bid);
-
     const ads = this.state.ads.filter(item => item.props.id !== id);
-
     let sharetime = this.bid % 10 === 0;
 
     if (sharetime) {

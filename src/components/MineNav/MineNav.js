@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import animate, { Power3 } from '../../util/gsap-animate';
-import settings from '../../data/settings';
 import { updateCookie, getCookie } from '../../util/cookies';
 import BaseLink from '../BaseLink/BaseLink';
+import { getBidWithVariation } from '../../util/bid';
 
 import './MineNav.scss';
 
@@ -75,16 +75,7 @@ class MineNav extends React.PureComponent {
   updateCount = count => {
     const cookiedata = getCookie();
     const variation = cookiedata && cookiedata.variation;
-
-    let bidvar = parseFloat(settings.bidBase) + variation;
-
-    console.log(count, bidvar);
-    this.setState({ bid: this.round(count / bidvar, 2) });
-  };
-
-  round = (value, precision) => {
-    var multiplier = Math.pow(10, precision || 0);
-    return Math.round(value * multiplier) / multiplier;
+    this.setState({ bid: getBidWithVariation(count, variation) });
   };
 
   render() {

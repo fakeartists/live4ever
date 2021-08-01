@@ -5,12 +5,13 @@ import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import BaseLink from '../BaseLink/BaseLink';
 import Counter from '../Counter/Counter';
+import { getCookie } from '../../util/cookies';
+import { getBidWithVariation } from '../../util/bid';
 
 import './BoxInfo.scss';
 
 class BoxInfo extends React.PureComponent {
   async componentDidMount() {}
-  componentDidUpdate(prevProps) {}
 
   render() {
     let classSingle = this.props.isSingle ? 'single' : '';
@@ -19,6 +20,13 @@ class BoxInfo extends React.PureComponent {
     let assetinfo;
     let reserve;
     let userbid;
+
+    let highestbid = this.props.data.highestbid;
+
+    const cookiedata = getCookie();
+    const variation = cookiedata && cookiedata.variation;
+    let ubid = getBidWithVariation(cookiedata.bidData.bid, variation);
+    highestbid = ubid > highestbid ? ubid : highestbid;
 
     if (this.props.isSingle) {
       description = (
@@ -69,7 +77,7 @@ class BoxInfo extends React.PureComponent {
         userbid = (
           <div className="box-info-status-bid">
             <p className="box-info-status-bid-title">{this.props.copy.title_user_bid}</p>
-            <p className="box-info-status-bid-bid">{0 + ' ' + this.props.copy.piramid_ico}</p>
+            <p className="box-info-status-bid-bid">{ubid + ' ' + this.props.copy.piramid_ico}</p>
           </div>
         );
       }
@@ -105,9 +113,7 @@ class BoxInfo extends React.PureComponent {
               <div className="box-info-status-top">
                 <div className={'box-info-box ' + classSingle}>
                   <p className="box-info-status-top-title">{this.props.copy.title_bid}</p>
-                  <p className="box-info-status-top-bid">
-                    {this.props.data.highestbid + ' ' + this.props.copy.piramid_ico}
-                  </p>
+                  <p className="box-info-status-top-bid">{highestbid + ' ' + this.props.copy.piramid_ico}</p>
                   <p className="box-info-status-info">{this.props.data.clicks + ' ' + this.props.copy.sub_title_bid}</p>
                 </div>
                 <div className={'box-info-box ' + classSingle}>
@@ -134,7 +140,8 @@ BoxInfo.propTypes = checkProps({
   data: PropTypes.object,
   isSingle: PropTypes.bool,
   clickFunction: PropTypes.func,
-  previewFunction: PropTypes.func
+  previewFunction: PropTypes.func,
+  mineIsOpen: PropTypes.object
 });
 
 BoxInfo.defaultProps = {
@@ -145,7 +152,9 @@ BoxInfo.defaultProps = {
   previewFunction: null
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  mineIsOpen: state.mineState.data
+});
 
 const mapDispatchToProps = dispatch => {
   return {};
