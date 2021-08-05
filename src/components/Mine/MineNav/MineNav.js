@@ -23,6 +23,7 @@ class MineNav extends React.PureComponent {
 
   componentDidMount() {
     animate.set(this.container, { y: -80, autoAlpha: 0 });
+    animate.set(this.sharebar, { y: -70, autoAlpha: 0 });
 
     const start = moment(new Date(this.props.data.ends));
     const now = moment();
@@ -41,7 +42,7 @@ class MineNav extends React.PureComponent {
   }
 
   getVariation = () => {
-    return -1.5 + Math.random() * 3;
+    return 0; //-1.5 + Math.random() * 3;
   };
 
   componentWillUnmount() {

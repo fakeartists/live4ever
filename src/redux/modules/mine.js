@@ -5,7 +5,8 @@ const reducerName = 'mineState';
 
 const defaultState = {
   data: null,
-  isOpen: false
+  isOpen: false,
+  onboarding: false
 };
 
 // Reducer
@@ -20,6 +21,11 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         isOpen: action.isOpen
+      };
+    case keys.MINE_STATE_ONBOARDING:
+      return {
+        ...state,
+        onboarding: action.onboarding
       };
     default:
       return state;
@@ -38,6 +44,13 @@ export function setLevelUpState(isOpen) {
   return {
     type: keys.MINE_STATE_LEVEL_UP,
     isOpen
+  };
+}
+
+export function setOnboardingState(onboarding) {
+  return {
+    type: keys.MINE_STATE_ONBOARDING,
+    onboarding
   };
 }
 

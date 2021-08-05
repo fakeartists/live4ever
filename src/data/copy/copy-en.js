@@ -79,6 +79,15 @@ export default {
   levelup: {
     title: 'Level UP!'
   },
+  onboarding: {
+    title: 'Welcome To Pyramid',
+    text_intro:
+      'PYRΔMID is the first NFT platform <b>POWERED BY HUMAN ENERGY</b>.</br></br>In order to bid for free, all you have to do is to <b>CLICK, CLICK, CLICK...</b>',
+    text_start:
+      'Accumulate PYRΔMID TOKENS (10 clicks = 1 token) and outbid your competitors to unlock this <b>ONE-TIME-ONLY OFFER</b>.</br></br>Become your own NFT and <b>LIVE 4 EVER!</b>',
+    button_intro: 'Next',
+    button_start: "Let's go"
+  },
   leaderboard: {
     piramid_ico: piramid_ico,
     title_leaderboard_bid: 'Bid',

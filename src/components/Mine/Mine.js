@@ -7,8 +7,9 @@ import animate, { Circ } from '../../util/gsap-animate';
 import MineNav from './MineNav/MineNav';
 import ADBanner from '../AdBanner/AdBanner';
 import LevelUp from '../LevelUp/LevelUp';
+import Onboarding from '../Onboarding/Onboarding';
 
-import { setMineState, setLevelUpState } from '../../redux/modules/mine';
+import { setMineState, setLevelUpState, setOnboardingState } from '../../redux/modules/mine';
 import { getCopy } from '../../data/get-site-data';
 import { updateCookie, getCookie } from '../../util/cookies';
 
@@ -18,11 +19,13 @@ class Mine extends React.PureComponent {
   constructor(props) {
     super(props);
     this.copy = getCopy(this.props.language, 'mine');
+    this.adsadded = false;
 
     const cookiedata = getCookie();
-    this.count = 5;
     this.level = cookiedata && cookiedata.bidData && cookiedata.bidData.level ? cookiedata.bidData.level : 1;
     this.bid = cookiedata && cookiedata.bidData && cookiedata.bidData.bid ? cookiedata.bidData.bid : 0;
+
+    this.count = 5;
     this.currentKey = 0;
     this.isOpen = false;
     this.state = { ads: [] };
@@ -36,10 +39,22 @@ class Mine extends React.PureComponent {
   componentDidUpdate() {
     if (this.props.data) {
       if (!this.isOpen) {
-        this.addAd(this.count, []);
         this.mineNav.getWrappedInstance().updateCount(this.bid);
+
+        const cookiedata = getCookie();
+        if (!cookiedata.onboarding) {
+          this.props.setOnboardingState(true);
+        } else {
+          this.startAds();
+        }
+
+        this.props.setMineState(this.props.data);
         this.animateIn();
         this.isOpen = true;
+      } else {
+        if (!this.adsadded && !this.props.onboarding) {
+          this.startAds();
+        }
       }
     } else {
       if (this.isOpen) {
@@ -47,6 +62,12 @@ class Mine extends React.PureComponent {
       }
     }
   }
+
+  startAds = () => {
+    const div = this.bid % this.level;
+    this.addAd(this.count - div, []);
+    this.adsadded = true;
+  };
 
   animateIn = () => {
     animate.to(this.container, 0.5, {
@@ -56,7 +77,7 @@ class Mine extends React.PureComponent {
     this.mineNav.getWrappedInstance().animateIn();
 
     //to check
-    this.mineNav.getWrappedInstance().animateShareBarIn();
+    // this.mineNav.getWrappedInstance().animateShareBarIn();
   };
 
   animateOut = () => {
@@ -96,8 +117,10 @@ class Mine extends React.PureComponent {
     }
 
     this.addAd(0, ads);
-    if (this.bid === this.count * this.level) {
-      this.level++;
+    const currentLevel = Math.floor(this.bid / this.count);
+
+    if (currentLevel > this.level) {
+      this.level = currentLevel;
       this.props.setLevelUpState(true);
       animate
         .to({ alpha: 0 }, 3, {
@@ -117,7 +140,8 @@ class Mine extends React.PureComponent {
     updateCookie({ bidData: { level, bid } });
   };
 
-  handleButtonClick = () => {
+  handleClose = () => {
+    this.saveData(this.level, this.bid);
     this.animateOut().then(() => {
       this.props.setMineState(null);
     });
@@ -128,12 +152,13 @@ class Mine extends React.PureComponent {
     if (this.props.data) {
       mine = (
         <section className="Mine" ref={el => (this.container = el)}>
-          <button className="mine-close active" onClick={this.handleButtonClick}>
+          <button className="mine-close active" onClick={this.handleClose}>
             {this.copy.exit_button}
           </button>
           <MineNav copy={this.copy} ref={mineNav => (this.mineNav = mineNav)} data={this.props.data} />
           <div className="mine-container">{this.state.ads}</div>
           <LevelUp language={this.props.language} />
+          <Onboarding language={this.props.language} />
         </section>
       );
     } else {
@@ -147,8 +172,10 @@ Mine.propTypes = checkProps({
   language: PropTypes.string,
   setMineState: PropTypes.func,
   setLevelUpState: PropTypes.func,
+  setOnboardingState: PropTypes.func,
   data: PropTypes.object,
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  onboarding: PropTypes.bool
 });
 
 Mine.defaultProps = {
@@ -159,14 +186,16 @@ Mine.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
   return {
     data: state.mineState.data,
-    isOpen: state.mineState.isOpen
+    isOpen: state.mineState.isOpen,
+    onboarding: state.mineState.onboarding
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     setMineState: val => dispatch(setMineState(val)),
-    setLevelUpState: val => dispatch(setLevelUpState(val))
+    setLevelUpState: val => dispatch(setLevelUpState(val)),
+    setOnboardingState: val => dispatch(setOnboardingState(val))
   };
 };
 

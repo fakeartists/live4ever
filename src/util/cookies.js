@@ -7,6 +7,7 @@ const cookiePath = '/';
 export function initCookie() {
   const data = {
     firsttime: true,
+    onboarding: false,
     variation: 0,
     bidData: {
       bid: 0,

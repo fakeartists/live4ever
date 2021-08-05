@@ -1,0 +1,77 @@
+@import 'src/style/shared.scss';
+
+.Onboarding {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 9995;
+  overflow: hidden;
+
+  .onboarding-message {
+    position: absolute;
+    width: 100vw;
+    max-width: 800px;
+    max-height: 560px;
+    top: 56%;
+    left: 50%;
+    background: $black;
+    transform: translate(-50%, -50%);
+    border: 1px solid $green;
+    z-index: 9999;
+
+    h1 {
+      position: relative;
+      float: left;
+      width: 100%;
+      padding: 0 px-to-rem(30);
+      margin: 0;
+      @include font-title();
+      font-weight: 100;
+      font-size: px-to-rem(20);
+      color: $pink;
+      text-transform: uppercase;
+      text-align: center;
+
+      margin: px-to-rem(20) 0 px-to-rem(20) 0;
+    }
+
+    p {
+      position: relative;
+      float: left;
+      text-align: center;
+      width: 100%;
+      padding: 0 px-to-rem(30);
+      margin: 0;
+      @include font-regular();
+      font-weight: 100;
+      font-size: px-to-rem(18);
+      color: $white;
+
+      margin: px-to-rem(20) 0 px-to-rem(20) 0;
+
+      b {
+        color: $green;
+        text-transform: uppercase;
+      }
+    }
+
+    .action-button {
+      position: relative;
+      float: left;
+      @include main-button-cta;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding-left: px-to-rem(40);
+      padding-right: px-to-rem(40);
+      min-width: 100px;
+      max-width: 280px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      margin: px-to-rem(20) 0 px-to-rem(30) 0;
+    }
+  }
+}
