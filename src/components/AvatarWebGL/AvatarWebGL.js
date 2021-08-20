@@ -188,7 +188,7 @@ class AvatarWebGL extends React.PureComponent {
 
       if (objectModel1) {
         if (isPortrait) {
-          objectModel1.position.set(-3, 0, 0);
+          objectModel1.position.set(-6, 0, 0);
         } else {
           objectModel1.position.set(-10, 0, 0);
         }
@@ -198,7 +198,7 @@ class AvatarWebGL extends React.PureComponent {
 
       if (objectModel2) {
         if (isPortrait) {
-          objectModel2.position.set(3, 0, 0);
+          objectModel2.position.set(6, 0, 0);
         } else {
           objectModel2.position.set(10, 0, 0);
         }
