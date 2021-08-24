@@ -10,6 +10,7 @@
   height: calc(100vh - #{$navbar-height-mobile} - #{$footer-height-mobile});
   z-index: 50;
   min-height: 300px;
+  z-index: 600;
 
   .landing-container {
     box-sizing: border-box;
@@ -52,7 +53,18 @@
 
     .landing-button {
       @include main-button-cta;
-      margin-bottom: px-to-rem(60);
+      position: relative;
+      float: left;
+      text-decoration: none;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: px-to-rem(70);
+    }
+
+    @media (min-height: 1024px) {
+      .landing-button {
+        margin-bottom: px-to-rem(40);
+      }
     }
 
     @media (max-width: $layout-medium) {

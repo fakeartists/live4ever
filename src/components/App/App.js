@@ -91,7 +91,7 @@ class App extends React.PureComponent {
             language={this.language}
           />
           <Landing language={this.language} />
-          <Footer {...footerData} copy={this.footercopy} />
+          <Footer {...footerData} copy={this.footercopy} isLanding={true} className="landing" />
         </Fragment>
       );
     } else {

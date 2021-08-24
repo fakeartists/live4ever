@@ -239,6 +239,7 @@ export default {
     title: 'powered by',
     logoAriaLabel: 'Fake Artists',
     ariaNavLabel: 'Footer Navigation',
-    text_copyright: '© FakeArtits'
+    text_copyright: '© FakeArtits',
+    privacy: 'privacy'
   }
 };

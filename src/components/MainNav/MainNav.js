@@ -8,11 +8,12 @@ import cleanPath from 'remove-trailing-separator';
 import checkProps from '@jam3/react-check-extra-props';
 import { selectWindowWidth, selectWindowHeight } from '../App/App-selectors';
 import { setLoginState } from '../../redux/modules/login';
-import { ReactComponent as PyramidIcon } from '../../assets/svg/pyramid-icon.svg';
 import BaseLink from '../BaseLink/BaseLink';
 import HamburgerButton, { STATES } from '../HamburgerButton/HamburgerButton';
 import { getCopy } from '../../data/get-site-data';
 import layout from '../../data/layout';
+
+import { ReactComponent as PyramidIcon } from '../../assets/svg/pyramid-icon.svg';
 
 import './MainNav.scss';
 

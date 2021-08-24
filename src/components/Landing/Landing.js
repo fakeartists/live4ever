@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { selectWindowWidth, selectWindowHeight } from '../App/App-selectors';
 import animate, { Expo } from '../../util/gsap-animate';
 import Counter from '../Counter/Counter';
+import BaseLink from '../BaseLink/BaseLink';
+
 import settings from '../../data/settings';
 import { getCopy } from '../../data/get-site-data';
 
@@ -41,7 +43,9 @@ class Landing extends React.PureComponent {
             </span>
           </h1>
           <Counter endDate={settings.startDate} isLanding={true} copy={this.copy} />
-          <button className={'landing-button'}>{this.copy.button}</button>
+          <BaseLink className="landing-button" link={settings.subscribelink}>
+            {this.copy.button}
+          </BaseLink>
         </div>
       </section>
     );

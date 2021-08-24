@@ -2,6 +2,10 @@ import logo from '../assets/images/logo_fake-artists.png';
 
 export default {
   copyright: 'text_copyright',
+  privacy: {
+    copy: 'privacy',
+    link: 'https://www.termsfeed.com/live/dd1a79bb-4c18-467e-9e40-ae31c0642127'
+  },
   links: [
     // {
     //   type: 'link',
@@ -11,7 +15,8 @@ export default {
     {
       type: 'image-link',
       image: logo,
-      path: 'https://fakeartists.net/'
+      page: 'https://fakeartists.net/',
+      insta: 'https://www.instagram.com/wearefakeartists/'
     }
   ]
 };

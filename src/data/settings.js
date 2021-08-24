@@ -23,6 +23,8 @@ settings.useShadows = false;
 settings.changeOnMoveMouse = true;
 settings.autoUpdateBlendShapes = true;
 
+settings.subscribelink = 'https://lxz58blppcq.typeform.com/to/XaV97EJr';
+
 //google connect
 settings.clientID = process.env.REACT_APP_CLIENT_ID;
 
