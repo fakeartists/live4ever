@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import animate, { Circ } from '../../util/gsap-animate';
 
 import { setAssetPreviewState } from '../../redux/modules/asset-preview';
+import { setAssetData } from '../../redux/modules/asset-preview';
 import { getCopy } from '../../data/get-site-data';
 
 import AvatarWebGL from '../AvatarWebGL/AvatarWebGL';
@@ -19,10 +20,12 @@ class AssetPreview extends React.PureComponent {
     super(props);
     this.copy = getCopy(this.props.language, 'assetpreview');
     this.isOpen = false;
+    this.assetData = null;
   }
 
   componentDidMount() {
     this.props.setAssetPreviewState(this.props.isOpen);
+    this.props.setAssetData(this.props.assetData);
     animate.set(this.container, { autoAlpha: 0 });
   }
 
@@ -66,7 +69,7 @@ class AssetPreview extends React.PureComponent {
       >
         <div className="webgl-bg" onClick={this.handleButtonClick} />
         <div className="webgl-container">
-          <AvatarWebGL />
+          <AvatarWebGL data={this.props.assetData} />
         </div>
       </section>
     );
@@ -76,23 +79,28 @@ class AssetPreview extends React.PureComponent {
 AssetPreview.propTypes = checkProps({
   language: PropTypes.string,
   setAssetPreviewState: PropTypes.func,
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  setAssetData: PropTypes.func,
+  assetData: PropTypes.object
 });
 
 AssetPreview.defaultProps = {
   language: 'en',
-  isOpen: false
+  isOpen: false,
+  assetData: {}
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isOpen: state.assetPreviewState
+    isOpen: state.assetPreviewState.isOpen,
+    assetData: state.assetPreviewState.assetData
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setAssetPreviewState: val => dispatch(setAssetPreviewState(val))
+    setAssetPreviewState: val => dispatch(setAssetPreviewState(val)),
+    setAssetData: val => dispatch(setAssetData(val))
   };
 };
 

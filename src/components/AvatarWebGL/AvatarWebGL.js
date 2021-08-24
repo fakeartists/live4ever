@@ -34,6 +34,20 @@ class AvatarWebGL extends React.PureComponent {
     // if (this.node) {
     //   this.webglApp = new WebGLAPP();
     // }
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(this.props.data);
+
+    // Update the webgl app
+
+    //const { width, height, path } = this.props;
+    // if (this.webglApp) {
+    //   if (width !== prevProps.width || height !== prevProps.height) {
+    //     this.webglApp.resize(width, height);
+    //   }
+    //   this.webglApp.updateState({ path }, prevProps);
+    // }
 
     let isPortrait = window.innerHeight > window.innerWidth;
 
@@ -57,25 +71,20 @@ class AvatarWebGL extends React.PureComponent {
     let renderer = new THREE.WebGLRenderer();
     renderer.setSize(this.node.clientWidth, this.node.clientHeight);
 
+    // TODO Fix this
+    this.mount.innerHTML = '';
     this.mount.appendChild(renderer.domElement);
 
     // Head
-    let head = 'jean'; //document.body.dataset.head;
+    let head = this.props.data.audio.split('.')[0]; // TODO Fix this
+    console.log(head);
 
     // Background image
-    let bgImage;
-    if (head === 'nathan') {
-      bgImage = 'img/bg_nathan.jpg';
-    } else if (head === 'lila') {
-      bgImage = 'img/bg_lila.jpg';
-    } else if (head === 'jean') {
-      bgImage = '/assets/images/assets/bg_jean.jpg';
-    } else if (head === 'mckevin') {
-      bgImage = 'img/bg_mckevin.jpg';
-    }
+    let bgImage = '/assets/images/assets/';
+    bgImage += this.props.data.background;
 
-    const loader = new THREE.TextureLoader();
-    const texture = loader.load(bgImage, () => {
+    const textureLoader = new THREE.TextureLoader();
+    const texture = textureLoader.load(bgImage, () => {
       let backgroundMesh = new THREE.Mesh(
         new THREE.PlaneGeometry(200, 200),
         new THREE.MeshBasicMaterial({
@@ -88,43 +97,44 @@ class AvatarWebGL extends React.PureComponent {
       scene.add(backgroundMesh);
     });
 
-    // ???
+    // 3D models
+    const loader = new OBJLoader();
     let headModel;
     let objectModel1;
     let objectModel2;
 
-    if (head === 'jean') {
-      const loader = new OBJLoader();
-
-      // 3D Head
-      const mtlLoader = new MTLLoader();
-      mtlLoader.load('/assets/models/jean/head3d.obj.mtl', function(materials) {
-        materials.preload();
-        loader.setMaterials(materials);
-        loader.load(
-          '/assets/models/jean/head3d.obj',
-          function(object) {
-            if (isPortrait) {
-              // Mobile
-              object.position.set(0, 10, 0);
-              object.scale.set(0.03, 0.03, 0.03);
-            } else {
-              // Desktop
-              object.scale.set(0.05, 0.05, 0.05);
-            }
-
-            scene.add(object);
-            headModel = object;
-          },
-          function(xhr) {
-            console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-          },
-          function(error) {
-            console.log('An error happened');
+    // 3D Head
+    let headPath = this.props.data.head_model;
+    const mtlLoader = new MTLLoader();
+    mtlLoader.load('/assets/models/' + headPath + '.mtl', function(materials) {
+      materials.preload();
+      loader.setMaterials(materials);
+      loader.load(
+        '/assets/models/' + headPath,
+        function(object) {
+          if (isPortrait) {
+            // Mobile
+            object.position.set(0, 10, 0);
+            object.scale.set(0.03, 0.03, 0.03);
+          } else {
+            // Desktop
+            object.scale.set(0.05, 0.05, 0.05);
           }
-        );
-      });
 
+          scene.add(object);
+          headModel = object;
+        },
+        function(xhr) {
+          console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+        },
+        function(error) {
+          console.log('An error happened');
+        }
+      );
+    });
+
+    if (head === 'nathan') {
+    } else if (head === 'jean') {
       // Object
       const texture = new THREE.CubeTextureLoader().load([
         '/assets/models/jean/cube_pink.jpg',
@@ -240,17 +250,6 @@ class AvatarWebGL extends React.PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    //update the webgl app
-    //const { width, height, path } = this.props;
-    // if (this.webglApp) {
-    //   if (width !== prevProps.width || height !== prevProps.height) {
-    //     this.webglApp.resize(width, height);
-    //   }
-    //   this.webglApp.updateState({ path }, prevProps);
-    // }
-  }
-
   render() {
     return (
       <section
@@ -266,12 +265,14 @@ class AvatarWebGL extends React.PureComponent {
 }
 
 AvatarWebGL.propTypes = checkProps({
+  data: PropTypes.object,
   width: PropTypes.number,
   height: PropTypes.number,
   path: PropTypes.string
 });
 
 AvatarWebGL.defaultProps = {
+  data: null,
   width: window.innerWidth,
   height: window.innerHeight,
   path: ''

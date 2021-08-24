@@ -57,7 +57,12 @@ export default [
     token_id: 'FΔKE_NUMB3S',
     blockchain: 'PYRΔMID',
     hot_sale: false,
-    status: 'closed'
+    status: 'closed',
+    webgl: {
+      audio: 'nathan.mp3',
+      background: 'bg_nathan.jpg',
+      head_model: 'nathan/head3d.obj'
+    }
   },
   {
     _id: 'fk_miquela',
@@ -97,7 +102,12 @@ export default [
     token_id: 'FΔKE_NUMB3S',
     blockchain: 'PYRΔMID',
     hot_sale: false,
-    status: 'closed'
+    status: 'closed',
+    webgl: {
+      audio: 'jean.mp3',
+      background: 'bg_jean.jpg',
+      head_model: 'jean/head3d.obj'
+    }
   },
   {
     _id: 'fk_imma',

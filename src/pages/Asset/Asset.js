@@ -9,6 +9,7 @@ import { setAssetLoaded } from '../../redux/modules/asset';
 import { setMineState } from '../../redux/modules/mine';
 import { setLoginState } from '../../redux/modules/login';
 import { setAssetPreviewState } from '../../redux/modules/asset-preview';
+import { setAssetData } from '../../redux/modules/asset-preview';
 import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import { getCopy } from '../../data/get-site-data';
@@ -72,6 +73,7 @@ class Asset extends React.PureComponent {
   onOpenPreview = () => {
     console.log('open');
     this.props.setAssetPreviewState(true);
+    this.props.setAssetData(this.state.asset.webgl);
   };
 
   render() {
@@ -104,7 +106,8 @@ Asset.propTypes = checkProps({
   setAssetLoaded: PropTypes.func,
   setMineState: PropTypes.func,
   setLoginState: PropTypes.func,
-  setAssetPreviewState: PropTypes.func
+  setAssetPreviewState: PropTypes.func,
+  setAssetData: PropTypes.func
 });
 
 Asset.defaultProps = {
@@ -124,7 +127,8 @@ const mapDispatchToProps = dispatch => {
     setAssetLoaded: val => dispatch(setAssetLoaded(val)),
     setMineState: val => dispatch(setMineState(val)),
     setLoginState: val => dispatch(setLoginState(val)),
-    setAssetPreviewState: val => dispatch(setAssetPreviewState(val))
+    setAssetPreviewState: val => dispatch(setAssetPreviewState(val)),
+    setAssetData: val => dispatch(setAssetData(val))
   };
 };
 
