@@ -274,6 +274,34 @@
   }
 }
 
+@mixin borderless-button {
+  background-color: transparent; //$black;
+  padding: px-to-rem(13) px-to-rem(35);
+  font-size: px-to-rem(16);
+  border: 1px $green solid;
+  box-sizing: border-box;
+  color: $green;
+
+  a {
+    color: $green;
+  }
+
+  &:hover {
+    cursor: pointer;
+    // background-color: $greentint-dark;
+    background-color: $green;
+    color: $black;
+
+    a {
+      color: $black;
+    }
+  }
+
+  a.active {
+    text-decoration: none;
+  }
+}
+
 @mixin main-button-cta {
   background-color: $green;
   padding: px-to-rem(15) px-to-rem(20) px-to-rem(13) px-to-rem(20);

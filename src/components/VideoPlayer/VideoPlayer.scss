@@ -92,4 +92,11 @@ $video-player-controls-transition: 0.2s;
       bottom: $video-player-captions-bottom-pos;
     }
   }
+
+  .button_skip {
+    position: absolute;
+    top: px-to-rem(30);
+    right: px-to-rem(30);
+    @include borderless-button;
+  }
 }

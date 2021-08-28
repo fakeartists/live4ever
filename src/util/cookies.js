@@ -9,6 +9,7 @@ export function initCookie() {
     firsttime: true,
     onboarding: false,
     variation: 0,
+    promotionbanner: false,
     bidData: {
       bid: 0,
       level: 1,

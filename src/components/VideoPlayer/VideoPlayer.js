@@ -259,6 +259,11 @@ export default class VideoPlayer extends React.PureComponent {
     }
   };
 
+  onSkip = () => {
+    this.props.onEnd();
+    this.close();
+  };
+
   render() {
     const cookiedata = getCookie();
     if (cookiedata.firsttime) {
@@ -320,6 +325,9 @@ export default class VideoPlayer extends React.PureComponent {
               onTimeUpdate={this.updateTime}
             />
           )}
+          <button className="button_skip" onClick={this.onSkip}>
+            Skip
+          </button>
         </div>
       );
     } else {

@@ -24,6 +24,7 @@ class Mine extends React.PureComponent {
     const cookiedata = getCookie();
     this.level = cookiedata && cookiedata.bidData && cookiedata.bidData.level ? cookiedata.bidData.level : 1;
     this.bid = cookiedata && cookiedata.bidData && cookiedata.bidData.bid ? cookiedata.bidData.bid : 0;
+    this.animatebar = !cookiedata.promotionbanner;
 
     this.count = 25;
 
@@ -122,8 +123,10 @@ class Mine extends React.PureComponent {
     const ads = this.state.ads.filter(item => item.props.id !== id);
     let sharetime = this.bid % 10 === 0;
 
-    if (sharetime) {
+    if (sharetime && this.animatebar) {
       this.mineNav.getWrappedInstance().animateShareBarIn();
+      updateCookie({ promotionbanner: true });
+      this.animatebar = false;
     }
 
     this.addAd(0, ads);
