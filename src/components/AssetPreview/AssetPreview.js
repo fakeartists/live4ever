@@ -56,6 +56,8 @@ class AssetPreview extends React.PureComponent {
   handleButtonClick = () => {
     this.animateOut().then(() => {
       this.props.setAssetPreviewState(false);
+      // This wil also stop the WebGL audio
+      this.props.setAssetData({});
     });
   };
 

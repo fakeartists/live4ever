@@ -17,9 +17,7 @@ import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils.js';
 import './AvatarWebGL.scss';
 
 class AvatarWebGL extends React.PureComponent {
-  static defaultProps = {
-    audio: new Audio('/assets/sounds/jean.mp3')
-  };
+  static defaultProps = {};
 
   //get webgl instance
   // static getWebglApp() {
@@ -38,6 +36,15 @@ class AvatarWebGL extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     console.log(this.props.data);
+
+    // Check if the object is empty
+    if (Object.keys(this.props.data).length === 0) {
+      this.mount.innerHTML = '';
+      return;
+    }
+
+    // Play audio
+    this.audioRef.play();
 
     // Update the webgl app
 
@@ -250,7 +257,25 @@ class AvatarWebGL extends React.PureComponent {
     }
   }
 
+  handleDivClick = () => {
+    this.audioRef.currentTime = 0;
+    this.audioRef.play();
+  };
+
   render() {
+    // Audio
+    let audioHTML;
+    if (this.props.data && this.props.data.audio) {
+      audioHTML = (
+        <audio
+          ref={node => {
+            this.audioRef = node;
+          }}
+          src={'/assets/sounds/' + this.props.data.audio}
+        />
+      );
+    }
+
     return (
       <section
         className={classnames(`AvatarWebGL`)}
@@ -258,7 +283,8 @@ class AvatarWebGL extends React.PureComponent {
           this.node = node;
         }}
       >
-        <div ref={ref => (this.mount = ref)} />
+        <div ref={ref => (this.mount = ref)} onClick={this.handleDivClick} />
+        {audioHTML}
       </section>
     );
   }
