@@ -103,7 +103,8 @@ class ADBanner extends React.PureComponent {
     this.textStyle = {
       //'text-shadow': '2px 2px $pink',
       fontSize: fontSize,
-      WebkitTextStroke: textColorOLNormal,
+      //WebkitTextStroke: textColorOLNormal,
+      textShadow: '0px 2px ' + textColorOLNormal,
       color: textColorNormal
     };
   };

@@ -19,7 +19,7 @@ export default {
     },
     {
       text: 'text_store',
-      path: 'https://fakeartists.store'
+      path: 'https://fakeartists.net/fake-store'
     }
   ]
 };

@@ -3,8 +3,8 @@
 .MineNav {
   position: fixed;
   width: calc(100% - 1px);
-  top: $navbar-height-mobile;
-  margin-top: px-to-rem(20);
+  top: 0; //$navbar-height-mobile;
+  margin-top: 0; //px-to-rem(20);
   left: 0;
   z-index: 999;
 
@@ -85,8 +85,8 @@
   }
 
   @media (min-width: $layout-large) {
-    top: $navbar-height-desktop;
-    margin-top: px-to-rem(20);
+    top: 0; //$navbar-height-desktop;
+    margin-top: 0; //px-to-rem(20);
   }
 
   .label {

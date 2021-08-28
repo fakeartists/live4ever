@@ -25,7 +25,14 @@ class Mine extends React.PureComponent {
     this.level = cookiedata && cookiedata.bidData && cookiedata.bidData.level ? cookiedata.bidData.level : 1;
     this.bid = cookiedata && cookiedata.bidData && cookiedata.bidData.bid ? cookiedata.bidData.bid : 0;
 
-    this.count = 5;
+    this.count = 25;
+
+    const currentLevel = Math.floor(this.bid / this.count);
+    if (this.level > currentLevel) {
+      this.level = currentLevel;
+      this.saveData(this.level, this.bid);
+    }
+
     this.currentKey = 0;
     this.isOpen = false;
     this.state = { ads: [] };
@@ -65,7 +72,10 @@ class Mine extends React.PureComponent {
 
   startAds = () => {
     const div = this.bid % this.level;
-    this.addAd(this.count - div, []);
+    let toAdd = this.count - div;
+    toAdd = toAdd <= 0 ? this.count : toAdd;
+
+    this.addAd(toAdd, []);
     this.adsadded = true;
   };
 
@@ -123,7 +133,7 @@ class Mine extends React.PureComponent {
       this.level = currentLevel;
       this.props.setLevelUpState(true);
       animate
-        .to({ alpha: 0 }, 3, {
+        .to({ alpha: 0 }, 1.8, {
           alpha: 1
         })
         .then(() => {

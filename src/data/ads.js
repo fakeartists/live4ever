@@ -23,8 +23,8 @@ export default {
   colors: [
     { normal: '#ffffff', bold: '#ffffff', outline_normal: '', outline_bold: '' },
     { normal: '#ff00fa', bold: '#ffffff', outline_normal: '#ffffff', outline_bold: '#ff00fa' },
-    { normal: '#000000', bold: '#ff00fa', outline_normal: '#ffffff', outline_bold: '#ffffff' },
-    { normal: '#000000', bold: '#00ff00', outline_normal: '#ffffff', outline_bold: '#ffffff' },
+    { normal: '#ffffff', bold: '#ff00fa', outline_normal: '#000000', outline_bold: '#000000' },
+    { normal: '#ffffff', bold: '#00ff00', outline_normal: '#000000', outline_bold: '#000000' },
     { normal: '#00ff00', bold: '#00ff00', outline_normal: '#000000', outline_bold: '#000000' },
     { normal: '#ff00fa', bold: '#ff00fa', outline_normal: '#ffffff', outline_bold: '#ffffff' }
   ],

@@ -17,15 +17,17 @@
 
   .mine-close {
     position: absolute;
-    top: px-to-rem(50);
-    right: px-to-rem(50);
+    bottom: px-to-rem(40);
+    right: px-to-rem(40);
     @include main-button;
+    background-color: $black;
     cursor: pointer;
+    z-index: 910;
   }
 
   .mine-container {
     position: absolute;
-    top: $navbar-height-mobile;
+    top: calc(#{$navbar-height-mobile} - 80px);
     left: 0;
     width: 100%;
     height: 100%;

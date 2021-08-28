@@ -65,6 +65,7 @@ Footer.propTypes = checkProps({
   copy: PropTypes.object,
   className: PropTypes.string,
   copyright: PropTypes.string,
+  privacy: PropTypes.object,
   isLanding: PropTypes.bool,
   links: PropTypes.arrayOf(
     PropTypes.shape({

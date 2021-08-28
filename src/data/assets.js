@@ -12,7 +12,7 @@ export default [
     highestbid: 0.0,
     reserve: 5000.0,
     clicks: 0,
-    ends: 'August 20, 2021 10:13:00',
+    ends: 'September 20, 2021 10:13:00',
     chain_info: '30210A4283E7831218041C30495E9EDD',
     contract_address: '67E541C8105B5B734703F8DACE50D5CA0EE4891203F16036C4FBBA639B169671',
     token_id: 'FΔKE_NUMB3S',

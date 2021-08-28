@@ -99,6 +99,17 @@ $main-top-nav-link-font-size: 2rem !default;
         @include main-button;
         padding: px-to-rem(13) px-to-rem(15) px-to-rem(11) px-to-rem(15);
 
+        &.active {
+          color: $black;
+          border: 1px $green solid;
+          background-color: $green;
+
+          &:hover {
+            color: $green;
+            background-color: transparent;
+          }
+        }
+
         a {
           text-decoration: none;
         }

@@ -46,6 +46,16 @@ class About extends React.PureComponent {
         {this.copy.text.map((item, index) => {
           return <p key={index}>{item}</p>;
         })}
+        <div className="contact">
+          <h1>{this.copy.contact.title}</h1>
+          {this.copy.contact.text.map((item, index) => {
+            return <p key={index}>{item}</p>;
+          })}
+        </div>
+        <div className="disclaimer">
+          <h1>{this.copy.disclaimer.title}</h1>
+          <p>{this.copy.disclaimer.text}</p>
+        </div>
       </section>
     );
   }

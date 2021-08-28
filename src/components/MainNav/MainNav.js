@@ -12,6 +12,7 @@ import BaseLink from '../BaseLink/BaseLink';
 import HamburgerButton, { STATES } from '../HamburgerButton/HamburgerButton';
 import { getCopy } from '../../data/get-site-data';
 import layout from '../../data/layout';
+import { checkCookieLogin } from '../../util/cookies';
 
 import { ReactComponent as PyramidIcon } from '../../assets/svg/pyramid-icon.svg';
 
@@ -49,7 +50,6 @@ class MainTopNav extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     const { width } = this.props;
-
     this.xlarge = width > layout.xlarge;
     this.handleScroll(null);
   }
@@ -88,6 +88,8 @@ class MainTopNav extends React.PureComponent {
   };
 
   render() {
+    let logged = checkCookieLogin();
+
     return (
       <header className={classnames('MainNav', this.props.className)} ref={el => (this.container = el)}>
         {this.props.ariaSiteTitle && <h1 className="only-aria-visible">{this.props.ariaSiteTitle}</h1>}
@@ -113,7 +115,11 @@ class MainTopNav extends React.PureComponent {
                 {this.props.links.map((link, index) => {
                   if (link.path === 'login') {
                     return (
-                      <li key={index} className="nav-item" onClick={this.handleLoginClick}>
+                      <li
+                        key={index}
+                        className={'nav-item' + (logged ? ' active' : '')}
+                        onClick={this.handleLoginClick}
+                      >
                         {this.copy[link.text]}
                       </li>
                     );
@@ -158,6 +164,7 @@ MainTopNav.propTypes = checkProps({
   isMobileMenuOpen: PropTypes.bool,
   setIsMobileMenuOpen: PropTypes.func,
   setLoginState: PropTypes.func,
+  loginState: PropTypes.bool,
   width: PropTypes.number,
   height: PropTypes.number
 });
@@ -172,7 +179,8 @@ MainTopNav.defaultProps = {
 
 const mapStateToProps = state => ({
   width: selectWindowWidth(state),
-  height: selectWindowHeight(state)
+  height: selectWindowHeight(state),
+  loginState: state.loginState
 });
 
 const mapDispatchToProps = dispatch => {

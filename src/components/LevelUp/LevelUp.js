@@ -17,23 +17,10 @@ class LevelUp extends React.PureComponent {
     this.box = null;
 
     this.items = [];
-    this.styles = [];
     this.refs = [];
+    this.styles = [];
 
-    let fires = 30;
-    for (let i = 0; i < fires; i++) {
-      let width = 100 + Math.random() * 200;
-      let height = width;
-      let x = window.innerWidth / 2 + (-(window.innerWidth / 2) + Math.random() * window.innerWidth) - width / 2;
-      let y = window.innerHeight + height + Math.random() * height;
-
-      this.styles.push({
-        left: x + 'px',
-        top: y + 'px',
-        width: width + 'px',
-        height: height + 'px'
-      });
-    }
+    this.createEmojis();
   }
 
   componentDidMount() {
@@ -57,19 +44,44 @@ class LevelUp extends React.PureComponent {
 
     if (this.isOpen) {
       let val = 0;
+      let imgPosX = -340 * Math.floor(Math.random() * 4);
+      let imgPosY = -340 * Math.floor(Math.random() * 4);
+
       this.refs.forEach(element => {
         if (element) {
+          element.style.backgroundPosition = imgPosX + 'px ' + imgPosY + 'px';
           let y = -(window.innerHeight / 1.5 + (Math.random() * window.innerHeight) / 2);
           let delay = val * 0.01 + Math.random() * 1;
-          animate.to(element, 2 + Math.random() * 2, { y: y, ease: Expo.easeOut, delay: delay });
+          animate.to(element, 1.5 + Math.random() * 1.5, { y: y, ease: Expo.easeOut, delay: delay });
         }
         val++;
       });
     }
   }
 
+  createEmojis = () => {
+    let emojis = 30;
+    let imgPosX = -340 * Math.floor(Math.random() * 4);
+    let imgPosY = -340 * Math.floor(Math.random() * 4);
+
+    for (let i = 0; i < emojis; i++) {
+      let scale = 0.3 + Math.random() * 0.7;
+      let width = 320 * scale;
+      let height = width;
+      let x = window.innerWidth / 2 + (-(window.innerWidth / 2) + Math.random() * window.innerWidth) - width / 2;
+      let y = window.innerHeight + height + Math.random() * height;
+
+      this.styles.push({
+        backgroundPosition: imgPosX + 'px ' + imgPosY + 'px',
+        transform: 'translate3d(0, 0, 0) scale(' + scale + ')',
+        left: x + 'px',
+        top: y + 'px'
+      });
+    }
+  };
+
   animateIn = () => {
-    animate.to(this.container, 0.3, {
+    animate.to(this.container, 0.2, {
       autoAlpha: 1,
       ease: Circ.easeOut
     });
@@ -81,7 +93,7 @@ class LevelUp extends React.PureComponent {
   };
 
   animateOut = () => {
-    animate.to(this.container, 0.5, { autoAlpha: 0, ease: Circ.easeOut }).then(() => {
+    animate.to(this.container, 0.4, { autoAlpha: 0, ease: Circ.easeOut }).then(() => {
       animate.set(this.box, { scale: 0.2 });
       this.refs.forEach(element => {
         if (element) {
@@ -95,14 +107,15 @@ class LevelUp extends React.PureComponent {
     this.refs = [];
     this.items = [];
     let index = 0;
+
     this.styles.forEach(element => {
-      this.items.push(<span key={index} style={element} className="fire" ref={el => this.refs.push(el)} />);
+      this.items.push(<span key={index} style={element} className="emoji" ref={el => this.refs.push(el)} />);
       index++;
     });
 
     return (
       <div className="LevelUp" ref={el => (this.container = el)}>
-        <div className="level-fire">{this.items}</div>
+        <div className="level-emoji">{this.items}</div>
         <div className="level-message" ref={el => (this.box = el)}>
           <WindowsHeader isActive={false} />
           <p>{this.copy.title}</p>
