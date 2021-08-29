@@ -88,24 +88,49 @@
           color: $green;
           font-size: px-to-rem(22);
           margin-bottom: px-to-rem(20);
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         .gallery-item-info-title {
-          font-size: px-to-rem(18);
+          font-size: px-to-rem(30);
           margin: 0 0 px-to-rem(20) 0;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+          @media (min-width: $layout-large) {
+            font-size: px-to-rem(18);
+          }
         }
 
         .gallery-item-info-bid {
           @include font-special();
-          font-size: px-to-rem(24);
+          font-size: px-to-rem(36);
           color: $green;
           margin: px-to-rem(10) 0 px-to-rem(10) 0;
+
+          @media (min-width: $layout-large) {
+            font-size: px-to-rem(24);
+          }
         }
 
         .gallery-item-info-button {
           @include item-button;
+          text-transform: uppercase;
           width: 100%;
           margin-top: px-to-rem(20);
+
+          padding: px-to-rem(12) px-to-rem(3) px-to-rem(10) px-to-rem(3);
+          font-size: px-to-rem(24);
+
+          @media (min-width: $layout-large) {
+            padding: px-to-rem(6) px-to-rem(3) px-to-rem(3) px-to-rem(3);
+            font-size: px-to-rem(16);
+          }
+
+          &.active {
+            text-transform: uppercase;
+          }
         }
       }
     }
@@ -147,7 +172,11 @@
 
           .gallery-item-title {
             color: $white;
-            font-size: px-to-rem(14);
+            font-size: px-to-rem(24);
+
+            @media (min-width: $layout-large) {
+              font-size: px-to-rem(14);
+            }
           }
 
           .gallery-item-info-title {
@@ -167,7 +196,11 @@
         width: 100%;
 
         h1 {
-          @include title;
+          @include title-mobile;
+
+          @media (min-width: $layout-large) {
+            @include title;
+          }
         }
       }
     }

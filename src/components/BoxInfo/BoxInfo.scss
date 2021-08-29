@@ -51,6 +51,8 @@
   }
 
   .box-info-image {
+    display: none;
+    visibility: hidden;
     width: 30%;
     background-position: center center;
     overflow: hidden;
@@ -63,11 +65,43 @@
       min-height: 100%;
       min-width: 100%;
     }
+
+    @media (min-width: $layout-large) {
+      display: block;
+      visibility: visible;
+    }
   }
 
   .box-info-data {
-    width: 70%;
-    padding: 0 px-to-rem(20) 0 px-to-rem(30);
+    width: 100%;
+    padding: 0 px-to-rem(10) 0 px-to-rem(10);
+
+    @media (min-width: $layout-large) {
+      width: 70%;
+      padding: 0 px-to-rem(20) 0 px-to-rem(30);
+    }
+
+    .box-info-data-image {
+      display: block;
+      visibility: visible;
+      width: 100%;
+      background-position: center center;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        min-height: 100%;
+        min-width: 100%;
+      }
+
+      @media (min-width: $layout-large) {
+        display: none;
+        visibility: hidden;
+      }
+    }
 
     .box-info-data-title {
       @include font-title();
@@ -75,10 +109,16 @@
       float: left;
       width: 100%;
       font-weight: 100;
-      text-align: left;
       box-sizing: border-box;
-      font-size: px-to-rem(30);
       margin: px-to-rem(-5) 0 px-to-rem(5) 0;
+
+      text-align: center;
+      font-size: px-to-rem(24);
+
+      @media (min-width: $layout-large) {
+        text-align: left;
+        font-size: px-to-rem(30);
+      }
     }
 
     .box-info-data-edition,
@@ -89,18 +129,38 @@
       float: left;
       width: 100%;
       color: $white;
-      text-align: left;
-      font-size: px-to-rem(10);
-      margin: 0;
+
+      text-align: center;
+      font-size: px-to-rem(18);
+      margin: px-to-rem(8) 0 px-to-rem(20) 0;
+
+      @media (min-width: $layout-large) {
+        text-align: left;
+        font-size: px-to-rem(10);
+        margin: 0;
+      }
     }
 
     .box-info-desc {
-      margin: px-to-rem(20) 0 px-to-rem(20) 0;
+      font-size: px-to-rem(16);
+      margin: px-to-rem(30) 0 px-to-rem(20) 0;
+
+      @media (min-width: $layout-large) {
+        margin: px-to-rem(20) 0 px-to-rem(20) 0;
+        font-size: px-to-rem(10);
+      }
     }
 
     .box-info-status {
       position: relative;
       float: left;
+      width: 100%;
+
+      @media (min-width: $layout-large) {
+        width: auto;
+        position: absolute;
+        bottom: px-to-rem(30);
+      }
     }
 
     .box-info-status-top {
@@ -113,11 +173,16 @@
         position: relative;
         float: left;
         height: 100px;
-        max-width: 50%;
         box-sizing: border-box;
-        border-left: 1px solid $white;
-        padding-left: px-to-rem(30);
-        padding-right: px-to-rem(30);
+
+        border-left: 0;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+
+        @media (min-width: $layout-large) {
+          width: auto;
+        }
 
         &:first-child {
           border-left: none;
@@ -125,7 +190,7 @@
         }
 
         &:last-child {
-          max-width: 80%;
+          max-width: 100%;
           padding-right: 0;
         }
 
@@ -135,6 +200,31 @@
 
         &.single {
           max-width: 80%;
+        }
+
+        @media (min-width: $layout-large) {
+          border-left: 1px solid $whitetint;
+          padding-left: px-to-rem(30);
+          padding-right: px-to-rem(30);
+          max-width: 50%;
+
+          &:first-child {
+            border-left: none;
+            padding-left: 0;
+          }
+
+          &:last-child {
+            max-width: 80%;
+            padding-right: 0;
+          }
+
+          p {
+            float: none;
+          }
+
+          &.single {
+            max-width: 80%;
+          }
         }
       }
 
@@ -157,8 +247,13 @@
         margin-top: px-to-rem(14);
         margin-bottom: 0;
         color: $gray-tint;
-        text-align: left;
         font-size: px-to-rem(10);
+
+        text-align: center;
+
+        @media (min-width: $layout-large) {
+          text-align: left;
+        }
       }
     }
 
@@ -166,7 +261,12 @@
       position: relative;
       float: left;
       width: 100%;
-      margin-top: 80px;
+      bottom: auto;
+      margin-top: px-to-rem(30);
+
+      @media (min-width: $layout-large) {
+        margin-top: 50px;
+      }
 
       .box-info-status-bid {
         position: relative;
@@ -181,13 +281,23 @@
         text-transform: uppercase;
         text-decoration: none;
         width: 45%;
-        min-width: 200px;
-        max-width: 280px;
+
+        @media (min-width: $layout-large) {
+          min-width: 200px;
+          max-width: 280px;
+        }
 
         &.cta {
           @include main-button-cta;
-          width: 50%;
+          width: 100%;
           margin: 0 px-to-rem(20) px-to-rem(20) 0;
+          font-size: px-to-rem(30);
+
+          @media (min-width: $layout-large) {
+            width: 50%;
+            margin: 0 px-to-rem(20) px-to-rem(20) 0;
+            font-size: px-to-rem(16);
+          }
         }
       }
     }

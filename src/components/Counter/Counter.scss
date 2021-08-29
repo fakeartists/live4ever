@@ -95,6 +95,15 @@
 
   &.box {
     margin: 0;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media (min-width: $layout-large) {
+      width: 100%;
+      left: auto;
+      transform: none;
+    }
 
     ul {
       position: relative;

@@ -42,7 +42,7 @@ export default {
     title_edition: 'Edition',
     separator_edition: 'of',
     title_time: 'Time left',
-    button_box_home: 'Learn More',
+    button_box_home: 'Click Here!',
     button_box_asset: 'Bid For Free!',
     title_user_bid: 'Your Bid',
     title_reserve: 'Reserve price',
@@ -111,8 +111,10 @@ export default {
     },
     disclaimer: {
       title: 'DISCLAIMER',
-      text:
-        'Pyramid is an art project and a satire. It is in no way a serious venture nor a commercial effort and should be understood as an art project exploring our post-reality world.'
+      text: [
+        'Pyramid is an art project and a satire. It is in no way a serious venture nor a commercial effort and should be understood as an art project exploring our post-reality world.',
+        'Pyramid reflects on how new technologies generate an endless cycle of media hype and corporate greed. We hope you enjoy it.  Note that the creators believe in the potential of NFTs as a new way for digital artists to finally live of their work.'
+      ]
     }
   },
   footer: {

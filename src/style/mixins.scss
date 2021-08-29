@@ -241,8 +241,21 @@
   text-transform: uppercase;
   color: $pink;
   font-size: px-to-rem(24);
+  background-color: transparent;
   line-height: px-to-rem(20);
   text-align: left;
+  box-sizing: border-box;
+}
+
+@mixin title-mobile {
+  margin: px-to-rem(0) 0 px-to-rem(30) 0;
+  @include font-title;
+  text-transform: uppercase;
+  color: $white;
+  background-color: $pink;
+  font-size: px-to-rem(30);
+  line-height: px-to-rem(50);
+  text-align: center;
   box-sizing: border-box;
 }
 

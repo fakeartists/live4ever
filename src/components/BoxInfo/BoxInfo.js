@@ -14,6 +14,8 @@ class BoxInfo extends React.PureComponent {
   async componentDidMount() {}
 
   render() {
+    console.log('render');
+
     let classSingle = this.props.isSingle ? 'single' : '';
     let description;
     let bid;
@@ -108,6 +110,9 @@ class BoxInfo extends React.PureComponent {
                 ' ' +
                 this.props.data.sets}
             </p>
+            <div className="box-info-data-image" onClick={this.props.previewFunction}>
+              <img src={this.props.data.image} alt={this.props.data.title} />
+            </div>
             {description}
             <div className="box-info-status">
               <div className="box-info-status-top">

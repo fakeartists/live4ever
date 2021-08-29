@@ -54,7 +54,9 @@ class About extends React.PureComponent {
         </div>
         <div className="disclaimer">
           <h1>{this.copy.disclaimer.title}</h1>
-          <p>{this.copy.disclaimer.text}</p>
+          {this.copy.disclaimer.text.map((item, index) => {
+            return <p key={index}>{item}</p>;
+          })}
         </div>
       </section>
     );

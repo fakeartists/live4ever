@@ -19,8 +19,11 @@
     background-color: transparent;
     padding: px-to-rem(20) 0;
     color: $green;
-    max-height: 700px;
-    height: 700px;
+
+    @media (min-width: $layout-large) {
+      max-height: 700px;
+      height: 700px;
+    }
 
     .home-header-wrapper {
       position: relative;
@@ -54,24 +57,41 @@
       &.left {
         padding: px-to-rem(20) $navbar-padding-mobile;
         box-sizing: border-box;
-        width: calc(70% - #{px-to-rem(20)});
+        width: 100%;
         height: 100%;
-        margin-right: px-to-rem(20);
 
         @media (min-width: $layout-large) {
           padding: px-to-rem(30) $navbar-padding-desktop;
+          margin-right: px-to-rem(20);
         }
 
         h1 {
-          @include title;
+          @include title-mobile;
+
+          @media (min-width: $layout-large) {
+            @include title;
+          }
         }
       }
 
       &.right {
         position: relative;
         float: left;
-        width: 30%;
-        height: 100%;
+        width: 100%;
+        height: px-to-rem(450);
+        margin-top: px-to-rem(20);
+      }
+
+      @media (min-width: $layout-large) {
+        &.left {
+          width: calc(70% - #{px-to-rem(20)});
+        }
+
+        &.right {
+          margin-top: 0;
+          width: 30%;
+          height: 100%;
+        }
       }
     }
   }
