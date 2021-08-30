@@ -1,33 +1,20 @@
 @import 'src/style/shared.scss';
 
-$hamburger-nav-bg-color: #eee !default;
-$hamburger-nav-padding: 2rem !default;
-$hamburger-nav-links-margin: 2rem !default;
-$hamburger-nav-link-font-size: 2rem !default;
-$hamburger-nav-idle-link-color: rgba(#000, 0.6) !default;
-$hamburger-nav-hover-link-color: rgba(#000, 1) !default;
-$hamburger-nav-active-link-color: rgba(#000, 1) !default;
-$hamburger-nav-idle-link-decoration: none !default;
-$hamburger-nav-hover-link-decoration: none !default;
-$hamburger-nav-active-link-decoration: underline !default;
-$hamburger-nav-transition: 0.2s !default;
-
 .HamburgerMenu {
   position: fixed;
   top: $navbar-height-mobile;
   right: 0;
   width: 100%;
   height: calc(100% - #{$navbar-height-mobile});
-  background: $hamburger-nav-bg-color;
-  padding: $hamburger-nav-padding;
+  background: $blacktint;
+  padding: px-to-rem(20);
   transform: translateX(100%);
-  transition: $hamburger-nav-transition;
-  @include z-index(sidebar);
+  transition: 0.2s;
   border-left: none;
-  background-color: transparent;
+  z-index: 800;
 
   @media (min-width: $layout-medium) {
-    max-width: px-to-rem(300);
+    max-width: px-to-rem(400);
     border-left: 1px solid rgba($black, 0.3);
   }
 
@@ -40,26 +27,44 @@ $hamburger-nav-transition: 0.2s !default;
 
     .nav-item {
       display: block;
-      margin-bottom: $hamburger-nav-links-margin;
+      margin: px-to-rem(40) px-to-rem(20);
 
       &:last-of-type {
         margin-bottom: 0;
       }
 
       a {
-        font-size: $hamburger-nav-link-font-size;
-        color: $hamburger-nav-idle-link-color;
-        text-decoration: $hamburger-nav-idle-link-decoration;
+        font-size: px-to-rem(30);
+        color: $green;
+        text-decoration: none;
 
         &.active {
-          color: $hamburger-nav-active-link-color;
-          text-decoration: $hamburger-nav-active-link-decoration;
+          color: $green;
+          text-decoration: line-through;
         }
 
         &:hover:not(.active) {
-          color: $hamburger-nav-hover-link-color;
-          text-decoration: $hamburger-nav-hover-link-decoration;
+          color: $pink;
+          text-decoration: none;
         }
+      }
+    }
+  }
+
+  .side-links {
+    position: absolute;
+    left: 0;
+    bottom: px-to-rem(10);
+    margin: px-to-rem(40) px-to-rem(50);
+
+    .side-link {
+      font-size: px-to-rem(24);
+      color: $green;
+      text-decoration: none;
+
+      &:hover {
+        color: $pink;
+        text-decoration: none;
       }
     }
   }

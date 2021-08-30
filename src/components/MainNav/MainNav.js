@@ -117,7 +117,7 @@ class MainTopNav extends React.PureComponent {
                     return (
                       <li
                         key={index}
-                        className={'nav-item' + (logged ? ' active' : '')}
+                        className={'nav-item' + (logged ? ' active login' : '')}
                         onClick={this.handleLoginClick}
                       >
                         {this.copy[link.text]}
@@ -125,14 +125,14 @@ class MainTopNav extends React.PureComponent {
                     );
                   } else {
                     return (
-                      <BaseLink
-                        key={index}
-                        link={link.path}
-                        className={classnames({
-                          active: cleanPath(this.props.location.pathname) === cleanPath(link.path)
-                        })}
-                      >
-                        <li className="nav-item">{this.copy[link.text]}</li>
+                      <BaseLink key={index} link={link.path}>
+                        <li
+                          className={classnames('nav-item', {
+                            active: cleanPath(this.props.location.pathname) === cleanPath(link.path)
+                          })}
+                        >
+                          {this.copy[link.text]}
+                        </li>
                       </BaseLink>
                     );
                   }

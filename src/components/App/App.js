@@ -44,6 +44,7 @@ class App extends React.PureComponent {
     super(props);
     this.language = 'en';
     this.footercopy = getCopy(this.language, 'footer');
+    this.headercopy = getCopy(this.language, 'header');
   }
 
   componentDidMount() {
@@ -114,6 +115,7 @@ class App extends React.PureComponent {
                 {...hamburgerNavData}
                 isMobileMenuOpen={this.props.isMobileMenuOpen}
                 setIsMobileMenuOpen={this.props.setIsMobileMenuOpen}
+                copy={{ ...this.footercopy, ...this.headercopy }}
               />
             </Fragment>
           )}

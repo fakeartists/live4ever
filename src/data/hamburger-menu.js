@@ -1,18 +1,7 @@
-import routeKeys from '../routes/keys';
+import mainnav from './main-nav';
+import footer from './footer';
 
 export default {
-  links: [
-    {
-      text: 'Home',
-      path: routeKeys.Home
-    },
-    {
-      text: 'Gallery',
-      path: routeKeys.Gallery
-    },
-    {
-      text: 'About',
-      path: routeKeys.About
-    }
-  ]
+  privacy: footer.privacy,
+  links: mainnav.links
 };

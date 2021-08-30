@@ -100,9 +100,20 @@ $main-top-nav-link-font-size: 2rem !default;
         padding: px-to-rem(13) px-to-rem(15) px-to-rem(11) px-to-rem(15);
 
         &.active {
+          text-decoration: line-through;
+
+          &:hover {
+            background-color: transparent;
+            color: $green;
+            cursor: default;
+          }
+        }
+
+        &.active.login {
           color: $black;
           border: 1px $green solid;
           background-color: $green;
+          text-decoration: none;
 
           &:hover {
             color: $green;

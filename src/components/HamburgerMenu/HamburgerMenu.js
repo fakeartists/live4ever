@@ -22,6 +22,7 @@ class HamburgerMenu extends React.PureComponent {
   }
 
   render() {
+    console.log(this.props);
     return (
       <nav
         className={classnames(`HamburgerMenu`, this.props.className, { open: this.props.isMobileMenuOpen })}
@@ -35,13 +36,18 @@ class HamburgerMenu extends React.PureComponent {
                   link={link.path}
                   className={classnames({ active: cleanPath(this.props.location.pathname) === cleanPath(link.path) })}
                 >
-                  {link.text}
+                  {this.props.copy[link.text]}
                 </BaseLink>
               </li>
             ))}
           </ul>
         )}
         {this.props.children}
+        <div className="side-links">
+          <BaseLink className="side-link" link={this.props.privacy.link}>
+            {this.props.copy[this.props.privacy.copy]}
+          </BaseLink>
+        </div>
       </nav>
     );
   }
@@ -49,18 +55,21 @@ class HamburgerMenu extends React.PureComponent {
 
 HamburgerMenu.propTypes = checkProps({
   className: PropTypes.string,
+  copy: PropTypes.object,
   links: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string,
       path: PropTypes.string
     })
   ),
+  privacy: PropTypes.object,
   closeOnRouteChange: PropTypes.bool,
   isMobileMenuOpen: PropTypes.bool,
   setIsMobileMenuOpen: PropTypes.func
 });
 
 HamburgerMenu.defaultProps = {
+  copy: {},
   setIsMobileMenuOpen: noop,
   closeOnRouteChange: true
 };

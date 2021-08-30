@@ -7,7 +7,7 @@
   background-color: transparent;
   z-index: 50;
   color: $green;
-  padding: px-to-rem(20) $navbar-padding-mobile;
+  padding: px-to-rem(40) $navbar-padding-mobile;
 
   @media (min-width: $layout-large) {
     padding: px-to-rem(20) $navbar-padding-desktop;
@@ -27,8 +27,14 @@
       padding: px-to-rem(20) 0 px-to-rem(6) 0;
 
       h1 {
-        @include title;
+        @include title-mobile;
         padding: 0 px-to-rem(20) 0 px-to-rem(20);
+        margin: 0 px-to-rem(20) px-to-rem(20) px-to-rem(20);
+
+        @media (min-width: $layout-large) {
+          @include title;
+          padding: 0 px-to-rem(20) 0 px-to-rem(20);
+        }
       }
     }
 

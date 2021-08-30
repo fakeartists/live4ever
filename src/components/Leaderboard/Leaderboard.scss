@@ -16,24 +16,27 @@
 
     td:nth-child(3),
     th:nth-child(3) {
-      width: 40%;
+      display: none;
+      width: 0%;
     }
 
     td:nth-child(2),
     th:nth-child(2) {
-      width: 13%;
+      width: 70%;
     }
 
     td:nth-child(1),
     th:nth-child(1) {
-      width: 8%;
+      width: 30%;
     }
 
     thead {
+      width: 100%;
       text-align: left;
       @include font-regular();
-      font-size: px-to-rem(12);
-      color: $green;
+      font-size: px-to-rem(18);
+      color: $black;
+      background-color: $green;
 
       tr {
         th {
@@ -46,9 +49,10 @@
     }
 
     tbody {
+      width: 100%;
       text-align: left;
       @include font-regular();
-      font-size: px-to-rem(16);
+      font-size: px-to-rem(20);
       color: $white;
       padding-top: 10px;
 
@@ -61,13 +65,15 @@
           img {
             float: left;
             position: relative;
-            width: px-to-rem(50);
+            width: px-to-rem(80);
           }
 
           p {
             float: left;
             position: relative;
-            padding-left: px-to-rem(14);
+            padding-left: px-to-rem(12);
+            word-wrap: break-word;
+            margin: px-to-rem(30) px-to-rem(10);
           }
         }
       }
@@ -75,6 +81,44 @@
       tr:last-child {
         td {
           border-bottom: none;
+        }
+      }
+    }
+
+    @media (min-width: $layout-large) {
+      td:nth-child(3),
+      th:nth-child(3) {
+        display: table-cell;
+        width: 70%;
+      }
+
+      td:nth-child(2),
+      th:nth-child(2) {
+        width: 20%;
+      }
+
+      td:nth-child(1),
+      th:nth-child(1) {
+        width: 10%;
+      }
+
+      thead {
+        font-size: px-to-rem(12);
+      }
+
+      tbody {
+        font-size: px-to-rem(16);
+
+        tr {
+          td {
+            img {
+              width: px-to-rem(50);
+            }
+
+            p {
+              margin: px-to-rem(15) px-to-rem(10);
+            }
+          }
         }
       }
     }

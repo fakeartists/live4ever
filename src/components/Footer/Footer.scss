@@ -47,18 +47,23 @@ $main-footer-copyright-font-size: 12px !default;
     position: absolute;
     bottom: 3rem;
     right: $navbar-padding-desktop;
+    display: none;
 
     .side-link {
       position: relative;
       float: left;
       color: $green;
-      font-size: px-to-rem(9);
+      font-size: px-to-rem(12);
       text-decoration: none;
       padding-left: px-to-rem(10);
 
       &:hover {
         color: $pink;
       }
+    }
+
+    @media (min-width: $layout-large) {
+      display: block;
     }
   }
 
