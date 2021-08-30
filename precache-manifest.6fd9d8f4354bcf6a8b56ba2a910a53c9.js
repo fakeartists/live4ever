@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "./static/media/DigitalNumbers-Regular.373a1f60.woff"
   },
   {
-    "revision": "bb194d5aede0cbc1e1ec",
+    "revision": "47131bcb48d729034cbf",
     "url": "./static/css/main.5a10a97f.chunk.css"
   },
   {
@@ -84,8 +84,8 @@ self.__precacheManifest = [
     "url": "./static/media/pyramid_loader_small.78dd89a7.gif"
   },
   {
-    "revision": "bb194d5aede0cbc1e1ec",
-    "url": "./static/js/main.bb194d5a.chunk.js"
+    "revision": "47131bcb48d729034cbf",
+    "url": "./static/js/main.47131bcb.chunk.js"
   },
   {
     "revision": "cfa68fcb9c4820c792475063dfda63bf",
@@ -168,7 +168,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "0098b38a1e0008d3c600a606e165e31b",
+    "revision": "4d708dce2fffe7b684218d70c037aa1f",
     "url": "./index.html"
   }
 ];
