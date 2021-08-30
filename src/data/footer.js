@@ -16,7 +16,8 @@ export default {
       type: 'image-link',
       image: logo,
       page: 'https://fakeartists.net/',
-      insta: 'https://www.instagram.com/wearefakeartists/'
+      insta: 'https://www.instagram.com/wearefakeartists/',
+      ticktok: 'https://vm.tiktok.com/ZMRkBTa2f/'
     }
   ]
 };

@@ -99,8 +99,25 @@ $main-footer-copyright-font-size: 12px !default;
         .instagram-ico {
           position: absolute;
           top: -10px;
-          left: 50%;
-          margin-left: -28px;
+          left: calc(50% + 10px);
+
+          &:hover {
+            path {
+              fill: $pink;
+            }
+          }
+        }
+
+        .ticktok-ico {
+          position: absolute;
+          top: -10px;
+          left: calc(50% - 60px);
+
+          &:hover {
+            path {
+              stroke: $pink;
+            }
+          }
         }
       }
 

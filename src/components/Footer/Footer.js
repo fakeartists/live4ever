@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import checkProps from '@jam3/react-check-extra-props';
 
 import { ReactComponent as InstagramIcon } from '../../assets/svg/instagram-icon.svg';
+import { ReactComponent as TicktokIcon } from '../../assets/svg/tiktok-icon.svg';
 
 import './Footer.scss';
 
@@ -31,8 +32,11 @@ const Footer = React.memo(
                 if (props.isLanding) {
                   return (
                     <li key={index} className="footer-image">
-                      <BaseLink link={link.insta}>
-                        <InstagramIcon className="instagram-ico" />
+                      <BaseLink link={link.insta} className="instagram-ico">
+                        <InstagramIcon />
+                      </BaseLink>
+                      <BaseLink link={link.ticktok} className="ticktok-ico">
+                        <TicktokIcon />
                       </BaseLink>
                     </li>
                   );

@@ -80,7 +80,7 @@
       }
 
       .landing-button {
-        transform: scale(0.9);
+        transform: scale(0.9) translateX(-50%);
         margin-bottom: px-to-rem(20);
       }
     }
