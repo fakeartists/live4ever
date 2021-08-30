@@ -9,7 +9,7 @@ import { setAssetPreviewState } from '../../redux/modules/asset-preview';
 import { setAssetData } from '../../redux/modules/asset-preview';
 import { getCopy } from '../../data/get-site-data';
 
-// import AvatarWebGL from '../AvatarWebGL/AvatarWebGL';
+import AvatarWebGL from '../AvatarWebGL/AvatarWebGL';
 
 import './AssetPreview.scss';
 
@@ -70,7 +70,7 @@ class AssetPreview extends React.PureComponent {
         }}
       >
         <div className="webgl-bg" onClick={this.handleButtonClick} />
-        <div className="webgl-container">{/* <AvatarWebGL data={this.props.assetData} /> */}</div>
+        <div className="webgl-container">{<AvatarWebGL data={this.props.assetData} />}</div>
       </section>
     );
   }

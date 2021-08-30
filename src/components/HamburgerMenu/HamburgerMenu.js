@@ -22,7 +22,6 @@ class HamburgerMenu extends React.PureComponent {
   }
 
   render() {
-    console.log(this.props);
     return (
       <nav
         className={classnames(`HamburgerMenu`, this.props.className, { open: this.props.isMobileMenuOpen })}
