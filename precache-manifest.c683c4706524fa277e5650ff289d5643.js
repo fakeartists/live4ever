@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "./static/media/DigitalNumbers-Regular.373a1f60.woff"
   },
   {
-    "revision": "d611f2e7b3088f47d516",
-    "url": "./static/css/main.3063c2d9.chunk.css"
+    "revision": "9f8140a0028351649920",
+    "url": "./static/css/main.689f2787.chunk.css"
   },
   {
-    "revision": "aec9ac0216ac9d60ee91",
-    "url": "./static/js/runtime~main.aec9ac02.js"
+    "revision": "cf89ba0d7e15f918b37a",
+    "url": "./static/js/runtime~main.cf89ba0d.js"
   },
   {
     "revision": "fe4920453894cabf2d2c7cba989fb765",
@@ -56,8 +56,8 @@ self.__precacheManifest = [
     "url": "./static/media/captions-on.d5f1ca14.svg"
   },
   {
-    "revision": "2afef12c7732e6b01c04",
-    "url": "./static/js/7.2afef12c.chunk.js"
+    "revision": "ab571a58c00babcd4503",
+    "url": "./static/js/7.ab571a58.chunk.js"
   },
   {
     "revision": "17655c846d137947f61454c3e4c1eac7",
@@ -76,16 +76,16 @@ self.__precacheManifest = [
     "url": "./static/media/logo_fake-artists.c9985d4d.png"
   },
   {
-    "revision": "91da6633c3a44de2f7fa22252c1c49c1",
-    "url": "./static/media/rotate.91da6633.svg"
+    "revision": "1abaeb61d10391ad1be16d0a57304ff9",
+    "url": "./static/media/rotate.1abaeb61.svg"
   },
   {
     "revision": "78dd89a7d366f574d2949931ea766c75",
     "url": "./static/media/pyramid_loader_small.78dd89a7.gif"
   },
   {
-    "revision": "d611f2e7b3088f47d516",
-    "url": "./static/js/main.d611f2e7.chunk.js"
+    "revision": "9f8140a0028351649920",
+    "url": "./static/js/main.9f8140a0.chunk.js"
   },
   {
     "revision": "cfa68fcb9c4820c792475063dfda63bf",
@@ -144,8 +144,8 @@ self.__precacheManifest = [
     "url": "./static/css/8.24f8b7be.chunk.css"
   },
   {
-    "revision": "2afef12c7732e6b01c04",
-    "url": "./static/css/7.1e69719e.chunk.css"
+    "revision": "ab571a58c00babcd4503",
+    "url": "./static/css/7.9453e2da.chunk.css"
   },
   {
     "revision": "99bcd45b8cb3ff19bd10",
@@ -168,7 +168,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "3fe23190148d3c95a9713d9018f5adb6",
+    "revision": "7ecfab4387329a9d21572da7366cbc76",
     "url": "./index.html"
   }
 ];
