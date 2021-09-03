@@ -37,11 +37,14 @@ import Mine from '../../components/Mine/Mine';
 import Login from '../../components/Login/Login';
 import { getCopy } from '../../data/get-site-data';
 
+import { initCookie } from '../../util/cookies';
+
 const LazyRotateScreen = device.isMobile && lazy(() => import('../../components/RotateScreen/RotateScreen'));
 
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
+    initCookie();
     this.language = 'en';
     this.footercopy = getCopy(this.language, 'footer');
     this.headercopy = getCopy(this.language, 'header');
@@ -136,7 +139,7 @@ class App extends React.PureComponent {
         {this.props.ready && app}
         {device.isMobile && (
           <Suspense fallback={<div className="loading" />}>
-            <LazyRotateScreen {...rotateScreenData} />
+            <LazyRotateScreen {...rotateScreenData} language={this.language} />
           </Suspense>
         )}
         <Loader minDisplayTime={2500} />

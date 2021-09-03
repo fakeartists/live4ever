@@ -12,10 +12,11 @@ const ASSETS_PATH = process.env.PUBLIC_URL + '/assets/';
  * @const {array} DESKTOP_ASSETS (Keep an assets list for desktop)
  */
 const GLOBAL_ASSETS = [
-  `${ASSETS_PATH}button-rollover.mp3`,
-  `${ASSETS_PATH}button-click.mp3`,
-  `${ASSETS_PATH}button-sprite.mp3`
+  `${ASSETS_PATH}images/emojis.png`
+  // `${ASSETS_PATH}button-click.mp3`,
+  // `${ASSETS_PATH}button-sprite.mp3`
 ];
+
 const MOBILE_ASSETS = [];
 const TABLET_ASSETS = [];
 const DESKTOP_ASSETS = [];

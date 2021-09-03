@@ -8,7 +8,7 @@ import WindowsHeader from '../WindowsHeader/WindowsHeader';
 import { setLoginState } from '../../redux/modules/login';
 import settings from '../../data/settings';
 import { getCopy } from '../../data/get-site-data';
-import { initCookie, updateCookie, checkCookieLogin } from '../../util/cookies';
+import { updateCookie, checkCookieLogin } from '../../util/cookies';
 
 import './Login.scss';
 
@@ -16,7 +16,6 @@ class Login extends React.PureComponent {
   constructor(props) {
     super(props);
     this.copy = getCopy(this.props.language, 'login');
-    initCookie();
 
     this.isOpen = false;
     this.state = {

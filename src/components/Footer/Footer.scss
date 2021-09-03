@@ -16,7 +16,6 @@ $main-footer-copyright-font-size: 12px !default;
   padding: 5px $navbar-padding-mobile 2rem;
   background: $main-footer-bg-color;
   box-sizing: border-box;
-  @include z-index(footer);
   text-align: center;
   z-index: 500;
 
@@ -99,7 +98,13 @@ $main-footer-copyright-font-size: 12px !default;
         .instagram-ico {
           position: absolute;
           top: -10px;
-          left: calc(50% + 10px);
+          left: 50%;
+          transform: translateX(10%);
+
+          svg {
+            width: px-to-rem(40);
+            height: px-to-rem(40);
+          }
 
           &:hover {
             path {
@@ -111,7 +116,13 @@ $main-footer-copyright-font-size: 12px !default;
         .ticktok-ico {
           position: absolute;
           top: -10px;
-          left: calc(50% - 60px);
+          left: 50%;
+          transform: translateX(-110%);
+
+          svg {
+            width: px-to-rem(40);
+            height: px-to-rem(40);
+          }
 
           &:hover {
             path {

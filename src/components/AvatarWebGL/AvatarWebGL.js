@@ -33,7 +33,7 @@ class AvatarWebGL extends React.PureComponent {
   // }
 
   async componentDidMount() {
-    console.log('componentDidMount', this.node.clientWidth, this.node.clientHeight);
+    //console.log('componentDidMount', this.node.clientWidth, this.node.clientHeight);
 
     //init the webgl app
     // const { path, history } = this.props;
@@ -162,7 +162,7 @@ class AvatarWebGL extends React.PureComponent {
 
       // Head
       let head = this.props.data.audio.split('.')[0]; // TODO Fix this
-      console.log(head);
+      // console.log(head);
 
       // Background image
       let bgImage = '/assets/images/assets/';

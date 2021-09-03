@@ -98,6 +98,9 @@ $main-top-nav-link-font-size: 2rem !default;
         display: inline-block;
         @include main-button;
         padding: px-to-rem(13) px-to-rem(15) px-to-rem(11) px-to-rem(15);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &.active {
           text-decoration: line-through;

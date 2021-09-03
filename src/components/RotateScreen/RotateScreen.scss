@@ -1,10 +1,5 @@
 @import 'src/style/shared.scss';
 
-$rotate-screen-bg-color: #000 !default;
-$rotate-screen-text-color: #fff !default;
-$rotate-screen-text-font-size: 1.6rem !default;
-$rotate-screen-icon-width: 10rem !default;
-
 .RotateScreen {
   display: flex;
   align-items: center;
@@ -14,19 +9,20 @@ $rotate-screen-icon-width: 10rem !default;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $rotate-screen-bg-color;
-  @include z-index(rotate);
+  background-color: $black;
+  z-index: 9999;
 
   .container {
     text-align: center;
 
     .rotate-text {
-      color: $rotate-screen-text-color;
-      font-size: $rotate-screen-text-font-size;
+      @include font-light;
+      color: $green;
+      font-size: px-to-rem(16);
     }
 
     .rotate-icon {
-      width: $rotate-screen-icon-width;
+      width: px-to-rem(120);
     }
   }
 }

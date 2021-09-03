@@ -6,6 +6,7 @@ import checkProps from '@jam3/react-check-extra-props';
 import { device, os } from '@jam3/detect';
 
 import './RotateScreen.scss';
+import { getCopy } from '../../data/get-site-data';
 
 export default class RotateScreen extends PureComponent {
   constructor(props) {
@@ -13,6 +14,8 @@ export default class RotateScreen extends PureComponent {
     this.state = {
       orientation: device.getOrientation()
     };
+
+    this.copy = getCopy(this.props.language, 'rotate');
   }
 
   componentDidMount() {
@@ -68,8 +71,8 @@ export default class RotateScreen extends PureComponent {
     return (
       <div className={classnames('RotateScreen', this.props.className)} style={style} ref={r => (this.container = r)}>
         <div className="container">
-          {this.props.iconSrc && <img src={this.props.iconSrc} className="rotate-icon" alt={this.props.iconAlt} />}
-          {this.props.copy && <p className="rotate-text">{this.props.copy}</p>}
+          {<img src={this.props.iconSrc} className="rotate-icon" alt={this.copy.iconAlt} />}
+          {<p className="rotate-text">{this.copy.text}</p>}
           {this.props.children}
         </div>
       </div>
@@ -78,12 +81,10 @@ export default class RotateScreen extends PureComponent {
 }
 
 RotateScreen.propTypes = checkProps({
-  copy: PropTypes.string,
-  iconSrc: PropTypes.string,
-  iconAlt: PropTypes.string
+  language: PropTypes.string,
+  iconSrc: PropTypes.string
 });
 
 RotateScreen.defaultProps = {
-  copy: 'Please rotate your device into portrait mode.',
-  iconAlt: 'Please rotate your device'
+  language: 'en'
 };

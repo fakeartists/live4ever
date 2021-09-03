@@ -123,5 +123,9 @@ export default {
     ariaNavLabel: 'Footer Navigation',
     text_copyright: '© FakeArtits',
     privacy: 'privacy'
+  },
+  rotate: {
+    text: 'Please rotate your device into portrait mode.',
+    iconAlt: 'Please rotate your device'
   }
 };

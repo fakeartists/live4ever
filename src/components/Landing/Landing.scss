@@ -8,8 +8,7 @@
   padding: px-to-rem(20) 0;
   margin-top: $navbar-height-mobile;
   height: calc(100vh - #{$navbar-height-mobile} - #{$footer-height-mobile});
-  z-index: 50;
-  min-height: 300px;
+  min-height: 350px;
   z-index: 600;
 
   .landing-container {
@@ -21,6 +20,7 @@
     transform: translateY(-50%);
     text-align: center;
     min-width: $min-width;
+    pointer-events: none;
 
     h1 {
       position: relative;
@@ -59,6 +59,7 @@
       left: 50%;
       transform: translateX(-50%);
       margin-bottom: px-to-rem(70);
+      pointer-events: auto;
     }
 
     @media (min-height: 1024px) {
