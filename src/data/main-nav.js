@@ -7,6 +7,7 @@ export default {
   links: [
     {
       text: 'text_login',
+      alt_text: 'text_logout',
       path: 'login'
     },
     {

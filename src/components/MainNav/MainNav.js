@@ -120,7 +120,7 @@ class MainTopNav extends React.PureComponent {
                         className={'nav-item' + (logged ? ' active login' : '')}
                         onClick={this.handleLoginClick}
                       >
-                        {this.copy[link.text]}
+                        {this.copy[logged ? link.alt_text : link.text]}
                       </li>
                     );
                   } else {

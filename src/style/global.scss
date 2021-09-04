@@ -43,6 +43,7 @@ body {
     top: 65px;
     z-index: 5;
     min-width: $min-width;
+    width: 100vw;
   }
 
   .lines-bg-inv {
@@ -52,6 +53,7 @@ body {
     z-index: 5;
     transform: scale(1, -1);
     min-width: $min-width;
+    width: 100vw;
 
     @media (max-width: $layout-small) {
       bottom: calc(#{$footer-height-mobile});

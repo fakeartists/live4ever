@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
+import { device } from '@jam3/detect';
 import { connect } from 'react-redux';
 import Draggable from 'react-draggable';
 import animate, { Circ } from '../../util/gsap-animate';
@@ -84,11 +85,23 @@ class ADBanner extends React.PureComponent {
     const intersperse = (arr, sep) => arr.reduce((a, v, i) => [...a, v, sep], []).slice(0, -1);
     bodyCopy = intersperse(bodyCopy.split('<br/>'), <br key={0} />);
 
-    this.width = bannerSize.width.min + Math.random() * (bannerSize.width.max - bannerSize.width.min);
-    this.height = bannerSize.height.min + Math.random() * (bannerSize.height.max - bannerSize.height.min);
+    if (device.isMobile) {
+      let width_min = 280;
+      let height_min = 250;
+      let width_max = window.innerWidth;
+      let height_max = 400;
 
-    this.posX = parseInt(Math.random() * (window.innerWidth - this.width));
-    this.posY = parseInt(Math.random() * (window.innerHeight * 0.7 - this.height) + 150);
+      this.width = width_min + Math.random() * (width_max - width_min);
+      this.height = height_min + Math.random() * (height_max - height_min);
+      this.posX = parseInt(Math.random() * (window.innerWidth - this.width));
+      this.posY = parseInt(Math.random() * (window.innerHeight - this.height - 200));
+    } else {
+      this.width = bannerSize.width.min + Math.random() * (bannerSize.width.max - bannerSize.width.min);
+      this.height = bannerSize.height.min + Math.random() * (bannerSize.height.max - bannerSize.height.min);
+      this.posX = parseInt(Math.random() * (window.innerWidth - this.width));
+      this.posY = parseInt(Math.random() * (window.innerHeight * 0.7 - this.height) + 150);
+    }
+
     this.backgroundImage = backgroundImage;
     this.bodyCopy = bodyCopy;
     this.buttonCopy = buttonCopy;
@@ -148,13 +161,13 @@ class ADBanner extends React.PureComponent {
       top: this.props.isStatic ? 0 : this.posY,
       left: this.props.isStatic ? 0 : this.posX
     };
-    this.buttonActive = this.props.isStatic ? '' : 'active';
+    this.buttonActive = this.props.isStatic ? '' : ' active';
 
     let clickButton;
     if (!this.props.isStatic) {
       clickButton = (
         <button
-          className={this.buttonActive}
+          className={'click' + this.buttonActive}
           style={this.buttonStyle}
           onClick={this.handleButtonClick}
           onMouseEnter={this.handleHoverEnter}
@@ -198,6 +211,7 @@ class ADBanner extends React.PureComponent {
     } else {
       ad = (
         <Draggable
+          cancel=".click, .windows-header-close"
           axis="both"
           defaultPosition={{ x: 0, y: 0 }}
           // scale={1}

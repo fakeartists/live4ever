@@ -1,14 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import noop from 'no-op';
 import cleanPath from 'remove-trailing-separator';
+import { setLoginState } from '../../redux/modules/login';
 import checkProps from '@jam3/react-check-extra-props';
+import { checkCookieLogin } from '../../util/cookies';
+import BaseLink from '../BaseLink/BaseLink';
 
 import './HamburgerMenu.scss';
-
-import BaseLink from '../BaseLink/BaseLink';
 
 class HamburgerMenu extends React.PureComponent {
   componentDidUpdate(prevProps, prevState) {
@@ -21,7 +23,13 @@ class HamburgerMenu extends React.PureComponent {
     this.props.isMobileMenuOpen && this.props.setIsMobileMenuOpen(false);
   }
 
+  handleLoginClick = () => {
+    this.props.setLoginState(true);
+  };
+
   render() {
+    let logged = checkCookieLogin();
+
     return (
       <nav
         className={classnames(`HamburgerMenu`, this.props.className, { open: this.props.isMobileMenuOpen })}
@@ -29,16 +37,32 @@ class HamburgerMenu extends React.PureComponent {
       >
         {this.props.links && (
           <ul className="nav-list">
-            {this.props.links.map((link, index) => (
-              <li key={index} className="nav-item">
-                <BaseLink
-                  link={link.path}
-                  className={classnames({ active: cleanPath(this.props.location.pathname) === cleanPath(link.path) })}
-                >
-                  {this.props.copy[link.text]}
-                </BaseLink>
-              </li>
-            ))}
+            {this.props.links.map((link, index) => {
+              if (link.path === 'login') {
+                return (
+                  <li
+                    key={index}
+                    className={'nav-item login' + (logged ? ' active' : '')}
+                    onClick={this.handleLoginClick}
+                  >
+                    {this.props.copy[logged ? link.alt_text : link.text]}
+                  </li>
+                );
+              } else {
+                return (
+                  <li key={index} className="nav-item">
+                    <BaseLink
+                      link={link.path}
+                      className={classnames({
+                        active: cleanPath(this.props.location.pathname) === cleanPath(link.path)
+                      })}
+                    >
+                      {this.props.copy[link.text]}
+                    </BaseLink>
+                  </li>
+                );
+              }
+            })}
           </ul>
         )}
         {this.props.children}
@@ -64,7 +88,9 @@ HamburgerMenu.propTypes = checkProps({
   privacy: PropTypes.object,
   closeOnRouteChange: PropTypes.bool,
   isMobileMenuOpen: PropTypes.bool,
-  setIsMobileMenuOpen: PropTypes.func
+  setIsMobileMenuOpen: PropTypes.func,
+  setLoginState: PropTypes.func,
+  loginState: PropTypes.bool
 });
 
 HamburgerMenu.defaultProps = {
@@ -73,4 +99,21 @@ HamburgerMenu.defaultProps = {
   closeOnRouteChange: true
 };
 
-export default withRouter(HamburgerMenu);
+const mapStateToProps = state => ({
+  loginState: state.loginState
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setLoginState: val => dispatch(setLoginState(val))
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    null,
+    { withRef: true }
+  )(HamburgerMenu)
+);

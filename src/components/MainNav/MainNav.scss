@@ -9,7 +9,7 @@ $main-top-nav-link-font-size: 2rem !default;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   min-width: $min-width;
   background: transparent;
   height: $navbar-height-mobile;
@@ -121,6 +121,7 @@ $main-top-nav-link-font-size: 2rem !default;
           &:hover {
             color: $green;
             background-color: transparent;
+            cursor: pointer;
           }
         }
 

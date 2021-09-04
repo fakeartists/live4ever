@@ -14,8 +14,6 @@ class BoxInfo extends React.PureComponent {
   async componentDidMount() {}
 
   render() {
-    console.log('render');
-
     let classSingle = this.props.isSingle ? 'single' : '';
     let description;
     let bid;

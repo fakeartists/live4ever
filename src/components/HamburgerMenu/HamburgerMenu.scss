@@ -33,12 +33,24 @@
         margin-bottom: 0;
       }
 
-      a {
+      &.login {
         font-size: px-to-rem(30);
         color: $green;
         text-decoration: none;
 
-        &.active {
+        &:hover:not(.active) {
+          color: $pink;
+          text-decoration: none;
+        }
+      }
+
+      a {
+        font-size: px-to-rem(30);
+        color: $green;
+        text-decoration: none;
+        margin: 0;
+
+        &.active:not(.login) {
           color: $green;
           text-decoration: line-through;
         }

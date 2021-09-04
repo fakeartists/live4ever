@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
+import { device } from '@jam3/detect';
 import { connect } from 'react-redux';
 import animate, { Circ, Expo, Elastic } from '../../util/gsap-animate';
 import WindowsHeader from '../WindowsHeader/WindowsHeader';
@@ -65,10 +66,17 @@ class LevelUp extends React.PureComponent {
     let imgPosY = -340 * Math.floor(Math.random() * 4);
 
     for (let i = 0; i < emojis; i++) {
-      let scale = 0.3 + Math.random() * 0.7;
+      let scale = device.isMobile ? 0.15 + Math.random() * 0.3 : 0.3 + Math.random() * 0.7;
       let width = 320 * scale;
       let height = width;
-      let x = window.innerWidth / 2 + (-(window.innerWidth / 2) + Math.random() * window.innerWidth) - width / 2;
+
+      let x = 0;
+      if (device.isMobile) {
+        x = -(window.innerWidth / 4) + Math.random() * window.innerWidth;
+      } else {
+        x = window.innerWidth / 2 + (-(window.innerWidth / 2) + Math.random() * window.innerWidth) - width / 2;
+      }
+
       let y = window.innerHeight + height + Math.random() * height;
 
       this.styles.push({

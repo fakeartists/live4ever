@@ -117,16 +117,31 @@
   }
 
   .time-left-wrapper {
-    position: absolute;
-    left: 6%;
+    position: relative;
+    float: left;
+    left: 50%;
+    transform: translateX(-50%);
     color: $green;
     margin-top: px-to-rem(5);
+    width: 100%;
+
+    @media (min-width: $layout-large) {
+      position: absolute;
+      float: none;
+      left: 6%;
+      margin-top: px-to-rem(5);
+      transform: none;
+      width: auto;
+    }
   }
 
   .rank-wrapper {
-    position: absolute;
-    right: 6%;
-    margin-top: px-to-rem(5);
+    position: relative;
+    float: left;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    margin-top: px-to-rem(20);
 
     .rank-count {
       position: relative;
@@ -137,6 +152,33 @@
       position: relative;
       float: right;
       margin-right: px-to-rem(24);
+    }
+
+    @media (min-width: $layout-large) {
+      position: absolute;
+      float: none;
+      right: 6%;
+      left: auto;
+      transform: none;
+      margin-top: px-to-rem(5);
+    }
+  }
+
+  .your-bid-wrapper {
+    position: relative;
+    float: left;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: px-to-rem(20);
+    width: 100%;
+
+    @media (min-width: $layout-large) {
+      position: auto;
+      float: none;
+      left: auto;
+      transform: none;
+      margin-top: px-to-rem(0);
+      width: auto;
     }
   }
 }
