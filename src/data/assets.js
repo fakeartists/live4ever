@@ -127,6 +127,11 @@ export default [
     token_id: 'FΔKE_NUMB3S',
     blockchain: 'PYRΔMID',
     hot_sale: false,
-    status: 'closed'
+    status: 'closed',
+    webgl: {
+      audio: 'lila.mp3',
+      background: 'bg_lila.jpg',
+      head_model: 'lila/head3d.obj'
+    }
   }
 ];

@@ -12,10 +12,12 @@ import { selectWindowWidth, selectWindowHeight, selectPath } from '../App/App-se
 import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils.js';
 
 import './AvatarWebGL.scss';
 
+let head;
 let headModel;
 let objectModel1;
 let objectModel2;
@@ -34,7 +36,6 @@ class AvatarWebGL extends React.PureComponent {
 
   async componentDidMount() {
     //console.log('componentDidMount', this.node.clientWidth, this.node.clientHeight);
-
     //init the webgl app
     // const { path, history } = this.props;
     // if (this.node) {
@@ -43,6 +44,10 @@ class AvatarWebGL extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
+    let clock = new THREE.Clock();
+    const mixers = [];
+    const animationActions: THREE.AnimationAction[] = [];
+
     var animate = function() {
       requestAnimationFrame(animate);
 
@@ -59,24 +64,36 @@ class AvatarWebGL extends React.PureComponent {
         headModel.position.y = Math.sin(new Date().getTime() * 0.001) * 0.2 + (isPortrait ? 2 : 0);
       }
 
-      if (objectModel1) {
-        if (isPortrait) {
-          objectModel1.position.set(-6, 0, 0);
-        } else {
-          objectModel1.position.set(-10, 0, 0);
+      if (head === 'nathan' || head === 'jean') {
+        if (objectModel1) {
+          if (isPortrait) {
+            objectModel1.position.set(-6, 0, 0);
+          } else {
+            objectModel1.position.set(-10, 0, 0);
+          }
+          objectModel1.position.y = Math.sin(new Date().getTime() * 0.001) + (isPortrait ? -8 : 0);
+          objectModel1.rotation.y = Math.sin(new Date().getTime() * (isPortrait ? 0.00001 : 0.0001));
         }
-        objectModel1.position.y = Math.sin(new Date().getTime() * 0.001) + (isPortrait ? -8 : 0);
-        objectModel1.rotation.y = Math.sin(new Date().getTime() * (isPortrait ? 0.00001 : 0.0001));
-      }
 
-      if (objectModel2) {
-        if (isPortrait) {
-          objectModel2.position.set(6, 0, 0);
-        } else {
-          objectModel2.position.set(10, 0, 0);
+        if (objectModel2) {
+          if (isPortrait) {
+            objectModel2.position.set(6, 0, 0);
+          } else {
+            objectModel2.position.set(10, 0, 0);
+          }
+          objectModel2.position.y = objectModel1.position.y;
+          objectModel2.rotation.y = -objectModel1.rotation.y;
         }
-        objectModel2.position.y = objectModel1.position.y;
-        objectModel2.rotation.y = -objectModel1.rotation.y;
+      } else if (head === 'lila') {
+        const mixerUpdateDelta = clock.getDelta();
+
+        if (objectModel1) {
+          mixers[0].update(mixerUpdateDelta);
+        }
+
+        if (objectModel2) {
+          mixers[1].update(mixerUpdateDelta);
+        }
       }
 
       camera.lookAt(scene.position);
@@ -161,7 +178,7 @@ class AvatarWebGL extends React.PureComponent {
       this.mount.appendChild(renderer.domElement);
 
       // Head
-      let head = this.props.data.audio.split('.')[0]; // TODO Fix this
+      head = this.props.data.audio.split('.')[0]; // TODO Fix this
       // console.log(head);
 
       // Background image
@@ -184,6 +201,7 @@ class AvatarWebGL extends React.PureComponent {
 
       // 3D models
       const loader = new OBJLoader();
+      const fbxLoader = new FBXLoader();
 
       // 3D Head
       let headPath = this.props.data.head_model;
@@ -215,7 +233,61 @@ class AvatarWebGL extends React.PureComponent {
         );
       });
 
+      // Load 3D objects
       if (head === 'nathan') {
+        fbxLoader.load('/assets/models/nathan/object_nathan.fbx', object => {
+          object.scale.set(0.03, 0.03, 0.03);
+
+          if (isPortrait) {
+            object.position.set(3, 0, 0);
+          } else {
+            object.position.set(10, 0, 0);
+          }
+          scene.add(object);
+          objectModel1 = object;
+
+          let copy = SkeletonUtils.clone(object);
+          if (isPortrait) {
+            copy.position.set(-3, 0, 0);
+          } else {
+            copy.position.set(-10, 0, 0);
+          }
+          scene.add(copy);
+          objectModel2 = copy;
+        });
+      } else if (head === 'lila') {
+        fbxLoader.load('/assets/models/lila/object_lila.fbx', object => {
+          // Animation
+          mixers.push(new THREE.AnimationMixer(object));
+          mixers[0].clipAction(object.animations[0]).play();
+
+          // Scale
+          object.scale.set(0.04, 0.04, 0.04);
+
+          if (isPortrait) {
+            object.position.set(3, 0, 0);
+          } else {
+            object.position.set(10, 0, 0);
+          }
+          object.rotation.x = 45 * (Math.PI / 180);
+          scene.add(object);
+          objectModel1 = object;
+
+          let copy = SkeletonUtils.clone(object);
+          if (isPortrait) {
+            copy.position.set(-3, 0, 0);
+          } else {
+            copy.position.set(-10, 0, 0);
+          }
+          copy.rotation.x = 45 * (Math.PI / 180);
+          copy.rotation.y = 180 * (Math.PI / 180);
+          scene.add(copy);
+          objectModel2 = copy;
+
+          // Animation
+          mixers.push(new THREE.AnimationMixer(objectModel2));
+          mixers[1].clipAction(object.animations[0]).play();
+        });
       } else if (head === 'jean') {
         // Object
         const texture = new THREE.CubeTextureLoader().load([
@@ -261,6 +333,8 @@ class AvatarWebGL extends React.PureComponent {
           objectModel2 = copy;
         });
       }
+
+      // Start animation
       animate();
     }
   }
