@@ -75,6 +75,9 @@ export default {
     title_your_bid: 'Your bid',
     promo_message: 'WIN FASTER: share Pyramid, get 75 FREE tokens.',
     promo_click: 'Click Here',
+    share_via: 'fakeartists',
+    share_text: 'Be the first!',
+    share_link: 'pyramid4ever.net',
     promo_close: 'Close'
   },
   levelup: {

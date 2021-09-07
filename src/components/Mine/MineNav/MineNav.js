@@ -3,10 +3,10 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share';
 import animate, { Power3 } from '../../../util/gsap-animate';
 import { updateCookie, getCookie } from '../../../util/cookies';
-import BaseLink from '../../BaseLink/BaseLink';
-import { getBidWithVariation } from '../../../util/bid';
+import { getBidWithVariation, getBidValue } from '../../../util/bid';
 
 import './MineNav.scss';
 
@@ -32,7 +32,7 @@ class MineNav extends React.PureComponent {
     let days = duration.days();
     if (days > 0) {
       this.timer = setInterval(() => {
-        this.updateCount(this.state.count + 1);
+        this.setState({ count: this.state.count + 1 });
       }, 100000);
     }
 
@@ -62,7 +62,7 @@ class MineNav extends React.PureComponent {
   };
 
   animateOut = () => {
-    return animate.to(this.container, 0.5, { y: -80, autoAlpha: 0, ease: Power3.easeOut });
+    return animate.to(this.container, 0.5, { y: '-100%', autoAlpha: 0, ease: Power3.easeOut });
   };
 
   animateShareBarIn = () => {
@@ -70,7 +70,20 @@ class MineNav extends React.PureComponent {
   };
 
   animateShareBarOut = () => {
-    animate.to(this.sharebar, 0.5, { y: -70, autoAlpha: 0, ease: Power3.easeInOut });
+    animate.to(this.sharebar, 0.5, { y: '-100%', autoAlpha: 0, ease: Power3.easeInOut });
+  };
+
+  onCloseShare = () => {
+    const cookiedata = getCookie();
+    if (!cookiedata.bannershared && cookiedata.bidData) {
+      const variation = cookiedata && cookiedata.variation;
+      const bonus = getBidValue(75, variation);
+      const bidBonus = cookiedata.bidData.bid + bonus;
+      this.updateCount(bidBonus);
+      if (this.props.updateBid != null) {
+        this.props.updateBid(bidBonus);
+      }
+    }
   };
 
   updateCount = count => {
@@ -129,9 +142,23 @@ class MineNav extends React.PureComponent {
         </div>
         <div className="mine-promo" ref={el => (this.sharebar = el)}>
           <p>{this.props.copy.promo_message}</p>
-          <BaseLink className="mine-promo-link" link="">
-            {this.props.copy.promo_click}
-          </BaseLink>
+          <div className="mine-promo-share">
+            <TwitterShareButton
+              url={this.props.copy.share_link}
+              title={this.props.copy.share_text}
+              via={this.props.copy.share_via}
+              onShareWindowClose={this.onCloseShare}
+            >
+              <TwitterIcon size={40} round />
+            </TwitterShareButton>
+            <FacebookShareButton
+              url={this.props.copy.share_link}
+              quote={this.props.copy.share_text}
+              onShareWindowClose={this.onCloseShare}
+            >
+              <FacebookIcon size={41} round />
+            </FacebookShareButton>
+          </div>
           <button className="mine-promo-close" onClick={this.animateShareBarOut}>
             {this.props.copy.promo_close}
           </button>
@@ -143,12 +170,14 @@ class MineNav extends React.PureComponent {
 
 MineNav.propTypes = checkProps({
   copy: PropTypes.object,
-  data: PropTypes.object
+  data: PropTypes.object,
+  updateBid: PropTypes.func
 });
 
 MineNav.defaultProps = {
   copy: {},
-  data: {}
+  data: {},
+  updateBid: null
 };
 
 const mapStateToProps = state => ({});

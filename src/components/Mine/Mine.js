@@ -122,7 +122,8 @@ class Mine extends React.PureComponent {
     const ads = this.state.ads.filter(item => item.props.id !== id);
     let sharetime = this.bid % 10 === 0;
 
-    if (sharetime && this.animatebar) {
+    //&& this.animatebar
+    if (sharetime) {
       this.mineNav.getWrappedInstance().animateShareBarIn();
       updateCookie({ promotionbanner: true });
       this.animatebar = false;
@@ -148,6 +149,29 @@ class Mine extends React.PureComponent {
     this.saveData(this.level, this.bid);
   };
 
+  updateBid = bid => {
+    this.bid = bid;
+    const currentLevel = Math.floor(this.bid / this.count);
+    if (this.level > currentLevel) {
+      this.level = currentLevel;
+      this.saveData(this.level, this.bid);
+    }
+  };
+
+  updateShareBonus = bid => {
+    const cookiedata = getCookie();
+    if (!cookiedata.bannershared) {
+      const currentLevel = Math.floor(bid / this.count);
+      this.level = currentLevel;
+      this.bid = bid;
+      this.saveData(this.level, this.bid);
+      updateCookie({ bannershared: true });
+    }
+
+    this.animatebar = false;
+    this.mineNav.getWrappedInstance().animateShareBarOut();
+  };
+
   saveData = (level, bid) => {
     updateCookie({ bidData: { level, bid } });
   };
@@ -167,7 +191,12 @@ class Mine extends React.PureComponent {
           <button className="mine-close active" onClick={this.handleClose}>
             {this.copy.exit_button}
           </button>
-          <MineNav copy={this.copy} ref={mineNav => (this.mineNav = mineNav)} data={this.props.data} />
+          <MineNav
+            copy={this.copy}
+            ref={mineNav => (this.mineNav = mineNav)}
+            data={this.props.data}
+            updateBid={this.updateShareBonus}
+          />
           <div className="mine-container">{this.state.ads}</div>
           <LevelUp language={this.props.language} />
           <Onboarding language={this.props.language} />
