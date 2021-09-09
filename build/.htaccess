@@ -34,3 +34,29 @@
 Header append X-FRAME-OPTIONS "SAMEORIGIN"
 
 DirectoryIndex index.php index.html
+RewriteCond %{HTTP_HOST} ^pyramid4ever\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.pyramid4ever\.net$
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://pyramid4ever.net/$1 [R,L]
+
+RewriteCond %{HTTP_HOST} ^pyramid4ever\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.pyramid4ever\.com$
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://pyramid4ever.com/$1 [R,L]
+
+RewriteCond %{HTTP_HOST} ^pyramid4evr\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.pyramid4evr\.net$
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://pyramid4evr.net/$1 [R,L]
+
+RewriteCond %{HTTP_HOST} ^pyramid4evr\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.pyramid4evr\.com$
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://pyramid4evr.com/$1 [R,L]
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Defina o pacote “ea-php73” como a linguagem padrão de programação “PHP”.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php73 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
