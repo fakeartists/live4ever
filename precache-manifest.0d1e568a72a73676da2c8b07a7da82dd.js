@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "./static/media/DigitalNumbers-Regular.373a1f60.woff"
   },
   {
-    "revision": "d8535e394fad897859be",
+    "revision": "856d89a833f925df0e83",
     "url": "./static/css/main.e2e2d962.chunk.css"
   },
   {
@@ -84,8 +84,8 @@ self.__precacheManifest = [
     "url": "./static/media/pyramid_loader_small.78dd89a7.gif"
   },
   {
-    "revision": "d8535e394fad897859be",
-    "url": "./static/js/main.d8535e39.chunk.js"
+    "revision": "856d89a833f925df0e83",
+    "url": "./static/js/main.856d89a8.chunk.js"
   },
   {
     "revision": "cfa68fcb9c4820c792475063dfda63bf",
@@ -100,12 +100,12 @@ self.__precacheManifest = [
     "url": "./static/media/DigitalNumbers-Regular.df8665d3.ttf"
   },
   {
-    "revision": "add0c4244a015960586eeb51f091fd71",
-    "url": "./static/media/Orbitron-Regular.add0c424.ttf"
-  },
-  {
     "revision": "f8509cdf18344c7a0dc503bb29a623ef",
     "url": "./static/media/aldrich-v11-latin-regular.f8509cdf.ttf"
+  },
+  {
+    "revision": "add0c4244a015960586eeb51f091fd71",
+    "url": "./static/media/Orbitron-Regular.add0c424.ttf"
   },
   {
     "revision": "80c7c20702789901bce5a206bc0a4fad",
@@ -168,7 +168,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "fbac09f10ffad35c47dde61850c65a9c",
+    "revision": "c8a36f2f8f00ba94ba521a8d89ecb012",
     "url": "./index.html"
   }
 ];
