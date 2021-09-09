@@ -58,7 +58,8 @@ class Home extends React.PureComponent {
     const hotsale = this.state.assets.filter(item => item.hot_sale)[0];
     return (
       <section className={classnames('Home', this.props.className)} ref={el => (this.container = el)}>
-        <header className="Home-header">
+        <header className="Home-Welcome" dangerouslySetInnerHTML={{ __html: this.copy.welcome }} />
+        <section className="Home-header">
           <div className="home-header-wrapper">
             <div className="home-header-container home-box left">
               <h1>{this.copy.title_horsale}</h1>
@@ -73,7 +74,7 @@ class Home extends React.PureComponent {
               </div>
             </div>
           </div>
-        </header>
+        </section>
         <Gallery
           className="Home-galery"
           transitionState={this.props.transitionState}

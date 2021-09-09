@@ -33,6 +33,8 @@ export default {
     title_seconds: 'Seconds'
   },
   home: {
+    welcome:
+      'Welcome to <b>Pyramid</b>, the first NFT platform unlocking digital eternal life, powered by human energy',
     title_horsale: 'Hot Sale'
   },
   assetpreview: {},
