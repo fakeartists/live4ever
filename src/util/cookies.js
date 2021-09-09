@@ -10,6 +10,7 @@ export function initCookie() {
     onboarding: false,
     variation: 0,
     promotionbanner: false,
+    bannershared: false,
     bidData: {
       bid: 0,
       level: 1,

@@ -134,7 +134,7 @@ class ADBanner extends React.PureComponent {
   };
 
   handleContentClick = () => {
-    if (this.buttonActive === 'active') {
+    if (this.buttonActive === ' active') {
       var elms = document.querySelectorAll('.Adbanner');
       for (let i = 0; i < elms.length; i++) {
         elms[i].style.zIndex = '900';
@@ -188,9 +188,8 @@ class ADBanner extends React.PureComponent {
         ref={node => {
           this.node = node;
         }}
-        onClick={this.handleContentClick}
       >
-        <div className="Adbanner-wrapper">
+        <div className="Adbanner-wrapper" onClick={this.handleContentClick}>
           <WindowsHeader isActive={!this.props.isStatic} onClose={this.handleButtonClick} />
           <div className="Adbanner-content">
             <img src={this.backgroundImage} alt="banner" draggable="false" />

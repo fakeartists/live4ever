@@ -9,3 +9,8 @@ export function getBidWithVariation(bid, variation) {
   let bidvar = parseFloat(settings.bidBase) + variation;
   return round(bid / bidvar, 2);
 }
+
+export function getBidValue(bid, variation) {
+  let bidvar = parseFloat(settings.bidBase) + variation;
+  return Math.floor(bid * bidvar);
+}

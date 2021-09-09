@@ -46,7 +46,7 @@ class AvatarWebGL extends React.PureComponent {
   componentDidUpdate(prevProps) {
     let clock = new THREE.Clock();
     const mixers = [];
-    const animationActions: THREE.AnimationAction[] = [];
+    // const animationActions: THREE.AnimationAction[] = [];
 
     var animate = function() {
       requestAnimationFrame(animate);

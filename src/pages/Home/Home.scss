@@ -11,6 +11,21 @@
     padding: px-to-rem(20) $navbar-padding-desktop;
   }
 
+  &-Welcome {
+    position: relative;
+    float: left;
+    width: 100%;
+    background-color: transparent;
+    padding: px-to-rem(20) px-to-rem(20);
+    color: $green;
+    border: 1px $green solid;
+    text-align: left;
+
+    b {
+      color: $pink;
+    }
+  }
+
   &-header {
     position: relative;
     float: left;

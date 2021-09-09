@@ -13,7 +13,7 @@ $main-top-nav-link-font-size: 2rem !default;
   min-width: $min-width;
   background: transparent;
   height: $navbar-height-mobile;
-  padding: 2rem $navbar-padding-mobile;
+  padding: px-to-rem(20) $navbar-padding-mobile;
   box-sizing: border-box;
   z-index: 500;
 
@@ -166,7 +166,8 @@ $main-top-nav-link-font-size: 2rem !default;
   }
 
   @media (min-width: $layout-large) {
+    width: 100%;
     height: $navbar-height-desktop;
-    padding: 2rem $navbar-padding-desktop;
+    padding: px-to-rem(20) $navbar-padding-desktop;
   }
 }

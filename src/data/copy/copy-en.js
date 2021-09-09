@@ -33,6 +33,8 @@ export default {
     title_seconds: 'Seconds'
   },
   home: {
+    welcome:
+      'Welcome to <b>Pyramid</b>, the first NFT platform unlocking digital eternal life, powered by human energy',
     title_horsale: 'Hot Sale'
   },
   assetpreview: {},
@@ -75,6 +77,9 @@ export default {
     title_your_bid: 'Your bid',
     promo_message: 'WIN FASTER: share Pyramid, get 75 FREE tokens.',
     promo_click: 'Click Here',
+    share_via: 'fakeartists',
+    share_text: 'Be the first!',
+    share_link: 'pyramid4ever.net',
     promo_close: 'Close'
   },
   levelup: {
