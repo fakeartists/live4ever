@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
+//import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils.js';
 
 export default class AvatarApp {
@@ -125,20 +126,10 @@ export default class AvatarApp {
       this.fbxLoader.load('/assets/models/nathan/object_nathan.fbx', object => {
         object.scale.set(0.03, 0.03, 0.03);
 
-        if (this.isPortrait) {
-          object.position.set(3, 0, 0);
-        } else {
-          object.position.set(10, 0, 0);
-        }
         this.scene.add(object);
         this.objectModel1 = object;
 
         let copy = SkeletonUtils.clone(object);
-        if (this.isPortrait) {
-          copy.position.set(-3, 0, 0);
-        } else {
-          copy.position.set(-10, 0, 0);
-        }
         this.scene.add(copy);
         this.objectModel2 = copy;
       });
@@ -165,6 +156,18 @@ export default class AvatarApp {
         this.mixers.push(new THREE.AnimationMixer(this.objectModel2));
         this.mixers[1].clipAction(object.animations[0]).play();
       });
+    } else if (this.head === 'kevin') {
+      /*var gltfLoader = new GLTFLoader();
+      gltfLoader.load('/assets/models/kevin/scene.gltf', function (gltf) {
+        gltf.scene.scale.set(3, 3, 3);
+
+        that.scene.add(gltf.scene);
+        that.objectModel1 = gltf.scene;
+
+        let copy = SkeletonUtils.clone(gltf.scene);
+        that.scene.add(copy);
+        that.objectModel2 = copy;        
+      });*/
     } else if (this.head === 'jean') {
       // Object
       const texture = new THREE.CubeTextureLoader().load([
@@ -366,6 +369,24 @@ export default class AvatarApp {
           this.objectModel2.position.set(-10, 0, 0);
         }
       }
+      /*} else if (this.head === 'kevin') {
+      if (this.isPortrait) {
+        if (this.objectModel1) {
+          this.objectModel1.position.set(3.5, -6, 0);
+        }
+
+        if (this.objectModel2) {
+          this.objectModel2.position.set(-3.5, -6, 0);
+        }
+      } else {
+        if (this.objectModel1) {
+          this.objectModel1.position.set(10, 0, 0);
+        }
+
+        if (this.objectModel2) {
+          this.objectModel2.position.set(-10, 0, 0);
+        }
+      }*/
     } else if (this.head === 'jean') {
       if (this.isPortrait) {
         if (this.objectModel1) {

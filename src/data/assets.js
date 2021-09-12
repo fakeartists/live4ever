@@ -21,7 +21,7 @@ export default [
     status: 'open'
   },
   {
-    _id: 'fk_sam',
+    _id: 'fk_nathan',
     title: 'Nathan',
     sub_title: 'Hairdresser',
     edition: 1,
@@ -47,7 +47,7 @@ export default [
     }
   },
   {
-    _id: 'fk_imma',
+    _id: 'fk_lila',
     title: 'Lila',
     sub_title: 'Dragon slayer',
     edition: 1,
@@ -70,32 +70,6 @@ export default [
       audio: 'lila.mp3',
       background: 'bg_lila.jpg',
       head_model: 'lila/head3d.obj'
-    }
-  },
-  {
-    _id: 'fk_bryan',
-    title: 'Jean',
-    sub_title: 'The Original Pimp',
-    edition: 1,
-    sets: 1,
-    short_description: 'Bryan',
-    full_description: 'Bryan P.I.M.P',
-    image: './assets/images/assets/jean.jpg',
-    highestbid: 500.75,
-    reserve: 500.0,
-    clicks: 23500,
-    ends: 'June 26, 2021 09:10:00',
-    chain_info: 'F69F949A70881EB5FB109BAB1D0F45E7',
-    contract_address: 'AAD22F49ACAA496538013AA1337EE0FA2288F07344B3521753B7B89A306D9DD8',
-    token_id: 'FΔKE_NUMB3S',
-    blockchain: 'PYRΔMID',
-    hot_sale: false,
-    status: 'closed',
-    webgl: {
-      head_id: 'jean',
-      audio: 'jean.mp3',
-      background: 'bg_jean.jpg',
-      head_model: 'jean/head3d.obj'
     }
   },
   {
@@ -122,6 +96,32 @@ export default [
       audio: 'kevin.mp3',
       background: 'bg_kevin.jpg',
       head_model: 'kevin/head3d.obj'
+    }
+  },
+  {
+    _id: 'fk_jean',
+    title: 'Jean',
+    sub_title: 'The Original Pimp',
+    edition: 1,
+    sets: 1,
+    short_description: 'Bryan',
+    full_description: 'Bryan P.I.M.P',
+    image: './assets/images/assets/jean.jpg',
+    highestbid: 500.75,
+    reserve: 500.0,
+    clicks: 23500,
+    ends: 'June 26, 2021 09:10:00',
+    chain_info: 'F69F949A70881EB5FB109BAB1D0F45E7',
+    contract_address: 'AAD22F49ACAA496538013AA1337EE0FA2288F07344B3521753B7B89A306D9DD8',
+    token_id: 'FΔKE_NUMB3S',
+    blockchain: 'PYRΔMID',
+    hot_sale: false,
+    status: 'closed',
+    webgl: {
+      head_id: 'jean',
+      audio: 'jean.mp3',
+      background: 'bg_jean.jpg',
+      head_model: 'jean/head3d.obj'
     }
   },
   {
