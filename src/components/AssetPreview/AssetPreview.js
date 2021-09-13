@@ -9,7 +9,7 @@ import { setAssetPreviewState } from '../../redux/modules/asset-preview';
 import { setAssetData } from '../../redux/modules/asset-preview';
 import { getCopy } from '../../data/get-site-data';
 
-import AvatarWebGL from '../AvatarWebGL/AvatarWebGL';
+import AvatarApp from '../../avatar-app/avatar-app';
 
 import './AssetPreview.scss';
 
@@ -27,17 +27,34 @@ class AssetPreview extends React.PureComponent {
     this.props.setAssetPreviewState(this.props.isOpen);
     this.props.setAssetData(this.props.assetData);
     animate.set(this.container, { autoAlpha: 0 });
+
+    // Init the avatar app
+    if (this.nodeRef) {
+      this.avatarApp = new AvatarApp();
+    }
   }
 
   componentDidUpdate() {
     if (this.props.isOpen) {
       if (!this.isOpen) {
-        this.animateIn();
-        this.isOpen = true;
+        if (this.props.assetData.head_id) {
+          this.animateIn();
+          this.isOpen = true;
+
+          // Set the data
+          if (this.avatarApp.data === null || this.props.assetData.head_id !== this.avatarApp.data.head_id) {
+            this.avatarApp.data = this.props.assetData;
+            this.avatarApp.init(this.nodeRef, this.audioRef);
+          }
+
+          this.avatarApp.start(this.nodeRef, this.audioRef);
+        }
       }
     } else {
       if (this.isOpen) {
         this.isOpen = false;
+
+        this.avatarApp.stop(this.audioRef);
       }
     }
   }
@@ -70,7 +87,17 @@ class AssetPreview extends React.PureComponent {
         }}
       >
         <div className="webgl-bg" onClick={this.handleButtonClick} />
-        <div className="webgl-container">{<AvatarWebGL data={this.props.assetData} />}</div>
+        <div
+          className="webgl-container"
+          ref={node => {
+            this.nodeRef = node;
+          }}
+        />
+        <audio
+          ref={node => {
+            this.audioRef = node;
+          }}
+        />
       </section>
     );
   }
