@@ -7,6 +7,7 @@ import MineNav from './MineNav/MineNav';
 import ADBanner from '../AdBanner/AdBanner';
 import LevelUp from '../LevelUp/LevelUp';
 import Onboarding from '../Onboarding/Onboarding';
+import AudioPlayer from '../AudioPlayer/AudioPlayer';
 
 import { setMineState, setLevelUpState, setOnboardingState } from '../../redux/modules/mine';
 import { getCopy } from '../../data/get-site-data';
@@ -188,6 +189,7 @@ class Mine extends React.PureComponent {
     if (this.props.data) {
       mine = (
         <section className="Mine" ref={el => (this.container = el)}>
+          <AudioPlayer />
           <button className="mine-close active" onClick={this.handleClose}>
             {this.copy.exit_button}
           </button>
