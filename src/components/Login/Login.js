@@ -8,7 +8,7 @@ import WindowsHeader from '../WindowsHeader/WindowsHeader';
 import { setLoginState } from '../../redux/modules/login';
 import settings from '../../data/settings';
 import { getCopy } from '../../data/get-site-data';
-import { updateCookie, checkCookieLogin } from '../../util/cookies';
+import { updateCookie, checkCookieLogin, setName } from '../../util/cookies';
 
 import './Login.scss';
 
@@ -68,12 +68,11 @@ class Login extends React.PureComponent {
   loginResponse = response => {
     const cookiedata = {
       id: response.googleId,
-      name: response.profileObj.name,
+      name: setName(response.profileObj.name),
       email: response.profileObj.email,
       image: response.profileObj.imageUrl,
       token: response.accessToken
     };
-
     updateCookie({ login: cookiedata });
 
     this.setState({ active: true });

@@ -94,9 +94,9 @@ class LevelUp extends React.PureComponent {
       ease: Circ.easeOut
     });
 
-    animate.to(this.box, 0.8, {
+    animate.to(this.box, 1.2, {
       scale: 1,
-      ease: Elastic.easeOut.config(1.2, 0.9)
+      ease: Elastic.easeOut.config(1, 0.9)
     });
   };
 

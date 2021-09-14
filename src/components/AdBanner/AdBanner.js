@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Draggable from 'react-draggable';
 import animate, { Circ } from '../../util/gsap-animate';
 import WindowsHeader from '../WindowsHeader/WindowsHeader';
+import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import { getAds } from '../../data/get-site-data';
 
 import './AdBanner.scss';
@@ -29,9 +30,17 @@ class ADBanner extends React.PureComponent {
     };
   }
 
+  playSound = (sound = 'open', volume = 0.1) => {
+    if (this.audioPlayer) {
+      this.audioPlayer.getWrappedInstance().play(sound, volume);
+    }
+  };
+
   async componentDidMount() {
     animate.set(this.node, { autoAlpha: 0 });
-    animate.to(this.node, 0.1, { autoAlpha: 1, ease: Circ.easeOut, delay: this.props.delay });
+    animate.to(this.node, 0.1, { autoAlpha: 1, ease: Circ.easeOut, delay: this.props.delay }).then(() => {
+      this.playSound();
+    });
     this.setState({ isOpen: true });
   }
 
@@ -190,6 +199,7 @@ class ADBanner extends React.PureComponent {
         }}
       >
         <div className="Adbanner-wrapper" onClick={this.handleContentClick}>
+          <AudioPlayer ref={el => (this.audioPlayer = el)} />
           <WindowsHeader isActive={!this.props.isStatic} onClose={this.handleButtonClick} />
           <div className="Adbanner-content">
             <img src={this.backgroundImage} alt="banner" draggable="false" />

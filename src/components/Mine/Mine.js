@@ -136,8 +136,10 @@ class Mine extends React.PureComponent {
     if (currentLevel > this.level) {
       this.level = currentLevel;
       this.props.setLevelUpState(true);
+      this.playSound('level', 0.6);
+
       animate
-        .to({ alpha: 0 }, 1.8, {
+        .to({ alpha: 0 }, 2, {
           alpha: 1
         })
         .then(() => {
@@ -145,6 +147,8 @@ class Mine extends React.PureComponent {
           this.addAd(this.count, ads);
         });
       //this.addAd(3 + parseInt(Math.random() * 4), ads);
+    } else {
+      this.playSound('click', 0.4);
     }
 
     this.saveData(this.level, this.bid);
@@ -184,12 +188,18 @@ class Mine extends React.PureComponent {
     });
   };
 
+  playSound = (sound = 'click', volume = 0.4) => {
+    if (this.audioPlayer) {
+      this.audioPlayer.getWrappedInstance().play(sound, volume);
+    }
+  };
+
   render() {
     let mine;
     if (this.props.data) {
       mine = (
         <section className="Mine" ref={el => (this.container = el)}>
-          <AudioPlayer />
+          <AudioPlayer ref={el => (this.audioPlayer = el)} />
           <button className="mine-close active" onClick={this.handleClose}>
             {this.copy.exit_button}
           </button>
