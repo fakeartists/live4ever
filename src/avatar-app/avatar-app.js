@@ -6,6 +6,8 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 //import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils.js';
 
+const ASSETS_PATH = process.env.PUBLIC_URL + '/assets/';
+
 export default class AvatarApp {
   data = null;
 
@@ -31,7 +33,7 @@ export default class AvatarApp {
 
     // Init audio
     if (this.data.audio) {
-      this.audioRef.src = '/assets/sounds/' + this.data.audio;
+      this.audioRef.src = ASSETS_PATH + 'sounds/' + this.data.audio;
     }
 
     //
@@ -67,7 +69,7 @@ export default class AvatarApp {
     console.log(this.head);
 
     // Background image
-    let bgImage = '/assets/images/assets/' + this.data.background;
+    let bgImage = ASSETS_PATH + 'images/assets/' + this.data.background;
 
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load(bgImage, () => {
@@ -92,11 +94,11 @@ export default class AvatarApp {
     // 3D Head
     this.headPath = this.data.head_model;
     this.mtlLoader = new MTLLoader();
-    this.mtlLoader.load('/assets/models/' + this.headPath + '.mtl', function(materials) {
+    this.mtlLoader.load(ASSETS_PATH + 'models/' + this.headPath + '.mtl', function(materials) {
       materials.preload();
       that.objLoader.setMaterials(materials);
       that.objLoader.load(
-        '/assets/models/' + that.headPath,
+        ASSETS_PATH + 'models/' + that.headPath,
         function(object) {
           if (that.isPortrait) {
             // Mobile
@@ -123,7 +125,7 @@ export default class AvatarApp {
 
     // Load 3D objects
     if (this.head === 'nathan') {
-      this.fbxLoader.load('/assets/models/nathan/object_nathan.fbx', object => {
+      this.fbxLoader.load(ASSETS_PATH + 'models/nathan/object_nathan.fbx', object => {
         object.scale.set(0.03, 0.03, 0.03);
 
         this.scene.add(object);
@@ -134,7 +136,7 @@ export default class AvatarApp {
         this.objectModel2 = copy;
       });
     } else if (this.head === 'lila') {
-      this.fbxLoader.load('/assets/models/lila/object_lila.fbx', object => {
+      this.fbxLoader.load(ASSETS_PATH + 'models/lila/object_lila.fbx', object => {
         // Animation
         this.mixers.push(new THREE.AnimationMixer(object));
         this.mixers[0].clipAction(object.animations[0]).play();
@@ -158,7 +160,7 @@ export default class AvatarApp {
       });
     } else if (this.head === 'kevin') {
       /*var gltfLoader = new GLTFLoader();
-      gltfLoader.load('/assets/models/kevin/scene.gltf', function (gltf) {
+      gltfLoader.load(ASSETS_PATH + 'models/kevin/scene.gltf', function (gltf) {
         gltf.scene.scale.set(3, 3, 3);
 
         that.scene.add(gltf.scene);
@@ -166,23 +168,23 @@ export default class AvatarApp {
 
         let copy = SkeletonUtils.clone(gltf.scene);
         that.scene.add(copy);
-        that.objectModel2 = copy;        
+        that.objectModel2 = copy;
       });*/
     } else if (this.head === 'jean') {
       // Object
       const texture = new THREE.CubeTextureLoader().load([
-        '/assets/models/jean/cube_pink.jpg',
-        '/assets/models/jean/cube_pink.jpg',
-        '/assets/models/jean/cube_pink.jpg',
-        '/assets/models/jean/cube_pink.jpg',
-        '/assets/models/jean/cube_pink.jpg',
-        '/assets/models/jean/cube_pink.jpg'
+        ASSETS_PATH + 'models/jean/cube_pink.jpg',
+        ASSETS_PATH + 'models/jean/cube_pink.jpg',
+        ASSETS_PATH + 'models/jean/cube_pink.jpg',
+        ASSETS_PATH + 'models/jean/cube_pink.jpg',
+        ASSETS_PATH + 'models/jean/cube_pink.jpg',
+        ASSETS_PATH + 'models/jean/cube_pink.jpg'
       ]);
       texture.mapping = THREE.CubeReflectionMapping;
 
       var dog_material = new THREE.MeshBasicMaterial({ color: 0xffffff, envMap: texture, reflectivity: 1 });
 
-      this.objLoader.load('/assets/models/jean/object_matt.obj', function(object) {
+      this.objLoader.load(ASSETS_PATH + 'models/jean/object_matt.obj', function(object) {
         // Set material
         object.traverse(function(child) {
           if (child instanceof THREE.Mesh) {
