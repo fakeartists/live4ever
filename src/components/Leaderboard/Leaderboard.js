@@ -35,7 +35,7 @@ class Leaderboard extends React.PureComponent {
     const now = moment();
     const duration = moment.duration(now.diff(start));
     return (
-      duration.days() +
+      Math.floor(duration.asDays()) +
       'd ' +
       duration.hours() +
       'h ' +

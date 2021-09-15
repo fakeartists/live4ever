@@ -43,7 +43,7 @@ class Counter extends React.PureComponent {
     const now = moment();
     const duration = moment.duration(start.diff(now));
 
-    let days = duration.days();
+    let days = Math.floor(duration.asDays());
     if (days < 0) {
       days = '--';
     } else {

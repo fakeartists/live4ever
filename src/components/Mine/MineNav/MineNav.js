@@ -29,7 +29,7 @@ class MineNav extends React.PureComponent {
     const now = moment();
     const duration = moment.duration(start.diff(now));
 
-    let days = duration.days();
+    let days = Math.floor(duration.asDays());
     if (days > 0) {
       this.timer = setInterval(() => {
         this.setState({ count: this.state.count + 1 });
@@ -97,7 +97,7 @@ class MineNav extends React.PureComponent {
     const now = moment();
     const duration = moment.duration(start.diff(now));
 
-    let days = duration.days();
+    let days = Math.floor(duration.asDays());
     if (days < 0) {
       days = '--';
     } else {
