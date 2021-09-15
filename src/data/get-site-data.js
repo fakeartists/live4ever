@@ -1,4 +1,4 @@
-//import { getSiteData, connectionError } from './api/api';
+import { getUsersData } from './api/api';
 import copydata_en from './copy/copy-en';
 
 //temp
@@ -10,6 +10,11 @@ import adsdata from './ads';
 const copydata = {
   en: copydata_en
 };
+
+export async function getUsers() {
+  const userData = await getUsersData();
+  return userData;
+}
 
 export async function getData(id = undefined) {
   let assetData = {};

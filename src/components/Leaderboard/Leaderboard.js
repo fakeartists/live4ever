@@ -2,16 +2,32 @@ import React from 'react';
 import moment from 'moment';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
+import checkProps from '@jam3/react-check-extra-props';
+import { getUsers } from '../../data/get-site-data';
 
 import './Leaderboard.scss';
 
-//temp
-import leaderboardData from '../../data/leaderboard';
-
 class Leaderboard extends React.PureComponent {
-  async componentDidMount() {}
+  constructor(props) {
+    super(props);
+    this.state = { leaderboard: [] };
+  }
+
+  async componentDidMount() {
+    this.users = await getUsers();
+    const leaderboard = [];
+    for (var idx in this.users) {
+      if (this.users.hasOwnProperty(idx)) {
+        leaderboard.push(this.users[idx]);
+      }
+    }
+
+    this.setState({
+      leaderboard: leaderboard
+    });
+  }
+
   componentDidUpdate(prevProps) {}
 
   convertTime = time => {
@@ -43,7 +59,7 @@ class Leaderboard extends React.PureComponent {
             </tr>
           </thead>
           <tbody>
-            {leaderboardData.map((item, index) => {
+            {this.state.leaderboard.map((item, index) => {
               return (
                 <tr key={index} className="Leaderboard-item">
                   <td>{item.bid + ' ' + this.props.copy.piramid_ico}</td>

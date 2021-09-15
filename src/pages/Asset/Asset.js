@@ -12,8 +12,7 @@ import { setAssetPreviewState } from '../../redux/modules/asset-preview';
 import { setAssetData } from '../../redux/modules/asset-preview';
 import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
-import { getCopy } from '../../data/get-site-data';
-import { getData } from '../../data/get-site-data';
+import { getCopy, getData } from '../../data/get-site-data';
 import { checkCookieLogin } from '../../util/cookies';
 
 import './Asset.scss';
@@ -34,6 +33,7 @@ class Asset extends React.PureComponent {
     if (!this.props.loaded) {
       if (params.assetId !== undefined) {
         const asset = await getData(params.assetId);
+
         this.setState({
           asset: asset
         });
