@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "./static/media/DigitalNumbers-Regular.373a1f60.woff"
   },
   {
-    "revision": "72bab8ff1873e6ac7792",
-    "url": "./static/css/main.6d402299.chunk.css"
+    "revision": "1fb0ce65c07629e60c9e",
+    "url": "./static/css/main.7aa6b25f.chunk.css"
   },
   {
     "revision": "39585476c45a4800aec6",
@@ -84,8 +84,12 @@ self.__precacheManifest = [
     "url": "./static/media/pyramid_loader_small.78dd89a7.gif"
   },
   {
-    "revision": "72bab8ff1873e6ac7792",
-    "url": "./static/js/main.72bab8ff.chunk.js"
+    "revision": "c24f2122fbe1ce57ee9fb152c1a8f948",
+    "url": "./static/media/emojis.c24f2122.png"
+  },
+  {
+    "revision": "1fb0ce65c07629e60c9e",
+    "url": "./static/js/main.1fb0ce65.chunk.js"
   },
   {
     "revision": "cfa68fcb9c4820c792475063dfda63bf",
@@ -168,7 +172,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "b9b17d4a327393026990cbb41b09d54f",
+    "revision": "30cf35b80028520570c9dd2d4745dd1e",
     "url": "./index.html"
   }
 ];
