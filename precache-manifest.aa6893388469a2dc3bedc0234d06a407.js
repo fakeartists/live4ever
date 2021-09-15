@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "./static/media/DigitalNumbers-Regular.373a1f60.woff"
   },
   {
-    "revision": "785d8417e3c2edd6e4d6",
+    "revision": "73deeeb0af6f01aed318",
     "url": "./static/css/main.7aa6b25f.chunk.css"
   },
   {
@@ -88,20 +88,20 @@ self.__precacheManifest = [
     "url": "./static/media/emojis.c24f2122.png"
   },
   {
-    "revision": "785d8417e3c2edd6e4d6",
-    "url": "./static/js/main.785d8417.chunk.js"
+    "revision": "73deeeb0af6f01aed318",
+    "url": "./static/js/main.73deeeb0.chunk.js"
   },
   {
     "revision": "cfa68fcb9c4820c792475063dfda63bf",
     "url": "./static/media/Orbitron-Regular.cfa68fcb.woff"
   },
   {
-    "revision": "8e76419cbc7696ff18a3ee1a6a1e5857",
-    "url": "./static/media/aldrich-v11-latin-regular.8e76419c.woff"
-  },
-  {
     "revision": "df8665d3e226b24d8a296cb34a3692fd",
     "url": "./static/media/DigitalNumbers-Regular.df8665d3.ttf"
+  },
+  {
+    "revision": "8e76419cbc7696ff18a3ee1a6a1e5857",
+    "url": "./static/media/aldrich-v11-latin-regular.8e76419c.woff"
   },
   {
     "revision": "f8509cdf18344c7a0dc503bb29a623ef",
@@ -172,7 +172,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "404a0de689aa2b9e83b0263a0c7bc7a6",
+    "revision": "cb17d4594394d6c4ff6a149d18e4331a",
     "url": "./index.html"
   }
 ];
