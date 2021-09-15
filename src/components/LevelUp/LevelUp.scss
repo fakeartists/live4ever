@@ -24,7 +24,7 @@
       height: 320px;
       top: 0;
       left: 0;
-      background-image: url('/assets/images/emojis.png');
+      background-image: url('#{$base-image-path}emojis.png');
       background-repeat: no-repeat;
       background-position: 0 0;
       transform: translate3d(0, 0, 0) scale(1);

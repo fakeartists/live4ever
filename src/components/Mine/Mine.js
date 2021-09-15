@@ -27,10 +27,11 @@ class Mine extends React.PureComponent {
     this.animatebar = !cookiedata.promotionbanner;
 
     this.count = 25;
-
     const currentLevel = Math.floor(this.bid / this.count);
+
     if (this.level > currentLevel) {
       this.level = currentLevel;
+      this.level = this.level || 1;
       this.saveData(this.level, this.bid);
     }
 
@@ -48,8 +49,8 @@ class Mine extends React.PureComponent {
     if (this.props.data) {
       if (!this.isOpen) {
         this.mineNav.getWrappedInstance().updateCount(this.bid);
-
         const cookiedata = getCookie();
+
         if (!cookiedata.onboarding) {
           this.props.setOnboardingState(true);
         } else {

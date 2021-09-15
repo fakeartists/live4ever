@@ -16,6 +16,8 @@ class AudioPlayer extends React.PureComponent {
   componentDidMount() {}
 
   play = (src = 'click', volume = 0.4) => {
+
+
     if (this.audio) {
       switch (src) {
         case 'click':
