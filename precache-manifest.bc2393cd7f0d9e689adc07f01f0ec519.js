@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "./static/media/DigitalNumbers-Regular.373a1f60.woff"
   },
   {
-    "revision": "3802f3fe7be77f7b5f1b",
+    "revision": "473ab3d4ad3fa33d3178",
     "url": "./static/css/main.7aa6b25f.chunk.css"
   },
   {
@@ -88,8 +88,8 @@ self.__precacheManifest = [
     "url": "./static/media/emojis.c24f2122.png"
   },
   {
-    "revision": "3802f3fe7be77f7b5f1b",
-    "url": "./static/js/main.3802f3fe.chunk.js"
+    "revision": "473ab3d4ad3fa33d3178",
+    "url": "./static/js/main.473ab3d4.chunk.js"
   },
   {
     "revision": "cfa68fcb9c4820c792475063dfda63bf",
@@ -172,7 +172,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "ba091f2e5a3107b934d8151f519728a6",
+    "revision": "2b77785a0e388c6933e99ef5f0b1be93",
     "url": "./index.html"
   }
 ];
