@@ -20,8 +20,11 @@ class BoxInfo extends React.PureComponent {
     let assetinfo;
     let reserve;
     let userbid;
+    let imageOver;
 
     let highestbid = this.props.data.highestbid;
+    let haswebgl = this.props.data.webgl ? ' preview' : '';
+    let clickimage = this.props.previewFunction;
 
     const cookiedata = getCookie();
     const variation = cookiedata && cookiedata.variation;
@@ -38,6 +41,15 @@ class BoxInfo extends React.PureComponent {
           <button className="box-info-button cta" onClick={this.props.clickFunction}>
             {this.props.copy.button_box_asset}
           </button>
+        );
+      }
+
+      if (haswebgl !== '') {
+        imageOver = (
+          <div className="box-info-image-overlay">
+            <div className="box-info-image-overlay-ico" />
+            <p>{this.props.copy.image_click}</p>
+          </div>
         );
       }
 
@@ -83,6 +95,8 @@ class BoxInfo extends React.PureComponent {
       }
     } else {
       description = <p className="box-info-desc">{this.props.data.short_description}</p>;
+      haswebgl = '';
+      clickimage = null;
 
       bid = (
         <BaseLink className="box-info-button cta" link={'./asset/' + this.props.data._id}>
@@ -94,8 +108,9 @@ class BoxInfo extends React.PureComponent {
     return (
       <div className={classnames(`box-info`, classSingle)}>
         <div className="box-info-bid">
-          <div className="box-info-image" onClick={this.props.previewFunction}>
+          <div className={'box-info-image' + haswebgl} onClick={clickimage}>
             <img src={this.props.data.image} alt={this.props.data.title} />
+            {imageOver}
           </div>
           <div className="box-info-data">
             <h2 className="box-info-data-title">{this.props.data.title}</h2>
@@ -108,8 +123,9 @@ class BoxInfo extends React.PureComponent {
                 ' ' +
                 this.props.data.sets}
             </p>
-            <div className="box-info-data-image" onClick={this.props.previewFunction}>
+            <div className={'box-info-data-image' + haswebgl} onClick={clickimage}>
               <img src={this.props.data.image} alt={this.props.data.title} />
+              {imageOver}
             </div>
             {description}
             <div className="box-info-status">

@@ -45,6 +45,7 @@ export default {
     title_edition: 'Edition',
     separator_edition: 'of',
     title_time: 'Time left',
+    image_click: 'Click to open',
     button_box_home: 'Click Here!',
     button_box_asset: 'Bid For Free!',
     title_user_bid: 'Your Bid',

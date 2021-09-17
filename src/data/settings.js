@@ -14,6 +14,7 @@ settings.imagesPath = `${settings.sitePath}/assets/images/`;
 settings.apiUrl = process.env.REACT_APP_API_URL;
 settings.apiDataEndpoint = process.env.REACT_APP_API_DATA_ENDPOINT;
 settings.bidBase = process.env.REACT_APP_BID_BASE;
+settings.avatarPath = 'https://i.pravatar.cc/80??u=';
 
 // Webgl
 settings.datGui = settings.isDevelopment && true;

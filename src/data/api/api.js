@@ -1,22 +1,47 @@
 import { initializeApp } from '@firebase/app';
-import { getDatabase, ref, child, get } from '@firebase/database';
+import { getDatabase, ref, child, get, set } from '@firebase/database';
 
 import axios from 'axios';
 import settings from '../settings';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB9kAYLT4KLg1dykI_tmkwKDFcqF6hyX_k',
-  authDomain: 'live4ever-fb084.firebaseapp.com',
-  databaseURL: 'https://live4ever-fb084-default-rtdb.firebaseio.com',
-  projectId: 'live4ever-fb084',
-  storageBucket: 'live4ever-fb084.appspot.com',
-  messagingSenderId: '256707626407',
-  appId: '1:256707626407:web:1386326dbcad4418726282',
-  measurementId: 'G-8CM6893Q0V'
+  apiKey: process.env.REACT_APP_API_KEY,
+  databaseURL: process.env.REACT_APP_DATABASE_URL
 };
 
-// Initialize Firebase
 initializeApp(firebaseConfig);
+
+export const writeUserData = async (id, name, bid, level, email, image = '', status = 'bid') => {
+  const db = getDatabase();
+  const time = Date.now();
+
+  try {
+    await set(ref(db, 'users/' + id), {
+      _id: id,
+      email: email,
+      bid: bid,
+      level: level,
+      image: image,
+      name: name,
+      time: time,
+      status: status
+    });
+
+    return true;
+  } catch (err) {
+    console.error(err.message);
+    return false;
+  }
+};
+
+export const getUserData = async id => {
+  let returndata = null;
+  const usersData = await get(child(ref(getDatabase()), `users/` + id));
+  if (usersData.exists()) {
+    returndata = usersData.val();
+  }
+  return returndata;
+};
 
 export const getUsersData = async () => {
   let returndata = null;

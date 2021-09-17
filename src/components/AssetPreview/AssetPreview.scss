@@ -27,5 +27,12 @@
     left: 10%;
     background-color: $white;
     z-index: 701;
+    border: 8px $green solid;
+    box-sizing: border-box;
+
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

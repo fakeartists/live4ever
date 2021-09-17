@@ -42,7 +42,7 @@
     z-index: 900;
 
     @media (min-width: $layout-large) {
-      top: calc(#{$navbar-height-mobile} - 80px);
+      top: calc(#{$navbar-height-mobile} - 150px);
     }
   }
 

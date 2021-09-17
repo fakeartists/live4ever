@@ -4,31 +4,48 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import checkProps from '@jam3/react-check-extra-props';
+import settings from '../../data/settings';
 import { getUsers } from '../../data/get-site-data';
+import { getBidWithVariation } from '../../util/bid';
+import { getCookie } from '../../util/cookies';
 
 import './Leaderboard.scss';
 
 class Leaderboard extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.avatarPath = settings.avatarPath;
+    this.maxUsers = 25;
     this.state = { leaderboard: [] };
   }
 
   async componentDidMount() {
+    await this.updateLeaderboard();
+  }
+
+  componentDidUpdate(prevProps) {}
+
+  updateLeaderboard = async () => {
     this.users = await getUsers();
     const leaderboard = [];
+
+    let count = 0;
     for (var idx in this.users) {
       if (this.users.hasOwnProperty(idx)) {
         leaderboard.push(this.users[idx]);
       }
+      if (count >= this.maxUsers) break;
+      count++;
     }
+
+    leaderboard.sort((a, b) => {
+      return a.bid > b.bid ? -1 : 1;
+    });
 
     this.setState({
       leaderboard: leaderboard
     });
-  }
-
-  componentDidUpdate(prevProps) {}
+  };
 
   convertTime = time => {
     const start = moment(new Date(time));
@@ -48,6 +65,9 @@ class Leaderboard extends React.PureComponent {
   };
 
   render() {
+    const cookiedata = getCookie();
+    const variation = cookiedata && cookiedata.variation;
+
     return (
       <div className={classnames(`Leaderboard-content`)}>
         <table>
@@ -62,9 +82,9 @@ class Leaderboard extends React.PureComponent {
             {this.state.leaderboard.map((item, index) => {
               return (
                 <tr key={index} className="Leaderboard-item">
-                  <td>{item.bid + ' ' + this.props.copy.piramid_ico}</td>
+                  <td>{getBidWithVariation(item.bid, variation) + ' ' + this.props.copy.piramid_ico}</td>
                   <td>
-                    <img src={item.image} alt="bid user avatar" />
+                    <img src={item.image || this.avatarPath + item._id} alt="bid user avatar" />
                     <p>{item.name}</p>
                   </td>
                   <td>{this.convertTime(item.time)}</td>
@@ -93,5 +113,7 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  { withRef: true }
 )(Leaderboard);

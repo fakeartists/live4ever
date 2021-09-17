@@ -8,7 +8,8 @@ import WindowsHeader from '../WindowsHeader/WindowsHeader';
 import { setLoginState } from '../../redux/modules/login';
 import settings from '../../data/settings';
 import { getCopy } from '../../data/get-site-data';
-import { updateCookie, checkCookieLogin, setName } from '../../util/cookies';
+import { updateCookie, checkCookieLogin, setName, getCookie } from '../../util/cookies';
+import { getUser, updateUser } from '../../data/get-site-data';
 
 import './Login.scss';
 
@@ -58,25 +59,48 @@ class Login extends React.PureComponent {
     });
   };
 
-  logoutResponse = () => {
-    updateCookie({ login: null });
+  logoutResponse = async () => {
+    const cookiedata = getCookie();
+    await updateUser(
+      cookiedata.login.id,
+      cookiedata.login.name,
+      cookiedata.bidData.bid,
+      cookiedata.bidData.level,
+      cookiedata.login.email
+    );
 
+    updateCookie({ login: null });
     this.setState({ active: true });
     this.handleClose();
   };
 
-  loginResponse = response => {
-    const cookiedata = {
-      id: response.googleId,
-      name: setName(response.profileObj.name),
-      email: response.profileObj.email,
-      image: response.profileObj.imageUrl,
-      token: response.accessToken
-    };
-    updateCookie({ login: cookiedata });
+  loginResponse = async response => {
+    if (response.googleId) {
+      const userName = setName(response.profileObj.name);
+      const savedData = getCookie();
+      const dbUser = getUser(response.googleId);
+      let bid = savedData.bidData.bid;
+      let level = savedData.bidData.level;
 
-    this.setState({ active: true });
-    this.handleClose();
+      if (dbUser != null) {
+        if (dbUser.bid) bid = dbUser.bid > bid ? dbUser.bid : bid;
+        if (dbUser.level) level = dbUser.level > level ? dbUser.level : level;
+      }
+
+      await updateUser(response.googleId, userName, bid, level, response.profileObj.email);
+
+      const cookiedata = {
+        id: response.googleId,
+        name: userName,
+        email: response.profileObj.email,
+        image: response.profileObj.imageUrl,
+        token: response.accessToken
+      };
+      updateCookie({ login: cookiedata });
+
+      this.setState({ active: true });
+      this.handleClose();
+    }
   };
 
   errorResponse = response => {

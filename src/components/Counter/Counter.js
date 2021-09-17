@@ -42,8 +42,9 @@ class Counter extends React.PureComponent {
     const start = moment(new Date(this.props.endDate));
     const now = moment();
     const duration = moment.duration(start.diff(now));
+    let durDays = Math.floor(duration.asDays());
 
-    let days = Math.floor(duration.asDays());
+    let days = durDays;
     if (days < 0) {
       days = '--';
     } else {
@@ -51,21 +52,21 @@ class Counter extends React.PureComponent {
     }
 
     let hours = duration.hours();
-    if (hours < 0) {
+    if (durDays < 0) {
       hours = '--';
     } else {
       hours = hours < 10 ? '0' + hours : hours;
     }
 
     let minutes = duration.minutes();
-    if (minutes < 0) {
+    if (durDays < 0) {
       minutes = '--';
     } else {
       minutes = minutes < 10 ? '0' + minutes : minutes;
     }
 
     let seconds = duration.seconds();
-    if (seconds < 0) {
+    if (durDays < 0) {
       seconds = '--';
     } else {
       seconds = seconds < 10 ? '0' + seconds : seconds;

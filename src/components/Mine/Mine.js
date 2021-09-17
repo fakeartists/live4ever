@@ -12,6 +12,7 @@ import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import { setMineState, setLevelUpState, setOnboardingState } from '../../redux/modules/mine';
 import { getCopy } from '../../data/get-site-data';
 import { updateCookie, getCookie } from '../../util/cookies';
+import { updateUser } from '../../data/get-site-data';
 
 import './Mine.scss';
 
@@ -27,11 +28,10 @@ class Mine extends React.PureComponent {
     this.animatebar = !cookiedata.promotionbanner;
 
     this.count = 25;
-    const currentLevel = Math.floor(this.bid / this.count);
+    let currentLevel = Math.floor(this.bid / this.count) + 1;
 
     if (this.level > currentLevel) {
       this.level = currentLevel;
-      this.level = this.level || 1;
       this.saveData(this.level, this.bid);
     }
 
@@ -73,7 +73,7 @@ class Mine extends React.PureComponent {
   }
 
   startAds = () => {
-    const div = this.bid % this.level;
+    let div = this.bid % this.count;
     let toAdd = this.count - div;
     toAdd = toAdd <= 0 ? this.count : toAdd;
 
@@ -124,15 +124,14 @@ class Mine extends React.PureComponent {
     const ads = this.state.ads.filter(item => item.props.id !== id);
     let sharetime = this.bid % 10 === 0;
 
-    //&& this.animatebar
-    if (sharetime) {
+    if (sharetime && this.animatebar) {
       this.mineNav.getWrappedInstance().animateShareBarIn();
       updateCookie({ promotionbanner: true });
       this.animatebar = false;
     }
 
     this.addAd(0, ads);
-    const currentLevel = Math.floor(this.bid / this.count);
+    const currentLevel = Math.floor(this.bid / this.count) + 1;
 
     if (currentLevel > this.level) {
       this.level = currentLevel;
@@ -140,7 +139,7 @@ class Mine extends React.PureComponent {
       this.playSound('level', 0.6);
 
       animate
-        .to({ alpha: 0 }, 2, {
+        .to({ alpha: 0 }, 3, {
           alpha: 1
         })
         .then(() => {
@@ -157,7 +156,7 @@ class Mine extends React.PureComponent {
 
   updateBid = bid => {
     this.bid = bid;
-    const currentLevel = Math.floor(this.bid / this.count);
+    const currentLevel = Math.floor(this.bid / this.count) + 1;
     if (this.level > currentLevel) {
       this.level = currentLevel;
       this.saveData(this.level, this.bid);
@@ -182,8 +181,22 @@ class Mine extends React.PureComponent {
     updateCookie({ bidData: { level, bid } });
   };
 
-  handleClose = () => {
+  handleClose = async () => {
     this.saveData(this.level, this.bid);
+
+    const cookiedata = getCookie();
+    await updateUser(
+      cookiedata.login.id,
+      cookiedata.login.name,
+      cookiedata.bidData.bid,
+      cookiedata.bidData.level,
+      cookiedata.login.email
+    );
+
+    if (this.props.data.updateFunction) {
+      this.props.data.updateFunction();
+    }
+
     this.animateOut().then(() => {
       this.props.setMineState(null);
     });

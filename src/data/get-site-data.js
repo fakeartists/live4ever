@@ -1,4 +1,4 @@
-import { getUsersData } from './api/api';
+import { getUsersData, getUserData, writeUserData } from './api/api';
 import copydata_en from './copy/copy-en';
 
 //temp
@@ -10,6 +10,16 @@ import adsdata from './ads';
 const copydata = {
   en: copydata_en
 };
+
+export async function updateUser(id, name, bid, level, email, image = '', status = 'bid') {
+  const response = await writeUserData(id, name, bid, level, email, image, status);
+  return response;
+}
+
+export async function getUser(id) {
+  const userData = await getUserData(id);
+  return userData;
+}
 
 export async function getUsers() {
   const userData = await getUsersData();
