@@ -46,6 +46,7 @@ export default {
     separator_edition: 'of',
     title_time: 'Time left',
     image_click: 'Click to open',
+    image_click_bid: 'Click to bid',
     button_box_home: 'Click Here!',
     button_box_asset: 'Bid For Free!',
     title_user_bid: 'Your Bid',
@@ -62,7 +63,9 @@ export default {
   gallery: {
     gallery_title: 'Recent Winners',
     button_sold: 'View',
-    button_view: 'Bid for free'
+    button_view: 'Bid for free',
+    image_click: 'Click to open',
+    image_click_bid: 'Click to bid'
   },
   asset: {
     title_leaderboard: 'Leaderboard'

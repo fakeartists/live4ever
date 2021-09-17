@@ -50,14 +50,7 @@ class Mine extends React.PureComponent {
   componentDidUpdate() {
     if (this.props.data) {
       if (!this.isOpen) {
-        this.rank = this.props.data.leadeboard
-          .getWrappedInstance()
-          .getRank(this.bid)
-          .toString();
-
-        this.highest = this.props.data.leadeboard.getWrappedInstance().getHighest();
-        this.mineNav.getWrappedInstance().updateAll(this.bid, this.rank, this.highest);
-
+        this.updateBar();
         const cookiedata = getCookie();
         if (!cookiedata.onboarding) {
           this.props.setOnboardingState(true);
@@ -128,7 +121,8 @@ class Mine extends React.PureComponent {
   onAdClosed = id => {
     this.bid++;
 
-    this.mineNav.getWrappedInstance().updateCount(this.bid);
+    this.updateBar();
+
     const ads = this.state.ads.filter(item => item.props.id !== id);
     let sharetime = this.bid % 10 === 0;
 
@@ -171,6 +165,19 @@ class Mine extends React.PureComponent {
     }
   };
 
+  updateBar = () => {
+    if (this.props.data.leadeboard) {
+      this.rank = this.props.data.leadeboard
+        .getWrappedInstance()
+        .getRank(this.bid)
+        .toString();
+
+      this.highest = this.props.data.leadeboard.getWrappedInstance().getHighest();
+    }
+
+    this.mineNav.getWrappedInstance().updateAll(this.bid, this.rank, this.highest);
+  };
+
   updateShareBonus = bid => {
     const cookiedata = getCookie();
     if (!cookiedata.bannershared) {
@@ -201,6 +208,7 @@ class Mine extends React.PureComponent {
       cookiedata.login.email
     );
 
+    //update leaderboards
     if (this.props.data.updateFunction) {
       this.props.data.updateFunction();
     }
@@ -229,7 +237,6 @@ class Mine extends React.PureComponent {
             copy={this.copy}
             ref={mineNav => (this.mineNav = mineNav)}
             data={this.props.data}
-            rank={this.rank}
             updateBid={this.updateShareBonus}
           />
           <div className="mine-container">{this.state.ads}</div>

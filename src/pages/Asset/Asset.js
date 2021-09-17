@@ -33,13 +33,15 @@ class Asset extends React.PureComponent {
     if (!this.props.loaded) {
       if (params.assetId !== undefined) {
         const asset = await getData(params.assetId);
-
+        await this.leaderboard.getWrappedInstance().getLeaderboard(true);
         asset.updateFunction = this.updateLeaderboard;
         asset.leadeboard = this.leaderboard;
 
         this.setState({
           asset: asset
         });
+
+        this.updateLeaderboard();
       }
       this.props.setAssetLoaded(true);
     }
@@ -82,6 +84,7 @@ class Asset extends React.PureComponent {
 
   updateLeaderboard = () => {
     this.leaderboard.getWrappedInstance().updateLeaderboard();
+    this.boxinfo.getWrappedInstance().updateHighest(this.leaderboard.getWrappedInstance().getHighest());
   };
 
   render() {
@@ -94,6 +97,7 @@ class Asset extends React.PureComponent {
             previewFunction={this.onOpenPreview}
             copy={this.boxcopy}
             data={this.state.asset}
+            ref={el => (this.boxinfo = el)}
           />
         </section>
         <section className="Asset-container leaderboard">

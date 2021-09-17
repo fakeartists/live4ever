@@ -70,6 +70,7 @@ class Gallery extends React.PureComponent {
       );
     }
 
+    //+ (closed ? '' : ' active')
     return (
       <div className={classnames('Gallery', this.props.className)} ref={el => (this.container = el)}>
         <section className="Gallery-container">
@@ -80,17 +81,22 @@ class Gallery extends React.PureComponent {
                 .filter(item => !item.hot_sale || !this.props.isHome)
                 .map((item, index) => {
                   let closed = item.status === 'closed';
+                  let copyclick = closed ? this.copy.image_click : this.copy.image_click_bid;
                   return (
                     <li key={index} className="gallery-item">
                       <BaseLink className="gallery-item-content" link={'./asset/' + item._id}>
                         <div className="image-container">
                           <img src={item.image} alt="alt" />
+                          <div className="image-overlay">
+                            <div className="image-overlay-ico" />
+                            <p>{copyclick}</p>
+                          </div>
                         </div>
                         <h2 className="gallery-item-title">{item.title}</h2>
                         <div className="gallery-item-info">
                           {!this.props.isHome && <p className="gallery-item-info-title">{item.sub_title}</p>}
                           {this.props.isHome && <p className="gallery-item-info-bid">{item.highestbid + ' Δ'}</p>}
-                          <button className={'gallery-item-info-button' + (closed ? '' : ' active')}>
+                          <button className={'gallery-item-info-button active'}>
                             {closed ? this.copy.button_sold : this.copy.button_view}
                           </button>
                         </div>

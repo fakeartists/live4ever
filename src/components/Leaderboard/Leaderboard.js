@@ -20,14 +20,17 @@ class Leaderboard extends React.PureComponent {
   }
 
   async componentDidMount() {
-    await this.updateLeaderboard();
+    // await this.updateLeaderboard();
   }
 
   componentDidUpdate(prevProps) {}
 
-  getLeaderboard = () => {
+  async getLeaderboard(update = false) {
+    if (update) {
+      await this.updateLeaderboard();
+    }
     return this.state.leaderboard;
-  };
+  }
 
   getRank = bid => {
     const cookiedata = getCookie();

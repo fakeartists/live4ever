@@ -82,10 +82,10 @@
 
     .box-info-image-overlay-ico {
       position: absolute;
-      top: 6%;
-      right: 6%;
-      width: 15%;
-      height: 15%;
+      top: px-to-rem(30);
+      right: px-to-rem(30);
+      width: px-to-rem(100);
+      height: px-to-rem(100);
       border-radius: 50%;
       background-color: $green;
       background-image: url('#{$base-image-path}img_click.png');
@@ -105,12 +105,6 @@
       margin: 0;
       -webkit-text-stroke: 2px $green;
       transition: transform 0.1s ease-out;
-
-      @media (min-width: $layout-large) {
-        bottom: px-to-rem(16);
-        font-size: px-to-rem(18);
-        -webkit-text-stroke: 1px $green;
-      }
     }
 
     &:hover {
@@ -121,6 +115,21 @@
 
       p {
         transform: scale(1.2);
+      }
+    }
+
+    @media (min-width: $layout-large) {
+      .box-info-image-overlay-ico {
+        top: px-to-rem(15);
+        right: px-to-rem(15);
+        width: px-to-rem(45);
+        height: px-to-rem(45);
+      }
+
+      p {
+        bottom: px-to-rem(16);
+        font-size: px-to-rem(18);
+        -webkit-text-stroke: 1px $green;
       }
     }
   }
@@ -145,6 +154,13 @@
     @media (min-width: $layout-large) {
       display: block;
       visibility: visible;
+    }
+
+    border: 0px $green solid;
+    transition: border 0.15s ease-out;
+
+    &:hover {
+      border: 8px $green solid;
     }
   }
 
@@ -390,10 +406,8 @@
     align-self: stretch;
     transition: border 0.15s ease-out;
 
-    &.preview {
-      &:hover {
-        border: 8px $green solid;
-      }
+    &:hover {
+      border: 8px $green solid;
     }
   }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
@@ -11,9 +12,26 @@ import { getBidWithVariation } from '../../util/bid';
 import './BoxInfo.scss';
 
 class BoxInfo extends React.PureComponent {
-  async componentDidMount() {}
+  constructor(props) {
+    super(props);
+    this.state = { highest: 0 };
+  }
+
+  updateHighest = highest => {
+    this.setState({
+      highest: highest
+    });
+  };
 
   render() {
+    const cookiedata = getCookie();
+    const variation = cookiedata && cookiedata.variation;
+
+    const start = moment(new Date(this.props.data.ends));
+    const now = moment();
+    const duration = moment.duration(start.diff(now));
+    let durDays = Math.floor(duration.asDays());
+
     let classSingle = this.props.isSingle ? 'single' : '';
     let description;
     let bid;
@@ -21,22 +39,29 @@ class BoxInfo extends React.PureComponent {
     let reserve;
     let userbid;
     let imageOver;
+    let status = durDays < 0 || isNaN(durDays) ? false : true;
+    let ubid = '-';
 
-    let highestbid = this.props.data.highestbid;
+    let highestbid = status ? this.state.highest : this.props.data.highestbid;
     let haswebgl = this.props.data.webgl ? ' preview' : '';
-    let clickimage = this.props.previewFunction;
+    let clickimageFunction = status ? this.props.clickFunction : this.props.previewFunction;
+    let copyclick = status ? this.props.copy.image_click_bid : this.props.copy.image_click;
 
-    const cookiedata = getCookie();
-    const variation = cookiedata && cookiedata.variation;
-    let ubid = getBidWithVariation(cookiedata.bidData.bid, variation);
-    highestbid = ubid > highestbid ? ubid : highestbid;
+    if (status) {
+      ubid = cookiedata.bidData.bid;
+      highestbid = ubid > highestbid ? ubid : highestbid;
+      ubid = getBidWithVariation(ubid, variation);
+    }
+
+    let clicks = highestbid;
+    highestbid = getBidWithVariation(highestbid, variation);
 
     if (this.props.isSingle) {
       description = (
         <p className="box-info-desc" dangerouslySetInnerHTML={{ __html: this.props.data.full_description }} />
       );
 
-      if (this.props.data.status === 'open') {
+      if (status) {
         bid = (
           <button className="box-info-button cta" onClick={this.props.clickFunction}>
             {this.props.copy.button_box_asset}
@@ -44,14 +69,12 @@ class BoxInfo extends React.PureComponent {
         );
       }
 
-      if (haswebgl !== '') {
-        imageOver = (
-          <div className="box-info-image-overlay">
-            <div className="box-info-image-overlay-ico" />
-            <p>{this.props.copy.image_click}</p>
-          </div>
-        );
-      }
+      imageOver = (
+        <div className="box-info-image-overlay">
+          <div className="box-info-image-overlay-ico" />
+          <p>{copyclick}</p>
+        </div>
+      );
 
       assetinfo = (
         <div className="box-info-asset">
@@ -85,7 +108,7 @@ class BoxInfo extends React.PureComponent {
         );
       }
 
-      if (this.props.data.status === 'open') {
+      if (status) {
         userbid = (
           <div className="box-info-status-bid">
             <p className="box-info-status-bid-title">{this.props.copy.title_user_bid}</p>
@@ -95,8 +118,15 @@ class BoxInfo extends React.PureComponent {
       }
     } else {
       description = <p className="box-info-desc">{this.props.data.short_description}</p>;
-      haswebgl = '';
-      clickimage = null;
+      // haswebgl = '';
+      clickimageFunction = null;
+
+      imageOver = (
+        <BaseLink className="box-info-image-overlay" link={'./asset/' + this.props.data._id}>
+          <div className="box-info-image-overlay-ico" />
+          {/* <p>{this.props.copy.image_click}</p> */}
+        </BaseLink>
+      );
 
       bid = (
         <BaseLink className="box-info-button cta" link={'./asset/' + this.props.data._id}>
@@ -108,7 +138,7 @@ class BoxInfo extends React.PureComponent {
     return (
       <div className={classnames(`box-info`, classSingle)}>
         <div className="box-info-bid">
-          <div className={'box-info-image' + haswebgl} onClick={clickimage}>
+          <div className={'box-info-image' + haswebgl} onClick={clickimageFunction}>
             <img src={this.props.data.image} alt={this.props.data.title} />
             {imageOver}
           </div>
@@ -123,7 +153,7 @@ class BoxInfo extends React.PureComponent {
                 ' ' +
                 this.props.data.sets}
             </p>
-            <div className={'box-info-data-image' + haswebgl} onClick={clickimage}>
+            <div className={'box-info-data-image' + haswebgl} onClick={clickimageFunction}>
               <img src={this.props.data.image} alt={this.props.data.title} />
               {imageOver}
             </div>
@@ -133,7 +163,7 @@ class BoxInfo extends React.PureComponent {
                 <div className={'box-info-box ' + classSingle}>
                   <p className="box-info-status-top-title">{this.props.copy.title_bid}</p>
                   <p className="box-info-status-top-bid">{highestbid + ' ' + this.props.copy.piramid_ico}</p>
-                  <p className="box-info-status-info">{this.props.data.clicks + ' ' + this.props.copy.sub_title_bid}</p>
+                  <p className="box-info-status-info">{clicks + ' ' + this.props.copy.sub_title_bid}</p>
                 </div>
                 <div className={'box-info-box ' + classSingle}>
                   <p className="box-info-status-top-title">{this.props.copy.title_time}</p>
@@ -181,5 +211,7 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  { withRef: true }
 )(BoxInfo);
