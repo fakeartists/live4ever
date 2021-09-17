@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "./static/media/DigitalNumbers-Regular.373a1f60.woff"
   },
   {
-    "revision": "96117c25abe28bc9371f",
+    "revision": "ed580921e23a891c110e",
     "url": "./static/css/main.df299bd9.chunk.css"
   },
   {
@@ -88,28 +88,28 @@ self.__precacheManifest = [
     "url": "./static/media/emojis.c24f2122.png"
   },
   {
-    "revision": "96117c25abe28bc9371f",
-    "url": "./static/js/main.96117c25.chunk.js"
+    "revision": "ed580921e23a891c110e",
+    "url": "./static/js/main.ed580921.chunk.js"
   },
   {
     "revision": "cfa68fcb9c4820c792475063dfda63bf",
     "url": "./static/media/Orbitron-Regular.cfa68fcb.woff"
   },
   {
-    "revision": "df8665d3e226b24d8a296cb34a3692fd",
-    "url": "./static/media/DigitalNumbers-Regular.df8665d3.ttf"
-  },
-  {
     "revision": "8e76419cbc7696ff18a3ee1a6a1e5857",
     "url": "./static/media/aldrich-v11-latin-regular.8e76419c.woff"
   },
   {
-    "revision": "add0c4244a015960586eeb51f091fd71",
-    "url": "./static/media/Orbitron-Regular.add0c424.ttf"
+    "revision": "df8665d3e226b24d8a296cb34a3692fd",
+    "url": "./static/media/DigitalNumbers-Regular.df8665d3.ttf"
   },
   {
     "revision": "f8509cdf18344c7a0dc503bb29a623ef",
     "url": "./static/media/aldrich-v11-latin-regular.f8509cdf.ttf"
+  },
+  {
+    "revision": "add0c4244a015960586eeb51f091fd71",
+    "url": "./static/media/Orbitron-Regular.add0c424.ttf"
   },
   {
     "revision": "80c7c20702789901bce5a206bc0a4fad",
@@ -172,7 +172,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "c40522474a21f639284f65b4d9e7bfa7",
+    "revision": "f972042ad7d9591fa239209b8b18caa5",
     "url": "./index.html"
   }
 ];
