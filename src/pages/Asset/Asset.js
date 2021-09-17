@@ -35,6 +35,7 @@ class Asset extends React.PureComponent {
         const asset = await getData(params.assetId);
 
         asset.updateFunction = this.updateLeaderboard;
+        asset.leadeboard = this.leaderboard;
 
         this.setState({
           asset: asset

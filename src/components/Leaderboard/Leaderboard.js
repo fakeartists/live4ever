@@ -25,6 +25,22 @@ class Leaderboard extends React.PureComponent {
 
   componentDidUpdate(prevProps) {}
 
+  getLeaderboard = () => {
+    return this.state.leaderboard;
+  };
+
+  getRank = bid => {
+    const cookiedata = getCookie();
+    const id = cookiedata.login.id;
+    const index = this.state.leaderboard.findIndex(x => x._id === id);
+    return index + 1;
+  };
+
+  getHighest = () => {
+    const highest = this.state.leaderboard.length > 0 ? this.state.leaderboard[0].bid : 0;
+    return highest;
+  };
+
   updateLeaderboard = async () => {
     this.users = await getUsers();
     const leaderboard = [];

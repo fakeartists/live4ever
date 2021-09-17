@@ -35,6 +35,8 @@ class Mine extends React.PureComponent {
       this.saveData(this.level, this.bid);
     }
 
+    this.rank = '-';
+    this.highest = 0;
     this.currentKey = 0;
     this.isOpen = false;
     this.state = { ads: [] };
@@ -48,9 +50,15 @@ class Mine extends React.PureComponent {
   componentDidUpdate() {
     if (this.props.data) {
       if (!this.isOpen) {
-        this.mineNav.getWrappedInstance().updateCount(this.bid);
-        const cookiedata = getCookie();
+        this.rank = this.props.data.leadeboard
+          .getWrappedInstance()
+          .getRank(this.bid)
+          .toString();
 
+        this.highest = this.props.data.leadeboard.getWrappedInstance().getHighest();
+        this.mineNav.getWrappedInstance().updateAll(this.bid, this.rank, this.highest);
+
+        const cookiedata = getCookie();
         if (!cookiedata.onboarding) {
           this.props.setOnboardingState(true);
         } else {
@@ -136,7 +144,7 @@ class Mine extends React.PureComponent {
     if (currentLevel > this.level) {
       this.level = currentLevel;
       this.props.setLevelUpState(true);
-      this.playSound('level', 0.6);
+      this.playSound('level', 0.5);
 
       animate
         .to({ alpha: 0 }, 3, {
@@ -148,7 +156,7 @@ class Mine extends React.PureComponent {
         });
       //this.addAd(3 + parseInt(Math.random() * 4), ads);
     } else {
-      this.playSound('click', 0.4);
+      this.playSound('click', 0.3);
     }
 
     this.saveData(this.level, this.bid);
@@ -221,6 +229,7 @@ class Mine extends React.PureComponent {
             copy={this.copy}
             ref={mineNav => (this.mineNav = mineNav)}
             data={this.props.data}
+            rank={this.rank}
             updateBid={this.updateShareBonus}
           />
           <div className="mine-container">{this.state.ads}</div>

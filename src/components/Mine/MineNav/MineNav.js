@@ -17,7 +17,9 @@ class MineNav extends React.PureComponent {
     this.variation = null;
     this.state = {
       bid: 0,
-      count: 0
+      count: 0,
+      rank: '-',
+      highest: 0
     };
   }
 
@@ -86,10 +88,30 @@ class MineNav extends React.PureComponent {
     }
   };
 
+  updateRank = rank => {
+    this.setState({ rank: rank });
+  };
+
+  updateHighest = highest => {
+    const cookiedata = getCookie();
+    const variation = cookiedata && cookiedata.variation;
+    this.setState({ highest: getBidWithVariation(highest, variation) });
+  };
+
   updateCount = count => {
     const cookiedata = getCookie();
     const variation = cookiedata && cookiedata.variation;
     this.setState({ bid: getBidWithVariation(count, variation) });
+  };
+
+  updateAll = (count, rank, highest) => {
+    const cookiedata = getCookie();
+    const variation = cookiedata && cookiedata.variation;
+    this.setState({
+      rank: rank,
+      highest: getBidWithVariation(highest, variation),
+      bid: getBidWithVariation(count, variation)
+    });
   };
 
   render() {
@@ -111,7 +133,7 @@ class MineNav extends React.PureComponent {
       hours = hours < 10 ? '0' + hours : hours;
     }
 
-    let highestbid = this.props.data.highestbid;
+    let highestbid = this.state.highest;
     if (this.state.bid > highestbid) highestbid = this.state.bid;
 
     return (
@@ -127,7 +149,7 @@ class MineNav extends React.PureComponent {
           <div className="rank-wrapper">
             <div className="rank-count">
               <span className="label">{this.props.copy.title_rank}</span>
-              <span className="digits">0</span>
+              <span className="digits">{this.state.rank}</span>
             </div>
             <div className="rank-bid">
               <span className="label">{this.props.copy.title_top_bid}</span>
