@@ -32,10 +32,21 @@ class Leaderboard extends React.PureComponent {
     return this.state.leaderboard;
   }
 
-  getRank = bid => {
+  getRank = (bid = null) => {
     const cookiedata = getCookie();
     const id = cookiedata.login.id;
-    const index = this.state.leaderboard.findIndex(x => x._id === id);
+    let index = this.state.leaderboard.findIndex(x => x._id === id);
+
+    if (bid != null) {
+      for (let i = index; i >= 0; i--) {
+        const value = this.state.leaderboard[i].bid;
+        if (bid >= value) {
+          index = i;
+        } else {
+          break;
+        }
+      }
+    }
     return index + 1;
   };
 
