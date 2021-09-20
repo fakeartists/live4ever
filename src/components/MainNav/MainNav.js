@@ -101,12 +101,12 @@ class MainTopNav extends React.PureComponent {
               <p className="nav-logo-text">{this.copy.title}</p>
             </BaseLink>
           )}
-          <div className="nav-mid-logo-cnt" ref={el => (this.logo = el)}>
+          <a href={this.props.logoLink} className="nav-mid-logo-cnt" ref={el => (this.logo = el)}>
             <PyramidIcon className="nav-mid-logo" />
             <div className="nav-mid-logo-text">
               <h1 ref={el => (this.text = el)}>{this.copy.phone}</h1>
             </div>
-          </div>
+          </a>
           {this.props.showHamburger ? (
             <HamburgerButton onClick={this.handleHamburgerClick} currentState={this.state.buttonState} />
           ) : (

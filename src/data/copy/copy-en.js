@@ -121,7 +121,7 @@ export default {
     title: 'About Us',
     text: [
       {
-        title: 'Pyramid NFT is the next generation of virtual experience',
+        title: 'Pyramid NFT is the next generation of blockchain metaverse experience',
         text: [
           'Welcome to Pyramid NFT, the world-first platform unlocking digital eternal life by turning its members into NFTs.',
           // eslint-disable-next-line
