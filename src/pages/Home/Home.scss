@@ -24,6 +24,16 @@
     b {
       color: $pink;
     }
+
+    a {
+      cursor: pointer;
+      color: $pink;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   &-header {

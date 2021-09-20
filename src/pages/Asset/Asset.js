@@ -79,6 +79,8 @@ class Asset extends React.PureComponent {
     if (this.state.asset.webgl) {
       this.props.setAssetPreviewState(true);
       this.props.setAssetData(this.state.asset.webgl);
+    } else if (this.state.asset.link) {
+      window.open(this.state.asset.link, '_blank');
     }
   };
 
@@ -88,6 +90,8 @@ class Asset extends React.PureComponent {
   };
 
   render() {
+    let leaderboardClass = ''; //this.state.asset.status === 'open' ? '' : ' noshow';
+
     return (
       <div className={classnames('Asset', this.props.className)} ref={el => (this.container = el)}>
         <section className="Asset-container">
@@ -100,7 +104,7 @@ class Asset extends React.PureComponent {
             ref={el => (this.boxinfo = el)}
           />
         </section>
-        <section className="Asset-container leaderboard">
+        <section className={'Asset-container leaderboard' + leaderboardClass}>
           <h1>{this.copy.title_leaderboard}</h1>
           <Leaderboard copy={this.leaderoardcopy} ref={el => (this.leaderboard = el)} />
         </section>

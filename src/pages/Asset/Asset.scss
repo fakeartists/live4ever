@@ -36,6 +36,11 @@
           padding: 0 px-to-rem(20) 0 px-to-rem(20);
         }
       }
+
+      &.noshow {
+        display: none;
+        visibility: hidden;
+      }
     }
 
     @media (min-width: $layout-large) {

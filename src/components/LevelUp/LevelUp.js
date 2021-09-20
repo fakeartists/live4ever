@@ -16,6 +16,7 @@ class LevelUp extends React.PureComponent {
     this.copy = getCopy(this.props.language, 'levelup');
     this.isOpen = false;
     this.box = null;
+    this.rank = '-';
 
     this.items = [];
     this.refs = [];
@@ -111,6 +112,10 @@ class LevelUp extends React.PureComponent {
     });
   };
 
+  updateRank = (rank = '-') => {
+    this.rank = rank;
+  };
+
   render() {
     this.refs = [];
     this.items = [];
@@ -121,12 +126,18 @@ class LevelUp extends React.PureComponent {
       index++;
     });
 
+    let idx = Math.floor(Math.random() * this.copy.text.length);
+    let text = this.copy.text[idx];
+    let rank = this.copy.message + ' ' + this.rank;
+
     return (
       <div className="LevelUp" ref={el => (this.container = el)}>
         <div className="level-emoji">{this.items}</div>
         <div className="level-message" ref={el => (this.box = el)}>
           <WindowsHeader isActive={false} />
-          <p>{this.copy.title}</p>
+          <p className="level-rank">{rank}</p>
+          <h1>{this.copy.title}</h1>
+          <p className="level-text">{text}</p>
         </div>
       </div>
     );

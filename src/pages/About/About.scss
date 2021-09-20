@@ -9,7 +9,7 @@
   padding: px-to-rem(20) $navbar-padding-mobile;
 
   @media (min-width: $layout-large) {
-    margin: px-to-rem(80) 0 0 0;
+    margin: px-to-rem(40) 0 0 0;
     padding: px-to-rem(20) $navbar-padding-desktop;
   }
 
@@ -17,8 +17,17 @@
     margin: px-to-rem(0) 0 px-to-rem(30) 0;
     @include font-title;
     color: $pink;
-    font-size: px-to-rem(24);
-    line-height: px-to-rem(30);
+    font-size: px-to-rem(32);
+    line-height: px-to-rem(32);
+    text-align: left;
+  }
+
+  h2 {
+    margin: px-to-rem(30) 0 px-to-rem(30) 0;
+    @include font-title;
+    color: $pink;
+    font-size: px-to-rem(18);
+    line-height: px-to-rem(24);
     text-align: left;
   }
 
@@ -28,14 +37,37 @@
     line-height: px-to-rem(20);
     color: $green;
     text-align: left;
-    max-width: 1200px;
+    max-width: 1500px;
+
+    &.bullet {
+      margin: px-to-rem(5) 0 px-to-rem(8) px-to-rem(0);
+
+      @media (min-width: $layout-large) {
+        margin: px-to-rem(5) 0 px-to-rem(8) px-to-rem(30);
+      }
+    }
+
+    b {
+      font-weight: bold;
+      color: $pink;
+    }
+
+    a {
+      cursor: pointer;
+      color: $pink;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   .contact {
     position: relative;
     float: left;
     width: 100%;
-    margin: px-to-rem(60) 0 px-to-rem(30) 0;
+    margin: px-to-rem(50) 0 px-to-rem(30) 0;
 
     p {
       margin: px-to-rem(5) 0 px-to-rem(5) 0;

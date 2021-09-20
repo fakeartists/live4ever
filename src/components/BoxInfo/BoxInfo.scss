@@ -238,6 +238,11 @@
       font-size: px-to-rem(16);
       margin: px-to-rem(30) 0 px-to-rem(20) 0;
 
+      b {
+        color: $pink;
+        text-transform: uppercase;
+      }
+
       @media (min-width: $layout-large) {
         margin: px-to-rem(20) 0 px-to-rem(20) 0;
         font-size: px-to-rem(10);

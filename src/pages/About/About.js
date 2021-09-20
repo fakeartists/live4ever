@@ -44,7 +44,15 @@ class About extends React.PureComponent {
       <section className={classnames('About', this.props.className)} ref={el => (this.container = el)}>
         <h1>{this.copy.title}</h1>
         {this.copy.text.map((item, index) => {
-          return <p key={index}>{item}</p>;
+          let block = [];
+          block.push(<h2 key={index}>{item.title}</h2>);
+          item.text.forEach((element, eindex) => {
+            let bullet = element.substring(0, 4) === '<b>-' ? ' bullet' : '';
+            block.push(
+              <p className={bullet} key={index + '-' + eindex} dangerouslySetInnerHTML={{ __html: element }} />
+            );
+          });
+          return block;
         })}
         <div className="contact">
           <h1>{this.copy.contact.title}</h1>

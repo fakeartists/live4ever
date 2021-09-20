@@ -34,9 +34,9 @@
   .level-message {
     position: absolute;
     width: 80vw;
-    height: 40vw;
+    height: 30vh;
     max-width: 400px;
-    max-height: 280px;
+    max-height: 230px;
     top: 50%;
     left: 50%;
     background: $black;
@@ -45,16 +45,40 @@
     z-index: 9999;
 
     p {
-      position: absolute;
+      position: relative;
+      float: left;
       width: 100%;
-      padding: 0 px-to-rem(30);
+      font-size: 14px;
+      color: $green;
+      text-align: center;
+    }
+
+    .level-rank {
+      margin-top: 30px;
+    }
+
+    h1 {
+      position: relative;
+      float: left;
+      width: 100%;
+      padding: 10px 30px 17px 30px;
       margin: 0;
-      top: 50%;
       @include font-banner();
       -webkit-text-stroke: 2px $pink;
-      font-size: px-to-rem(30);
+      font-size: 40px;
       color: $white;
-      transform: translateY(-50%);
+    }
+
+    @media (min-width: $layout-large) {
+      max-height: 280px;
+
+      p {
+        font-size: 18px;
+      }
+      h1 {
+        padding: 10px 30px 20px 30px;
+        font-size: 50px;
+      }
     }
   }
 }

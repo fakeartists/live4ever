@@ -34,7 +34,7 @@ export default {
   },
   home: {
     welcome:
-      'Welcome to <b>Pyramid</b>, the first NFT platform unlocking digital eternal life, powered by human energy',
+      'Welcome to <b>Pyramid</b>, the first NFT platform unlocking digital eternal life, powered by human energy. <a href="./about" target="_self">Learn more!</a>',
     title_horsale: 'Hot Sale'
   },
   assetpreview: {},
@@ -87,7 +87,18 @@ export default {
     promo_close: 'Close'
   },
   levelup: {
-    title: 'Level UP!'
+    message: 'Your rank is # ',
+    title: 'Level UP!',
+    text: [
+      'Click to join the Founder’s Club',
+      'HODL Diamond Hands',
+      'Keep clicking, become eternal',
+      'Can you make it to top 100?',
+      'To the moon fren',
+      'Rise the floor!',
+      'Race to the top',
+      'No click no gain'
+    ]
   },
   onboarding: {
     title: 'Welcome To Pyramid',
@@ -108,11 +119,45 @@ export default {
   about: {
     title: 'About Us',
     text: [
-      'Pyramid NFT is the latest venture backed and developed to be a game changer in immortality securities.',
-      // eslint-disable-next-line
-      'Founded by an elite group of visionaries, key members leverage decades of experience between chairman of a well known fortune 100 company, venture capitalist firms, and silicon valley business moguls\
-      Through a patented system powered by human energy utilizing state of the art blockchain technology, Pyramid NFT is the world’s first platform that guarantees after life.',
-      'The company is headquartered in XYZ, and successfully raised 666 Billion through their Series C Funding with a planned IPO in Q4 of 2022'
+      {
+        title: 'Pyramid NFT is the next generation of virtual experience',
+        text: [
+          'Welcome to Pyramid NFT, the world-first platform unlocking digital eternal life by turning its members into NFTs.',
+          // eslint-disable-next-line
+          'Entirely powered by human energy, Pyramid offers a one-time opportunity to enable your immortal virtual avatar, living 4 ever in the\
+          blockchain. Its members with also unlock an exclusive access to ambitious collection of post-reality content & benefits to be unlocked on a regular basis.'
+        ]
+      },
+      {
+        title: 'Rewarding the Pyramid community',
+        text: [
+          'The top 100 participants to the upcoming “Hot Sales” will unlock unique benefits provided by the fAke Artists DAO. Our team has developed a 50-year roadmap of unique R&D, content developed and unique member-perks.',
+          '<b>- Top 100 bidders:</b> Lifetime Membership to the “Founder’s club” unlocking exclusive access to exclusive drops.',
+          '<b>- Top 50 bidders:</b> Access to exclusive <a href="https://fakeartists.net/fake-food" target="_blank">FakeBurger NFT</a> (2nd edition 0-50 series).',
+          '<b>- Top 10 bidders:</b> Fake Artists IRL clothing for the chosen few.',
+          '<b>- Top 5 bidders:</b> Exclusive video coaching session with our CEO/Visionary/Digi-evangelist <a href="https://twitter.com/NathanFrostTuc1" target="_blank">Nathan Frost Tucker.</a>',
+          '<b>- Top 1 bider:</b> Permanent access to the Afterlife w/your own personalized digital avatar NFT custom-created by the Pyramid team.'
+        ]
+      },
+      {
+        title: 'How to participate for free?',
+        text: [
+          // eslint-disable-next-line
+          'Participation to the Pyramid NFT “hot sales” is entirely FREE. All you have to do is to click, click, click...After connecting to the platform (button “connect”),\
+          you can compete to join the top 100 lucky winners by unlocking pyramid  tokens. Pyramid tokens are created when you share your human energy with the platform by\
+          clicking on our algorithmic pop-ups. Embrace the promise of a better tomorrow, keep clicking on our unique interface and a get a unique chance to join the “Founder’s club”'
+        ]
+      },
+      {
+        title: 'About Pyramid Inc',
+        text: [
+          // eslint-disable-next-line
+          'Pyramid NFT is the latest venture founder by visionary <a href="https://twitter.com/NathanFrostTuc1" target="_blank">Nathan Frost Tucker</a> developed to be a game changer in immortality securities.\
+          Founded by an elite group of visionaries, key members leverage decades of experience between chairman of a well known fortune 100 company, venture capitalist firms, and silicon valley business moguls',
+          'Through a patented system powered by human energy utilizing state of the art blockchain technology, Pyramid NFT is the world’s first platform that guarantees after life.',
+          'The company, Pyramid Inc, is headquartered in, 2100 Federal Rd, Houston TX and successfully raised 666 Billion through their Series C Funding with a planned IPO in Q4 of 2022'
+        ]
+      }
     ],
     contact: {
       title: 'Company Details',
@@ -123,7 +168,7 @@ export default {
       title: 'DISCLAIMER',
       text: [
         'Pyramid is an art project and a satire. It is in no way a serious venture nor a commercial effort and should be understood as an art project exploring our post-reality world.',
-        'Pyramid reflects on how new technologies generate an endless cycle of media hype and corporate greed. We hope you enjoy it.  Note that the creators believe in the potential of NFTs as a new way for digital artists to finally live of their work.'
+        'The Pyramid project reflects on how new technologies often generate an endless cycle of media hype and business opportunism. We hope you enjoy it. Note that the creators believe in the potential of the blockchain and NFTs to redefine how digital artists can engage with their audience and better benefit from their work.'
       ]
     }
   },

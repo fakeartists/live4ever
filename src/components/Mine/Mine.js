@@ -135,8 +135,16 @@ class Mine extends React.PureComponent {
     this.addAd(0, ads);
     const currentLevel = Math.floor(this.bid / this.count) + 1;
 
+    if (this.levelup) {
+      this.levelup.getWrappedInstance().updateRank(this.rank);
+    }
+    this.props.setLevelUpState(true);
+
     if (currentLevel > this.level) {
       this.level = currentLevel;
+      if (this.levelup) {
+        this.levelup.getWrappedInstance().updateRank(this.rank);
+      }
       this.props.setLevelUpState(true);
       this.playSound('level', 0.5);
 
@@ -240,7 +248,7 @@ class Mine extends React.PureComponent {
             updateBid={this.updateShareBonus}
           />
           <div className="mine-container">{this.state.ads}</div>
-          <LevelUp language={this.props.language} />
+          <LevelUp language={this.props.language} ref={el => (this.levelup = el)} />
           <Onboarding language={this.props.language} />
         </section>
       );

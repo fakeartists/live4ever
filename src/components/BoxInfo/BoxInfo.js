@@ -117,7 +117,9 @@ class BoxInfo extends React.PureComponent {
         );
       }
     } else {
-      description = <p className="box-info-desc">{this.props.data.short_description}</p>;
+      description = (
+        <p className="box-info-desc" dangerouslySetInnerHTML={{ __html: this.props.data.short_description }} />
+      );
       // haswebgl = '';
       clickimageFunction = null;
 
