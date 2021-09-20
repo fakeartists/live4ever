@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "373a1f60aeffc30a64b53d2e5e8b5f8b",
-    "url": "./static/media/DigitalNumbers-Regular.373a1f60.woff"
+    "revision": "cfa68fcb9c4820c792475063dfda63bf",
+    "url": "./static/media/Orbitron-Regular.cfa68fcb.woff"
   },
   {
-    "revision": "cd10b5074a3c5e767a54",
+    "revision": "bc44c194592308a5e3dd",
     "url": "./static/css/main.95e27225.chunk.css"
   },
   {
-    "revision": "4d70ab0f732752c92049",
-    "url": "./static/js/runtime~main.4d70ab0f.js"
+    "revision": "87e00089ef8e45e944ad",
+    "url": "./static/js/runtime~main.87e00089.js"
   },
   {
     "revision": "fe4920453894cabf2d2c7cba989fb765",
@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "./static/media/enter-fullscreen.99662b7d.svg"
   },
   {
-    "revision": "d069a43def9fb331b9c8",
-    "url": "./static/js/4.d069a43d.chunk.js"
+    "revision": "c8cd77b9eb0cb0c41c2d",
+    "url": "./static/js/4.c8cd77b9.chunk.js"
   },
   {
     "revision": "4b8944698c86235f2f337264e5ffd7be",
@@ -88,28 +88,28 @@ self.__precacheManifest = [
     "url": "./static/media/emojis.c24f2122.png"
   },
   {
-    "revision": "cd10b5074a3c5e767a54",
-    "url": "./static/js/main.cd10b507.chunk.js"
+    "revision": "bc44c194592308a5e3dd",
+    "url": "./static/js/main.bc44c194.chunk.js"
   },
   {
-    "revision": "cfa68fcb9c4820c792475063dfda63bf",
-    "url": "./static/media/Orbitron-Regular.cfa68fcb.woff"
-  },
-  {
-    "revision": "8e76419cbc7696ff18a3ee1a6a1e5857",
-    "url": "./static/media/aldrich-v11-latin-regular.8e76419c.woff"
+    "revision": "373a1f60aeffc30a64b53d2e5e8b5f8b",
+    "url": "./static/media/DigitalNumbers-Regular.373a1f60.woff"
   },
   {
     "revision": "df8665d3e226b24d8a296cb34a3692fd",
     "url": "./static/media/DigitalNumbers-Regular.df8665d3.ttf"
   },
   {
-    "revision": "add0c4244a015960586eeb51f091fd71",
-    "url": "./static/media/Orbitron-Regular.add0c424.ttf"
+    "revision": "8e76419cbc7696ff18a3ee1a6a1e5857",
+    "url": "./static/media/aldrich-v11-latin-regular.8e76419c.woff"
   },
   {
     "revision": "f8509cdf18344c7a0dc503bb29a623ef",
     "url": "./static/media/aldrich-v11-latin-regular.f8509cdf.ttf"
+  },
+  {
+    "revision": "add0c4244a015960586eeb51f091fd71",
+    "url": "./static/media/Orbitron-Regular.add0c424.ttf"
   },
   {
     "revision": "80c7c20702789901bce5a206bc0a4fad",
@@ -160,8 +160,8 @@ self.__precacheManifest = [
     "url": "./static/css/5.f6025bdd.chunk.css"
   },
   {
-    "revision": "d069a43def9fb331b9c8",
-    "url": "./static/css/4.2f297a60.chunk.css"
+    "revision": "c8cd77b9eb0cb0c41c2d",
+    "url": "./static/css/4.dc34513e.chunk.css"
   },
   {
     "revision": "9b881fee58bc08b33ca8",
@@ -172,7 +172,7 @@ self.__precacheManifest = [
     "url": "./static/css/2.6455cbe0.chunk.css"
   },
   {
-    "revision": "4be5fd9d6b75aca491cb3a93250c017c",
+    "revision": "35ddfcf2986f78d95fb7c313f73278be",
     "url": "./index.html"
   }
 ];
