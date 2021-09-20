@@ -19,7 +19,7 @@ $layout-small: map-get($layout, small) + px;
 $layout-medium: map-get($layout, medium) + px;
 $layout-large: map-get($layout, large) + px;
 $layout-xlarge: map-get($layout, xlarge) + px;
-$min-width: 350px;
+$min-width: 300px;
 
 // ====================================================================
 // Base palette

@@ -34,7 +34,7 @@
 
     .gallery-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: px-to-rem(10);
       grid-auto-flow: dense;
 
@@ -71,8 +71,8 @@
             position: absolute;
             top: px-to-rem(20);
             right: px-to-rem(20);
-            width: px-to-rem(80);
-            height: px-to-rem(80);
+            width: px-to-rem(60);
+            height: px-to-rem(60);
             border-radius: 50%;
             background-color: $green;
             background-image: url('#{$base-image-path}img_click.png');
@@ -226,7 +226,7 @@
       }
 
       .gallery-list {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 
         .gallery-item {
           padding: px-to-rem(10);

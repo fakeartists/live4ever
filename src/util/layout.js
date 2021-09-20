@@ -7,6 +7,9 @@ const MEDIUM_MATCH_MEDIA = window.matchMedia(MEDIUM_MEDIA_QUERY);
 const LARGE_MATCH_MEDIA = window.matchMedia(LARGE_MEDIA_QUERY);
 
 export default {
+  get xsmall() {
+    return !this.small;
+  },
   get small() {
     return !this.medium;
   },
@@ -18,6 +21,7 @@ export default {
   },
   get all() {
     return {
+      xsmall: this.xsmall,
       small: this.small,
       medium: this.medium,
       large: this.large

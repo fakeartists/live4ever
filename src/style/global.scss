@@ -15,7 +15,12 @@ html {
   -webkit-overflow-scrolling: touch;
   @include scalable-font();
 
-  min-width: 280px;
+  min-width: $min-width;
+
+  @media (max-width: $layout-small) {
+    position: relative;
+    width: 100vw;
+  }
 }
 
 body {

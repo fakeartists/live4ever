@@ -7,6 +7,9 @@ import assetdata from './assets';
 //ads
 import adsdata from './ads';
 
+//ads
+import leaderboarddata from './leaderboard';
+
 const copydata = {
   en: copydata_en
 };
@@ -24,6 +27,14 @@ export async function getUser(id) {
 export async function getUsers() {
   const userData = await getUsersData();
   return userData;
+}
+
+export async function getLeaderboard(id) {
+  let leaderboardData = [];
+  if (leaderboarddata.hasOwnProperty(id)) {
+    leaderboardData = leaderboarddata[id];
+  }
+  return leaderboardData;
 }
 
 export async function getData(id = undefined) {

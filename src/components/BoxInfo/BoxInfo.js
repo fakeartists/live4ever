@@ -42,7 +42,7 @@ class BoxInfo extends React.PureComponent {
     let status = durDays < 0 || isNaN(durDays) ? false : true;
     let ubid = '-';
 
-    let highestbid = status ? this.state.highest : this.props.data.highestbid;
+    let highestbid = this.state.highest;
     let haswebgl = this.props.data.webgl ? ' preview' : '';
     let clickimageFunction = status ? this.props.clickFunction : this.props.previewFunction;
     let copyclick = status ? this.props.copy.image_click_bid : this.props.copy.image_click;

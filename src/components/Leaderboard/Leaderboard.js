@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import checkProps from '@jam3/react-check-extra-props';
 import settings from '../../data/settings';
-import { getUsers } from '../../data/get-site-data';
+import { getUsers, getLeaderboard } from '../../data/get-site-data';
 import { getBidWithVariation } from '../../util/bid';
 import { getCookie } from '../../util/cookies';
 
@@ -25,9 +25,9 @@ class Leaderboard extends React.PureComponent {
 
   componentDidUpdate(prevProps) {}
 
-  async getLeaderboard(update = false) {
+  async getLeaderboard(update = false, status = '', user = '') {
     if (update) {
-      await this.updateLeaderboard();
+      await this.updateLeaderboard(status, user);
     }
     return this.state.leaderboard;
   }
@@ -55,17 +55,21 @@ class Leaderboard extends React.PureComponent {
     return highest;
   };
 
-  updateLeaderboard = async () => {
-    this.users = await getUsers();
-    const leaderboard = [];
+  updateLeaderboard = async (status = '', user = '') => {
+    let leaderboard = [];
+    if (status === 'open') {
+      this.users = await getUsers();
 
-    let count = 0;
-    for (var idx in this.users) {
-      if (this.users.hasOwnProperty(idx)) {
-        leaderboard.push(this.users[idx]);
+      let count = 0;
+      for (var idx in this.users) {
+        if (this.users.hasOwnProperty(idx)) {
+          leaderboard.push(this.users[idx]);
+        }
+        if (count >= this.maxUsers) break;
+        count++;
       }
-      if (count >= this.maxUsers) break;
-      count++;
+    } else {
+      leaderboard = await getLeaderboard(user);
     }
 
     leaderboard.sort((a, b) => {
@@ -105,6 +109,7 @@ class Leaderboard extends React.PureComponent {
             <tr>
               <th>{this.props.copy.title_leaderboard_bid}</th>
               <th>{this.props.copy.title_leaderboard_from}</th>
+              <th />
               <th>{this.props.copy.title_leaderboard_when}</th>
             </tr>
           </thead>
@@ -114,9 +119,10 @@ class Leaderboard extends React.PureComponent {
                 <tr key={index} className="Leaderboard-item">
                   <td>{getBidWithVariation(item.bid, variation) + ' ' + this.props.copy.piramid_ico}</td>
                   <td>
-                    <img src={item.image || this.avatarPath + item._id} alt="bid user avatar" />
-                    <p>{item.name}</p>
+                    {/* <img src={item.image || this.avatarPath + item._id} alt={this.props.copy.image_alt} /> */}
+                    <img src="" alt={this.props.copy.image_alt} />
                   </td>
+                  <td>{item.name}</td>
                   <td>{this.convertTime(item.time)}</td>
                 </tr>
               );

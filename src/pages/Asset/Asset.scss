@@ -28,7 +28,6 @@
 
       h1 {
         @include title-mobile;
-        padding: 0 px-to-rem(20) 0 px-to-rem(20);
         margin: 0 px-to-rem(20) px-to-rem(20) px-to-rem(20);
 
         @media (min-width: $layout-large) {

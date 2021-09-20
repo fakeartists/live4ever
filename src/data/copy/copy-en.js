@@ -114,7 +114,8 @@ export default {
     title_leaderboard_bid: 'Bid',
     title_leaderboard_from: 'From',
     title_leaderboard_when: 'When',
-    sufix_leaderboard_when: 'ago'
+    sufix_leaderboard_when: 'ago',
+    image_alt: piramid_ico
   },
   about: {
     title: 'About Us',

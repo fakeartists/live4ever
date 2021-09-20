@@ -41,6 +41,10 @@ $main-top-nav-link-font-size: 2rem !default;
       width: $logo-size-width;
       height: $logo-size-height;
     }
+
+    @media (max-width: $layout-small) {
+      left: 53%;
+    }
   }
 
   .nav-mid-logo {
@@ -80,6 +84,10 @@ $main-top-nav-link-font-size: 2rem !default;
 
     .nav-logo {
       width: px-to-rem(200);
+
+      @media (max-width: $layout-medium) {
+        width: px-to-rem(160);
+      }
     }
 
     .nav-logo-text {
@@ -88,6 +96,12 @@ $main-top-nav-link-font-size: 2rem !default;
       color: $green;
       font-size: px-to-rem(10);
       line-height: px-to-rem(10);
+
+      @media (max-width: $layout-medium) {
+        width: px-to-rem(160);
+        font-size: px-to-rem(8);
+        line-height: px-to-rem(8);
+      }
     }
 
     .nav-list {
