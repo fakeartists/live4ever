@@ -28,6 +28,7 @@ class Asset extends React.PureComponent {
 
   async componentDidMount() {
     const { params } = this.props.match;
+
     animate.set(this.container, { x: '100%', autoAlpha: 0 });
 
     if (!this.props.loaded) {
@@ -44,6 +45,12 @@ class Asset extends React.PureComponent {
         this.updateLeaderboard();
       }
       this.props.setAssetLoaded(true);
+
+      if (params.params !== undefined) {
+        if (params.params === 'autoplay') {
+          this.props.setMineState(this.state.asset);
+        }
+      }
     }
   }
 

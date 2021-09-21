@@ -54,15 +54,11 @@ class Login extends React.PureComponent {
     return animate.to(this.container, 0.3, { autoAlpha: 0, ease: Circ.easeOut });
   };
 
-  handleClose = () => {
+  handleClose = (callback = null) => {
     this.animateOut().then(() => {
       this.props.setLoginState(false);
+      if (callback !== null) callback();
     });
-
-    console.log(this.props.hotsale);
-    if (this.props.hotsale) {
-      window.open('/asset/' + this.props.hotsale, '_slef');
-    }
   };
 
   logoutResponse = async () => {
@@ -105,7 +101,11 @@ class Login extends React.PureComponent {
       updateCookie({ login: cookiedata });
 
       this.setState({ active: true });
-      this.handleClose();
+      this.handleClose(() => {
+        if (this.props.hotsale) {
+          window.open('/asset/' + this.props.hotsale + '/autoplay', '_self');
+        }
+      });
     }
   };
 
@@ -140,7 +140,7 @@ class Login extends React.PureComponent {
       );
     } else {
       title = <h1>{this.copy.disconected_title}</h1>;
-      copy = <p>{this.copy.disconected_desc}</p>;
+      copy = <p dangerouslySetInnerHTML={{ __html: this.copy.disconected_desc }} />;
       button = (
         <GoogleLogin
           className="login-bt"

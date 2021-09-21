@@ -41,7 +41,7 @@ const Pages = ({ location, ...props }) => {
                 />
                 <Route
                   exact
-                  path={`${routeKeys.Asset}/:assetId`}
+                  path={`${routeKeys.Asset}/:assetId/:params?`}
                   render={props => <Asset transitionState={state} language={props.language} {...props} />}
                 />
                 <Route component={NotFound} />

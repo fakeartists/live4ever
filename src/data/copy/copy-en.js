@@ -126,7 +126,8 @@ export default {
           'Welcome to Pyramid NFT, the world-first platform unlocking digital eternal life by turning its members into NFTs.',
           // eslint-disable-next-line
           'Entirely powered by human energy, Pyramid offers a one-time opportunity to enable your immortal virtual avatar, living 4 ever in the\
-          blockchain. Its members with also unlock an exclusive access to ambitious collection of post-reality content & benefits to be unlocked on a regular basis.'
+          blockchain. Its members with also unlock an exclusive access to ambitious collection of post-reality content & benefits to be unlocked on a regular basis.</br></br>\
+          Join our community on <a href="https://discord.gg/Av7eFHz8" target="_blank">Discord</a> now!'
         ]
       },
       {
@@ -163,7 +164,7 @@ export default {
     contact: {
       title: 'Company Details',
       // eslint-disable-next-line
-      text: ['Pyramid Inc.', '2100 Federal Rd', 'Houston TX 77015', '1(866) 548-4387', 'Join our community on <a href="https://twitter.com/NathanFrostTuc1">Discord now!</a>']
+      text: ['Pyramid Inc.', '2100 Federal Rd', 'Houston TX 77015', '1(866) 548-4387']
     },
     disclaimer: {
       title: 'DISCLAIMER',
