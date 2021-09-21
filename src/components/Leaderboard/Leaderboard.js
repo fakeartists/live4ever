@@ -60,13 +60,13 @@ class Leaderboard extends React.PureComponent {
     if (status === 'open') {
       this.users = await getUsers();
 
-      let count = 0;
+      //let count = 0;
       for (var idx in this.users) {
         if (this.users.hasOwnProperty(idx)) {
           leaderboard.push(this.users[idx]);
         }
-        if (count >= this.maxUsers) break;
-        count++;
+        // if (count >= this.maxUsers) break;
+        // count++;
       }
     } else {
       leaderboard = await getLeaderboard(user);
@@ -114,7 +114,7 @@ class Leaderboard extends React.PureComponent {
             </tr>
           </thead>
           <tbody>
-            {this.state.leaderboard.map((item, index) => {
+            {this.state.leaderboard.slice(0, this.maxUsers).map((item, index) => {
               return (
                 <tr key={index} className="Leaderboard-item">
                   <td>{getBidWithVariation(item.bid, variation) + ' ' + this.props.copy.piramid_ico}</td>

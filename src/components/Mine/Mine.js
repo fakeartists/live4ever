@@ -135,11 +135,6 @@ class Mine extends React.PureComponent {
     this.addAd(0, ads);
     const currentLevel = Math.floor(this.bid / this.count) + 1;
 
-    if (this.levelup) {
-      this.levelup.getWrappedInstance().updateRank(this.rank);
-    }
-    this.props.setLevelUpState(true);
-
     if (currentLevel > this.level) {
       this.level = currentLevel;
       if (this.levelup) {

@@ -85,9 +85,14 @@ class App extends React.PureComponent {
   render() {
     let app;
     let date = Date.now();
+    let videoplayer;
     let start = new Date(settings.startDate).getTime();
     const query = new URLSearchParams(this.props.location.search);
     const skip = query.get('skip');
+
+    if (!device.isMobile) {
+      videoplayer = <VideoPlayer className="intro-video" src="./assets/videos/Intro_Pyramid.mp4" autoPlay={false} />;
+    }
 
     if (date <= start && skip !== 'true') {
       app = (
@@ -132,7 +137,7 @@ class App extends React.PureComponent {
           <AssetPreview language={this.language} />
           <Mine language={this.language} />
           <Login language={this.language} hotsale={this.hotsale} />
-          <VideoPlayer className="intro-video" src="./assets/videos/Intro_Pyramid.mp4" autoPlay={false} />
+          {videoplayer}
         </Fragment>
       );
     }
