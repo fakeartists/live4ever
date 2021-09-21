@@ -17,6 +17,7 @@ class Login extends React.PureComponent {
   constructor(props) {
     super(props);
     this.copy = getCopy(this.props.language, 'login');
+    this.hotsaleID = '';
 
     this.isOpen = false;
     this.state = {
@@ -57,6 +58,11 @@ class Login extends React.PureComponent {
     this.animateOut().then(() => {
       this.props.setLoginState(false);
     });
+
+    console.log(this.props.hotsale);
+    if (this.props.hotsale) {
+      window.open('/asset/' + this.props.hotsale, '_slef');
+    }
   };
 
   logoutResponse = async () => {
@@ -168,12 +174,14 @@ class Login extends React.PureComponent {
 
 Login.propTypes = checkProps({
   language: PropTypes.string,
+  hotsale: PropTypes.string,
   setLoginState: PropTypes.func,
   isOpen: PropTypes.bool
 });
 
 Login.defaultProps = {
   language: 'en',
+  hotsale: '',
   isOpen: false
 };
 

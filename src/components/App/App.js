@@ -35,7 +35,7 @@ import layout from '../../util/layout';
 
 import Mine from '../../components/Mine/Mine';
 import Login from '../../components/Login/Login';
-import { getCopy } from '../../data/get-site-data';
+import { getCopy, getData } from '../../data/get-site-data';
 
 import { initCookie } from '../../util/cookies';
 
@@ -44,13 +44,15 @@ const LazyRotateScreen = device.isMobile && lazy(() => import('../../components/
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
+
     initCookie();
+
     this.language = 'en';
     this.footercopy = getCopy(this.language, 'footer');
     this.headercopy = getCopy(this.language, 'header');
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // Setup performance measure tooling
     if (process.env.NODE_ENV !== 'production') {
       const { whyDidYouUpdate } = require('why-did-you-update');
@@ -59,6 +61,9 @@ class App extends React.PureComponent {
         whyDidYouUpdate(React);
       }
     }
+
+    const assets = await getData();
+    this.hotsale = assets.filter(item => item.hot_sale)[0]._id;
 
     window.addEventListener('resize', this.handleResize);
   }
@@ -126,7 +131,7 @@ class App extends React.PureComponent {
           <Footer {...footerData} copy={this.footercopy} />
           <AssetPreview language={this.language} />
           <Mine language={this.language} />
-          <Login language={this.language} />
+          <Login language={this.language} hotsale={this.hotsale} />
           <VideoPlayer className="intro-video" src="./assets/videos/Intro_Pyramid.mp4" autoPlay={false} />
         </Fragment>
       );

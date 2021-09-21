@@ -9,8 +9,7 @@ import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Transition from '../PagesTransitionWrapper';
 import { setHomeLoaded } from '../../redux/modules/home';
 import animate, { Expo } from '../../util/gsap-animate';
-import { getCopy } from '../../data/get-site-data';
-import { getData } from '../../data/get-site-data';
+import { getCopy, getData } from '../../data/get-site-data';
 
 import './Home.scss';
 
@@ -56,6 +55,7 @@ class Home extends React.PureComponent {
 
   render() {
     const hotsale = this.state.assets.filter(item => item.hot_sale)[0];
+
     return (
       <section className={classnames('Home', this.props.className)} ref={el => (this.container = el)}>
         <header className="Home-Welcome" dangerouslySetInnerHTML={{ __html: this.copy.welcome }} />

@@ -50,6 +50,11 @@
       height: 700px;
     }
 
+    @media (min-width: $layout-mlarge) {
+      max-height: 800px;
+      height: 800px;
+    }
+
     .home-header-wrapper {
       position: relative;
       float: left;

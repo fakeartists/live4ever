@@ -10,6 +10,11 @@
     flex-direction: row;
     align-content: stretch;
     height: 100%;
+    padding-bottom: px-to-rem(0);
+
+    @media (min-width: $layout-large) {
+      padding-bottom: px-to-rem(30);
+    }
   }
 
   .box-info-asset {

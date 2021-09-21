@@ -7,8 +7,9 @@ import checkProps from '@jam3/react-check-extra-props';
 import Transition from '../PagesTransitionWrapper';
 import { setGalleryLoaded } from '../../redux/modules/gallery';
 import animate, { Expo } from '../../util/gsap-animate';
-import { getData } from '../../data/get-site-data';
-import { getCopy } from '../../data/get-site-data';
+import { getData, getCopy } from '../../data/get-site-data';
+import { getCookie } from '../../util/cookies';
+import { getBidWithVariation } from '../../util/bid';
 
 import './Gallery.scss';
 
@@ -60,6 +61,9 @@ class Gallery extends React.PureComponent {
   };
 
   render() {
+    const cookiedata = getCookie();
+    const variation = cookiedata && cookiedata.variation;
+
     let header;
 
     if (this.props.isHome) {
@@ -82,6 +86,7 @@ class Gallery extends React.PureComponent {
                 .map((item, index) => {
                   let closed = item.status === 'closed';
                   let copyclick = closed ? this.copy.image_click : this.copy.image_click_bid;
+                  let highestbid = getBidWithVariation(item.highestbid, variation);
                   return (
                     <li key={index} className="gallery-item">
                       <BaseLink className="gallery-item-content" link={'./asset/' + item._id}>
@@ -95,7 +100,7 @@ class Gallery extends React.PureComponent {
                         <h2 className="gallery-item-title">{item.title}</h2>
                         <div className="gallery-item-info">
                           {!this.props.isHome && <p className="gallery-item-info-title">{item.sub_title}</p>}
-                          {this.props.isHome && <p className="gallery-item-info-bid">{item.highestbid + ' Δ'}</p>}
+                          {this.props.isHome && <p className="gallery-item-info-bid">{highestbid + ' Δ'}</p>}
                           <button className={'gallery-item-info-button active'}>
                             {closed ? this.copy.button_sold : this.copy.button_view}
                           </button>

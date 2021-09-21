@@ -15,9 +15,11 @@ $logo-size-top: 25px;
 //
 // Window breakpoints
 // ====================================================================
+$layout-xsmall: map-get($layout, xsmall) + px;
 $layout-small: map-get($layout, small) + px;
 $layout-medium: map-get($layout, medium) + px;
 $layout-large: map-get($layout, large) + px;
+$layout-mlarge: map-get($layout, mlarge) + px;
 $layout-xlarge: map-get($layout, xlarge) + px;
 $min-width: 300px;
 

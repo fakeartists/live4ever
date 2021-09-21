@@ -18,10 +18,10 @@ export default {
   login: {
     connected_title: "You're Connected",
     connected_button: 'Disconnect Wallet',
-    disconected_title: 'Connect with a Fake Wallet',
+    disconected_title: 'Connect with a Pyramid Wallet',
     disconected_desc:
-      'To be able to register your bids, all you need to do is connect your XYZ to be able to play and compete for immortality. The wallet is fake as has no commercial value, nor does it cost. Remember - this is satire.',
-    disconected_button: 'Connect with Google'
+      'To be able to register your bids, all you need to do is connect your <b>Google Acount</b> to be able to play and compete for immortality. The wallet is fake as has no commercial value, nor does it cost. Remember - this is satire.',
+    disconected_button: 'Connect with Pyramid Wallet'
   },
   landing: {
     title: 'Life is about to change 4 ever.',
@@ -134,10 +134,10 @@ export default {
         text: [
           'The top 100 participants to the upcoming “Hot Sales” will unlock unique benefits provided by the fAke Artists DAO. Our team has developed a 50-year roadmap of unique R&D, content developed and unique member-perks.',
           '<b>- Top 100 bidders:</b> Lifetime Membership to the “Founder’s club” unlocking exclusive access to exclusive drops.',
-          '<b>- Top 50 bidders:</b> Access to exclusive <a href="https://fakeartists.net/fake-food" target="_blank">FakeBurger NFT</a> (2nd edition 0-50 series).',
+          '<b>- Top 50 bidders:</b> Access to exclusive <a href="https://fakeartists.net/fake-food">FakeBurger NFT</a> (2nd edition 0-50 series)',
           '<b>- Top 10 bidders:</b> Fake Artists IRL clothing for the chosen few.',
-          '<b>- Top 5 bidders:</b> Exclusive video coaching session with our CEO/Visionary/Digi-evangelist <a href="https://twitter.com/NathanFrostTuc1" target="_blank">Nathan Frost Tucker.</a>',
-          '<b>- Top 1 bider:</b> Permanent access to the Afterlife w/your own personalized digital avatar NFT custom-created by the Pyramid team.'
+          '<b>- Top 5 bidders:</b> Exclusive video coaching session with our CEO/Visionary/Digi-evangelist <a href="https://twitter.com/NathanFrostTuc1">Nathan Frost Tucker.</a>',
+          '<b>- Top 1:</b> Permanent access to the Afterlife w/your own personalized digital avatar NFT.'
         ]
       },
       {
@@ -163,7 +163,7 @@ export default {
     contact: {
       title: 'Company Details',
       // eslint-disable-next-line
-      text: ['Pyramid Inc.', '2100 Federal Rd', 'Houston TX 77015', '1(866) 548-4387']
+      text: ['Pyramid Inc.', '2100 Federal Rd', 'Houston TX 77015', '1(866) 548-4387', 'Join our community on <a href="https://twitter.com/NathanFrostTuc1">Discord now!</a>']
     },
     disclaimer: {
       title: 'DISCLAIMER',

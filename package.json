@@ -1,6 +1,6 @@
 {
   "name": "pyramid.blow",
-  "version": "0.1.51",
+  "version": "0.1.52",
   "private": false,
   "scripts": {
     "start": "npm-run-all -p watch-layout start-js",

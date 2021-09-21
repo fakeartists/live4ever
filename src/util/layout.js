@@ -19,12 +19,20 @@ export default {
   get large() {
     return LARGE_MATCH_MEDIA.matches;
   },
+  get mlarge() {
+    return LARGE_MATCH_MEDIA.matches;
+  },
+  get xlarge() {
+    return LARGE_MATCH_MEDIA.matches;
+  },
   get all() {
     return {
       xsmall: this.xsmall,
       small: this.small,
       medium: this.medium,
-      large: this.large
+      large: this.large,
+      mlarge: this.mlarge,
+      xlarge: this.xlarge
     };
   }
 };

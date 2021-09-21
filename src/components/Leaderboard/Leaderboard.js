@@ -119,8 +119,7 @@ class Leaderboard extends React.PureComponent {
                 <tr key={index} className="Leaderboard-item">
                   <td>{getBidWithVariation(item.bid, variation) + ' ' + this.props.copy.piramid_ico}</td>
                   <td>
-                    {/* <img src={item.image || this.avatarPath + item._id} alt={this.props.copy.image_alt} /> */}
-                    <img src="" alt={this.props.copy.image_alt} />
+                    <img src={item.image || this.avatarPath + item._id} alt={this.props.copy.image_alt} />
                   </td>
                   <td>{item.name}</td>
                   <td>{this.convertTime(item.time)}</td>

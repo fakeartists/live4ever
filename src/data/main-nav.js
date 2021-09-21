@@ -6,11 +6,6 @@ export default {
   logoLink: routeKeys.Home,
   links: [
     {
-      text: 'text_login',
-      alt_text: 'text_logout',
-      path: 'login'
-    },
-    {
       text: 'text_gallery',
       path: routeKeys.Gallery
     },
@@ -21,6 +16,11 @@ export default {
     {
       text: 'text_store',
       path: 'https://fakeartists.net/fake-store'
+    },
+    {
+      text: 'text_login',
+      alt_text: 'text_logout',
+      path: 'login'
     }
   ]
 };
