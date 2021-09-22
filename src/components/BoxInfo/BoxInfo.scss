@@ -50,6 +50,16 @@
           line-height: px-to-rem(20);
           margin: 0;
           word-wrap: break-word;
+
+          a {
+            text-decoration: underline;
+
+            &:hover {
+              cursor: pointer;
+              text-decoration: line-through;
+              color: $pink;
+            }
+          }
         }
       }
     }

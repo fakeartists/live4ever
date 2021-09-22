@@ -37,7 +37,7 @@ import Mine from '../../components/Mine/Mine';
 import Login from '../../components/Login/Login';
 import { getCopy, getData } from '../../data/get-site-data';
 
-import { initCookie } from '../../util/cookies';
+import { initCookie, getCookie, updateCookie } from '../../util/cookies';
 
 const LazyRotateScreen = device.isMobile && lazy(() => import('../../components/RotateScreen/RotateScreen'));
 
@@ -82,7 +82,13 @@ class App extends React.PureComponent {
     this.props.setLayout(window.innerWidth, window.innerHeight, layout.all);
   }, settings.resizeDebounceTime);
 
+  onVideoEnd = () => {
+    updateCookie({ firsttime: false });
+  };
+
   render() {
+    const cookiedata = getCookie();
+
     let app;
     let date = Date.now();
     let videoplayer;
@@ -90,8 +96,17 @@ class App extends React.PureComponent {
     const query = new URLSearchParams(this.props.location.search);
     const skip = query.get('skip');
 
-    if (!device.isMobile) {
-      videoplayer = <VideoPlayer className="intro-video" src="./assets/videos/Intro_Pyramid.mp4" autoPlay={false} />;
+    if (!device.isMobile && cookiedata.firsttime) {
+      videoplayer = (
+        <VideoPlayer
+          className="intro-video"
+          src="./assets/videos/Intro_Pyramid.mp4"
+          autoPlay={false}
+          onEnd={this.onVideoEnd}
+          haSkip={true}
+          showControlsOnLoad={false}
+        />
+      );
     }
 
     if (date <= start && skip !== 'true') {

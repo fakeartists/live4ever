@@ -22,6 +22,21 @@
     text-align: left;
   }
 
+  .about-video {
+    position: relative;
+    margin-top: px-to-rem(20);
+    width: 100%;
+    min-width: $min-width;
+    height: calc(100vw * 0.75);
+
+    @media (min-width: $layout-medium) {
+      margin-top: px-to-rem(40);
+      width: 640px;
+      height: 480px;
+      min-width: $min-width;
+    }
+  }
+
   h2 {
     margin: px-to-rem(30) 0 px-to-rem(30) 0;
     @include font-title;

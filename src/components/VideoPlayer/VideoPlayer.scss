@@ -72,6 +72,15 @@ $video-player-controls-transition: 0.2s;
     }
   }
 
+  &-controls-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $video-player-captions-bottom-pos;
+    background-color: transparent;
+  }
+
   .VideoControls {
     transform: translateY(100%);
     transition: $video-player-controls-transition;
@@ -98,5 +107,36 @@ $video-player-controls-transition: 0.2s;
     top: px-to-rem(30);
     right: px-to-rem(30);
     @include borderless-button;
+    z-index: 101;
+  }
+
+  &-ini-play {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20%;
+      height: auto;
+      max-width: 100px;
+      transform: translate(-50%, -50%);
+
+      path {
+        fill: $green;
+      }
+    }
+
+    &:hover {
+      svg {
+        path {
+          fill: $pink;
+        }
+      }
+    }
   }
 }

@@ -127,7 +127,7 @@ export default {
           // eslint-disable-next-line
           'Entirely powered by human energy, Pyramid offers a one-time opportunity to enable your immortal virtual avatar, living 4 ever in the\
           blockchain. Its members with also unlock an exclusive access to ambitious collection of post-reality content & benefits to be unlocked on a regular basis.</br></br>\
-          Join our community on <a href="https://discord.gg/Av7eFHz8" target="_blank">Discord</a> now!'
+          Join our community on <a href="https://discord.gg/Av7eFHz8" target="_blank" rel="noopener noreferrer">Discord</a> now!'
         ]
       },
       {
@@ -135,9 +135,9 @@ export default {
         text: [
           'The top 100 participants to the upcoming “Hot Sales” will unlock unique benefits provided by the fAke Artists DAO. Our team has developed a 50-year roadmap of unique R&D, content developed and unique member-perks.',
           '<b>- Top 100 bidders:</b> Lifetime Membership to the “Founder’s club” unlocking exclusive access to exclusive drops.',
-          '<b>- Top 50 bidders:</b> Access to exclusive <a href="https://fakeartists.net/fake-food">FakeBurger NFT</a> (2nd edition 0-50 series)',
+          '<b>- Top 50 bidders:</b> Access to exclusive <a href="https://fakeartists.net/fake-food" rel="noopener noreferrer">FakeBurger NFT</a> (2nd edition 0-50 series)',
           '<b>- Top 10 bidders:</b> Fake Artists IRL clothing for the chosen few.',
-          '<b>- Top 5 bidders:</b> Exclusive video coaching session with our CEO/Visionary/Digi-evangelist <a href="https://twitter.com/NathanFrostTuc1">Nathan Frost Tucker.</a>',
+          '<b>- Top 5 bidders:</b> Exclusive video coaching session with our CEO/Visionary/Digi-evangelist <a href="https://twitter.com/NathanFrostTuc1" rel="noopener noreferrer">Nathan Frost Tucker.</a>',
           '<b>- Top 1:</b> Permanent access to the Afterlife w/your own personalized digital avatar NFT.'
         ]
       },
@@ -154,7 +154,7 @@ export default {
         title: 'About Pyramid Inc',
         text: [
           // eslint-disable-next-line
-          'Pyramid NFT is the latest venture founder by visionary <a href="https://twitter.com/NathanFrostTuc1" target="_blank">Nathan Frost Tucker</a> developed to be a game changer in immortality securities.\
+          'Pyramid NFT is the latest venture founder by visionary <a href="https://twitter.com/NathanFrostTuc1" target="_blank" rel="noopener noreferrer">Nathan Frost Tucker</a> developed to be a game changer in immortality securities.\
           Founded by an elite group of visionaries, key members leverage decades of experience between chairman of a well known fortune 100 company, venture capitalist firms, and silicon valley business moguls',
           'Through a patented system powered by human energy utilizing state of the art blockchain technology, Pyramid NFT is the world’s first platform that guarantees after life.',
           'The company, Pyramid Inc, is headquartered in, 2100 Federal Rd, Houston TX and successfully raised 666 Billion through their Series C Funding with a planned IPO in Q4 of 2022'

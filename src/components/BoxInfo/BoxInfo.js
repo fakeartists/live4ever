@@ -76,6 +76,16 @@ class BoxInfo extends React.PureComponent {
         </div>
       );
 
+      let contract = this.props.data.link ? (
+        <p>
+          <a href={this.props.data.link} target="_blank" rel="noopener noreferrer">
+            {this.props.data.contract_address}
+          </a>
+        </p>
+      ) : (
+        <p>{this.props.data.contract_address}</p>
+      );
+
       assetinfo = (
         <div className="box-info-asset">
           <li>
@@ -85,7 +95,7 @@ class BoxInfo extends React.PureComponent {
             </ul>
             <ul>
               <h1>{this.props.copy.title_contract}:</h1>
-              <p>{this.props.data.contract_address}</p>
+              {contract}
             </ul>
             <ul>
               <h1>{this.props.copy.title_token}:</h1>

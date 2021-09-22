@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import checkProps from '@jam3/react-check-extra-props';
 import Transition from '../PagesTransitionWrapper';
 import animate, { Expo } from '../../util/gsap-animate';
+import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import { getCopy } from '../../data/get-site-data';
 
 import './About.scss';
@@ -43,6 +44,13 @@ class About extends React.PureComponent {
     return (
       <section className={classnames('About', this.props.className)} ref={el => (this.container = el)}>
         <h1>{this.copy.title}</h1>
+        <VideoPlayer
+          className="about-video"
+          src="../assets/videos/Intro_Pyramid.mp4"
+          autoPlay={false}
+          controlsTimeout={2}
+          showControlsOnLoad={false}
+        />
         {this.copy.text.map((item, index) => {
           let block = [];
           block.push(<h2 key={index}>{item.title}</h2>);

@@ -179,7 +179,7 @@ $main-top-nav-link-font-size: 2rem !default;
     }
   }
 
-  @media (min-width: $layout-large) {
+  @media (min-width: $layout-medium) {
     width: 100%;
     height: $navbar-height-desktop;
     padding: px-to-rem(20) $navbar-padding-desktop;

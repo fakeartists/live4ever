@@ -66,6 +66,8 @@ export default [
     contract_address: 'A32604031C74B03B626CA9FD5D4FA076AEBF530C44B7997336F1C34105A0D308',
     token_id: 'FΔKE_NUMB3S',
     blockchain: 'PYRΔMID',
+    link:
+      'https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/101097225973828581747699841702992140381012488628937947136644803214151595851777',
     hot_sale: false,
     status: 'closed',
     webgl: {
@@ -92,6 +94,8 @@ export default [
     contract_address: 'AAD22F49ACAA496538013AA1337EE0FA2288F07344B3521753B7B89A306D9DD8',
     token_id: 'FΔKE_NUMB3S',
     blockchain: 'PYRΔMID',
+    link:
+      'https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/101097225973828581747699841702992140381012488628937947136644803213052084224001',
     hot_sale: false,
     status: 'closed',
     webgl: {
@@ -118,6 +122,8 @@ export default [
     contract_address: 'AAD22F49ACAA496538013AA1337EE0FA2288F07344B3521753B7B89A306D9DD8',
     token_id: 'FΔKE_NUMB3S',
     blockchain: 'PYRΔMID',
+    link:
+      'https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/101097225973828581747699841702992140381012488628937947136644803215251107479553',
     hot_sale: false,
     status: 'closed',
     webgl: {
