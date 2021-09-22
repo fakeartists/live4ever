@@ -12,7 +12,7 @@ import { setAssetPreviewState } from '../../redux/modules/asset-preview';
 import { setAssetData } from '../../redux/modules/asset-preview';
 import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
-import { getCopy, getData } from '../../data/get-site-data';
+import { getCopy, getData, getHighest, getLeaderboard } from '../../data/get-site-data';
 import { checkCookieLogin } from '../../util/cookies';
 
 import './Asset.scss';
@@ -34,9 +34,7 @@ class Asset extends React.PureComponent {
     if (!this.props.loaded) {
       if (params.assetId !== undefined) {
         const asset = await getData(params.assetId);
-        await this.leaderboard.getWrappedInstance().getLeaderboard(true, asset.status, asset._id);
         asset.updateFunction = this.updateLeaderboard;
-        asset.leadeboard = this.leaderboard;
 
         this.setState({
           asset: asset
@@ -47,11 +45,15 @@ class Asset extends React.PureComponent {
       this.props.setAssetLoaded(true);
 
       if (params.params !== undefined) {
-        if (params.params === 'autoplay') {
+        if (params.params === 'autoplay' && checkCookieLogin()) {
           this.props.setMineState(this.state.asset);
         }
       }
     }
+  }
+
+  componentDidUpdate() {
+    this.boxinfo.getWrappedInstance().update();
   }
 
   onAppear = () => {
@@ -91,9 +93,12 @@ class Asset extends React.PureComponent {
     }
   };
 
-  updateLeaderboard = () => {
-    this.leaderboard.getWrappedInstance().updateLeaderboard(this.state.asset.status, this.state.asset._id);
-    this.boxinfo.getWrappedInstance().updateHighest(this.leaderboard.getWrappedInstance().getHighest());
+  updateLeaderboard = async () => {
+    const leaderboard = await getLeaderboard(true, this.state.asset.status, this.state.asset._id);
+    this.leaderboard.getWrappedInstance().updateLeaderboard(leaderboard);
+
+    const highest = getHighest();
+    this.boxinfo.getWrappedInstance().updateHighest(highest);
   };
 
   render() {
@@ -128,18 +133,21 @@ Asset.propTypes = checkProps({
   setMineState: PropTypes.func,
   setLoginState: PropTypes.func,
   setAssetPreviewState: PropTypes.func,
-  setAssetData: PropTypes.func
+  setAssetData: PropTypes.func,
+  loginOpen: PropTypes.bool
 });
 
 Asset.defaultProps = {
   language: 'en',
-  loaded: false
+  loaded: false,
+  loginOpen: false
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
     previousRoute: state.previousRoute,
-    loaded: state.assetLoaded.loaded
+    loaded: state.assetLoaded.loaded,
+    loginOpen: state.loginState
   };
 };
 

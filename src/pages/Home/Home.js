@@ -9,7 +9,7 @@ import BoxInfo from '../../components/BoxInfo/BoxInfo';
 import Transition from '../PagesTransitionWrapper';
 import { setHomeLoaded } from '../../redux/modules/home';
 import animate, { Expo } from '../../util/gsap-animate';
-import { getCopy, getData } from '../../data/get-site-data';
+import { getCopy, getData, getHighest, updateLeaderboard } from '../../data/get-site-data';
 
 import './Home.scss';
 
@@ -23,9 +23,14 @@ class Home extends React.PureComponent {
 
   async componentDidMount() {
     animate.set(this.container, { x: '100%', autoAlpha: 0 });
-
     if (!this.props.loaded) {
       const assets = await getData();
+      const hotsale = assets.filter(item => item.hot_sale)[0];
+
+      await updateLeaderboard(hotsale.status, hotsale._id);
+      const highest = getHighest();
+      this.boxinfo.getWrappedInstance().updateHighest(highest);
+
       this.setState({
         assets: assets
       });
@@ -63,7 +68,7 @@ class Home extends React.PureComponent {
           <div className="home-header-wrapper">
             <div className="home-header-container home-box left">
               <h1>{this.copy.title_horsale}</h1>
-              <BoxInfo copy={this.boxcopy} data={hotsale} />
+              <BoxInfo copy={this.boxcopy} data={hotsale} ref={el => (this.boxinfo = el)} />
             </div>
             <div className="home-header-container  right">
               <div className="home-box small">

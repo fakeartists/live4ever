@@ -17,12 +17,12 @@
 
   .mine-close {
     position: absolute;
-    bottom: px-to-rem(40);
+    bottom: px-to-rem(20);
     left: 50%;
     @include main-button;
     background-color: $black;
     cursor: pointer;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(0.8);
     z-index: 910;
     white-space: nowrap;
 

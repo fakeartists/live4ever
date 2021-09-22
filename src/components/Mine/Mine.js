@@ -12,7 +12,7 @@ import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import { setMineState, setLevelUpState, setOnboardingState } from '../../redux/modules/mine';
 import { getCopy } from '../../data/get-site-data';
 import { updateCookie, getCookie } from '../../util/cookies';
-import { updateUser } from '../../data/get-site-data';
+import { updateUser, getRank, getHighest } from '../../data/get-site-data';
 
 import './Mine.scss';
 
@@ -27,7 +27,7 @@ class Mine extends React.PureComponent {
     this.bid = cookiedata && cookiedata.bidData && cookiedata.bidData.bid ? cookiedata.bidData.bid : 0;
     this.animatebar = !cookiedata.promotionbanner;
 
-    this.count = 25;
+    this.count = 10;
     let currentLevel = Math.floor(this.bid / this.count) + 1;
 
     if (this.level > currentLevel) {
@@ -169,15 +169,8 @@ class Mine extends React.PureComponent {
   };
 
   updateBar = () => {
-    if (this.props.data.leadeboard) {
-      this.rank = this.props.data.leadeboard
-        .getWrappedInstance()
-        .getRank(this.bid)
-        .toString();
-
-      this.highest = this.props.data.leadeboard.getWrappedInstance().getHighest();
-    }
-
+    this.rank = getRank(this.bid);
+    this.highest = getHighest();
     this.mineNav.getWrappedInstance().updateAll(this.bid, this.rank, this.highest);
   };
 

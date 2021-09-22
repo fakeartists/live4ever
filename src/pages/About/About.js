@@ -47,9 +47,12 @@ class About extends React.PureComponent {
         <VideoPlayer
           className="about-video"
           src="../assets/videos/Intro_Pyramid.mp4"
+          poster="../assets/videos/poster_intro_pyramid.jpg"
           autoPlay={false}
+          muted={false}
           controlsTimeout={2}
           showControlsOnLoad={false}
+          playsInline={true}
         />
         {this.copy.text.map((item, index) => {
           let block = [];

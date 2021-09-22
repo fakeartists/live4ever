@@ -35,7 +35,7 @@ import layout from '../../util/layout';
 
 import Mine from '../../components/Mine/Mine';
 import Login from '../../components/Login/Login';
-import { getCopy, getData } from '../../data/get-site-data';
+import { getCopy, getData, getUser } from '../../data/get-site-data';
 
 import { initCookie, getCookie, updateCookie } from '../../util/cookies';
 
@@ -53,6 +53,7 @@ class App extends React.PureComponent {
   }
 
   async componentDidMount() {
+    const cookiedata = getCookie();
     // Setup performance measure tooling
     if (process.env.NODE_ENV !== 'production') {
       const { whyDidYouUpdate } = require('why-did-you-update');
@@ -64,6 +65,15 @@ class App extends React.PureComponent {
 
     const assets = await getData();
     this.hotsale = assets.filter(item => item.hot_sale)[0]._id;
+
+    if (cookiedata.login && cookiedata.login.id && cookiedata.bidData) {
+      const user = await getUser(cookiedata.login.id);
+      if (user) {
+        const newbid = user.bid > cookiedata.bidData.bid ? user.bid : cookiedata.bidData.bid;
+        const newlevel = user.level > cookiedata.bidData.level ? user.level : cookiedata.bidData.level;
+        updateCookie({ bidData: { level: newlevel, bid: newbid } });
+      }
+    }
 
     window.addEventListener('resize', this.handleResize);
   }
@@ -101,10 +111,13 @@ class App extends React.PureComponent {
         <VideoPlayer
           className="intro-video"
           src="./assets/videos/Intro_Pyramid.mp4"
+          poster="../assets/videos/poster_intro_pyramid.jpg"
           autoPlay={false}
+          muted={false}
           onEnd={this.onVideoEnd}
           haSkip={true}
           showControlsOnLoad={false}
+          playsInline={true}
         />
       );
     }

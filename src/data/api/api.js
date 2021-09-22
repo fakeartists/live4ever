@@ -14,6 +14,10 @@ initializeApp(firebaseConfig);
 export const writeUserData = async (id, name, bid, level, email, image = '', status = 'bid') => {
   const db = getDatabase();
   const time = Date.now();
+  const user = await getUserData(id);
+
+  bid = user.bid > bid ? user.bid : bid;
+  level = user.level > level ? user.level : level;
 
   try {
     await set(ref(db, 'users/' + id), {

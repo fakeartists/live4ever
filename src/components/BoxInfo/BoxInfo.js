@@ -6,7 +6,7 @@ import checkProps from '@jam3/react-check-extra-props';
 import { connect } from 'react-redux';
 import BaseLink from '../BaseLink/BaseLink';
 import Counter from '../Counter/Counter';
-import { getCookie } from '../../util/cookies';
+import { getCookie, checkCookieLogin } from '../../util/cookies';
 import { getBidWithVariation } from '../../util/bid';
 
 import './BoxInfo.scss';
@@ -14,12 +14,18 @@ import './BoxInfo.scss';
 class BoxInfo extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { highest: 0 };
+    this.state = { highest: 0, updated: true };
   }
 
   updateHighest = highest => {
     this.setState({
       highest: highest
+    });
+  };
+
+  update = () => {
+    this.setState({
+      updated: !this.state.updated
     });
   };
 
@@ -32,6 +38,7 @@ class BoxInfo extends React.PureComponent {
     const duration = moment.duration(start.diff(now));
     let durDays = Math.floor(duration.asDays());
 
+    const logged = checkCookieLogin();
     let classSingle = this.props.isSingle ? 'single' : '';
     let description;
     let bid;
@@ -118,7 +125,7 @@ class BoxInfo extends React.PureComponent {
         );
       }
 
-      if (status) {
+      if (status && logged) {
         userbid = (
           <div className="box-info-status-bid">
             <p className="box-info-status-bid-title">{this.props.copy.title_user_bid}</p>

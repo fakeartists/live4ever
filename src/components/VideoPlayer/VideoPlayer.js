@@ -205,7 +205,6 @@ export default class VideoPlayer extends React.PureComponent {
 
   onFirstPlayClick = () => {
     this.play();
-    console.log(this.state.firstPlay);
     this.setState({ firstPlay: true });
   };
 
@@ -315,6 +314,7 @@ export default class VideoPlayer extends React.PureComponent {
           onMute={this.onMute}
           onUnmute={this.onUnmute}
           onEnd={this.onEnd}
+          extraVideoElementProps={{ type: 'video/mp4', crossorigin: 'anonymous' }}
           onClick={this.props.togglePlayOnClick ? this.togglePlay : f => f}
           onKeyPress={this.onKeyPress}
           className="bg-video"
@@ -341,7 +341,7 @@ export default class VideoPlayer extends React.PureComponent {
             onTimeUpdate={this.updateTime}
           />
         )}
-        {!this.state.firstPlay && this.props.showFirstPlayOverlay && (
+        {!this.state.firstPlay && this.props.showFirstPlayOverlay && !this.props.autoPlay && (
           <div className="VideoPlayer-ini-play" onClick={this.onFirstPlayClick}>
             <PlayIcon />
           </div>
@@ -394,7 +394,7 @@ VideoPlayer.defaultProps = {
   showControlsOnLoad: true,
   disableBackgroundCover: true,
   preload: 'auto',
-  playsInline: false,
+  playsInline: true,
   volume: 1,
   startTime: 0, // in seconds
   haSkip: false,

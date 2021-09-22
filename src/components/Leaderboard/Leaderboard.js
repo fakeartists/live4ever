@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import checkProps from '@jam3/react-check-extra-props';
 import settings from '../../data/settings';
-import { getUsers, getLeaderboard } from '../../data/get-site-data';
 import { getBidWithVariation } from '../../util/bid';
 import { getCookie } from '../../util/cookies';
 
@@ -25,57 +24,7 @@ class Leaderboard extends React.PureComponent {
 
   componentDidUpdate(prevProps) {}
 
-  async getLeaderboard(update = false, status = '', user = '') {
-    if (update) {
-      await this.updateLeaderboard(status, user);
-    }
-    return this.state.leaderboard;
-  }
-
-  getRank = (bid = null) => {
-    const cookiedata = getCookie();
-    const id = cookiedata.login.id;
-    let index = this.state.leaderboard.findIndex(x => x._id === id);
-
-    if (bid != null) {
-      for (let i = index; i >= 0; i--) {
-        const value = this.state.leaderboard[i].bid;
-        if (bid >= value) {
-          index = i;
-        } else {
-          break;
-        }
-      }
-    }
-    return index + 1;
-  };
-
-  getHighest = () => {
-    const highest = this.state.leaderboard.length > 0 ? this.state.leaderboard[0].bid : 0;
-    return highest;
-  };
-
-  updateLeaderboard = async (status = '', user = '') => {
-    let leaderboard = [];
-    if (status === 'open') {
-      this.users = await getUsers();
-
-      //let count = 0;
-      for (var idx in this.users) {
-        if (this.users.hasOwnProperty(idx)) {
-          leaderboard.push(this.users[idx]);
-        }
-        // if (count >= this.maxUsers) break;
-        // count++;
-      }
-    } else {
-      leaderboard = await getLeaderboard(user);
-    }
-
-    leaderboard.sort((a, b) => {
-      return a.bid > b.bid ? -1 : 1;
-    });
-
+  updateLeaderboard = (leaderboard = []) => {
     this.setState({
       leaderboard: leaderboard
     });

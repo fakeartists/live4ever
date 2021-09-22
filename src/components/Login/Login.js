@@ -57,7 +57,9 @@ class Login extends React.PureComponent {
   handleClose = (callback = null) => {
     this.animateOut().then(() => {
       this.props.setLoginState(false);
-      if (callback !== null) callback();
+      if (callback !== null && typeof callback === 'function') {
+        callback();
+      }
     });
   };
 
@@ -91,6 +93,8 @@ class Login extends React.PureComponent {
 
       await updateUser(response.googleId, userName, bid, level, response.profileObj.email);
 
+      this.setState({ active: true });
+
       const cookiedata = {
         id: response.googleId,
         name: userName,
@@ -100,7 +104,6 @@ class Login extends React.PureComponent {
       };
       updateCookie({ login: cookiedata });
 
-      this.setState({ active: true });
       this.handleClose(() => {
         if (this.props.hotsale) {
           window.open('/asset/' + this.props.hotsale + '/autoplay', '_self');
