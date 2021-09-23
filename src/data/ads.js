@@ -18,7 +18,10 @@ export default {
     'Time to [verb] and<br/>become a [noun]!',
     'It is your turn to [verb] !',
     'You are the ultimate <br/> [adj] [noun]',
-    'It could be you <br/> The [adj] [noun]'
+    'It could be you <br/> The [adj] [noun]',
+    'Only the [noun] <br/> will [verb]',
+    'No one can [verb] <br/> but you',
+    'They are paper hand <br/> you are a [noun]'
   ],
   colors: [
     { normal: '#ffffff', bold: '#ffffff', outline_normal: '', outline_bold: '' },
@@ -28,7 +31,21 @@ export default {
     { normal: '#00ff00', bold: '#00ff00', outline_normal: '#000000', outline_bold: '#000000' },
     { normal: '#ff00fa', bold: '#ff00fa', outline_normal: '#ffffff', outline_bold: '#ffffff' }
   ],
-  verb_options: ['CLICK', 'LIVE', 'EARN', 'SUCCEED', 'WIN', 'GAIN', 'PROFIT', 'TRIUMPH', 'CONQUER', 'ASCEND', 'PRAY'],
+  verb_options: [
+    'CLICK',
+    'LIVE',
+    'EARN',
+    'SUCCEED',
+    'WIN',
+    'GAIN',
+    'PROFIT',
+    'TRIUMPH',
+    'CONQUER',
+    'ASCEND',
+    'GET RICH',
+    'GET FAMOUS',
+    'GET BEAUTIFUL'
+  ],
   adjective_options: [
     'Eternal',
     'Rich',
@@ -59,7 +76,8 @@ export default {
     'Cyber',
     'Virtual',
     'AI',
-    'Cypher'
+    'Cypher',
+    'Incredible'
   ],
   noun_options: [
     'God',
@@ -87,7 +105,17 @@ export default {
     'World CEO',
     'Rap Legend',
     'Legend',
-    'Tech Guru'
+    'Tech Guru',
+    'NFT collector',
+    'NFT god',
+    'Crypto Champion',
+    'DOGE Lover',
+    'ETH$ lover',
+    'B**** Ape',
+    'BTC$ star',
+    'Diamon Hand',
+    'IG influencer',
+    'NFT creator'
   ],
   buttons: [
     { copy: 'Click', size: 24 },
@@ -101,7 +129,10 @@ export default {
     { copy: "Let's go", size: 22 },
     { copy: 'Ready?', size: 24 },
     { copy: 'Do it!', size: 24 },
-    { copy: 'I Want This', size: 20 }
+    { copy: 'I Want This', size: 20 },
+    { copy: 'Yes Please', size: 20 },
+    { copy: "Let's Try", size: 20 },
+    { copy: 'Now!', size: 20 }
   ],
   button_colors: [
     {

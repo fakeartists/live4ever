@@ -174,6 +174,9 @@ export default {
       ]
     }
   },
+  footerbar: {
+    cta: 'Bid for free now!'
+  },
   footer: {
     title: 'powered by',
     logoAriaLabel: 'Fake Artists',

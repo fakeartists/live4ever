@@ -90,7 +90,7 @@ class Mine extends React.PureComponent {
     this.mineNav.getWrappedInstance().animateIn();
 
     //to check
-    // this.mineNav.getWrappedInstance().animateShareBarIn();
+    //this.mineNav.getWrappedInstance().animateShareBarIn();
   };
 
   animateOut = () => {

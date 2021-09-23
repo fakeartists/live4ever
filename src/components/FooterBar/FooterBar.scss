@@ -1,0 +1,68 @@
+@import 'src/style/shared.scss';
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+.FooterBar {
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: px-to-rem(60);
+  background-color: $green;
+  z-index: 600;
+  transition: bottom 0.5s ease-out;
+  overflow: hidden;
+
+  @media (min-width: $layout-large) {
+    height: px-to-rem(50);
+  }
+
+  p {
+    position: relative;
+    float: left;
+    color: $pink;
+    @include font-regular();
+    font-size: px-to-rem(30);
+    line-height: px-to-rem(60);
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 0 0 -100px;
+    animation: marquee 60s linear infinite;
+
+    b {
+      @include font-banner();
+      letter-spacing: 1px;
+      font-style: oblique;
+      margin: 0 px-to-rem(10);
+    }
+
+    @media (min-width: $layout-large) {
+      font-size: px-to-rem(18);
+      line-height: px-to-rem(50);
+    }
+  }
+
+  &.hidden {
+    bottom: px-to-rem(-60);
+    @media (min-width: $layout-large) {
+      bottom: px-to-rem(-50);
+    }
+  }
+
+  &:hover {
+    background-color: $pink;
+
+    p {
+      color: $black;
+    }
+  }
+}

@@ -2,12 +2,12 @@
   "default": {
     "title": "Pyramid",
     "description": "A few clicks away from Eternity",
-    "keywords": "pyramid,fake,artsts",
-    "og:image": "https://images.squarespace-cdn.com/content/v1/6015e5f68480883a98478b88/1616071848833-965NF4S8KV3EVNRYS8RT/ke17ZwdGBToddI8pDm48kFiDyX7turee3VpMPctvDSlZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpz8diNPoBq8EvxYGWSCgnSXyTmyvjeHf-5tFeRGy-zRy5vRyjdOPtjfOhQ-tTUKSj4/BURGER.gif",
-    "og:url": "https://fakeartists.net",
+    "keywords": "pyramid,fake,artists, four, ever, 4ever, 4 ever",
+    "og:image": "https://pyramid4ever.net/assets/images/pyramid_share_f.jpg",
+    "og:url": "https://pyramid4ever.net",
     "og:site_name": "Pyramid",
-    "twitter:image": "https://images.squarespace-cdn.com/content/v1/6015e5f68480883a98478b88/1616071848833-965NF4S8KV3EVNRYS8RT/ke17ZwdGBToddI8pDm48kFiDyX7turee3VpMPctvDSlZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpz8diNPoBq8EvxYGWSCgnSXyTmyvjeHf-5tFeRGy-zRy5vRyjdOPtjfOhQ-tTUKSj4/BURGER.gif",
-    "twitter:site": "@Pyramid",
+    "twitter:image": "https://pyramid4ever.net/assets/images/pyramid_share_f.jpg",
+    "twitter:site": "https://pyramid4ever.net",
     "twitter:creator": "@Pyramid"
   },
   "route/subroute": {

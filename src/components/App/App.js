@@ -18,7 +18,7 @@ import Pages from '../../components/Pages/Pages';
 import Loader from '../../components/Loader/Loader';
 import AssetPreview from '../AssetPreview/AssetPreview';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
-// import WebGL from '../WebGL/WebGL';
+import FooterBar from '../FooterBar/FooterBar';
 
 import { ReactComponent as LinesBG } from '../../assets/svg/lines-bg.svg';
 
@@ -49,6 +49,7 @@ class App extends React.PureComponent {
 
     this.language = 'en';
     this.footercopy = getCopy(this.language, 'footer');
+    this.footerbarcopy = getCopy(this.language, 'footerbar');
     this.headercopy = getCopy(this.language, 'header');
   }
 
@@ -162,6 +163,7 @@ class App extends React.PureComponent {
           )}
           <Pages language={this.language} />
           <Footer {...footerData} copy={this.footercopy} />
+          <FooterBar copy={this.footerbarcopy} hotsale={this.hotsale} />
           <AssetPreview language={this.language} />
           <Mine language={this.language} />
           <Login language={this.language} hotsale={this.hotsale} />
@@ -169,6 +171,7 @@ class App extends React.PureComponent {
         </Fragment>
       );
     }
+
     return (
       <Fragment>
         <LinesBG className="lines-bg" />
