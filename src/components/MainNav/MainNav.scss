@@ -85,8 +85,8 @@ $main-top-nav-link-font-size: 2rem !default;
     .nav-logo {
       width: px-to-rem(200);
 
-      @media (max-width: $layout-medium) {
-        width: px-to-rem(160);
+      @media (max-width: $layout-xsmall) {
+        width: px-to-rem(200);
       }
     }
 

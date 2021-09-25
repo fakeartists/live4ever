@@ -79,6 +79,8 @@ class Login extends React.PureComponent {
   };
 
   loginResponse = async response => {
+    console.log('login::', response);
+
     if (response.googleId) {
       const userName = setName(response.profileObj.name);
       const savedData = getCookie();
@@ -114,9 +116,9 @@ class Login extends React.PureComponent {
 
   errorResponse = response => {
     this.setState({ active: true });
+    console.log('error::', response);
 
-    //to do?
-    //console.log('error::', response);
+    this.handleClose();
   };
 
   onRequestConnection = () => {

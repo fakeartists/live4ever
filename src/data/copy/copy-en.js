@@ -126,7 +126,7 @@ export default {
           'Welcome to Pyramid NFT, the world-first platform unlocking digital eternal life by turning its members into NFTs.',
           // eslint-disable-next-line
           'Entirely powered by human energy, Pyramid offers a one-time opportunity to enable your immortal virtual avatar, living 4 ever in the\
-          blockchain. Its members with also unlock an exclusive access to ambitious collection of post-reality content & benefits to be unlocked on a regular basis.</br></br>\
+          lockchain. Its members will also unlock exclusive access to ambitious collection of post-reality content & benefits to be released on a regular basis.</br></br>\
           Join our community on <a href="https://discord.gg/Av7eFHz8" target="_blank" rel="noopener noreferrer">Discord</a> now!'
         ]
       },
@@ -146,8 +146,8 @@ export default {
         text: [
           // eslint-disable-next-line
           'Participation to the Pyramid NFT “hot sales” is entirely FREE. All you have to do is to click, click, click...After connecting to the platform (button “connect”),\
-          you can compete to join the top 100 lucky winners by unlocking pyramid  tokens. Pyramid tokens are created when you share your human energy with the platform by\
-          clicking on our algorithmic pop-ups. Embrace the promise of a better tomorrow, keep clicking on our unique interface and a get a unique chance to join the “Founder’s club”'
+          you can compete to join the top 100 lucky winners by unlocking pyramid tokens. Pyramid tokens are created when you share your human energy with the platform by\
+          clicking on our algorithmic pop-ups. Embrace the promise of a better tomorrow, keep clicking on our unique interface and get a chance to join the “Founder’s club”'
         ]
       },
       {

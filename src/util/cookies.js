@@ -198,7 +198,9 @@ function getCookieConfig() {
   return {
     maxAge: 60 * 60 * 24 * 365,
     expires: now,
-    path: cookiePath
+    path: cookiePath,
+    secure: true,
+    sameSite: true
   };
 }
 

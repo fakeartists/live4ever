@@ -50,6 +50,7 @@ class Leaderboard extends React.PureComponent {
   render() {
     const cookiedata = getCookie();
     const variation = cookiedata && cookiedata.variation;
+    const user_id = cookiedata.login && cookiedata.login.id;
 
     return (
       <div className={classnames(`Leaderboard-content`)}>
@@ -64,13 +65,15 @@ class Leaderboard extends React.PureComponent {
           </thead>
           <tbody>
             {this.state.leaderboard.slice(0, this.maxUsers).map((item, index) => {
+              const userCLass = user_id === item._id ? ' user' : '';
+              const name = user_id === item._id ? 'You (' + item.name + ')' : item.name;
               return (
-                <tr key={index} className="Leaderboard-item">
+                <tr key={index} className={'Leaderboard-item' + userCLass}>
                   <td>{getBidWithVariation(item.bid, variation) + ' ' + this.props.copy.piramid_ico}</td>
                   <td>
                     <img src={item.image || this.avatarPath + item._id} alt={this.props.copy.image_alt} />
                   </td>
-                  <td>{item.name}</td>
+                  <td>{name}</td>
                   <td>{this.convertTime(item.time)}</td>
                 </tr>
               );

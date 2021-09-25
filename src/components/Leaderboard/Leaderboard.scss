@@ -96,6 +96,11 @@
             content: attr(alt);
           }
         }
+
+        &.user {
+          background-color: $pink;
+          color: $black;
+        }
       }
 
       tr:last-child {
