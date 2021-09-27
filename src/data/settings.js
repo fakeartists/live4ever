@@ -15,6 +15,7 @@ settings.apiUrl = process.env.REACT_APP_API_URL;
 settings.apiDataEndpoint = process.env.REACT_APP_API_DATA_ENDPOINT;
 settings.bidBase = process.env.REACT_APP_BID_BASE;
 settings.avatarPath = 'https://i.pravatar.cc/80??u=';
+settings.autoPlayBid = true;
 
 // Webgl
 settings.datGui = settings.isDevelopment && true;

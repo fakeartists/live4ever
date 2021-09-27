@@ -61,6 +61,7 @@ export default {
     title_seconds: 'Seconds'
   },
   gallery: {
+    piramid_ico: piramid_ico,
     gallery_title: 'Recent Winners',
     button_sold: 'View',
     button_view: 'Bid for free',

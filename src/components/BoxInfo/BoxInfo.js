@@ -8,6 +8,7 @@ import BaseLink from '../BaseLink/BaseLink';
 import Counter from '../Counter/Counter';
 import { getCookie, checkCookieLogin } from '../../util/cookies';
 import { getBidWithVariation } from '../../util/bid';
+import settings from '../../data/settings';
 
 import './BoxInfo.scss';
 
@@ -140,15 +141,16 @@ class BoxInfo extends React.PureComponent {
       // haswebgl = '';
       clickimageFunction = null;
 
+      let autoPlay = settings.autoPlayBid && this.props.data.hot_sale ? '/autoplay' : '';
       imageOver = (
-        <BaseLink className="box-info-image-overlay" link={'./asset/' + this.props.data._id}>
+        <BaseLink className="box-info-image-overlay" link={'./asset/' + this.props.data._id + autoPlay}>
           <div className="box-info-image-overlay-ico" />
           {/* <p>{this.props.copy.image_click}</p> */}
         </BaseLink>
       );
 
       bid = (
-        <BaseLink className="box-info-button cta" link={'./asset/' + this.props.data._id}>
+        <BaseLink className="box-info-button cta" link={'./asset/' + this.props.data._id + autoPlay}>
           {this.props.copy.button_box_home}
         </BaseLink>
       );

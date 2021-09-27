@@ -107,7 +107,7 @@ class App extends React.PureComponent {
     const query = new URLSearchParams(this.props.location.search);
     const skip = query.get('skip');
 
-    if (!device.isMobile && cookiedata.firsttime) {
+    if (cookiedata.firsttime) {
       videoplayer = (
         <VideoPlayer
           className="intro-video"

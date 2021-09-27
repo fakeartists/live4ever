@@ -6,7 +6,7 @@ export default [
     edition: 1,
     sets: 1,
     short_description:
-      '<b>Turn yourselr into a NFT.</b></br></br>Become immortal thanks to the power of CRYPTO. This one time only opportunity will grant you digital eternal life by creating your very own virtual NFT twin',
+      '<b>Turn yourself into a NFT.</b></br></br>Become immortal thanks to the power of CRYPTO. This one time only opportunity will grant you digital eternal life by creating your very own virtual NFT twin',
     full_description:
       'A forever lasting, immortal version of yourself built and backed up on the blockchain - powered through the world’s first <b>human powered NFT</b> technology. </br></br>This limited time golden opportunity offer and it can be <b>ALL YOURS</b>, though clicking is required for participation.  This offer is set to expire when deemed most appropriate.',
     image: './assets/images/assets/00_liveforever.jpg',

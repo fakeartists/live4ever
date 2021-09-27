@@ -1,15 +1,20 @@
 import { initializeApp } from '@firebase/app';
 import { getDatabase, ref, child, get, set } from '@firebase/database';
+import { getAnalytics } from '@firebase/analytics';
 
 import axios from 'axios';
 import settings from '../settings';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
-  databaseURL: process.env.REACT_APP_DATABASE_URL
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+getAnalytics(app);
 
 export const writeUserData = async (id, name, bid, level, email, image = '', status = 'bid') => {
   const db = getDatabase();
